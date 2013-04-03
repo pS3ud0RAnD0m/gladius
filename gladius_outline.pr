@@ -1,0 +1,71 @@
+
+ftp
+  anonymous
+  default
+  weak
+ssh
+  cisco
+  unix
+  win
+telnet
+  default
+  weak
+snmp
+  default
+  weak
+tftp
+  anonymous
+  default
+  weak
+mysql
+  default
+  weak
+mssql
+ default
+ weak
+oracle
+  default
+  weak
+netbios
+  null
+  default
+  weak
+rdp
+  default
+  weak
+http(s)
+  default
+  weak
+dns
+  xfer
+  xfer, basics
+  brute
+  
+# research
+## dns
+- dnsenum (can prob just use fierce or recon)
+
+- dnswalk (can prob just use fierce or recon)
+
+
+
+# fierce
+## brute
+/pentest/enumeration/dns/fierce/fierce.pl -threads 2 -dns pitt.edu -wordlist hosts.txt -file out.pr
+
+#####################
+# dnsrecon
+## Attempt a zone transfer:
+/pentest/enumeration/dns/dnsrecon/dnsrecon.py -f --threads 2 -t axfr -d pitt.edu
+
+## Attempt a zone transfer, then enum standard records:
+/pentest/enumeration/dns/dnsrecon/dnsrecon.py -f --threads 2 -a -d pitt.edu
+
+## Perform Google search for sub-domains and hosts:
+/pentest/enumeration/dns/dnsrecon/dnsrecon.py -f --threads 2 -t goo -d pitt.edu
+
+## reverse lookups for given block
+/pentest/enumeration/dns/dnsrecon/dnsrecon.py --threads 2 -t rvl -r 136.142.37.0/24
+
+
+
