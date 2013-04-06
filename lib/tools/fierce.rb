@@ -26,25 +26,27 @@ class Fierce < Tool
       @@hosts.each do |host|
         puts "Attempting a zone transfer and brute against " + host + "..."
         puts
-        brute = Gpty.new
-        brute.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
-        brute.shell
+        i = Gpty.new
+        i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
+        i.shell
       end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and brutes against #{l} domains..."
         @@hosts.each do |host|
           puts
-          brute = Gpty.new
-          brute.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
-          brute.shell
+          i = Gpty.new
+          i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
+          i.shell
         end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     end
   end
 end

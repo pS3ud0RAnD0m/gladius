@@ -5,6 +5,8 @@
 
 class Menu
   attr_accessor :title
+  def initialize
+  end
   
   def splash
     puts
@@ -31,12 +33,33 @@ class Menu
   end
   
   def header
-    puts "----------"
+    puts "------------------------------"
     puts @title
-    puts "----------"
+    puts "------------------------------"
   end
   
-  def instruct_input
-    puts "Input target(s), one per line. When done, ensure the last line is blank and type <CTRL> + <d>.".yellow
+  def instruct_input1
+    puts "Input target(s), one per line. When done, ensure the last line is blank and type <CTRL> + <d>.".light_yellow
+  end
+  
+  def example_input1
+    puts "Example:".yellow
+    puts "224.87.9.0/24".yellow
+    puts
+  end
+  
+  def example_input2
+    puts "Examples:".yellow
+    puts "10.14.0.36".yellow
+    puts "192.168.15-250.0-255".yellow
+    puts "10.87.9.0/24".yellow
+    puts 
+  end
+  
+  def example_input3
+    puts "Example:".yellow
+    puts "10.14.0.36".yellow
+    puts "224.87.9.0/24".yellow
+    puts
   end
 end

@@ -7,7 +7,7 @@ require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
 
-class Dnsrecon < Tool
+class DNSrecon < Tool
   def initialize
   @@path = "/pentest/enumeration/dns/dnsrecon/dnsrecon.py"
   @@hosts = []
@@ -31,8 +31,9 @@ class Dnsrecon < Tool
         i.shell
       end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers against #{l} domains..."
@@ -43,8 +44,9 @@ class Dnsrecon < Tool
           i.shell
         end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     end
   end
   
@@ -66,8 +68,9 @@ class Dnsrecon < Tool
         i.shell
       end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and standard enums against #{l} domains..."
@@ -78,8 +81,9 @@ class Dnsrecon < Tool
           i.shell
         end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     end
   end
 
@@ -101,8 +105,9 @@ class Dnsrecon < Tool
         i.shell
       end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     else
       l = @@hosts.count
       puts "Performing Google search for sub-domains and hosts against #{l} domains..."
@@ -113,8 +118,9 @@ class Dnsrecon < Tool
           i.shell
         end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     end
   end
   
@@ -136,8 +142,9 @@ class Dnsrecon < Tool
         i.shell
       end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     else
       l = @@hosts.count
       puts "Performing reverse lookups against #{l} domains..."
@@ -148,8 +155,9 @@ class Dnsrecon < Tool
           i.shell
         end
       puts
-      next_menu = Dns.new
-      next_menu.menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     end
   end
 end  

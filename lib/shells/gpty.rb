@@ -12,7 +12,7 @@ class Gpty
   def shell
     begin
       i = "#{cmd}"
-      puts "Running: #{cmd}".yellow
+      puts "Running: #{cmd}".light_yellow
       PTY.spawn( i ) do |stdin, stdout, pid|
         begin
           # Do stuff with the output here. Just printing to show it works

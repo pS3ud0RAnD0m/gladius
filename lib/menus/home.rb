@@ -5,64 +5,45 @@
 
 require 'colorize'
 require_relative 'menu'
-require_relative 'dns'
+require_relative 'gatherinfo'
+require_relative 'mangexploits'
+require_relative 'web'
+require_relative 'wireless'
+require_relative 'btservices'
 
 class Home < Menu
   def menu
-    puts "Select a service to target:".yellow
-    puts "1.  DNS"
-    puts "2.  FTP (Not implemented yet)"
-    puts "3.  HTTP(S) (Not implemented yet)"
-    puts "4.  MSSQL (Not implemented yet)"
-    puts "5.  MySQL (Not implemented yet)"
-    puts "6.  Netbios (Not implemented yet)"
-    puts "7.  Oracle (Not implemented yet)"
-    puts "8.  RDP (Not implemented yet)"
-    puts "9.  SNMP (Not implemented yet)"
-    puts "10. SSH (Not implemented yet)"
-    puts "11. Telnet (Not implemented yet)"
-    puts "12. TFTP (Not implemented yet)"
-    puts "13. Exit Gladius"
+    puts "Select a category:".light_yellow
+    puts "1. Gather information"
+    puts "2. Manage exploits"
+    puts "3. Web attacks"
+    puts "4. Wireless attacks"
+    puts "5. Configure Back Track services"
+    puts "6. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "DNS"
+      @title = "Gather Information"
       header
-      Dns.new.menu
+      GatherInfo.new.menu
     elsif sel == 2
-      puts "Not implemented yet.".red
-      menu
+      @title = "Manage Exploits"
+      header
+      MangExploits.new.menu
     elsif sel == 3
-      puts "Not implemented yet.".red
-      menu
+      @title = "Web Attacks"
+      header
+      Web.new.menu
     elsif sel == 4
-      puts "Not implemented yet.".red
-      menu
+      @title = "Wireless Attacks"
+      header
+      Wireless.new.menu
     elsif sel == 5
-      puts "Not implemented yet.".red
-      menu
+      @title = "Configure Back Track Services"
+      header
+      BTServices.new.menu
     elsif sel == 6
-      menu
-    elsif sel == 7
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 8
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 9
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 10
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 11
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 12
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 13
       begin
       puts "Exiting Gladius. Have a bloody day!".red
       rescue Interrupt
