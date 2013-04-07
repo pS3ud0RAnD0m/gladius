@@ -23,8 +23,8 @@ class NetbiosSMB < Menu
     puts "10. SSH (Not implemented yet)"
     puts "11. Telnet (Not implemented yet)"
     puts "12. TFTP (Not implemented yet)"
-    puts "13. Back"
-    puts "14. Exit Gladius"
+    puts "88. Back"
+    puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
@@ -66,11 +66,11 @@ class NetbiosSMB < Menu
     elsif sel == 12
       puts "Not implemented yet.".red
       menu
-    elsif sel == 13
+    elsif sel == 88
       @title = "Home"
       header
       Home.new.menu
-    elsif sel == 14
+    elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
       rescue Interrupt

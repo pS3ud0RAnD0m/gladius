@@ -7,9 +7,9 @@ class Tool
   attr_accessor :title
   
   def header
-    puts "----------"
+    puts "------------------------------"
     puts @title
-    puts "----------"
+    puts "------------------------------"
   end
   
   #def input_val

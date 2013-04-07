@@ -5,33 +5,30 @@
 
 require 'colorize'
 require_relative 'menu'
-require_relative 'dns'
-require_relative 'ftp'
+require_relative '../tools/iptables'
 
 class BTServices < Menu
   def menu
-    puts "Select a service to target:".light_yellow
+    puts "Select a task:".light_yellow
     puts "1.  Monitor LAN traffic (Snort/Snorby)"
     puts "2.  Setup a TFTP server (atftpd)"
-    puts "3.  Setup an FTP server (Not implemented yet)"
-    puts "4.  Setup an HTTP(S) server (Not implemented yet)"
-    puts "5.  View current firewall rules (IPtables)"
+    puts "3.  Setup an FTP server (NI)"
+    puts "4.  Setup an HTTP(S) server (NI)"
+    puts "5.  List current firewall rules (IPtables)"
     puts "6.  Setup awesome BT5 updates (bt5up)"
-    puts "7.  ... (Not implemented yet)"
-    puts "8.  ... (Not implemented yet)"
-    puts "13. Back"
-    puts "14. Exit Gladius"
+    puts "7.  ..."
+    puts "8.  ..."
+    puts "88. Back"
+    puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "DNS"
-      header
-      DNS.new.menu
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 2
-      @title = "FTP"
-      header
-      FTP.new.menu
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
@@ -39,8 +36,9 @@ class BTServices < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 5
-      puts "Not implemented yet.".red
-      menu
+      @title = "List IPtables Rules"
+      header
+      IPtables.new.list
     elsif sel == 6
       puts "Not implemented yet.".red
       menu
@@ -50,23 +48,11 @@ class BTServices < Menu
     elsif sel == 8
       puts "Not implemented yet.".red
       menu
-    elsif sel == 9
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 10
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 11
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 12
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 13
+    elsif sel == 88
       @title = "Home"
       header
       Home.new.menu
-    elsif sel == 14
+    elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
       rescue Interrupt

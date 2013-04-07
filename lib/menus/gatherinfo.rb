@@ -13,18 +13,18 @@ class GatherInfo < Menu
     puts "Select a service to target:".light_yellow
     puts "1.  DNS"
     puts "2.  FTP"
-    puts "3.  HTTP(S) (Not implemented yet)"
-    puts "4.  MSSQL (Not implemented yet)"
-    puts "5.  MySQL (Not implemented yet)"
-    puts "6.  Netbios-SMB"
-    puts "7.  Oracle (Not implemented yet)"
-    puts "8.  RDP (Not implemented yet)"
-    puts "9.  SNMP (Not implemented yet)"
-    puts "10. SSH (Not implemented yet)"
-    puts "11. Telnet (Not implemented yet)"
-    puts "12. TFTP (Not implemented yet)"
-    puts "13. Back"
-    puts "14. Exit Gladius"
+    puts "3.  HTTP(S) (NI)"
+    puts "4.  MSSQL (NI)"
+    puts "5.  MySQL (NI)"
+    puts "6.  Netbios-SMB (NI)"
+    puts "7.  Oracle (NI)"
+    puts "8.  RDP (NI)"
+    puts "9.  SNMP (NI)"
+    puts "10. SSH (NI)"
+    puts "11. Telnet (NI)"
+    puts "12. TFTP (NI)"
+    puts "88. Back"
+    puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
@@ -67,11 +67,11 @@ class GatherInfo < Menu
     elsif sel == 12
       puts "Not implemented yet.".red
       menu
-    elsif sel == 13
+    elsif sel == 88
       @title = "Home"
       header
       Home.new.menu
-    elsif sel == 14
+    elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
       rescue Interrupt

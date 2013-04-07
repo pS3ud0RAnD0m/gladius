@@ -57,7 +57,7 @@ class Menu
   end
   
   def example_input3
-    puts "Example:".yellow
+    puts "Examples:".yellow
     puts "10.14.0.36".yellow
     puts "224.87.9.0/24".yellow
     puts

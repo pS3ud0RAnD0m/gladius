@@ -5,28 +5,34 @@
 
 require 'colorize'
 require_relative 'menu'
-require_relative 'gatherinfo'
-require_relative '../tools/msf'
+require_relative 'dns'
+require_relative 'ftp'
 
-class FTP < Menu
+class LAN < Menu
   def menu
-    puts "Select an option:".light_yellow
-    puts "1.  Discover anonymous FTP read/write logins (MSF)"
+    puts "Select a task:".light_yellow
+    puts "1.  MiTM ARP poisoning (Ettercap)"
+    puts "2.  ..."
+    puts "3.  ..."
     puts "88. Back"
     puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "MSF - Anonymous FTP"
+      @title = "MiTM ARP Poisoning."
       header
-      instruct_input1
-      example_input3
-      MSF.new.ftp_anon
+      DNS.new.menu
+    elsif sel == 2
+      puts "Not implemented yet.".red
+      menu
+    elsif sel == 3
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 88
       @title = "Home"
       header
-      GatherInfo.new.menu
+      Home.new.menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -38,3 +44,4 @@ class FTP < Menu
     end
   end
 end
+
