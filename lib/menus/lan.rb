@@ -5,13 +5,11 @@
 
 require 'colorize'
 require_relative 'menu'
-require_relative 'dns'
-require_relative 'ftp'
 
 class LAN < Menu
   def menu
     puts "Select a task:".light_yellow
-    puts "1.  MiTM ARP poisoning (Ettercap)"
+    puts "1.  MiTM ARP poisoning (Ettercap) (NI)"
     puts "2.  ..."
     puts "3.  ..."
     puts "88. Back"
@@ -20,9 +18,8 @@ class LAN < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "MiTM ARP Poisoning."
-      header
-      DNS.new.menu
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 2
       puts "Not implemented yet.".red
       menu

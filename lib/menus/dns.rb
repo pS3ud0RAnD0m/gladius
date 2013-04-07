@@ -13,7 +13,7 @@ require_relative '../tools/dig'
 class DNS < Menu
   def menu
     puts "Select an option:".light_yellow
-    puts "1.  Identify Domain Controllers (Dig)"
+    puts "1.  Identify Domain Controllers (DiG)"
     puts "2.  Attempt a zone transfer (DNSrecon)"
     puts "3.  Attempt a zone transfer and enum standard records (DNSrecon)"
     puts "4.  Attempt a zone transfer and brute force records (Fierce)"
@@ -25,9 +25,9 @@ class DNS < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "Dig - Identify Domain Controllers"
+      @title = "DiG - Identify Domain Controllers"
       header
-      Dig.new.idcontrollers
+      DiG.new.idcontrollers
     elsif sel == 2
       @title = "DNSrecon - Zone Transfer"
       header

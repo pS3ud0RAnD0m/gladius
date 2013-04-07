@@ -7,7 +7,7 @@ require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
 
-class Dig < Tool
+class DiG < Tool
   def initialize
     @@path = "/usr/bin/dig"
     @@hosts = []

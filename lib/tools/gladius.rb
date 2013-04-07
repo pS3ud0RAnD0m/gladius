@@ -7,10 +7,9 @@ require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
 
-class Fierce < Tool
+class Gladius < Tool
   def initialize
-    @@path_tool = "/pentest/enumeration/dns/fierce/fierce.pl"
-    @@path_hosts = "/pentest/enumeration/dns/fierce/hosts.txt"
+    @@path = "/pentest/enumeration/dns/fierce/"
     @@hosts = []
   end
   
@@ -28,7 +27,7 @@ class Fierce < Tool
         puts "Attempting a zone transfer and brute against " + host + "..."
         puts
         i = Gpty.new
-        i.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
+        i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
         i.shell
       end
       puts
@@ -41,7 +40,7 @@ class Fierce < Tool
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
+          i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
           i.shell
         end
       puts

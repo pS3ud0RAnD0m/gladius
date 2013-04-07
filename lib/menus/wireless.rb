@@ -12,7 +12,7 @@ class Wireless < Menu
   def menu
     puts "Select a task:".light_yellow
     puts "1.  Rogue AP (NI)"
-    puts "2.  RADIUS MiTM (NI)"
+    puts "2.  RADIUS MiTM (FreeRADIUS) (NI)"
     puts "3.  ..."
     puts "88. Back"
     puts "99. Exit Gladius"

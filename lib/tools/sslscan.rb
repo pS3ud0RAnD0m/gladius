@@ -7,15 +7,14 @@ require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
 
-class Fierce < Tool
+class SSLScan < Tool
   def initialize
-    @@path_tool = "/pentest/enumeration/dns/fierce/fierce.pl"
-    @@path_hosts = "/pentest/enumeration/dns/fierce/hosts.txt"
+    @@path = "/usr/bin/sslscan"
     @@hosts = []
   end
   
-  # Attempt a zone transfer and brute force records
-  def brute
+  # Identify supported SSL/TLS protcols and ciphers
+  def scan
     while line = gets
       @@hosts << line.chomp
     end
@@ -25,29 +24,29 @@ class Fierce < Tool
       menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer and brute against " + host + "..."
+        puts "Identifing supported protcols and ciphers on " + host + " ..."
         puts
         i = Gpty.new
-        i.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
+        i.cmd = @@path + " --no-failed " + host
         i.shell
       end
       puts
-      @title = "DNS"
+      @title = "HTTP"
       header
-      DNS.new.menu
+      HTTP.new.menu
     else
       l = @@hosts.count
-      puts "Attempting zone transfers and brutes against #{l} domains..."
+      puts "Identifing supported protcols and ciphers on #{l} targets ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
+          i.cmd = @@path + " --no-failed " + host
           i.shell
         end
       puts
-      @title = "DNS"
+      @title = "HTTP"
       header
-      DNS.new.menu
+      HTTP.new.menu
     end
   end
 end

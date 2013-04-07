@@ -7,13 +7,14 @@ require 'colorize'
 require_relative 'menu'
 require_relative 'dns'
 require_relative 'ftp'
+require_relative 'http'
 
 class GatherInfo < Menu
   def menu
     puts "Select a service to target:".light_yellow
     puts "1.  DNS"
     puts "2.  FTP"
-    puts "3.  HTTP(S) (NI)"
+    puts "3.  HTTP(S)"
     puts "4.  MSSQL (NI)"
     puts "5.  MySQL (NI)"
     puts "6.  Netbios-SMB (NI)"
@@ -37,8 +38,9 @@ class GatherInfo < Menu
       header
       FTP.new.menu
     elsif sel == 3
-      puts "Not implemented yet.".red
-      menu
+      @title = "HTTP(S)"
+      header
+      HTTP.new.menu
     elsif sel == 4
       puts "Not implemented yet.".red
       menu

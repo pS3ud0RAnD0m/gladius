@@ -10,12 +10,12 @@ require_relative '../tools/iptables'
 class BTServices < Menu
   def menu
     puts "Select a task:".light_yellow
-    puts "1.  Monitor LAN traffic (Snort/Snorby)"
-    puts "2.  Setup a TFTP server (atftpd)"
+    puts "1.  Monitor LAN traffic (Snort/Snorby) (NI)"
+    puts "2.  Setup a TFTP server (atftpd) (NI)"
     puts "3.  Setup an FTP server (NI)"
     puts "4.  Setup an HTTP(S) server (NI)"
     puts "5.  List current firewall rules (IPtables)"
-    puts "6.  Setup awesome BT5 updates (bt5up)"
+    puts "6.  Setup awesome BT5 updates (bt5up) (NI)"
     puts "7.  ..."
     puts "8.  ..."
     puts "88. Back"

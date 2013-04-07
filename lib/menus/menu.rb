@@ -39,7 +39,7 @@ class Menu
   end
   
   def instruct_input1
-    puts "Input target(s), one per line. When done, ensure the last line is blank and type <CTRL> + <d>.".light_yellow
+    puts "Input target(s), one per line. When done, ensure the last line is blank and hit <CTRL> + <d>.".light_yellow
   end
   
   def example_input1
@@ -58,8 +58,21 @@ class Menu
   
   def example_input3
     puts "Examples:".yellow
-    puts "10.14.0.36".yellow
+    puts "225.14.0.36".yellow
     puts "224.87.9.0/24".yellow
+    puts
+  end
+  
+  def example_input4
+    puts "Examples:".yellow
+    puts "224.87.9.54".yellow
+    puts
+  end
+  
+  def example_input5
+    puts "Examples:".yellow
+    puts "www.victima.com".yellow
+    puts "224.87.9.54".yellow
     puts
   end
 end
