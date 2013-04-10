@@ -21,7 +21,7 @@ class FTP < Menu
       @title = "MSF - Anonymous FTP"
       header
       instruct_input1
-      example_input3
+      example_input2
       MSF.new.ftp_anon
     elsif sel == 88
       @title = "Home"
@@ -34,6 +34,8 @@ class FTP < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "FTP"
+      header
       menu
     end
   end

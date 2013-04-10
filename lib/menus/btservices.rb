@@ -59,6 +59,8 @@ class BTServices < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Configure Back Track Services"
+      header
       menu
     end
   end

@@ -55,6 +55,8 @@ class Home < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Home"
+      header
       menu
     end
   end

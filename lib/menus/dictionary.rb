@@ -40,6 +40,8 @@ class Dictionary < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Dictionary Attacks"
+      header
       menu
     end
   end

@@ -37,6 +37,8 @@ class LAN < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "LAN Attacks"
+      header
       menu
     end
   end

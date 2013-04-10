@@ -32,27 +32,31 @@ class DNS < Menu
       @title = "DNSrecon - Zone Transfer"
       header
       instruct_input1
+      example_input7
       DNSrecon.new.transfer
     elsif sel == 3
       @title = "DNSrecon - Zone Transfer and Standard Records"
       header
       instruct_input1
+      example_input7
       DNSrecon.new.standard
     elsif sel == 4
       @title = "Fierce - Zone Transfer and Brute Records"
       header
       instruct_input1
+      example_input7
       Fierce.new.brute
     elsif sel == 5
       @title = "DNSrecon - Google Search for Sub-domains and Hosts"
       header
       instruct_input1
+      example_input1
       DNSrecon.new.google
     elsif sel == 6
       @title = "DNSrecon - Reverse Lookups"
       header
       instruct_input1
-      example_input1
+      example_input8
       DNSrecon.new.reverse
     elsif sel == 88
       @title = "Information Gathering"
@@ -65,6 +69,8 @@ class DNS < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "DNS"
+      header
       menu
     end
   end

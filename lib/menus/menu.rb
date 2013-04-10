@@ -75,4 +75,25 @@ class Menu
     puts "224.87.9.54".yellow
     puts
   end
+  
+  def example_input6
+    puts "Examples:".yellow
+    puts "10.14.0.36".yellow
+    puts "192.168.10.15-192.168.10.20".yellow
+    puts "10.87.9.0/24".yellow
+    puts 
+  end
+  
+  def example_input7
+    puts "Example:".yellow
+    puts "victima.com".yellow
+    puts
+  end
+  
+  def example_input8
+    puts "Examples:".yellow
+    puts "192.168.10.15-192.168.10.20".yellow
+    puts "10.87.9.0/24".yellow
+    puts 
+  end
 end

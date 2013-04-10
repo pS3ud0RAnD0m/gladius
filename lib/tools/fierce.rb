@@ -21,8 +21,9 @@ class Fierce < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer and brute against " + host + "..."

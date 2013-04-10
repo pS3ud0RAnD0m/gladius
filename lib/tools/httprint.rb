@@ -6,6 +6,7 @@
 require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
+require_relative '../menus/http'
 
 class Httprint < Tool
   def initialize
@@ -21,8 +22,9 @@ class Httprint < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "HTTP(S)"
+      header
+      HTTP.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting to fingerprint " + host + "..."

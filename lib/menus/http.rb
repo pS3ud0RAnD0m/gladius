@@ -21,7 +21,7 @@ class HTTP < Menu
     puts "6.  ... (NI)"
     puts "7.  ... (NI)"
     puts "8.  ... (NI)"
-    puts "9.  ... (NI)"
+    puts "9.  Apache - Enum users (Apache2.1)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -30,7 +30,7 @@ class HTTP < Menu
     if sel == 1
       @title = "httprint - Fingerprint Web Servers"
       header
-      puts "Note: I've found this tool to be pretty flakey. It has problems resolving URLs and seems hit or miss for IPs.".light_yellow
+      puts "Note: This tool seems pretty flakey. It has problems resolving URLs and seems hit or miss for IPs.".light_yellow
       instruct_input1
       example_input4
       Httprint.new.fingerprint
@@ -59,8 +59,11 @@ class HTTP < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 9
-      puts "Not implemented yet.".red
-      menu
+      @title = "Apache2.1 - Enum Users"
+      header
+      instruct_input1
+      example_input5
+      Apache2_1.new.scan
     elsif sel == 88
       @title = "Information Gathering"
       header
@@ -72,6 +75,8 @@ class HTTP < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "HTTP(S)"
+      header
       menu
     end
   end

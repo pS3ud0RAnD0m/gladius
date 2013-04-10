@@ -19,12 +19,13 @@ class MSF < Tool
       @@target << line.chomp
     end
     if @@target.count == 0
-      puts "No targets were input.".red
-      puts
-      menu
+      puts "No hosts were input.".red
+      @title = "FTP"
+      header
+      FTP.new.menu
     elsif @@target.count == 1
       @@target.each do |target|
-        puts "Discovering anonymous FTP logins against " + target + "..."
+        puts "Discovering anonymous FTP logins against " + target + " ..."
         puts
         if target.include?("/") || target.include?("-")
           i = Gpty.new
@@ -40,7 +41,7 @@ class MSF < Tool
       FTP.new.menu
     else
       l = @@target.count
-      puts "Discovering anonymous FTP logins against #{l} targets..."
+      puts "Discovering anonymous FTP logins against #{l} targets ..."
         @@target.each do |target|
           puts
           if target.include?("/") || target.include?("-")

@@ -37,6 +37,8 @@ class Web < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Web Attacks"
+      header
       menu
     end
   end

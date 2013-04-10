@@ -80,6 +80,8 @@ class GatherInfo < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Gather Information"
+      header
       menu
     end
   end

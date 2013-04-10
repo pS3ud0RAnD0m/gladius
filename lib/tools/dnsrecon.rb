@@ -6,6 +6,7 @@
 require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
+require_relative '../menus/dns'
 
 class DNSrecon < Tool
   def initialize
@@ -20,8 +21,9 @@ class DNSrecon < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer against " + host + "..."
@@ -57,8 +59,9 @@ class DNSrecon < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer and standard enum against " + host + "..."
@@ -94,8 +97,9 @@ class DNSrecon < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Performing Google search for sub-domains and hosts against " + host + "..."
@@ -131,8 +135,9 @@ class DNSrecon < Tool
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      @title = "DNS"
+      header
+      DNS.new.menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Performing reverse lookups against " + host + "..."
@@ -147,7 +152,7 @@ class DNSrecon < Tool
       DNS.new.menu
     else
       l = @@hosts.count
-      puts "Performing reverse lookups against #{l} domains..."
+      puts "Performing reverse lookups against #{l} targets ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new

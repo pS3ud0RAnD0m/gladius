@@ -39,6 +39,8 @@ class Wireless < Menu
       end
     else
       puts "Invalid selection.".red
+      @title = "Wireless Attacks"
+      header
       menu
     end
   end
