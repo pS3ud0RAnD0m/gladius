@@ -12,6 +12,7 @@ require_relative '../tools/dig'
 
 class DNS < Menu
   def menu
+    header
     puts "Select an option:".light_yellow
     puts "1.  Identify Domain Controllers (DiG)"
     puts "2.  Attempt a zone transfer (DNSrecon)"
@@ -25,43 +26,19 @@ class DNS < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "DiG - Identify Domain Controllers"
-      header
-      DiG.new.idcontrollers
+      DiG.new("DiG - Identify Domain Controllers").idcontrollers
     elsif sel == 2
-      @title = "DNSrecon - Zone Transfer"
-      header
-      instruct_input1
-      example_input7
-      DNSrecon.new.transfer
+      DNSrecon.new("DNSrecon - Zone Transfer").transfer
     elsif sel == 3
-      @title = "DNSrecon - Zone Transfer and Standard Records"
-      header
-      instruct_input1
-      example_input7
-      DNSrecon.new.standard
+      DNSrecon.new("DNSrecon - Zone Transfer and Standard Records").standard
     elsif sel == 4
-      @title = "Fierce - Zone Transfer and Brute Records"
-      header
-      instruct_input1
-      example_input7
-      Fierce.new.brute
+      Fierce.new("Fierce - Zone Transfer and Brute Records").brute
     elsif sel == 5
-      @title = "DNSrecon - Google Search for Sub-domains and Hosts"
-      header
-      instruct_input1
-      example_input1
-      DNSrecon.new.google
+      DNSrecon.new("DNSrecon - Google Search for Sub-domains and Hosts").google
     elsif sel == 6
-      @title = "DNSrecon - Reverse Lookups"
-      header
-      instruct_input1
-      example_input8
-      DNSrecon.new.reverse
+      DNSrecon.new("DNSrecon - Reverse Lookups").reverse
     elsif sel == 88
-      @title = "Information Gathering"
-      header
-      GatherInfo.new.menu
+      GatherInfo.new("Information Gathering").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -69,8 +46,6 @@ class DNS < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "DNS"
-      header
       menu
     end
   end

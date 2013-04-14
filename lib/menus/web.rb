@@ -7,7 +7,9 @@ require 'colorize'
 require_relative 'menu'
 
 class Web < Menu
+  
   def menu
+    header
     puts "Select a task:".light_yellow
     puts "1.  ..."
     puts "2.  ..."
@@ -27,9 +29,7 @@ class Web < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -37,8 +37,6 @@ class Web < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Web Attacks"
-      header
       menu
     end
   end

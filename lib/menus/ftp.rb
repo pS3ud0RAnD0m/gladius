@@ -10,6 +10,7 @@ require_relative '../tools/msf'
 
 class FTP < Menu
   def menu
+    header
     puts "Select an option:".light_yellow
     puts "1.  Discover anonymous FTP read/write logins (MSF)"
     puts "88. Back"
@@ -18,15 +19,9 @@ class FTP < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "MSF - Anonymous FTP"
-      header
-      instruct_input1
-      example_input2
-      MSF.new.ftp_anon
+      MSF.new("MSF - Anonymous FTP").ftp_anon
     elsif sel == 88
-      @title = "Home"
-      header
-      GatherInfo.new.menu
+      GatherInfo.new("Information Gathering").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -34,8 +29,6 @@ class FTP < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "FTP"
-      header
       menu
     end
   end

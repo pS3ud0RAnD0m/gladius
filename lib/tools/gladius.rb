@@ -8,13 +8,15 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class Gladius < Tool
-  def initialize
+  def initialize(title)
+    @title = title
     @@path = "/pentest/enumeration/dns/fierce/"
     @@hosts = []
   end
   
   # Attempt a zone transfer and brute force records
   def brute
+    header
     while line = gets
       @@hosts << line.chomp
     end
@@ -31,9 +33,7 @@ class Gladius < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      HTTP.new("HTTP(S)").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and brutes against #{l} domains..."
@@ -44,9 +44,7 @@ class Gladius < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      HTTP.new("HTTP(S)").menu
     end
   end
 end

@@ -8,6 +8,7 @@ require_relative 'menu'
 
 class LAN < Menu
   def menu
+    header
     puts "Select a task:".light_yellow
     puts "1.  MiTM ARP poisoning (Ettercap) (NI)"
     puts "2.  ..."
@@ -27,9 +28,7 @@ class LAN < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -37,8 +36,6 @@ class LAN < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "LAN Attacks"
-      header
       menu
     end
   end

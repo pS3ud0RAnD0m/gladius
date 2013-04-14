@@ -8,15 +8,18 @@ require_relative 'menu'
 require_relative 'gatherinfo'
 require_relative '../tools/httprint'
 require_relative '../tools/sslscan'
+require_relative '../tools/nikto'
 require_relative '../tools/gladius'
+require_relative '../tools/apache2_1'
 
 class HTTP < Menu
   def menu
+    header
     puts "Select an option:".light_yellow
     puts "1.  Fingerprint web servers (httprint)"
     puts "2.  Identify supported SSL/TLS protcols and ciphers (SSLScan)"
     puts "3.  Identify supported HTTP methods (Gladius) (NI)"
-    puts "4.  ... (NI)"
+    puts "4.  Identify common vulns (Nikto)"
     puts "5.  ... (NI)"
     puts "6.  ... (NI)"
     puts "7.  ... (NI)"
@@ -28,24 +31,14 @@ class HTTP < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "httprint - Fingerprint Web Servers"
-      header
-      puts "Note: This tool seems pretty flakey. It has problems resolving URLs and seems hit or miss for IPs.".light_yellow
-      instruct_input1
-      example_input4
-      Httprint.new.fingerprint
+      Httprint.new("httprint - Fingerprint Web Servers").fingerprint
     elsif sel == 2
-      @title = "SSLScan - Identify Protcols and Ciphers"
-      header
-      instruct_input1
-      example_input5
-      SSLScan.new.scan
+      SSLScan.new("SSLScan - Identify Protcols and Ciphers").scan
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 4
-      puts "Not implemented yet.".red
-      menu
+      Nikto.new("Nikto - Identify Common Vulns").common
     elsif sel == 5
       puts "Not implemented yet.".red
       menu
@@ -59,15 +52,9 @@ class HTTP < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 9
-      @title = "Apache2.1 - Enum Users"
-      header
-      instruct_input1
-      example_input5
-      Apache2_1.new.scan
+      Apache2_1.new("Apache2.1 - Enum Users").fingerprint
     elsif sel == 88
-      @title = "Information Gathering"
-      header
-      GatherInfo.new.menu
+      GatherInfo.new("Information Gathering").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -75,8 +62,6 @@ class HTTP < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "HTTP(S)"
-      header
       menu
     end
   end

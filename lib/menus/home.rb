@@ -14,6 +14,7 @@ require_relative 'btservices'
 
 class Home < Menu
   def menu
+    header
     puts "Select a category:".light_yellow
     puts "1.  Gather information"
     puts "2.  LAN attacks"
@@ -22,32 +23,22 @@ class Home < Menu
     puts "5.  Dictionary attacks"
     puts "6.  Configure Back Track services"
     puts "99. Exit Gladius"
-
+    
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "Gather Information"
-      header
-      GatherInfo.new.menu
+      GatherInfo.new("Gather Information").menu
     elsif sel == 2
-      @title = "LAN Attacks"
-      header
-      LAN.new.menu
+      LAN.new("LAN Attacks").menu
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 4
-      @title = "Wireless Attacks"
-      header
-      Wireless.new.menu
+      Wireless.new("Wireless Attacks").menu
     elsif sel == 5
-      @title = "Dictionary Attacks"
-      header
-      Dictionary.new.menu
+      Dictionary.new("Dictionary Attacks").menu
     elsif sel == 6
-      @title = "Configure Back Track Services"
-      header
-      BTServices.new.menu
+      BTServices.new("Configure Back Track Services").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -55,8 +46,6 @@ class Home < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Home"
-      header
       menu
     end
   end

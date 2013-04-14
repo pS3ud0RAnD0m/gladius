@@ -5,12 +5,15 @@
 
 require 'colorize'
 require_relative 'menu'
+require_relative 'home'
 require_relative 'dns'
 require_relative 'ftp'
 require_relative 'http'
 
 class GatherInfo < Menu
+  
   def menu
+    header
     puts "Select a service to target:".light_yellow
     puts "1.  DNS"
     puts "2.  FTP"
@@ -30,17 +33,11 @@ class GatherInfo < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif sel == 2
-      @title = "FTP"
-      header
-      FTP.new.menu
+      FTP.new("FTP").menu
     elsif sel == 3
-      @title = "HTTP(S)"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     elsif sel == 4
       puts "Not implemented yet.".red
       menu
@@ -48,9 +45,7 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 6
-      @title = "Netbios-SMB"
-      header
-      NetbiosSMB.new.menu
+      NetbiosSMB.new("Netbios-SMB").menu
     elsif sel == 7
       puts "Not implemented yet.".red
       menu
@@ -70,9 +65,7 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -80,8 +73,6 @@ class GatherInfo < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Gather Information"
-      header
       menu
     end
   end

@@ -9,6 +9,7 @@ require_relative '../tools/iptables'
 
 class BTServices < Menu
   def menu
+    header
     puts "Select a task:".light_yellow
     puts "1.  Monitor LAN traffic (Snort/Snorby) (NI)"
     puts "2.  Setup a TFTP server (atftpd) (NI)"
@@ -36,9 +37,7 @@ class BTServices < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 5
-      @title = "List IPtables Rules"
-      header
-      IPtables.new.list
+      IPtables.new("List IPtables Rules").list
     elsif sel == 6
       puts "Not implemented yet.".red
       menu
@@ -49,9 +48,7 @@ class BTServices < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -59,8 +56,6 @@ class BTServices < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Configure Back Track Services"
-      header
       menu
     end
   end

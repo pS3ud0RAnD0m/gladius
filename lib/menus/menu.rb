@@ -5,7 +5,15 @@
 
 class Menu
   attr_accessor :title
-  def initialize
+  
+  def initialize(title)
+    @title = title
+  end
+  
+  def header
+    puts "------------------------------"
+    puts @title
+    puts "------------------------------"
   end
   
   def splash
@@ -30,70 +38,5 @@ class Menu
     puts "                                 (  )    Find a way or make one!"
     puts "                                  \\/"
     puts
-  end
-  
-  def header
-    puts "------------------------------"
-    puts @title
-    puts "------------------------------"
-  end
-  
-  def instruct_input1
-    puts "Input target(s), one per line. When done, ensure the last line is blank and hit <CTRL> + <d>.".light_yellow
-  end
-  
-  def example_input1
-    puts "Example:".yellow
-    puts "224.87.9.0/24".yellow
-    puts
-  end
-  
-  def example_input2
-    puts "Examples:".yellow
-    puts "10.14.0.36".yellow
-    puts "192.168.15-250.0-255".yellow
-    puts "10.87.9.0/24".yellow
-    puts 
-  end
-  
-  def example_input3
-    puts "Examples:".yellow
-    puts "225.14.0.36".yellow
-    puts "224.87.9.0/24".yellow
-    puts
-  end
-  
-  def example_input4
-    puts "Examples:".yellow
-    puts "224.87.9.54".yellow
-    puts
-  end
-  
-  def example_input5
-    puts "Examples:".yellow
-    puts "www.victima.com".yellow
-    puts "224.87.9.54".yellow
-    puts
-  end
-  
-  def example_input6
-    puts "Examples:".yellow
-    puts "10.14.0.36".yellow
-    puts "192.168.10.15-192.168.10.20".yellow
-    puts "10.87.9.0/24".yellow
-    puts 
-  end
-  
-  def example_input7
-    puts "Example:".yellow
-    puts "victima.com".yellow
-    puts
-  end
-  
-  def example_input8
-    puts "Examples:".yellow
-    puts "192.168.10.15-192.168.10.20".yellow
-    puts "10.87.9.0/24".yellow
-    puts 
   end
 end

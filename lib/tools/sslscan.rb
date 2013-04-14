@@ -8,21 +8,23 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class SSLScan < Tool
-  def initialize
+  def initialize(title)
+    @title = title
     @@path = "/usr/bin/sslscan"
     @@hosts = []
   end
   
   # Identify supported SSL/TLS protcols and ciphers
   def scan
+    header
+    instruct_input1
+    example("fqdn", "ip")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "HTTP(S)"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Identifing supported protcols and ciphers on " + host + " ..."
@@ -32,9 +34,7 @@ class SSLScan < Tool
         i.shell
       end
       puts
-      @title = "HTTP"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     else
       l = @@hosts.count
       puts "Identifing supported protcols and ciphers on #{l} targets ..."
@@ -45,9 +45,7 @@ class SSLScan < Tool
           i.shell
         end
       puts
-      @title = "HTTP"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     end
   end
 end

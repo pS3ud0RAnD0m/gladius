@@ -9,21 +9,23 @@ require_relative '../shells/gpty'
 require_relative '../menus/dns'
 
 class DNSrecon < Tool
-  def initialize
-  @@path = "/pentest/enumeration/dns/dnsrecon/dnsrecon.py"
-  @@hosts = []
+  def initialize(title)
+    @title = title
+    @@path = "/pentest/enumeration/dns/dnsrecon/dnsrecon.py"
+    @@hosts = []
   end
 
   # Attempt a zone transfer:
   def transfer
+    header
+    instruct_input1
+    example("fqdn")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer against " + host + "..."
@@ -33,9 +35,7 @@ class DNSrecon < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers against #{l} domains..."
@@ -46,22 +46,21 @@ class DNSrecon < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     end
   end
   
   # Attempt a zone transfer, then enum standard records:
   def standard
+    header
+    instruct_input1
+    example("fqdn")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer and standard enum against " + host + "..."
@@ -71,9 +70,7 @@ class DNSrecon < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and standard enums against #{l} domains..."
@@ -84,22 +81,21 @@ class DNSrecon < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     end
   end
 
   # Perform Google search for sub-domains and @@hosts:
   def google
+    header
+    instruct_input1
+    example("cidr")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Performing Google search for sub-domains and hosts against " + host + "..."
@@ -109,9 +105,7 @@ class DNSrecon < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Performing Google search for sub-domains and hosts against #{l} domains..."
@@ -122,22 +116,21 @@ class DNSrecon < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     end
   end
   
   # Reverse lookups for given block
   def reverse
+    header
+    instruct_input1
+    example("iprl", "cidr")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Performing reverse lookups against " + host + "..."
@@ -147,9 +140,7 @@ class DNSrecon < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Performing reverse lookups against #{l} targets ..."
@@ -160,9 +151,7 @@ class DNSrecon < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     end
   end
 end  

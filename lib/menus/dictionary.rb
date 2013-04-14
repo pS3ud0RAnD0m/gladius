@@ -10,9 +10,10 @@ require_relative 'ftp'
 
 class Dictionary < Menu
   def menu
+    header
     puts "Select a task:".light_yellow
     puts "1.  Create custom user/pass lists (NI)"
-    puts "2.  Brute force authentication (Medusa)"
+    puts "2.  Brute force authentication (Medusa) (NI)"
     puts "3.  ..."
     puts "88. Back"
     puts "99. Exit Gladius"
@@ -23,16 +24,13 @@ class Dictionary < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 2
-      @title = "Medusa - Brute Force Authentication"
-      header
-      FTP.new.menu
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -40,8 +38,6 @@ class Dictionary < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Dictionary Attacks"
-      header
       menu
     end
   end

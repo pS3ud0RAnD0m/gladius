@@ -8,13 +8,15 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class DiG < Tool
-  def initialize
+  def initialize(title)
+    @title = title
     @@path = "/usr/bin/dig"
     @@hosts = []
   end
   
   # Identify Domain Controllers, i.e., servers running kerb.
   def idcontrollers
+    header
     # Get dns server
     dns_server = `nslookup server |grep Server |awk '{print $2}'`.chomp
     puts "Gladius identified the following DNS server for Kerberos enumeration: " + dns_server
@@ -55,8 +57,6 @@ class DiG < Tool
       end
     end
     puts
-    @title = "DNS"
-    header
-    DNS.new.menu
+    DNS.new("DNS").menu
   end
 end

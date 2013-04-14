@@ -8,13 +8,15 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class Nessus < Tool
-  def initialize
-  @@path = "/opt/nessus/bin/nasl"
-  @@target = []
+  def initialize(title)
+    @title = title
+    @@path = "/opt/nessus/bin/nasl"
+    @@target = []
   end
 
   # Discover anonymous FTP read/write logins:
   def ftp_anon
+    header
     while line = gets
       @@target << line.chomp
     end
@@ -54,7 +56,7 @@ class Nessus < Tool
           end
         end
       puts
-      FTP.new.menu
+      FTP.new("FTP").menu
     end
   end
 end  

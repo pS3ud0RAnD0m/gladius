@@ -9,7 +9,9 @@ require_relative 'dns'
 require_relative 'ftp'
 
 class Wireless < Menu
+  
   def menu
+    header
     puts "Select a task:".light_yellow
     puts "1.  Rogue AP (NI)"
     puts "2.  RADIUS MiTM (FreeRADIUS) (NI)"
@@ -29,9 +31,7 @@ class Wireless < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      Home.new("Home").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
@@ -39,8 +39,6 @@ class Wireless < Menu
       end
     else
       puts "Invalid selection.".red
-      @title = "Wireless Attacks"
-      header
       menu
     end
   end

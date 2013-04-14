@@ -8,7 +8,8 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class Fierce < Tool
-  def initialize
+  def initialize(title)
+    @title = title
     @@path_tool = "/pentest/enumeration/dns/fierce/fierce.pl"
     @@path_hosts = "/pentest/enumeration/dns/fierce/hosts.txt"
     @@hosts = []
@@ -16,14 +17,15 @@ class Fierce < Tool
   
   # Attempt a zone transfer and brute force records
   def brute
+    header
+    instruct_input1
+    example("fqdn")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting a zone transfer and brute against " + host + "..."
@@ -33,9 +35,7 @@ class Fierce < Tool
         i.shell
       end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and brutes against #{l} domains..."
@@ -46,9 +46,7 @@ class Fierce < Tool
           i.shell
         end
       puts
-      @title = "DNS"
-      header
-      DNS.new.menu
+      DNS.new("DNS").menu
     end
   end
 end

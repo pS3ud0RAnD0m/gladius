@@ -8,21 +8,23 @@ require_relative 'tool'
 require_relative '../shells/gpty'
 
 class MSF < Tool
-  def initialize
-  @@path = "/usr/local/bin/msfcli"
-  @@target = []
+  def initialize(title)
+    @title = title
+    @@path = "/usr/local/bin/msfcli"
+    @@target = []
   end
 
   # Discover anonymous FTP read/write logins:
   def ftp_anon
+    header
+    instruct_input1
+    example("fqdn", "ip", "iprf", "cidr")
     while line = gets
       @@target << line.chomp
     end
     if @@target.count == 0
       puts "No hosts were input.".red
-      @title = "FTP"
-      header
-      FTP.new.menu
+      FTP.new("FTP").menu
     elsif @@target.count == 1
       @@target.each do |target|
         puts "Discovering anonymous FTP logins against " + target + " ..."
@@ -38,7 +40,7 @@ class MSF < Tool
         end
       end
       puts
-      FTP.new.menu
+      FTP.new("FTP").menu
     else
       l = @@target.count
       puts "Discovering anonymous FTP logins against #{l} targets ..."
@@ -55,7 +57,7 @@ class MSF < Tool
           end
         end
       puts
-      FTP.new.menu
+      FTP.new("FTP").menu
     end
   end
 end  

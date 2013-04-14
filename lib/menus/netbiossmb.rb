@@ -9,6 +9,7 @@ require_relative 'dns'
 require_relative 'ftp'
 
 class NetbiosSMB < Menu
+  
   def menu
     puts "Select a service to target:".light_yellow
     puts "1.  DNS"
@@ -67,9 +68,7 @@ class NetbiosSMB < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      @title = "Home"
-      header
-      Home.new.menu
+      GatherInfo.new("Information Gathering").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

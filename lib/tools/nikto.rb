@@ -7,20 +7,16 @@ require 'colorize'
 require_relative 'tool'
 require_relative '../shells/gpty'
 
-class IPtables < Tool
+class Nikto < Tool
   def initialize(title)
     @title = title
-    @@path = "/sbin/iptables"
+    @@path_tool = "/pentest/web/nikto/nikto.pl"
     @@hosts = []
   end
   
-  # List ruleset
-  def list
+  # Identify common vulns
+  def common
     header
-    i = Gpty.new
-    i.cmd = @@path + " -L -nv"
-    i.shell
-    puts
-    BTServices.new("Configure Back Track Services").menu
+    get_port
   end
 end

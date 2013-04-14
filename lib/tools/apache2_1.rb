@@ -9,7 +9,8 @@ require_relative '../shells/gpty'
 require_relative '../menus/http'
 
 class Apache2_1 < Tool
-  def initialize
+  def initialize(title)
+    @title = title
     @@path_tool = "/pentest/enumeration/web/apache-users/apache2.1.pl"
     @@path_names = "/pentest/enumeration/web/apache-users/names"
     @@hosts = []
@@ -17,14 +18,15 @@ class Apache2_1 < Tool
   
   # Enum Users
   def fingerprint
+    header
+    instruct_input1
+    example("fqdn", "ip")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      @title = "HTTP(S)"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
         puts "Attempting to enum users on " + host + "..."
@@ -34,9 +36,7 @@ class Apache2_1 < Tool
         i.shell
       end
       puts
-      @title = "HTTP(S)"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     else
       l = @@hosts.count
       puts "Attempting to enum users on #{l} hosts ..."
@@ -47,9 +47,7 @@ class Apache2_1 < Tool
           i.shell
         end
       puts
-      @title = "HTTP(S)"
-      header
-      HTTP.new.menu
+      HTTP.new("HTTP(S)").menu
     end
   end
 end
