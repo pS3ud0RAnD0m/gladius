@@ -11,14 +11,13 @@ class Gpty
   
   def shell
     begin
-      i = "#{cmd}"
+      a = "#{cmd}"
       puts "Running: #{cmd}".light_yellow
-      PTY.spawn( i ) do |stdin, stdout, pid|
+      PTY.spawn( a ) do |stdin, stdout, pid|
         begin
-          # Do stuff with the output here. Just printing to show it works
           stdin.each { |line| print line }
         rescue Errno::EIO
-          puts "Exit needs resolved........".red
+          #puts "Exit needs resolved........".red
         end
       end
     rescue PTY::ChildExited

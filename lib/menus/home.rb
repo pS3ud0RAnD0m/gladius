@@ -17,7 +17,7 @@ class Home < Menu
     header
     puts "Select a category:".light_yellow
     puts "1.  Gather information"
-    puts "2.  LAN attacks"
+    puts "2.  LAN attacks (NI)"
     puts "3.  Web attacks (NI)"
     puts "4.  Wireless attacks"
     puts "5.  Dictionary attacks"

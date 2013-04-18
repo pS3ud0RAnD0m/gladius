@@ -5,7 +5,7 @@
 
 require 'colorize'
 require_relative 'tool'
-require_relative '../shells/gpty'
+require_relative 'gpty'
 
 class Gladius < Tool
   def initialize(title)

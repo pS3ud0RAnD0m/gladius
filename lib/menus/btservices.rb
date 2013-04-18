@@ -6,12 +6,13 @@
 require 'colorize'
 require_relative 'menu'
 require_relative '../tools/iptables'
+require_relative 'configsnort'
 
 class BTServices < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Monitor LAN traffic (Snort/Snorby) (NI)"
+    puts "1.  Monitor LAN traffic (Snort/Snorby)"
     puts "2.  Setup a TFTP server (atftpd) (NI)"
     puts "3.  Setup an FTP server (NI)"
     puts "4.  Setup an HTTP(S) server (NI)"
@@ -25,8 +26,7 @@ class BTServices < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      puts "Not implemented yet.".red
-      menu
+      ConfigSnort.new("Snort/Snorby - Configuration").menu
     elsif sel == 2
       puts "Not implemented yet.".red
       menu
@@ -60,4 +60,5 @@ class BTServices < Menu
     end
   end
 end
+
 
