@@ -14,25 +14,17 @@ class Environment
   def requirements
     begin
       require 'colorize'
-#      Home.new("Home                   v0.0.1").menu
-      puts "mark 1"
-      env_test
-    rescue LoadError
-      gem_install("colorize")
-      puts "mark 2"
-      gem 'colorize'
       require_relative '../menus/home'
-      Home.new("").test
-#      require_relative '../menus/home'
-#      Home.new("Home                   v0.0.1").menu
-#      puts "mark 3"
+      Home.new("Home                   v0.0.1").menu
+    rescue LoadError
+      puts "Gladius requires the RubyGem 'Colorize'. Installing ..."
+      gem_install("colorize")
+      begin
+        puts
+        puts "Colorize has been installed, please restart Gladius."
+      rescue Interrupt
+      end
     end
-  end
-  
-  def env_test
-    puts "This is env_test..."
-    require_relative '../menus/home'
-    Home.new("").test
   end
   
   # Get the Operating System
