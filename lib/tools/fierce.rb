@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.0.1
+# Version: 0.0.1
 
 require 'colorize'
 require_relative 'tool'
@@ -28,7 +28,7 @@ class Fierce < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer and brute against " + host + "..."
+        puts "Attempting a zone transfer and brute against " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
@@ -38,7 +38,7 @@ class Fierce < Tool
       DNS.new("DNS").menu
     else
       l = @@hosts.count
-      puts "Attempting zone transfers and brutes against #{l} domains..."
+      puts "Attempting zone transfers and brutes against #{l} domains ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new

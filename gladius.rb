@@ -4,11 +4,11 @@
 # Version: 0.0.1
 
 require_relative 'lib/tools/environment'
-require_relative 'lib/menus/home'
+require_relative 'lib/menus/splash'
 
 # Splash and check reqs
 begin
-Home.new("").splash
+Splash.new.ascii
 Environment.new.requirements
 rescue Interrupt
   puts "\nExiting Gladius. Have a bloody day!".red

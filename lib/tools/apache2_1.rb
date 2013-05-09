@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.0.1
+# Version: 0.0.1
 
 require 'colorize'
 require_relative 'tool'
@@ -43,7 +43,7 @@ class Apache2_1 < Tool
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path_tool + " -P0 -s " + @@path_names + " -h " + host
+          i.cmd = @@path_tool + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
           i.shell
         end
       puts

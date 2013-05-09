@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.0.1
+# Version: 0.0.1
 
 require 'colorize'
 require_relative 'tool'
@@ -28,7 +28,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer against " + host + "..."
+        puts "Attempting a zone transfer against " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path + " --threads 2 -t axfr -d " + host
@@ -38,7 +38,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     else
       l = @@hosts.count
-      puts "Attempting zone transfers against #{l} domains..."
+      puts "Attempting zone transfers against #{l} domains ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
@@ -63,7 +63,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer and standard enum against " + host + "..."
+        puts "Attempting a zone transfer and standard enum against " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path + " --threads 2 -a -d " + host
@@ -73,7 +73,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     else
       l = @@hosts.count
-      puts "Attempting zone transfers and standard enums against #{l} domains..."
+      puts "Attempting zone transfers and standard enums against #{l} domains ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
@@ -98,7 +98,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Performing Google search for sub-domains and hosts against " + host + "..."
+        puts "Performing Google search for sub-domains and hosts against " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path + " --threads 2 -t goo -d " + host
@@ -108,7 +108,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     else
       l = @@hosts.count
-      puts "Performing Google search for sub-domains and hosts against #{l} domains..."
+      puts "Performing Google search for sub-domains and hosts against #{l} domains ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
@@ -133,7 +133,7 @@ class DNSrecon < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Performing reverse lookups against " + host + "..."
+        puts "Performing reverse lookups against " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path + " --threads 2 -t rvl -r " + host

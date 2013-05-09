@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.0.1
+# Version: 0.0.1
 
 require 'pty'
 

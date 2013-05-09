@@ -1,4 +1,5 @@
-# Gladius - An interactive shell for common BT5r3 and Kali Linux tasks
+# Gladius
+An interactive shell for common BT5r3 and Kali Linux tasks
 
-The goal of this application is to simplify common tasks within BackTrack and Kali Linux. More importantly, it provides a test bed for the Kali Linux Rails web interface, Legatus.
-
+## Warning
+This app is pre-alpha, so beware. I'll be making significant changes over the next few months.
