@@ -1,16 +1,16 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
-require 'colorize'
+require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
 
 class Gladius < Tool
   def initialize(title)
     @title = title
-    @@path = "/pentest/enumeration/dns/fierce/"
+    #@@path = "blah............................................"
     @@hosts = []
   end
   

@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
-require 'colorize'
+require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
 
@@ -29,7 +29,7 @@ class MSF < Tool
       @@target.each do |target|
         puts "Discovering anonymous FTP logins against " + target + " ..."
         puts
-        if target.include?("/") || target.include?("-")
+        if target.include?("/") || target.include?("-") || target =~ /[a-zA-Z]+/
           i = Gpty.new
           i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + " E"
           i.shell
@@ -46,7 +46,7 @@ class MSF < Tool
       puts "Discovering anonymous FTP logins against #{l} targets ..."
         @@target.each do |target|
           puts
-          if target.include?("/") || target.include?("-")
+          if target.include?("/") || target.include?("-") || target =~ /[a-zA-Z]+/
             i = Gpty.new
             i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + " E"
             i.shell

@@ -6,16 +6,18 @@
 require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
+require_relative '../menus/http'
 
-class SSLScan < Tool
+class ApacheUsers < Tool
   def initialize(title)
     @title = title
-    @@path = "/usr/bin/sslscan"
+    @@path_tool = "apache-users"
+    @@path_names = "lib/helpers/apache-users.names.txt"
     @@hosts = []
   end
   
-  # Identify supported SSL/TLS protcols and ciphers
-  def scan
+  # Enum Users
+  def fingerprint
     header
     instruct_input1
     example("fqdn", "ip")
@@ -27,21 +29,21 @@ class SSLScan < Tool
       HTTP.new("HTTP(S)").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Identifing supported protcols and ciphers on " + host + " ..."
+        puts "Attempting to enum users on " + host + "..."
         puts
         i = Gpty.new
-        i.cmd = @@path + " --no-failed " + host
+        i.cmd = @@path_tool + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
         i.shell
       end
       puts
       HTTP.new("HTTP(S)").menu
     else
       l = @@hosts.count
-      puts "Identifing supported protcols and ciphers on #{l} targets ..."
+      puts "Attempting to enum users on #{l} hosts ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path + " --no-failed " + host
+          i.cmd = @@path_tool + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
           i.shell
         end
       puts
