@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
-require 'colorize'
+require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
 
@@ -11,12 +11,15 @@ class Nessus < Tool
   def initialize(title)
     @title = title
     @@path = "/opt/nessus/bin/nasl"
+    @@path_module = "/opt/nessus/lib/nessus/plugins/ftp_anonymous.nasl"
     @@target = []
   end
 
   # Discover anonymous FTP read/write logins:
   def ftp_anon
     header
+    instruct_input1
+    example("fqdn", "ip")
     while line = gets
       @@target << line.chomp
     end
@@ -30,11 +33,11 @@ class Nessus < Tool
         puts
         if target.include?("/") || target.include?("-")
           i = Gpty.new
-          i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + " E"
+          i.cmd = @@path + " -a -t " + target + " " + @@path_module
           i.shell
         else
           i = Gpty.new
-          i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + "/32 E"
+          i.cmd = @@path + " -a -t " + target + " " + @@path_module
           i.shell
         end
       end
@@ -47,11 +50,11 @@ class Nessus < Tool
           puts
           if target.include?("/") || target.include?("-")
             i = Gpty.new
-            i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + " E"
+            i.cmd = @@path + " -a -t " + target + " " + @@path_module
             i.shell
           else
             i = Gpty.new
-            i.cmd = @@path + " auxiliary/scanner/ftp/anonymous RHOSTS=" + target + "/32 E"
+            i.cmd = @@path + " -a -t " + target + " " + @@path_module
             i.shell
           end
         end

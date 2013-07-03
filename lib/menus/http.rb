@@ -1,22 +1,21 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
-require 'colorize'
+require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative 'gatherinfo'
-require_relative '../tools/httprint'
 require_relative '../tools/sslscan'
 require_relative '../tools/nikto'
 require_relative '../tools/gladius'
-require_relative '../tools/apache2_1'
+require_relative '../tools/apache-users'
 
 class HTTP < Menu
   def menu
     header
     puts "Select an option:".light_yellow
-    puts "1.  Fingerprint web servers (httprint)"
+    puts "1.  ... (NI)"
     puts "2.  Identify supported SSL/TLS protcols and ciphers (SSLScan)"
     puts "3.  Identify supported HTTP methods (Gladius) (NI)"
     puts "4.  Identify common vulns (Nikto)"
@@ -24,21 +23,22 @@ class HTTP < Menu
     puts "6.  ... (NI)"
     puts "7.  ... (NI)"
     puts "8.  ... (NI)"
-    puts "9.  Apache - Enum users (Apache2.1)"
+    puts "9.  Apache - Enum users (Apache-users)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      Httprint.new("httprint - Fingerprint Web Servers").fingerprint
+      puts "Not implemented yet.".red
+      menu
     elsif sel == 2
       SSLScan.new("SSLScan - Identify Protcols and Ciphers").scan
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 4
-      Nikto.new("Nikto - Identify Common Vulns").common
+      Nikto.new("Nikto - Identify Common Web Vulns").common
     elsif sel == 5
       puts "Not implemented yet.".red
       menu
@@ -52,7 +52,7 @@ class HTTP < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 9
-      Apache2_1.new("Apache2.1 - Enum Users").fingerprint
+      ApacheUsers.new("Apache-users - Enum Users").fingerprint
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

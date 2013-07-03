@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
 require_relative 'gptybasic'
-#require_relative '../menus/home'
 
 class Environment
   def initialize
@@ -15,7 +14,7 @@ class Environment
     begin
       require 'colorize'
       require_relative '../menus/home'
-      Home.new("Home                   v0.0.1").menu
+      Home.new("Home                   v0.0.2").menu
     rescue LoadError
       puts "Gladius requires the RubyGem 'Colorize'. Installing ..."
       gem_install("colorize")

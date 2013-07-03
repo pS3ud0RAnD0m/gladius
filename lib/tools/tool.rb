@@ -1,13 +1,18 @@
 #!/usr/bin/env ruby
 
 # Author: P$3ud0R@nD0m
-# Version: 0.0.1
+# Version: 0.0.2
 
 class Tool
   attr_accessor :title
   
   def initialize(title)
     @title = title
+    @host = host
+    @hosts = []
+    @port = port
+    @ports = []
+    @hosts_ports = []
   end
   
   def header
@@ -16,16 +21,25 @@ class Tool
     puts "------------------------------"
   end
   
+  def get_host
+    puts "Input target port number: [localhost:)]".light_yellow
+    @host = gets.chomp
+    if @host.empty?
+      @host = "localhost"
+    end
+  end
+  
   def get_port
     puts "Input target port number: [443]".light_yellow
-    port = gets.to_i
-    a = port + 1
-    puts a
-    puts port 
-    if port.nil? || port == 443
-      puts "you selected 443"
-    else
-      puts "you selected #{port}"
+    @port = gets.chomp
+    if @port.empty?
+      @port = "443"
+    end
+  end
+  
+  def get_hosts_ports
+    while line = gets
+      @hosts_ports << line.chomp
     end
   end
   
@@ -36,9 +50,11 @@ class Tool
 
   # Supply examples for tool input.
   # Call this with: example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
-  # Use any combination of the following
+  # Use any combination of the following:
     # fqdn => www.victima.com
+    # fqdnp = fqdnPort => www.victima.com:443
     # ip => 224.87.9.54
+    # ipp = ipPort => 224.87.9.54:8080
     # ipr = ipRange => 192.168.250.0-255
     # iprl = ipRangeLong => 192.168.10.15-192.168.10.20
     # iprf = ipRangeFlexible => 192.168.15-250.0-255
@@ -53,8 +69,14 @@ class Tool
       if a == "fqdn"
         puts "www.victima.com".yellow
       end
+      if a == "fqdnp"
+        puts "www.victima.com:443".yellow
+      end
       if a == "ip"
         puts "224.87.9.54".yellow
+      end
+      if a == "ipp"
+        puts "224.87.9.54:8080".yellow
       end
       if a == "ipr"
         puts "192.168.250.0-255".yellow
