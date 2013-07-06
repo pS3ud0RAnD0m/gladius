@@ -9,9 +9,9 @@ require_relative 'home'
 require_relative 'dns'
 require_relative 'ftp'
 require_relative 'http'
+require_relative 'snmp'
 
 class GatherInfo < Menu
-  
   def menu
     header
     puts "Select a service to target:".light_yellow
@@ -23,7 +23,7 @@ class GatherInfo < Menu
     puts "6.  Netbios-SMB (NI)"
     puts "7.  Oracle (NI)"
     puts "8.  RDP (NI)"
-    puts "9.  SNMP (NI)"
+    puts "9.  SNMP"
     puts "10. SSH (NI)"
     puts "11. Telnet (NI)"
     puts "12. TFTP (NI)"
@@ -53,8 +53,7 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 9
-      puts "Not implemented yet.".red
-      menu
+      SNMP.new("SNMP").menu
     elsif sel == 10
       puts "Not implemented yet.".red
       menu
