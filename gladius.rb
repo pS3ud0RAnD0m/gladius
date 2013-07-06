@@ -4,6 +4,7 @@
 # Version: 0.0.2
 
 #require_relative 'lib/tools/environment'
+require 'sqlite3'
 require_relative 'lib/menus/splash'
 require_relative 'lib/menus/home'
 require_relative 'lib/helpers/colorize'
