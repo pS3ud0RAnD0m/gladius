@@ -12,7 +12,7 @@ class ApacheUsers < Tool
   def initialize(title)
     @title = title
     @@path_tool = "apache-users"
-    @@path_names = "lib/helpers/apache-users.names.txt"
+    @@path_names = Constant::PROJECT_ROOT + "/helpers/apache-usernames.txt"
     @@hosts = []
   end
   

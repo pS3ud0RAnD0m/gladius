@@ -42,7 +42,7 @@ class Nessus < Tool
         end
       end
       puts
-      FTP.new.menu
+      FTP.new("FTP").menu
     else
       l = @@target.count
       puts "Discovering anonymous FTP logins against #{l} targets..."

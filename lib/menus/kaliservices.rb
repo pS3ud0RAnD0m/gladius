@@ -8,7 +8,7 @@ require_relative 'menu'
 require_relative '../tools/iptables'
 require_relative 'configsnort'
 
-class BTServices < Menu
+class KaliServices < Menu
   def menu
     header
     puts "Select a task:".light_yellow
@@ -16,10 +16,8 @@ class BTServices < Menu
     puts "2.  Setup a TFTP server (atftpd) (NI)"
     puts "3.  Setup an FTP server (NI)"
     puts "4.  Setup an HTTP(S) server (NI)"
-    puts "5.  List current firewall rules (IPtables)"
-    puts "6.  Setup awesome BT5 updates (bt5up) (NI)"
-    puts "7.  ..."
-    puts "8.  ..."
+    puts "5.  Configure firewall rules (IPtables)"
+    puts "6.  List current firewall rules (IPtables)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -39,16 +37,9 @@ class BTServices < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 5
-      IPtables.new("List IPtables Rules").list
+      IPtables.new("Configure IPtables Rules").status
     elsif sel == 6
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 7
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 8
-      puts "Not implemented yet.".red
-      menu
+      IPtables.new("List IPtables Rules").list
     elsif sel == 88
       Home.new("Home").menu
     elsif sel == 99
