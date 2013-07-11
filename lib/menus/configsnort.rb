@@ -5,7 +5,7 @@
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
-require_relative '../tools/snort'
+require_relative '../tools/snortservice'
 
 class ConfigSnort < Menu
   def menu
@@ -20,7 +20,7 @@ class ConfigSnort < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      Snort.new("Upgrade/Install Snort/Snorby and Start").install
+      SnortService.new("Upgrade/Install Snort/Snorby and Start").install
     elsif sel == 2
       puts "Not implemented yet.".red
       menu
@@ -28,7 +28,7 @@ class ConfigSnort < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      BTServices.new("Configure Back Track Services").menu
+      KaliServices.new("Configure Back Track Services").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

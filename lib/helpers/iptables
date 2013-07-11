@@ -1,0 +1,117 @@
+#! /bin/bash
+
+###########################################################################
+# FLUSH ALL
+###########################################################################
+# Flush all rules.
+/sbin/iptables -F
+
+###########################################################################
+# INBOUND
+###########################################################################
+
+#########################
+# LOGGING ALL
+#########################
+# Log ALL inbound.  Are you sure?
+#/sbin/iptables -A INPUT -j LOG --log-level 4
+
+#########################
+# SUSPICIOUS or NOISY
+#########################
+# Drop suspicious sources.
+#/sbin/iptables -A INPUT -s 10.0.0.0/8     -j DROP
+#/sbin/iptables -A INPUT -s 172.16.0.0/12  -j DROP
+#/sbin/iptables -A INPUT -s 192.168.0.0/16 -j DROP
+/sbin/iptables -A INPUT -s 224.0.0.0/4    -j DROP
+/sbin/iptables -A INPUT -s 240.0.0.0/5    -j DROP
+/sbin/iptables -A INPUT -s 0.0.0.0/8       -j DROP
+/sbin/iptables -A INPUT -s 169.254.0.0/16  -j DROP
+
+#########################
+# ESTABLISHED, RELATED
+#########################
+# Accept established and related sessions to recieve traffic.
+/sbin/iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+#########################
+# LOOPBACK
+#########################
+# Accept incoming on loopback.
+/sbin/iptables -A INPUT -i lo -j ACCEPT
+
+#########################
+# MSF Reverse
+#########################
+#/sbin/iptables -A INPUT -p tcp --dport 666 -j ACCEPT
+#/sbin/iptables -A INPUT -p udp --dport 666 -j ACCEPT
+
+#########################
+# TFTP
+#########################
+#/sbin/iptables -A INPUT -p udp --dport 69 -j ACCEPT
+
+#########################
+# HTTP
+#########################
+# Accept incoming http traffic to Apache.
+#/sbin/iptables -A INPUT  -p tcp --dport 80 -j ACCEPT
+
+#########################
+# HTTPS
+#########################
+# Accept incoming https traffic to Apache.
+#/sbin/iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+#########################
+# SSH
+#########################
+# Accept incoming ssh traffic from a subnet
+#/sbin/iptables -A INPUT -s 10.0.0.0/24 -p tcp --dport 22 -j ACCEPT
+
+#########################
+# ICMP
+#########################
+# Accept incoming icmp requests.
+#/sbin/iptables -A INPUT -s 10.0.0.0/24 -p icmp --icmp-type 8 -j ACCEPT
+
+#########################
+# SNMP
+#########################
+# Accept incoming SNMP queries.
+#/sbin/iptables -A INPUT -p tcp --dport 161 -j ACCEPT
+#/sbin/iptables -A INPUT -p udp --dport 161 -j ACCEPT
+
+# Accept incoming SNMPTRAP queries.
+#/sbin/iptables -A INPUT -p tcp --dport 162 -j ACCEPT
+#/sbin/iptables -A INPUT -p udp --dport 162 -j ACCEPT
+
+#########################
+# LOGGING ALL ELSE
+#########################
+# Log all else inbound.  Really?
+/sbin/iptables -A INPUT -j LOG --log-level 4
+
+#########################
+# DROP ALL ELSE
+#########################
+# Drop all else inbound.
+/sbin/iptables -A INPUT -j DROP
+
+############################################################################
+# OUTBOUND
+############################################################################
+
+#########################
+# PERMITTING ALL
+#########################
+
+############################################################################
+# FORWARD
+############################################################################
+
+#########################
+# DROP ALL
+#########################
+# Drop all forwards.
+/sbin/iptables -A FORWARD -j DROP

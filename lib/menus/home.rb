@@ -10,7 +10,7 @@ require_relative 'lan'
 require_relative 'web'
 require_relative 'wireless'
 require_relative 'dictionary'
-require_relative 'btservices'
+require_relative 'kaliservices'
 
 class Home < Menu
   def menu
@@ -21,7 +21,7 @@ class Home < Menu
     puts "3.  Web attacks (NI)"
     puts "4.  Wireless attacks"
     puts "5.  Dictionary attacks"
-    puts "6.  Configure Back Track services"
+    puts "6.  Configure Kali services"
     puts "99. Exit Gladius"
     
     sel = gets.to_i
@@ -38,7 +38,7 @@ class Home < Menu
     elsif sel == 5
       Dictionary.new("Dictionary Attacks").menu
     elsif sel == 6
-      BTServices.new("Configure Back Track Services").menu
+      KaliServices.new("Configure Kali Services").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

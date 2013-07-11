@@ -7,7 +7,7 @@ require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
 
-class Snort < Tool
+class SnortService < Tool
   def initialize(title)
     @title = title
   end
