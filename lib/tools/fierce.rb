@@ -11,7 +11,7 @@ class Fierce < Tool
   def initialize(title)
     @title = title
     @@path_tool = "fierce"
-    @@path_hosts = "lib/helpers/fierce.hosts.txt"
+    @@path_hosts = "lib/helpers/fierce-hosts.txt"
     @@hosts = []
   end
   
