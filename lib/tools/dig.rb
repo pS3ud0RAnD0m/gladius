@@ -30,7 +30,7 @@ class DiG < Tool
       puts "Hit 'Enter' to continue or input another domain:".light_yellow
       domain_diff = gets.chomp
     else
-      Puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow
+      puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow
       domain_diff = gets.chomp
     end
     
