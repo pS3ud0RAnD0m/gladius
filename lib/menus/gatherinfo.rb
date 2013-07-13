@@ -28,7 +28,7 @@ class GatherInfo < Menu
     puts "10. SSH (NI)"
     puts "11. Telnet (NI)"
     puts "12. TFTP (NI)"
-#    puts "13. Multiple Services (Nmap)"
+    puts "13. Multiple Services (Nmap)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -65,8 +65,8 @@ class GatherInfo < Menu
     elsif sel == 12
       puts "Not implemented yet.".red
       menu
-#    elsif sel == 13
-#      MultipleServices.new("Gather Information - Multiple Services").menu
+    elsif sel == 13
+      MultipleServices.new("Gather Information - Multiple Services").menu
     elsif sel == 88
       Home.new("Home").menu
     elsif sel == 99
