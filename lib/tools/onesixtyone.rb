@@ -6,7 +6,6 @@
 require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
-require_relative '../menus/snmp'
 
 class Onesixtyone < Tool
   def initialize(title)

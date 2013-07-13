@@ -49,7 +49,7 @@ class Tool
   end
 
   # Supply examples for tool input.
-  # Call this with: example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
+  # Call this with: example("fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "cidr")
   # Use any combination of the following:
     # fqdn => www.victima.com
     # fqdnp = fqdnPort => www.victima.com:443
