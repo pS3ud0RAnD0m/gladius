@@ -5,7 +5,6 @@
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
-require_relative 'gatherinfo'
 require_relative '../tools/sslscan'
 require_relative '../tools/nikto'
 require_relative '../tools/gladius'

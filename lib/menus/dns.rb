@@ -5,7 +5,6 @@
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
-require_relative 'gatherinfo'
 require_relative '../tools/dnsrecon'
 require_relative '../tools/fierce'
 require_relative '../tools/dig'

@@ -3,13 +3,14 @@
 # Author: P$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
-require_relative 'menu'
-require_relative 'home'
+#require_relative '../helpers/colorize'
+#require_relative 'menu'
+#require_relative 'home'
 require_relative 'dns'
 require_relative 'ftp'
 require_relative 'http'
 require_relative 'snmp'
+#require_relative 'multipleservices'
 
 class GatherInfo < Menu
   def menu
@@ -27,17 +28,18 @@ class GatherInfo < Menu
     puts "10. SSH (NI)"
     puts "11. Telnet (NI)"
     puts "12. TFTP (NI)"
+#    puts "13. Multiple Services (Nmap)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      DNS.new("DNS").menu
+      DNS.new("Gather Information - DNS").menu
     elsif sel == 2
-      FTP.new("FTP").menu
+      FTP.new("Gather Information - FTP").menu
     elsif sel == 3
-      HTTP.new("HTTP(S)").menu
+      HTTP.new("Gather Information - HTTP(S)").menu
     elsif sel == 4
       puts "Not implemented yet.".red
       menu
@@ -45,7 +47,7 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 6
-      NetbiosSMB.new("Netbios-SMB").menu
+      NetbiosSMB.new("Gather Information - Netbios-SMB").menu
     elsif sel == 7
       puts "Not implemented yet.".red
       menu
@@ -63,6 +65,8 @@ class GatherInfo < Menu
     elsif sel == 12
       puts "Not implemented yet.".red
       menu
+#    elsif sel == 13
+#      MultipleServices.new("Gather Information - Multiple Services").menu
     elsif sel == 88
       Home.new("Home").menu
     elsif sel == 99
