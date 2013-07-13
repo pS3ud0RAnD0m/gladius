@@ -11,7 +11,7 @@ class ApacheUsers < Tool
   def initialize(title)
     @title = title
     @@path_tool = "apache-users"
-    @@path_names = Constant::PROJECT_ROOT + "/helpers/apache-usernames.txt"
+    @@path_names = "/usr/share/gladius/input/apache-usernames.txt"
     @@hosts = []
   end
   
@@ -28,7 +28,7 @@ class ApacheUsers < Tool
       HTTP.new("HTTP(S)").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting to enum users on " + host + "..."
+        puts "Attempting to enum users on " + host + " ..."
         puts
         i = Gpty.new
         i.cmd = @@path_tool + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host

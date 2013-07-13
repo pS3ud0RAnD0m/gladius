@@ -11,7 +11,7 @@ class Onesixtyone < Tool
   def initialize(title)
     @title = title
     @@path = "onesixtyone"
-    @@path_dict = "/usr/share/doc/onesixtyone/dict.txt"
+    @@path_dict = "/usr/share/gladius//input/onesixtyone-dict.txt"
     @@hosts = "/usr/share/gladius/input/hosts.txt"
   end
 
