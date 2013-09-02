@@ -8,7 +8,7 @@ require_relative 'menu'
 require_relative '../tools/sslscan'
 require_relative '../tools/nikto'
 require_relative '../tools/gladius'
-require_relative '../tools/apache-users'
+require_relative '../tools/apacheusers'
 
 class HTTP < Menu
   def menu

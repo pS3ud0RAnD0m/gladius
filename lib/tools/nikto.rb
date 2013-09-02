@@ -3,7 +3,7 @@
 # Author: P$3ud0R@nD0m
 # Version: 0.0.2
 
-#require_relative '../helpers/colorize'
+require 'time'
 require_relative 'tool'
 require_relative 'gpty'
 
@@ -11,42 +11,31 @@ class Nikto < Tool
   def initialize(title)
     @title = title
     @path_tool = "nikto"
-    #@path_conf = "/pentest/web/nikto/nikto.conf"
-    @hosts_ports = []
+    @@hosts = "/usr/share/gladius/input/hosts.txt"
+    @@time = Time.now
+    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@out_file = "/usr/share/gladius/output/nikto_" + @@t + ".xml"
   end
   
   # Identify common vulns
   def common
-    header
-    instruct_input1
-    example("fqdnp", "ipp")
+    header_nikto
+    a = File.open(@@hosts, "w")
     while line = gets
-      @hosts_ports << line.chomp
+      a << line
     end
-    if @hosts_ports.count == 0
+    a.close
+    hosts = @@hosts
+    line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
+    if line_count == 0
       puts "No targets were input.".red
-      HTTP.new("HTTP(s)").menu
-    elsif @hosts_ports.count == 1
-      @hosts_ports.each do |target|
-        puts "Identifying common web vulns against " + target + " ..."
-        puts
-        a = Gpty.new
-        a.cmd =  @path_tool + " -h " + target + " -C all"
-        a.shell
-      end
-      puts
-      HTTP.new("HTTP(s)").menu
     else
-      a = @hosts_ports.count
-      puts "Identifying common web vulns against #{a} targets ..."
-        @hosts_ports.each do |target|
-          puts
-          b = Gpty.new
-          b.cmd = @path_tool + " -h " + target + " -C all"
-          b.shell
-        end
       puts
-      HTTP.new("HTTP(s)").menu
+      a = Gpty.new
+      a.cmd =  @path_tool + " -C all -h " + @@hosts + " -output " + @@out_file
+      a.shell
+      puts
     end
+    HTTP.new("HTTP(s)").menu
   end
 end

@@ -10,7 +10,7 @@ require_relative 'dns'
 require_relative 'ftp'
 require_relative 'http'
 require_relative 'snmp'
-#require_relative 'multipleservices'
+require_relative 'multipleservices'
 
 class GatherInfo < Menu
   def menu
@@ -28,7 +28,7 @@ class GatherInfo < Menu
     puts "10. SSH (NI)"
     puts "11. Telnet (NI)"
     puts "12. TFTP (NI)"
-    puts "13. Multiple Services (Nmap)"
+    puts "13. Multiple Services"
     puts "88. Back"
     puts "99. Exit Gladius"
 
