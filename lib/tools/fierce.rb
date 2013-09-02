@@ -11,7 +11,7 @@ class Fierce < Tool
   def initialize(title)
     @title = title
     @@path_tool = "fierce"
-    @@path_hosts = "/usr/bin/gladius/input/fierce-hosts.txt"
+    @@path_hosts = "/usr/share/gladius/input/fierce-hosts.txt"
     @@hosts = []
   end
   

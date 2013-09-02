@@ -30,12 +30,13 @@ class Onesixtyone < Tool
     if line_count == 0
       puts "No hosts were input.".red
       SNMP.new("SNMP").menu
+    else
+      puts
+      i = Gpty.new
+      i.cmd = @@path + " -c " + @@path_dict + " -i #{hosts} -d"
+      i.shell
+      puts
+      SNMP.new("SNMP").menu
     end
-    puts
-    i = Gpty.new
-    i.cmd = @@path + " -c " + @@path_dict + " -i #{hosts} -d"
-    i.shell
-    puts
-    SNMP.new("SNMP").menu
   end
 end  

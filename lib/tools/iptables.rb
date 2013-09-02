@@ -11,7 +11,7 @@ class IPtables < Tool
   def initialize(title)
     @title = title
     @@path = "iptables"
-    @@path_giptables = Constant::PROJECT_ROOT + "/helpers/iptables"
+    @@path_giptables = Constant::PROJECT_ROOT + "/helpers/input/iptables"
     @@path_kiptables = "/etc/init.d/iptables"
   end
 
@@ -27,13 +27,11 @@ class IPtables < Tool
       elsif sel.downcase == "n"
         puts "Let's just look at the active rules then:".light_yellow
         list
+        KaliServices.new("Configure Kali Services").menu
       else
         puts "Invalid selection.".red
         status
       end
-      
-      puts
-      KaliServices.new("Configure Kali Services").menu
     else
       puts "it's already there".red
     end
@@ -75,6 +73,7 @@ class IPtables < Tool
   # List ruleset
   def list
     header
+    puts
     i = Gpty.new
     i.cmd = @@path + " -L -nv"
     i.shell

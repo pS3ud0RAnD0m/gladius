@@ -3,6 +3,8 @@
 # Author: P$3ud0R@nD0m
 # Version: 0.0.2
 
+require 'time'
+
 class Tool
   attr_accessor :title
   
@@ -13,12 +15,25 @@ class Tool
     @port = port
     @ports = []
     @hosts_ports = []
+    @iopath = "/usr/share/gladius/"
   end
   
   def header
     puts "------------------------------"
     puts @title
     puts "------------------------------"
+  end
+
+  def header_nmap
+    header
+    instruct_input
+    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
+  end
+  
+  def header_nikto
+    header
+    instruct_input
+    example("fqdnp", "ipp", "url")
   end
   
   def get_host
@@ -42,6 +57,11 @@ class Tool
       @hosts_ports << line.chomp
     end
   end
+
+  def instruct_input
+    puts "Input target(s), one per line.".light_yellow
+    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".light_yellow
+  end
   
   def instruct_input1
     puts "Input target(s), one per line.".light_yellow
@@ -49,8 +69,9 @@ class Tool
   end
 
   # Supply examples for tool input.
-  # Call this with: example("fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "cidr")
+  # Call this with: example("cidr", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
   # Use any combination of the following:
+    # cidr => 10.87.9.0/24
     # fqdn => www.victima.com
     # fqdnp = fqdnPort => www.victima.com:443
     # ip => 224.87.9.54
@@ -58,7 +79,7 @@ class Tool
     # ipr = ipRange => 192.168.250.0-255
     # iprl = ipRangeLong => 192.168.10.15-192.168.10.20
     # iprf = ipRangeFlexible => 192.168.15-250.0-255
-    # cidr => 10.87.9.0/24
+    # url => https://www.victima.com/
   def example(*args)
     if args.count == 1
       puts "Example:".yellow
@@ -66,6 +87,9 @@ class Tool
       puts "Examples:".yellow
     end
     args.each do |a|
+      if a == "cidr"
+        puts "10.87.9.0/24".yellow
+      end
       if a == "fqdn"
         puts "www.victima.com".yellow
       end
@@ -87,8 +111,8 @@ class Tool
       if a == "iprf"
         puts "192.168.15-250.0-255".yellow
       end
-      if a == "cidr"
-        puts "10.87.9.0/24".yellow
+      if a == "url"
+        puts "https://www.victima.com/".yellow
       end
     end
     puts

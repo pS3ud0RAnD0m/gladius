@@ -7,9 +7,9 @@
 
 class DirStructure
   def initialize
-    @@onesixtyone_dict = Constant::PROJECT_ROOT + "/helpers/onesixtyone-dict.txt"
-    @@apache_usernames_txt = Constant::PROJECT_ROOT + "/helpers/apache-usernames.txt"
-    @@fierce_hosts_txt = Constant::PROJECT_ROOT + "/helpers/fierce-hosts.txt"
+    @@onesixtyone_dict = Constant::PROJECT_ROOT + "/helpers/input/onesixtyone-dict.txt"
+    @@apache_usernames_txt = Constant::PROJECT_ROOT + "/helpers/input/apache-usernames.txt"
+    @@fierce_hosts_txt = Constant::PROJECT_ROOT + "/helpers/input/fierce-hosts.txt"
   end
 
   # change dir
