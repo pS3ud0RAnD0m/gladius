@@ -36,12 +36,6 @@ class Fierce < Tool
       end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Brute stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and brutes against #{l} domains ..."
@@ -53,12 +47,12 @@ class Fierce < Tool
         end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Brute stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     end
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Brute stopped due to interrupt.".light_yellow
+      puts
+      DNS.new("DNS").menu
   end
 end

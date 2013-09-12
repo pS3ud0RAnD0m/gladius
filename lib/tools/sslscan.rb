@@ -46,12 +46,12 @@ class SSLScan < Tool
         end
       puts
       HTTP.new("HTTP(S)").menu
+    end
     # Catch interrupt
     rescue Interrupt
       puts
       puts "Scan stopped due to interrupt.".light_yellow
       puts
       HTTP.new("HTTP(S)").menu
-    end
   end
 end
