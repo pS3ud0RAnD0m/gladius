@@ -35,12 +35,6 @@ class DNSrecon < Tool
       end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Attempt stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers against #{l} domains ..."
@@ -52,13 +46,13 @@ class DNSrecon < Tool
         end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Attempt stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     end
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Attempt stopped due to interrupt.".light_yellow
+      puts
+      DNS.new("DNS").menu
   end
   
   # Attempt a zone transfer, then enum standard records:
@@ -82,12 +76,6 @@ class DNSrecon < Tool
       end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Attempt stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Attempting zone transfers and standard enums against #{l} domains ..."
@@ -99,13 +87,13 @@ class DNSrecon < Tool
         end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Attempt stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     end
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Attempt stopped due to interrupt.".light_yellow
+      puts
+      DNS.new("DNS").menu
   end
 
   # Perform Google search for sub-domains and @@hosts:
@@ -129,12 +117,6 @@ class DNSrecon < Tool
       end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Search stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Performing Google search for sub-domains and hosts against #{l} domains ..."
@@ -146,13 +128,13 @@ class DNSrecon < Tool
         end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Search stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     end
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Search stopped due to interrupt.".light_yellow
+      puts
+      DNS.new("DNS").menu
   end
   
   # Reverse lookups for given block
@@ -176,12 +158,6 @@ class DNSrecon < Tool
       end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Lookups stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     else
       l = @@hosts.count
       puts "Performing reverse lookups against #{l} targets ..."
@@ -193,12 +169,12 @@ class DNSrecon < Tool
         end
       puts
       DNS.new("DNS").menu
-      # Catch interrupt
-      rescue Interrupt
-        puts
-        puts "Lookups stopped due to interrupt.".light_yellow
-        puts
-        DNS.new("DNS").menu
     end
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Lookups stopped due to interrupt.".light_yellow
+      puts
+      DNS.new("DNS").menu
   end
 end  

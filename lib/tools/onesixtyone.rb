@@ -37,12 +37,12 @@ class Onesixtyone < Tool
       i.shell
       puts
       SNMP.new("SNMP").menu
+    end
     # Catch interrupt
     rescue Interrupt
       puts
       puts "Discovery stopped due to interrupt.".light_yellow
       puts
       SNMP.new("SNMP").menu
-    end
   end
 end  
