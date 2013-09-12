@@ -1,32 +1,29 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative '../tools/iptables'
-require_relative 'configsnort'
+require_relative '../tools/atftpd'
 
 class KaliServices < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Monitor LAN traffic (Snort/Snorby) (NI)"
-    puts "2.  Setup a TFTP server (atftpd) (NI)"
-    puts "3.  Setup an FTP server (NI)"
-    puts "4.  Setup an HTTP(S) server (NI)"
-    puts "5.  Configure firewall rules (IPtables)"
-    puts "6.  List current firewall rules (IPtables)"
+    puts "1.  Server - Setup a TFTP server (atftpd)"
+    puts "2.  Server - Setup an FTP server (NI)"
+    puts "3.  Server - Setup an HTTP(S) server (NI)"
+    puts "4.  Firewall - Configure (IPtables)"
+    puts "5.  Firewall - List rules (IPtables)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      #ConfigSnort.new("Snort/Snorby - Configuration").menu
-      puts "Not implemented yet.".red
-      menu
+      Atftpd.new("Setup a TFTP server").setup
     elsif sel == 2
       puts "Not implemented yet.".red
       menu
@@ -34,11 +31,8 @@ class KaliServices < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 4
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 5
       IPtables.new("Configure IPtables Rules").status
-    elsif sel == 6
+    elsif sel == 5
       IPtables.new("List IPtables Rules").list
     elsif sel == 88
       Home.new("Home").menu

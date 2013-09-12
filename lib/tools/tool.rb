@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require 'time'
@@ -24,16 +24,25 @@ class Tool
     puts "------------------------------"
   end
 
-  def header_nmap
+  def header_medusa
     header
+    puts "The target exhaustion time is ~7 hours per host, assuming ~26 attempts per minute.".light_yellow
+    puts "If the exhaustion time needs modified, edit the appropriate input files w/in the /usr/share/gladius/input directory.".light_yellow
+    puts
     instruct_input
-    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
+    example("fqdn", "ip")
   end
   
   def header_nikto
     header
     instruct_input
     example("fqdnp", "ipp", "url")
+  end
+
+  def header_nmap
+    header
+    instruct_input
+    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
   end
   
   def get_host

@@ -1,30 +1,26 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
+require_relative '../tools/dsniff'
 
-class LAN < Menu
+class SniffSpoof < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  MiTM ARP poisoning (Ettercap) (NI)"
-    puts "2.  ..."
-    puts "3.  ..."
+    puts "1.  Sniff for plaintext creds (Dsniff)"
+    puts "2.  MiTM ARP poisoning (Ettercap) (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
     sel = gets.to_i
     puts
     if sel == 1
-      puts "Not implemented yet.".red
-      menu
+      Dsniff.new("Dsniff - Sniff for plaintext creds").all
     elsif sel == 2
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 88

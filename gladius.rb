@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 #require 'sqlite3'

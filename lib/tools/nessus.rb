@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require_relative '../helpers/colorize'
@@ -43,6 +43,12 @@ class Nessus < Tool
       end
       puts
       FTP.new("FTP").menu
+      # Catch interrupt
+      rescue Interrupt
+        puts
+        puts "Scan stopped due to interrupt.".light_yellow
+        puts
+        FTP.new("FTP").menu
     else
       l = @@target.count
       puts "Discovering anonymous FTP logins against #{l} targets..."
@@ -60,6 +66,12 @@ class Nessus < Tool
         end
       puts
       FTP.new("FTP").menu
+      # Catch interrupt
+      rescue Interrupt
+        puts
+        puts "Scan stopped due to interrupt.".light_yellow
+        puts
+        FTP.new("FTP").menu
     end
   end
 end  

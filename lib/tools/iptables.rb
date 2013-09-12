@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require_relative '../helpers/colorize'
@@ -25,8 +25,11 @@ class IPtables < Tool
       if sel.downcase == "y" || sel.empty?
         config
       elsif sel.downcase == "n"
-        puts "Let's just look at the active rules then:".light_yellow
-        list
+        puts "Let's just look at the active rules then.".light_yellow
+        i = Gpty.new
+        i.cmd = @@path + " -L -nv"
+        i.shell
+        puts
         KaliServices.new("Configure Kali Services").menu
       else
         puts "Invalid selection.".red
@@ -73,7 +76,6 @@ class IPtables < Tool
   # List ruleset
   def list
     header
-    puts
     i = Gpty.new
     i.cmd = @@path + " -L -nv"
     i.shell

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require_relative '../helpers/colorize'
@@ -15,7 +15,6 @@ class Wireless < Menu
     puts "Select a task:".light_yellow
     puts "1.  Rogue AP (NI)"
     puts "2.  RADIUS MiTM (FreeRADIUS) (NI)"
-    puts "3.  ..."
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -25,9 +24,6 @@ class Wireless < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 2
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
