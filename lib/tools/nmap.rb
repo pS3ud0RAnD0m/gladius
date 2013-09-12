@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require 'time'
@@ -15,7 +15,8 @@ class Nmap < Tool
     @@path = "nmap"
     @@hosts = "/usr/share/gladius/input/hosts.txt"
     @@time = Time.now
-    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
+    "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
     @@out_file = "/usr/share/gladius/output/nmap_" + @@t
   end
 
@@ -34,11 +35,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSV -Pn -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -A -T4 -sSV -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
   
   # Scan top 1000 tcp ports with scripts:
@@ -56,11 +63,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSV -Pn --script=all -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -A -T4 -sSV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
 
   # Scan all tcp ports:
@@ -78,11 +91,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSV -Pn -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -T4 -sS -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
 
   # Scan top 1000 udp ports:
@@ -100,11 +119,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sUV -Pn -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
   
   # Scan top 1000 udp ports with scripts:
@@ -122,11 +147,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sUV -Pn --script=all -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -A -T4 -sUV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
 
   # Scan all udp ports:
@@ -144,11 +175,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sU -Pn -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
  
   # Scan top 1000 tcp/udp ports:
@@ -166,11 +203,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSUV -Pn -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -A -T4 -sSUV -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
   
   # Scan top 1000 tcp/udp ports with scripts:
@@ -188,11 +231,17 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSUV -Pn --script=all -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -A -T4 -sSUV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
 
   # Scan all tcp/udp ports:
@@ -210,10 +259,16 @@ class Nmap < Tool
     else
       puts
       i = Gpty.new
-      i.cmd = @@path + " -A -T4 -sSUV -Pn -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      i.cmd = @@path + " -v -T4 -sSU -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       i.shell
       puts
     end
     MultipleServices.new("Gather Information - Multiple Services").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      MultipleServices.new("Gather Information - Multiple Services").menu
   end
 end  

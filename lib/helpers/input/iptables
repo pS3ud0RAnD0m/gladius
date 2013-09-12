@@ -20,13 +20,13 @@
 # SUSPICIOUS or NOISY
 #########################
 # Drop suspicious sources.
-#/sbin/iptables -A INPUT -s 10.0.0.0/8     -j DROP
-#/sbin/iptables -A INPUT -s 172.16.0.0/12  -j DROP
+#/sbin/iptables -A INPUT -s 10.0.0.0/8 -j DROP
+#/sbin/iptables -A INPUT -s 172.16.0.0/12 -j DROP
 #/sbin/iptables -A INPUT -s 192.168.0.0/16 -j DROP
-/sbin/iptables -A INPUT -s 224.0.0.0/4    -j DROP
-/sbin/iptables -A INPUT -s 240.0.0.0/5    -j DROP
-/sbin/iptables -A INPUT -s 0.0.0.0/8       -j DROP
-/sbin/iptables -A INPUT -s 169.254.0.0/16  -j DROP
+/sbin/iptables -A INPUT -s 224.0.0.0/4 -j DROP
+/sbin/iptables -A INPUT -s 240.0.0.0/5 -j DROP
+/sbin/iptables -A INPUT -s 0.0.0.0/8 -j DROP
+/sbin/iptables -A INPUT -s 169.254.0.0/16 -j DROP
 
 #########################
 # ESTABLISHED, RELATED
@@ -43,8 +43,8 @@
 #########################
 # MSF Reverse
 #########################
-#/sbin/iptables -A INPUT -p tcp --dport 666 -j ACCEPT
-#/sbin/iptables -A INPUT -p udp --dport 666 -j ACCEPT
+#/sbin/iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+#/sbin/iptables -A INPUT -p udp --dport 443 -j ACCEPT
 
 #########################
 # TFTP
@@ -90,7 +90,7 @@
 # LOGGING ALL ELSE
 #########################
 # Log all else inbound.  Really?
-/sbin/iptables -A INPUT -j LOG --log-level 4
+/sbin/iptables -A INPUT -j LOG --log-level 4 --log-prefix "  Dropped: "
 
 #########################
 # DROP ALL ELSE

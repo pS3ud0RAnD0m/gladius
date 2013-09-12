@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author: P$3ud0R@nD0m
+# Author:  P$3ud0R@nD0m
 # Version: 0.0.2
 
 require 'time'
@@ -13,8 +13,9 @@ class Nikto < Tool
     @path_tool = "nikto"
     @@hosts = "/usr/share/gladius/input/hosts.txt"
     @@time = Time.now
-    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/nikto_" + @@t + ".xml"
+    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
+    "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@out_file = "/usr/share/gladius/output/nikto_" + @@t + ".html"
   end
   
   # Identify common vulns
@@ -37,5 +38,11 @@ class Nikto < Tool
       puts
     end
     HTTP.new("HTTP(s)").menu
+    # Catch interrupt
+    rescue Interrupt
+      puts
+      puts "Scan stopped due to interrupt.".light_yellow
+      puts
+      HTTP.new("HTTP(s)").menu
   end
 end

@@ -1,0 +1,11 @@
+root
+www
+backup
+ftp
+mysql
+guest
+admin
+postgres
+nobody
+oracle
+webmaster
