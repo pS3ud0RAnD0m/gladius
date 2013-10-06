@@ -1,0 +1,13 @@
+ftp
+root
+admin
+Administrator
+test
+uploader
+john
+bill
+mike
+oracle
+mysql
+agata
+marketing

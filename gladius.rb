@@ -23,6 +23,7 @@ Home.new("Home                   v0.0.2").menu
 rescue Interrupt
   puts
   puts "Exiting Gladius. Have a bloody day!".red
+  puts
 rescue Exception => e
   puts e
 end

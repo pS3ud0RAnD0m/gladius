@@ -11,11 +11,17 @@ class Nikto < Tool
   def initialize(title)
     @title = title
     @path_tool = "nikto"
-    @@hosts = "/usr/share/gladius/input/hosts.txt"
+    @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
     @@time = Time.now
     @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
     "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
     @@out_file = "/usr/share/gladius/output/nikto_" + @@t + ".html"
+  end
+
+  def header_nikto
+    header
+    instruct_input_targets
+    example("fqdnp", "ipp", "url")
   end
   
   # Identify common vulns
@@ -33,7 +39,7 @@ class Nikto < Tool
     else
       puts
       a = Gpty.new
-      a.cmd =  @path_tool + " -C all -h " + @@hosts + " -output " + @@out_file
+      a.cmd =  @path_tool + " -ssl -C all -h " + @@hosts + " -output " + @@out_file
       a.shell
       puts
     end

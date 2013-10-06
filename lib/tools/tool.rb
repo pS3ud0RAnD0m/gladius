@@ -7,7 +7,7 @@ require 'time'
 
 class Tool
   attr_accessor :title
-  
+
   def initialize(title)
     @title = title
     @host = host
@@ -17,32 +17,11 @@ class Tool
     @hosts_ports = []
     @iopath = "/usr/share/gladius/"
   end
-  
+
   def header
     puts "------------------------------"
     puts @title
     puts "------------------------------"
-  end
-
-  def header_medusa
-    header
-    puts "The target exhaustion time is ~7 hours per host, assuming ~26 attempts per minute.".light_yellow
-    puts "If the exhaustion time needs modified, edit the appropriate input files w/in the /usr/share/gladius/input directory.".light_yellow
-    puts
-    instruct_input
-    example("fqdn", "ip")
-  end
-  
-  def header_nikto
-    header
-    instruct_input
-    example("fqdnp", "ipp", "url")
-  end
-
-  def header_nmap
-    header
-    instruct_input
-    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
   end
   
   def get_host
@@ -67,14 +46,19 @@ class Tool
     end
   end
 
-  def instruct_input
-    puts "Input target(s), one per line.".light_yellow
-    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".light_yellow
+  def instruct_input_targets
+    puts "Input target(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
   end
   
-  def instruct_input1
-    puts "Input target(s), one per line.".light_yellow
-    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".light_yellow
+  def instruct_input_usrs
+    puts "Input user(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
+  end
+  
+  def instruct_input_pswds
+    puts "Input password(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
   end
 
   # Supply examples for tool input.

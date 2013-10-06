@@ -7,36 +7,38 @@ require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative 'dictionary'
 require_relative '../tools/medusa'
+require_relative '../tools/hydra'
 require_relative '../tools/ncrack'
 
-class BruteForce < Menu
+class DictionaryOnline < Menu
   def menu
     header
     puts "Select a service to attack:".light_yellow
-    puts "1.  CVS (Medusa)"
-    puts "2.  FTP (Medusa)"
-    puts "3.  HTTP(S) (Medusa)"
-    puts "4.  IMAP (Medusa)"
-    puts "5.  MSSQL (Medusa)"
-    puts "6.  MYSQL (Medusa)"
-    puts "7.  NCP (Medusa)"
-    puts "8.  NNTP (Medusa)"
-    puts "9.  PCANYWHERE (Medusa)"
-    puts "10. POP3 (Medusa)"
-    puts "11. POSTGRES (Medusa)"
-    puts "12. REXEC (Medusa)"
-    puts "13. RLOGIN (Medusa)"
-    puts "14. RSH (Medusa)"
-    puts "15. SMBNT (Medusa)"
-    puts "16. SMTP-VRFY (Medusa)"
-    puts "17. SMTP (Medusa)"
-    puts "18. SNMP (Medusa)"
-    puts "19. SSH (Medusa)"
-    puts "20. SVN (Medusa)"
-    puts "21. TELNET (Medusa)"
-    puts "22. VMAUTHD (Medusa)"
-    puts "23. VNC (Medusa)"
-    puts "24. WEB-FORM (Medusa)"
+    puts "1.  CVS (Hydra) (NI)"
+    puts "2.  FTP (Hydra)"
+    puts "3.  HTTP(S) (Hydra) (NI)"
+    puts "4.  IMAP (Hydra) (NI)"
+    puts "5.  MSSQL (Hydra) (NI)"
+    puts "6.  MYSQL (Hydra)"
+    puts "7.  NCP (Hydra) (NI)"
+    puts "8.  NNTP (Hydra) (NI)"
+    puts "9.  PCANYWHERE (Hydra) (NI)"
+    puts "10. POP3 (Hydra) (NI)"
+    puts "11. POSTGRES (Hydra) (NI)"
+    puts "12. RDP (Ncrack) (NI)"
+    puts "13. REXEC (Hydra) (NI)"
+    puts "14. RLOGIN (Hydra) (NI)"
+    puts "15. RSH (Hydra) (NI)"
+    puts "16. SMB (Ncrack) (NI)"
+    puts "17. SMTP-VRFY (Hydra) (NI)"
+    puts "18. SMTP (Hydra) (NI)"
+    puts "19. SNMP (Hydra) (NI)"
+    puts "20. SSH (Hydra)"
+    puts "21. SVN (Hydra) (NI)"
+    puts "22. TELNET (Hydra) (NI)"
+    puts "23. VMAUTHD (Hydra) (NI)"
+    puts "24. VNC (Hydra) (NI)"
+    puts "25. WEB-FORM (Hydra) (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -46,8 +48,7 @@ class BruteForce < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 2
-      puts "Not implemented yet.".red
-      menu
+      Hydra.new("Hydra - FTP Online Dictionary Attack").ftp
     elsif sel == 3
       puts "Not implemented yet.".red
       menu
@@ -58,8 +59,7 @@ class BruteForce < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 6
-      puts "Not implemented yet.".red
-      menu
+      Hydra.new("Hydra - MySQL Online Dictionary Attack").mysql
     elsif sel == 7
       puts "Not implemented yet.".red
       menu
@@ -97,10 +97,10 @@ class BruteForce < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 19
-      Medusa.new("Medusa - SSH Brute Force").ssh
-    elsif sel == 20
       puts "Not implemented yet.".red
       menu
+    elsif sel == 20
+      Hydra.new("Hydra - SSH Online Dictionary Attack").ssh
     elsif sel == 21
       puts "Not implemented yet.".red
       menu
@@ -111,6 +111,9 @@ class BruteForce < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 24
+      puts "Not implemented yet.".red
+      menu
+    elsif sel == 25
       puts "Not implemented yet.".red
       menu
     elsif sel == 9

@@ -18,7 +18,7 @@ class ApacheUsers < Tool
   # Enum Users
   def fingerprint
     header
-    instruct_input1
+    instruct_input_targets
     example("fqdn", "ip")
     while line = gets
       @@hosts << line.chomp
