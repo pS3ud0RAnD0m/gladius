@@ -6,11 +6,11 @@
 class Splash
   def ascii
     puts
-    puts "                                  /\\"
-    puts "                                 /  \\"
-    puts "                                 |  |"
-    puts "                                 |  |"
-    puts "                                 |  |"
+    puts "                                  /\\".red
+    puts "                                 /  \\".red
+    puts "                                 |  |".red
+    puts "                                 |  |".red
+    puts "                                 |  |".red
     puts "                                 |  |"
     puts "                                 |  |"
     puts "    ________                  ___|  |"

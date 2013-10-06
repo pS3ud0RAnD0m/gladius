@@ -11,14 +11,14 @@ class Onesixtyone < Tool
   def initialize(title)
     @title = title
     @@path = "onesixtyone"
-    @@path_dict = "/usr/share/gladius//input/onesixtyone-dict.txt"
-    @@hosts = "/usr/share/gladius/input/hosts.txt"
+    @@path_dict = "/usr/share/gladius/input/onesixtyone-dict.txt"
+    @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
   end
 
   # Discover common community strings:
   def discover
     header
-    instruct_input1
+    instruct_input_targets
     example("ip")
     a = File.open(@@hosts, "w")
     while line = gets

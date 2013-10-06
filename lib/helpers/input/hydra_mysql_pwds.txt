@@ -1,0 +1,4 @@
+toor
+password
+temp
+admin

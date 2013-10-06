@@ -5,15 +5,15 @@
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
-require_relative 'bruteforce'
+require_relative 'dictionaryonline'
 
 class Dictionary < Menu
   def menu
     header
     puts "Select a task:".light_yellow
     puts "1.  Create custom user/pass lists (NI)"
-    puts "2.  Brute force - online"
-    puts "3.  Brute force - offline (NI)"
+    puts "2.  Online dictionary attacks"
+    puts "3.  Offline dictionary attacks (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -23,7 +23,7 @@ class Dictionary < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 2
-      BruteForce.new("Brute Force Authentication").menu
+      DictionaryOnline.new("Online Dictionary Attacks").menu
     elsif sel == 3
       puts "Not implemented yet.".red
       menu

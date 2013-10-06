@@ -17,7 +17,7 @@ class SSLScan < Tool
   # Identify supported SSL/TLS protcols and ciphers
   def scan
     header
-    instruct_input1
+    instruct_input_targets
     example("fqdn", "ip")
     while line = gets
       @@hosts << line.chomp

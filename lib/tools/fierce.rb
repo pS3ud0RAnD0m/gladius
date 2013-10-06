@@ -18,7 +18,7 @@ class Fierce < Tool
   # Attempt a zone transfer and brute force records
   def brute
     header
-    instruct_input1
+    instruct_input_targets
     example("fqdn")
     while line = gets
       @@hosts << line.chomp

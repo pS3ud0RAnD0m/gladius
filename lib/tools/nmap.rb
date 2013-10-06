@@ -13,13 +13,19 @@ class Nmap < Tool
   def initialize(title)
     @title = title
     @@path = "nmap"
-    @@hosts = "/usr/share/gladius/input/hosts.txt"
+    @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
     @@time = Time.now
     @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
     "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
     @@out_file = "/usr/share/gladius/output/nmap_" + @@t
   end
 
+  def header_nmap
+    header
+    instruct_input_targets
+    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
+  end
+  
   # Scan top 1000 tcp ports:
   def tcpquick
     header_nmap

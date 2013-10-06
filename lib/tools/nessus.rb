@@ -18,7 +18,7 @@ class Nessus < Tool
   # Discover anonymous FTP read/write logins:
   def ftp_anon
     header
-    instruct_input1
+    instruct_input_targets
     example("fqdn", "ip")
     while line = gets
       @@target << line.chomp

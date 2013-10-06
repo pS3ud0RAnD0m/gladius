@@ -29,7 +29,7 @@ class Gladius < Tool
         puts "Attempting a zone transfer and brute against " + host + "..."
         puts
         i = Gpty.new
-        i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
+        i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "stdn_hosts.txt -dns " + host
         i.shell
       end
       puts
@@ -40,7 +40,7 @@ class Gladius < Tool
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "hosts.txt -dns " + host
+          i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "stdn_hosts.txt -dns " + host
           i.shell
         end
       puts
