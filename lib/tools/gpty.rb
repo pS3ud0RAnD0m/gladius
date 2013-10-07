@@ -4,8 +4,6 @@
 # Version: 0.0.2
 
 require 'pty'
-require_relative 'tool'
-require_relative '../helpers/colorize'
 
 class Gpty
   attr_accessor :cmd

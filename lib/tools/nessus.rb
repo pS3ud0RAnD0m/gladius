@@ -3,69 +3,83 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
 require_relative 'tool'
 require_relative 'gpty'
 
 class Nessus < Tool
   def initialize(title)
     @title = title
+    # Path variables
     @@path = "/opt/nessus/bin/nasl"
     @@path_module = "/opt/nessus/lib/nessus/plugins/ftp_anonymous.nasl"
-    @@target = []
+    @@hosts = []
+    # Variables for timestamping out files and child pid files
+    @@time = Time.now
+    @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
+                  "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@out_file = "/usr/share/gladius/output/nessus_" + @@out_file_tstamp + ".txt"
+    @@pid_tstamp = "%10.10f" % @@time.to_f
+    @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
   end
 
-  # Discover anonymous FTP read/write logins:
-  def ftp_anon
+  def header_nessus
     header
+    puts "CIDRs and ranges entered into NASLs are very slow, so you should only input hosts that are listening on the appropriate port.".yellow
+    puts
     instruct_input_targets
     example("fqdn", "ip")
-    while line = gets
-      @@target << line.chomp
+  end
+
+  def clean_exit
+    if File.exists?(@@pid_file)
+      pid = File.read(@@pid_file)
+      `kill -9 #{pid}`
+      File.delete(@@pid_file)
     end
-    if @@target.count == 0
+    puts
+    FTP.new("Gather Information - FTP").menu
+  rescue Interrupt
+    puts
+    puts "Exiting Gladius. Have a bloody day!".red
+    begin
+      Kernel.exit
+    rescue Exception => e
+    puts
+    end
+  end
+  
+  def resc
+    puts
+    puts "Discovery stopped due to interrupt.".red
+    clean_exit
+  end
+  
+  # Discover anonymous FTP read/write logins:
+  def ftp_anon
+    header_nessus
+    while line = gets
+      @@hosts << line.chomp
+    end
+    if @@hosts.count == 0
       puts "No targets were input.".red
       puts
       menu
-    elsif @@target.count == 1
-      @@target.each do |target|
-        puts "Discovering anonymous FTP logins against " + target + "..."
-        puts
-        if target.include?("/") || target.include?("-")
-          i = Gpty.new
-          i.cmd = @@path + " -a -t " + target + " " + @@path_module
-          i.shell
-        else
-          i = Gpty.new
-          i.cmd = @@path + " -a -t " + target + " " + @@path_module
-          i.shell
-        end
-      end
+    elsif @@hosts.count == 1
+      puts "Discovering anonymous FTP logins against 1 target ..."
       puts
-      FTP.new("FTP").menu
     else
-      l = @@target.count
-      puts "Discovering anonymous FTP logins against #{l} targets..."
-        @@target.each do |target|
-          puts
-          if target.include?("/") || target.include?("-")
-            i = Gpty.new
-            i.cmd = @@path + " -a -t " + target + " " + @@path_module
-            i.shell
-          else
-            i = Gpty.new
-            i.cmd = @@path + " -a -t " + target + " " + @@path_module
-            i.shell
-          end
-        end
+      hosts_count = @@hosts.count.to_s
+      puts "Discovering anonymous FTP logins against " + hosts_count + " targets ..."
       puts
-      FTP.new("FTP").menu
     end
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Scan stopped due to interrupt.".light_yellow
-      puts
-      FTP.new("FTP").menu
+    @@hosts.each do |host|
+      x = Gpty.new
+      x.time = @@pid_tstamp
+      x.cmd = @@path + " -a -t " + host + " " + @@path_module
+      x.shell
+    end
+    clean_exit
+  rescue Interrupt
+    resc
   end
 end  

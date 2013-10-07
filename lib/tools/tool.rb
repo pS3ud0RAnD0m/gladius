@@ -48,17 +48,17 @@ class Tool
 
   def instruct_input_targets
     puts "Input target(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
   end
   
   def instruct_input_usrs
     puts "Input user(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
   end
   
   def instruct_input_pswds
     puts "Input password(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and hit <CTRL> + <d>.".yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
   end
 
   # Supply examples for tool input.
