@@ -99,7 +99,6 @@ class Hydra < Tool
       puts "Since only 1 host was input, we recommend option 1.".yellow
     elsif line_count <= 5
       line_count = line_count.to_s
-      puts "This is linecount " + line_count
       puts "Select your tactic:".light_yellow
       puts "Since only #{line_count} hosts were input, we recommend option 1.".yellow
     # Host count is > 5. Recommend STDN users and passwords.
