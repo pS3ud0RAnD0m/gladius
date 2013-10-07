@@ -9,11 +9,15 @@ require_relative 'gpty'
 class Dsniff < Tool
   def initialize(title)
     @title = title
+    # Path variables
     @@path = "dsniff"
+    # Variables for timestamping out files and child pid files
     @@time = Time.now
-    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
-    "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/dsniff_" + @@t + ".txt"
+    @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
+                  "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@out_file = "/usr/share/gladius/output/dsniff_" + @@out_file_tstamp + ".txt"
+    @@pid_tstamp = "%10.10f" % @@time.to_f
+    @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
   end
 
   def header_dsniff
@@ -60,19 +64,58 @@ class Dsniff < Tool
     puts "Note: It appears that this tool isn't displaying harvested credentials until the sniffed connection is terminated. Better tool pending.".light_yellow
   end
 
+  def clean_exit
+    if File.exists?(@@pid_file)
+      pid = File.read(@@pid_file)
+      `kill -9 #{pid}`
+      File.delete(@@pid_file)
+    end
+    results
+    puts
+    SniffSpoof.new("Sniffing and Spoofing").menu
+  rescue Interrupt
+    puts
+    puts "Exiting Gladius. Have a bloody day!".red
+    begin
+      Kernel.exit
+    rescue Exception => e
+    puts
+    end
+  end
+  
+  # Rescue mid-attack 
+  def resc
+    puts
+    puts "Sniffing stopped due to interrupt.".red
+    clean_exit
+  end
+  
+  # Parse and display results
+  def results
+    puts
+    out_file = @@out_file
+    rslt = open(@@out_file) { |a| a.grep(/PASS|USER|\//) }
+    if rslt.count == 0
+      puts "Dsniff did not find any credentials.".light_yellow
+    else
+      puts "Dsniff found the following credentials:".light_yellow
+      puts rslt
+      puts
+      puts "Raw output can be found here:".yellow
+      puts out_file
+    end
+  end
+  
   # Sniff for plaintext creds against all supported protocols
   def all
     header_dsniff
     puts
-    i = Gpty.new
-    i.cmd = @@path + " -m -n -i any |tee " + @@out_file
-    i.shell
+    x = Gpty.new
+    x.time = @@pid_tstamp
+    x.cmd = @@path + " -m -n -i any |tee " + @@out_file
+    x.shell
     puts
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Sniffing stopped due to interrupt.".light_yellow
-      puts
-      SniffSpoof.new("Sniffing and Spoofing").menu
+  rescue Interrupt
+    resc
   end
 end  
