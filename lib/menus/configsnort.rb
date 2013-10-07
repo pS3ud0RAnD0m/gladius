@@ -32,6 +32,7 @@ class ConfigSnort < Menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
+      puts
       rescue Interrupt
       end
     else

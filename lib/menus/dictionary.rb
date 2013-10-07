@@ -3,7 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative 'dictionaryonline'
 
@@ -11,7 +10,7 @@ class Dictionary < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Create custom user/pass lists (NI)"
+    puts "1.  Create custom user/password lists (NI)"
     puts "2.  Online dictionary attacks"
     puts "3.  Offline dictionary attacks (NI)"
     puts "88. Back"

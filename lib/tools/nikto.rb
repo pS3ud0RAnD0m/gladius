@@ -3,7 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require 'time'
 require_relative 'tool'
 require_relative 'gpty'
 
