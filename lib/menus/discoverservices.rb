@@ -5,7 +5,7 @@
 
 require_relative '../helpers/colorize'
 require_relative 'menu'
-require_relative '../tools/nmap'
+require_relative '../tools/gnmap'
 
 class DiscoverServices < Menu
   def menu
@@ -32,25 +32,25 @@ class DiscoverServices < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      Nmap.new("Nmap - TCP top 25 ports").tcp_very_quick
+      GNmap.new("Nmap - TCP top 25 ports").tcp_very_quick
     elsif sel == 2
-      Nmap.new("Nmap - TCP top 1000 ports").tcp_quick
+      GNmap.new("Nmap - TCP top 1000 ports").tcp_quick
     elsif sel == 3
-      Nmap.new("Nmap - UDP top 1000 ports").udp_quick
+      GNmap.new("Nmap - UDP top 1000 ports").udp_quick
     elsif sel == 4
-      Nmap.new("Nmap - TCP/UDP top 1000 ports").tcp_udp_quick
+      GNmap.new("Nmap - TCP/UDP top 1000 ports").tcp_udp_quick
     elsif sel == 5
-      Nmap.new("Nmap - TCP top 1000 ports with scripts").tcp_quick_scripts
+      GNmap.new("Nmap - TCP top 1000 ports with scripts").tcp_quick_scripts
     elsif sel == 6
-      Nmap.new("Nmap - UDP top 1000 ports with scripts").udp_quick_scripts
+      GNmap.new("Nmap - UDP top 1000 ports with scripts").udp_quick_scripts
     elsif sel == 7
-      Nmap.new("Nmap - TCP/UDP top 1000 ports with scripts").tcp_udp_quick_scripts
+      GNmap.new("Nmap - TCP/UDP top 1000 ports with scripts").tcp_udp_quick_scripts
     elsif sel == 8
-      Nmap.new("Nmap - TCP all ports").tcp_full
+      GNmap.new("Nmap - TCP all ports").tcp_full
     elsif sel == 9
-      Nmap.new("Nmap - UDP all ports").udp_full
+      GNmap.new("Nmap - UDP all ports").udp_full
     elsif sel == 10
-      Nmap.new("Nmap - TCP/UDP all ports").tcp_udp_full
+      GNmap.new("Nmap - TCP/UDP all ports").tcp_udp_full
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

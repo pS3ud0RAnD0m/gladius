@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="file:///usr/local/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 4.85BETA10 scan initiated Fri Jun 19 00:23:16 2009 as: nmap -d -T4 -n -p80 -oX - 192.168.10.123 -->
+<nmaprun scanner="nmap" args="nmap -d -T4 -n -p80 -oX - 192.168.10.123" start="1245388996" startstr="Fri Jun 19 00:23:16 2009" version="4.85BETA10" xmloutputversion="1.03">
+<scaninfo type="syn"  protocol="tcp" numservices="1" services="80" />
+<verbose level="1" />
+<debugging level="1" />
+<taskbegin task="ARP Ping Scan" time="1245388996" />
+<taskend task="ARP Ping Scan" time="1245388996" extrainfo="1 total hosts" />
+<taskbegin task="SYN Stealth Scan" time="1245388996" />
+<taskend task="SYN Stealth Scan" time="1245388996" extrainfo="1 total ports" />
+<host starttime="1245388996" endtime="1245388996"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.123" addrtype="ipv4" />
+<address addr="00:0A:E4:87:EC:C0" addrtype="mac" vendor="Wistron" />
+<hostnames />
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" method="table" conf="3" /></port>
+</ports>
+<times srtt="2946" rttvar="3908" to="100000" />
+</host>
+<runstats><finished time="1245388996" timestr="Fri Jun 19 00:23:16 2009" elapsed="0.45"/><hosts up="1" down="0" total="1" />
+<!-- Nmap done at Fri Jun 19 00:23:16 2009; 1 IP address (1 host up) scanned in 0.45 seconds -->
+</runstats></nmaprun>
