@@ -9,7 +9,6 @@ This app is pre-alpha, so beware. I'll be making significant changes over the ne
 
 
 Change to the directory that is holding gladius.tar.bz2:
-
 `cd <dir/holding/gladius.tar.bz2>`
 
 
@@ -18,26 +17,21 @@ Move, unpack, and clean-up Gladius:
 
 
 Symlink:
-
 `ln -s /opt/gladius/gladius.rb /usr/bin/gladius;cd`
 
 
 Run from anywhere:
-
 `gladius`
 
 
 ### Git Install and Run
 Change directory and clone:
-
 `cd /opt;git clone https://github.com/pS3ud0RAnD0m/gladius`
 
 
 Symlink:
-
 `ln -s /opt/gladius/gladius.rb /usr/bin/gladius;cd`
 
 
 Run from anywhere:
-
 `gladius`
