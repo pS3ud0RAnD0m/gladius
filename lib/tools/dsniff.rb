@@ -61,7 +61,7 @@ class Dsniff < Tool
     puts "YPPasswd      100009/rpc".yellow
     puts "YPServ        100004/rpc".yellow
     puts
-    puts "Note: It appears that this tool isn't displaying harvested credentials until the sniffed connection is terminated. Better tool pending.".light_yellow
+    puts "Note: It appears that this tool isn't displaying harvested FTP credentials until the sniffed connection is terminated.".yellow
   end
 
   def clean_exit

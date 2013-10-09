@@ -1,0 +1,587 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet href="file:///usr/local/share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 4.85BETA10 scan initiated Sat Jun 20 19:30:16 2009 as: nmap -d -T4 -n -sSUYCV -O -&#45;osscan-guess -&#45;top-ports 25 -oX - 192.168.10.0/24 -->
+<nmaprun scanner="nmap" args="nmap -d -T4 -n -sSUYCV -O -&#45;osscan-guess -&#45;top-ports 25 -oX - 192.168.10.0/24" start="1245544216" startstr="Sat Jun 20 19:30:16 2009" version="4.85BETA10" xmloutputversion="1.03">
+<scaninfo type="syn"  protocol="tcp" numservices="25" services="21-23,25,53,80,110-111,135,139,143,199,443,445,587,993,995,1025,1720,1723,3306,3389,5900,8080,8888" />
+<scaninfo type="udp"  protocol="udp" numservices="25" services="53,67-69,111,123,135,137-139,161-162,445,500,514,520,631,998,1434,1701,1900,4500,5353,49152,49154" />
+<scaninfo type="sctpinit"  protocol="sctp" numservices="25" services="7,9,20-22,80,179,443,1167,1812-1813,2225,2427,2904-2905,2944-2945,3097,3565,3863-3864,3868,4739-4740,5060" />
+<verbose level="1" />
+<debugging level="1" />
+<taskbegin task="ARP Ping Scan" time="1245544216" />
+<taskend task="ARP Ping Scan" time="1245544216" extrainfo="6 total hosts" />
+<taskbegin task="SYN Stealth Scan" time="1245544216" />
+<taskend task="SYN Stealth Scan" time="1245544219" extrainfo="75 total ports" />
+<taskbegin task="UDP Scan" time="1245544219" />
+<taskend task="UDP Scan" time="1245544222" extrainfo="75 total ports" />
+<taskbegin task="SCTP INIT Scan" time="1245544222" />
+<taskend task="SCTP INIT Scan" time="1245544224" extrainfo="75 total ports" />
+<taskbegin task="Service scan" time="1245544225" />
+<taskprogress task="Service scan" time="1245544280" percent="1.33" remaining="4070" etc="1245548350" />
+<taskprogress task="Service scan" time="1245544335" percent="21.33" remaining="406" etc="1245544741" />
+<taskprogress task="Service scan" time="1245544390" percent="41.33" remaining="235" etc="1245544624" />
+<taskprogress task="Service scan" time="1245544445" percent="61.33" remaining="139" etc="1245544584" />
+<taskprogress task="Service scan" time="1245544500" percent="81.33" remaining="64" etc="1245544563" />
+<taskend task="Service scan" time="1245544500" extrainfo="75 services on 3 hosts" />
+<taskbegin task="NSE" time="1245544506" />
+<taskend task="NSE" time="1245544536" />
+<taskbegin task="NSE" time="1245544536" />
+<taskend task="NSE" time="1245544541" />
+<host starttime="1245544216" endtime="1245544541"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.1" addrtype="ipv4" />
+<address addr="00:1A:70:F6:B3:E6" addrtype="mac" vendor="Cisco-Linksys" />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="tcp" portid="110"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="tcp" portid="143"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="tcp" portid="587"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8888"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ns" method="table" conf="3" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><osfingerprint fingerprint="SCAN(V=4.85BETA10%D=6/20%OT=%CT=%CU=%PV=Y%DS=1%G=N%M=001A70%TM=4A3D805D%P=i686-pc-linux-gnu)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;" />
+</os>
+<distance value="1" />
+<hostscript><script id="nbstat" output="ERROR: Name query failed: TIMEOUT" /></hostscript><times srtt="5654" rttvar="7204" to="100000" />
+</host>
+<host starttime="1245544216" endtime="1245544541"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.2" addrtype="ipv4" />
+<address addr="00:E0:11:05:DD:E9" addrtype="mac" vendor="Uniden" />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="tcp" portid="110"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="tcp" portid="143"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="tcp" portid="587"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8888"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ns" method="table" conf="3" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><osfingerprint fingerprint="SCAN(V=4.85BETA10%D=6/20%OT=%CT=%CU=%PV=Y%DS=1%G=N%M=00E011%TM=4A3D805D%P=i686-pc-linux-gnu)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;" />
+</os>
+<distance value="1" />
+<hostscript><script id="nbstat" output="ERROR: Name query failed: TIMEOUT" /></hostscript><times srtt="9615" rttvar="13308" to="100000" />
+</host>
+<host starttime="1245544216" endtime="1245544541"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.5" addrtype="ipv4" />
+<address addr="00:11:D8:47:95:3C" addrtype="mac" vendor="Asustek Computer" />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="tcp" portid="110"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="tcp" portid="143"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="tcp" portid="587"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8888"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ns" method="table" conf="3" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><osfingerprint fingerprint="SCAN(V=4.85BETA10%D=6/20%OT=%CT=%CU=%PV=Y%DS=1%G=N%M=0011D8%TM=4A3D805D%P=i686-pc-linux-gnu)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;" />
+</os>
+<distance value="1" />
+<hostscript><script id="nbstat" output="ERROR: Name query failed: TIMEOUT" /></hostscript><times srtt="9416" rttvar="9416" to="100000" />
+</host>
+<taskbegin task="ARP Ping Scan" time="1245544541" />
+<taskend task="ARP Ping Scan" time="1245544544" extrainfo="249 total hosts" />
+<taskbegin task="SYN Stealth Scan" time="1245544544" />
+<taskend task="SYN Stealth Scan" time="1245544544" extrainfo="25 total ports" />
+<taskbegin task="UDP Scan" time="1245544544" />
+<taskend task="UDP Scan" time="1245544545" extrainfo="25 total ports" />
+<taskbegin task="SCTP INIT Scan" time="1245544545" />
+<taskend task="SCTP INIT Scan" time="1245544546" extrainfo="25 total ports" />
+<taskbegin task="Service scan" time="1245544546" />
+<taskend task="Service scan" time="1245544601" extrainfo="9 services on 1 host" />
+<taskbegin task="NSE" time="1245544602" />
+<taskend task="NSE" time="1245544607" />
+<taskbegin task="NSE" time="1245544607" />
+<taskend task="NSE" time="1245544617" />
+<host starttime="1245544544" endtime="1245544617"><status state="up" reason="localhost-response"/>
+<address addr="192.168.10.6" addrtype="ipv4" />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="WU-FTPD or MIT Kerberos ftpd" version="5.60" hostname="Meryl" ostype="Unix" method="probed" conf="10" /></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="OpenSSH" version="5.1p1 Debian 6" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10" /><script id="ssh-hostkey" output="1024 cf:1a:af:f5:18:b5:a2:d9:1f:ec:21:3d:e8:a6:f2:9f (DSA)&#xa;2048 90:2b:38:d4:a4:f7:31:87:cd:d2:04:aa:f5:11:e9:f5 (RSA)" /></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="closed" reason="reset" reason_ttl="64"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="closed" reason="reset" reason_ttl="64"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="lighttpd" version="1.4.22" method="probed" conf="10" /><script id="html-title" output="Welcome page" /></port>
+<port protocol="tcp" portid="110"><state state="closed" reason="reset" reason_ttl="64"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="closed" reason="reset" reason_ttl="64"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="closed" reason="reset" reason_ttl="64"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10" /></port>
+<port protocol="tcp" portid="143"><state state="closed" reason="reset" reason_ttl="64"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="closed" reason="reset" reason_ttl="64"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="closed" reason="reset" reason_ttl="64"/><service name="https" method="table" conf="3" /></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10" /></port>
+<port protocol="tcp" portid="587"><state state="closed" reason="reset" reason_ttl="64"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="closed" reason="reset" reason_ttl="64"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="closed" reason="reset" reason_ttl="64"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="closed" reason="reset" reason_ttl="64"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="closed" reason="reset" reason_ttl="64"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="closed" reason="reset" reason_ttl="64"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="closed" reason="reset" reason_ttl="64"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="closed" reason="reset" reason_ttl="64"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="closed" reason="reset" reason_ttl="64"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8888"><state state="closed" reason="reset" reason_ttl="64"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="0"/><service name="netbios-ns" product="Microsoft Windows XP netbios-ssn" hostname="TESTING1" ostype="Windows" method="probed" conf="10" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="closed" reason="abort" reason_ttl="64"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="closed" reason="abort" reason_ttl="64"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="closed" reason="abort" reason_ttl="64"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="closed" reason="abort" reason_ttl="64"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="closed" reason="abort" reason_ttl="64"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="closed" reason="abort" reason_ttl="64"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="closed" reason="abort" reason_ttl="64"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="closed" reason="abort" reason_ttl="64"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="closed" reason="abort" reason_ttl="64"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="closed" reason="abort" reason_ttl="64"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="closed" reason="abort" reason_ttl="64"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="closed" reason="abort" reason_ttl="64"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="closed" reason="abort" reason_ttl="64"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="closed" reason="abort" reason_ttl="64"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="closed" reason="abort" reason_ttl="64"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="closed" reason="abort" reason_ttl="64"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="closed" reason="abort" reason_ttl="64"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="closed" reason="abort" reason_ttl="64"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="closed" reason="abort" reason_ttl="64"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="closed" reason="abort" reason_ttl="64"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="closed" reason="abort" reason_ttl="64"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="closed" reason="abort" reason_ttl="64"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="closed" reason="abort" reason_ttl="64"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="closed" reason="abort" reason_ttl="64"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="closed" reason="abort" reason_ttl="64"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="21" />
+<portused state="closed" proto="tcp" portid="23" />
+<portused state="closed" proto="udp" portid="53" />
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100" />
+<osmatch name="Linux 2.6.15 - 2.6.27" accuracy="100" line="17729" />
+<osfingerprint fingerprint="OS:SCAN(V=4.85BETA10%D=6/20%OT=21%CT=23%CU=53%PV=Y%DS=0%G=Y%TM=4A3D80A9%P=i&#xa;OS:686-pc-linux-gnu)SEQ(SP=CA%GCD=1%ISR=D4%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M400C&#xa;OS:ST11NW6%O2=M400CST11NW6%O3=M400CNNT11NW6%O4=M400CST11NW6%O5=M400CST11NW6&#xa;OS:%O6=M400CST11)WIN(W1=8000%W2=8000%W3=8000%W4=8000%W5=8000%W6=8000)ECN(R=&#xa;OS:Y%DF=Y%T=40%W=8018%O=M400CNNSNW6%CC=N%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%&#xa;OS:RD=0%Q=)T2(R=N)T3(R=Y%DF=Y%T=40%W=8000%S=O%A=S+%F=AS%O=M400CST11NW6%RD=0&#xa;OS:%Q=)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z&#xa;OS:%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y&#xa;OS:%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RI&#xa;OS:PL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)&#xa;" />
+</os>
+<uptime seconds="19078" lastboot="Sat Jun 20 14:18:59 2009" />
+<distance value="0" />
+<tcpsequence index="202" difficulty="Good luck!" values="1D0723F0,1DC93932,1D8831B3,1DEAF74E,1D58C466,1E27B5D4" />
+<ipidsequence class="All zeros" values="0,0,0,0,0,0" />
+<tcptssequence class="1000HZ" values="122DD36,122DD9B,122DE00,122DE65,122DECA,122DF2F" />
+<hostscript><script id="nbstat" output="NetBIOS name: TESTING1, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt;&#xa;Name: TESTING1&lt;00&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: TESTING1&lt;03&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: TESTING1&lt;20&gt;            Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: \x01\x02__MSBROWSE__\x02&lt;01&gt;  Flags: &lt;group&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;1d&gt;        Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;1e&gt;        Flags: &lt;group&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;00&gt;        Flags: &lt;group&gt;&lt;active&gt;&#xa;" /><script id="smb-os-discovery" output="Unix&#xa;LAN Manager: Samba 3.3.4&#xa;Name: Unknown\Unknown&#xa;System time: 2009-06-20 19:36:42 UTC-5&#xa;" /></hostscript><times srtt="49" rttvar="29" to="100000" />
+</host>
+<taskbegin task="SYN Stealth Scan" time="1245544617" />
+<taskend task="SYN Stealth Scan" time="1245544620" extrainfo="50 total ports" />
+<taskbegin task="UDP Scan" time="1245544620" />
+<taskend task="UDP Scan" time="1245544634" extrainfo="50 total ports" />
+<taskbegin task="SCTP INIT Scan" time="1245544634" />
+<taskend task="SCTP INIT Scan" time="1245544637" extrainfo="50 total ports" />
+<taskbegin task="Service scan" time="1245544637" />
+<taskprogress task="Service scan" time="1245544692" percent="18.42" remaining="244" etc="1245544936" />
+<taskprogress task="Service scan" time="1245544723" percent="65.79" remaining="45" etc="1245544768" />
+<taskend task="Service scan" time="1245544767" extrainfo="38 services on 2 hosts" />
+<taskbegin task="NSE" time="1245544771" />
+<taskprogress task="NSE" time="1245544802" percent="95.00" remaining="2" etc="1245544804" />
+<taskend task="NSE" time="1245544802" />
+<taskbegin task="NSE" time="1245544802" />
+<taskend task="NSE" time="1245544812" />
+<host starttime="1245544541" endtime="1245544807"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.8" addrtype="ipv4" />
+<address addr="00:23:4D:A8:DD:4B" addrtype="mac" vendor="Hon Hai Precision Ind. Co." />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="tcp" portid="23"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="tcp" portid="110"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="tcp" portid="143"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="tcp" portid="587"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http-proxy" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8888"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ns" method="table" conf="3" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><osfingerprint fingerprint="SCAN(V=4.85BETA10%D=6/20%OT=%CT=%CU=%PV=Y%DS=1%G=N%M=00234D%TM=4A3D816C%P=i686-pc-linux-gnu)&#xa;U1(R=N)&#xa;IE(R=N)&#xa;" />
+</os>
+<distance value="1" />
+<hostscript><script id="nbstat" output="NetBIOS name: TESTING2, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:23:4d:a8:dd:4b&#xa;Name: TESTING2&lt;00&gt;        Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;00&gt;        Flags: &lt;group&gt;&lt;active&gt;&#xa;Name: TESTING2&lt;20&gt;        Flags: &lt;unique&gt;&lt;active&gt;&#xa;" /></hostscript><times srtt="45565" rttvar="50798" to="248757" />
+</host>
+<host starttime="1245544541" endtime="1245544812"><status state="up" reason="arp-response"/>
+<address addr="192.168.10.123" addrtype="ipv4" />
+<address addr="00:0A:E4:87:EC:C0" addrtype="mac" vendor="Wistron" />
+<hostnames />
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="Dropbear sshd" version="0.48" extrainfo="protocol 2.0" method="probed" conf="10" /><script id="ssh-hostkey" output="1040 90:75:3d:ca:f1:42:65:92:71:97:48:d7:6b:ff:d7:8b (RSA)" /></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3" /></port>
+<port protocol="tcp" portid="25"><state state="closed" reason="reset" reason_ttl="64"/><service name="smtp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="53"><state state="closed" reason="reset" reason_ttl="64"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.0.54" extrainfo="(Unix) mod_ssl/2.0.54 OpenSSL/0.9.7e PHP/5.1.2 mod_jk/1.2.23" method="probed" conf="10" /><script id="html-title" output="302 Found&#xa;Did not follow redirect to https://192.168.10.123/" /></port>
+<port protocol="tcp" portid="110"><state state="closed" reason="reset" reason_ttl="64"/><service name="pop3" method="table" conf="3" /></port>
+<port protocol="tcp" portid="111"><state state="closed" reason="reset" reason_ttl="64"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="tcp" portid="135"><state state="closed" reason="reset" reason_ttl="64"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10" /></port>
+<port protocol="tcp" portid="143"><state state="closed" reason="reset" reason_ttl="64"/><service name="imap" method="table" conf="3" /></port>
+<port protocol="tcp" portid="199"><state state="closed" reason="reset" reason_ttl="64"/><service name="smux" method="table" conf="3" /></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Apache httpd" version="2.0.54" extrainfo="(Unix) mod_ssl/2.0.54 OpenSSL/0.9.7e PHP/5.1.2 mod_jk/1.2.23" tunnel="ssl" method="probed" conf="10" /><script id="sslv2" output="server still supports SSLv2&#xa;&#x9;SSL2_DES_192_EDE3_CBC_WITH_MD5&#xa;&#x9;SSL2_IDEA_128_CBC_WITH_MD5&#xa;&#x9;SSL2_RC2_CBC_128_CBC_WITH_MD5&#xa;&#x9;SSL2_RC4_128_WITH_MD5&#xa;&#x9;SSL2_RC4_64_WITH_MD5&#xa;&#x9;SSL2_DES_64_CBC_WITH_MD5&#xa;&#x9;SSL2_RC4_128_EXPORT40_WITH_MD5&#xa;" /><script id="html-title" output="HP Media Vault Administration Console" /></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="netbios-ssn" product="Samba smbd" version="3.X" extrainfo="workgroup: WORKGROUP" method="probed" conf="10" /></port>
+<port protocol="tcp" portid="587"><state state="closed" reason="reset" reason_ttl="64"/><service name="submission" method="table" conf="3" /></port>
+<port protocol="tcp" portid="993"><state state="closed" reason="reset" reason_ttl="64"/><service name="imaps" method="table" conf="3" /></port>
+<port protocol="tcp" portid="995"><state state="closed" reason="reset" reason_ttl="64"/><service name="pop3s" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1025"><state state="closed" reason="reset" reason_ttl="64"/><service name="NFS-or-IIS" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1720"><state state="closed" reason="reset" reason_ttl="64"/><service name="H.323/Q.931" method="table" conf="3" /></port>
+<port protocol="tcp" portid="1723"><state state="closed" reason="reset" reason_ttl="64"/><service name="pptp" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3306"><state state="closed" reason="reset" reason_ttl="64"/><service name="mysql" method="table" conf="3" /></port>
+<port protocol="tcp" portid="3389"><state state="closed" reason="reset" reason_ttl="64"/><service name="ms-term-serv" method="table" conf="3" /></port>
+<port protocol="tcp" portid="5900"><state state="closed" reason="reset" reason_ttl="64"/><service name="vnc" method="table" conf="3" /></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Jetty httpd" version="5.1.12" extrainfo="Linux/2.6.12.6-arm1 arm java/1.4.2" method="probed" conf="10" /><script id="html-title" output="Directory: /" /><script id="http-open-proxy" output="Potentially OPEN proxy.&#xa;&#xa;Methods succesfully tested: CONNECT" /></port>
+<port protocol="tcp" portid="8888"><state state="closed" reason="reset" reason_ttl="64"/><service name="sun-answerbook" method="table" conf="3" /></port>
+<port protocol="udp" portid="53"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="domain" method="table" conf="3" /></port>
+<port protocol="udp" portid="67"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="dhcps" method="table" conf="3" /></port>
+<port protocol="udp" portid="68"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="dhcpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="69"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="tftp" method="table" conf="3" /></port>
+<port protocol="udp" portid="111"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="rpcbind" method="table" conf="3" /></port>
+<port protocol="udp" portid="123"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ntp" method="table" conf="3" /></port>
+<port protocol="udp" portid="135"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="msrpc" method="table" conf="3" /></port>
+<port protocol="udp" portid="137"><state state="open" reason="udp-response" reason_ttl="0"/><service name="netbios-ns" product="Samba nmbd" extrainfo="workgroup: WORKGROUP" hostname="TESTING3" method="probed" conf="10" /></port>
+<port protocol="udp" portid="138"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="netbios-dgm" method="table" conf="3" /></port>
+<port protocol="udp" portid="139"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="netbios-ssn" method="table" conf="3" /></port>
+<port protocol="udp" portid="161"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="snmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="162"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="snmptrap" method="table" conf="3" /></port>
+<port protocol="udp" portid="445"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="microsoft-ds" method="table" conf="3" /></port>
+<port protocol="udp" portid="500"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="isakmp" method="table" conf="3" /></port>
+<port protocol="udp" portid="514"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="syslog" method="table" conf="3" /></port>
+<port protocol="udp" portid="520"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="route" method="table" conf="3" /></port>
+<port protocol="udp" portid="631"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ipp" method="table" conf="3" /></port>
+<port protocol="udp" portid="998"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="puparp" method="table" conf="3" /></port>
+<port protocol="udp" portid="1434"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="ms-sql-m" method="table" conf="3" /></port>
+<port protocol="udp" portid="1701"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="L2TP" method="table" conf="3" /></port>
+<port protocol="udp" portid="1900"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="upnp" method="table" conf="3" /></port>
+<port protocol="udp" portid="4500"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="nat-t-ike" method="table" conf="3" /></port>
+<port protocol="udp" portid="5353"><state state="open|filtered" reason="no-response" reason_ttl="0"/><service name="zeroconf" method="table" conf="3" /></port>
+<port protocol="udp" portid="49152"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="udp" portid="49154"><state state="closed" reason="port-unreach" reason_ttl="64"/><service name="unknown" method="table" conf="3" /></port>
+<port protocol="sctp" portid="7"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="echo" method="table" conf="3" /></port>
+<port protocol="sctp" portid="9"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="discard" method="table" conf="3" /></port>
+<port protocol="sctp" portid="20"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp-data" method="table" conf="3" /></port>
+<port protocol="sctp" portid="21"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ftp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="22"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ssh" method="table" conf="3" /></port>
+<port protocol="sctp" portid="80"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="http" method="table" conf="3" /></port>
+<port protocol="sctp" portid="179"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="bgp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="443"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="https" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1167"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="cisco-ipsla" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1812"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="radius" method="table" conf="3" /></port>
+<port protocol="sctp" portid="1813"><state state="filtered" reason="proto-unreach" reason_ttl="64"/><service name="radacct" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2225"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="rcip-itu" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2427"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="mgcp-gateway" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2904"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2905"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m3ua" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2944"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="megaco-h248" method="table" conf="3" /></port>
+<port protocol="sctp" portid="2945"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="h248-binary" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3097"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="itu-bicc-stc" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3565"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="m2pa" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3863"><state state="filtered" reason="proto-unreach" reason_ttl="64"/><service name="asap-sctp" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3864"><state state="filtered" reason="proto-unreach" reason_ttl="64"/><service name="asap-sctp-tls" method="table" conf="3" /></port>
+<port protocol="sctp" portid="3868"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="diameter" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4739"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfix" method="table" conf="3" /></port>
+<port protocol="sctp" portid="4740"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="ipfixs" method="table" conf="3" /></port>
+<port protocol="sctp" portid="5060"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="sip" method="table" conf="3" /></port>
+</ports>
+<os><portused state="open" proto="tcp" portid="22" />
+<portused state="closed" proto="tcp" portid="21" />
+<portused state="closed" proto="udp" portid="53" />
+<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="2.6.X" accuracy="100" />
+<osmatch name="Linux 2.6.9 - 2.6.28" accuracy="100" line="22026" />
+<osfingerprint fingerprint="OS:SCAN(V=4.85BETA10%D=6/20%OT=22%CT=21%CU=53%PV=Y%DS=1%G=Y%M=000AE4%TM=4A3&#xa;OS:D816C%P=i686-pc-linux-gnu)SEQ(SP=D0%GCD=1%ISR=D3%TI=Z%CI=I%II=I%TS=7)OPS&#xa;OS:(O1=M5B4ST11NW2%O2=M5B4ST11NW2%O3=M5B4NNT11NW2%O4=M5B4ST11NW2%O5=M5B4ST1&#xa;OS:1NW2%O6=M5B4ST11)WIN(W1=16A0%W2=16A0%W3=16A0%W4=16A0%W5=16A0%W6=16A0)ECN&#xa;OS:(R=Y%DF=Y%T=40%W=16D0%O=M5B4NNSNW2%CC=N%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A&#xa;OS:S%RD=0%Q=)T2(R=N)T3(R=Y%DF=Y%T=40%W=16A0%S=O%A=S+%F=AS%O=M5B4ST11NW2%RD=&#xa;OS:0%Q=)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=&#xa;OS:Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=&#xa;OS:Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%R&#xa;OS:IPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)&#xa;" />
+</os>
+<uptime seconds="85711" lastboot="Fri Jun 19 19:51:41 2009" />
+<distance value="1" />
+<tcpsequence index="208" difficulty="Good luck!" values="F0427613,F06069A3,F129EAA0,F049985D,F0621AFF,F13B8248" />
+<ipidsequence class="All zeros" values="0,0,0,0,0,0" />
+<tcptssequence class="100HZ" values="82B788,82B792,82B79C,82B7A6,82B7B1,82B7BB" />
+<hostscript><script id="nbstat" output="NetBIOS name: TESTING3, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt;&#xa;Name: TESTING3&lt;00&gt;         Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: TESTING3&lt;03&gt;         Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: TESTING3&lt;20&gt;         Flags: &lt;unique&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;1e&gt;        Flags: &lt;group&gt;&lt;active&gt;&#xa;Name: WORKGROUP&lt;00&gt;        Flags: &lt;group&gt;&lt;active&gt;&#xa;" /><script id="smb-os-discovery" output="Unix&#xa;LAN Manager: Samba 3.0.25b&#xa;Name: WORKGROUP\Unknown&#xa;System time: 2009-06-20 20:39:02 UTC-6&#xa;" /></hostscript><times srtt="16963" rttvar="11015" to="100000" />
+</host>
+<runstats><finished time="1245544812" timestr="Sat Jun 20 19:40:12 2009" elapsed="596.22"/><hosts up="6" down="250" total="256" />
+<!-- Nmap done at Sat Jun 20 19:40:12 2009; 256 IP addresses (6 hosts up) scanned in 596.22 seconds -->
+</runstats></nmaprun>

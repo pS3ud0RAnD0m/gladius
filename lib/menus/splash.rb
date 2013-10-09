@@ -10,7 +10,7 @@ class Splash
     puts "                                 /  \\".red
     puts "                                 |  |".red
     puts "                                 |  |".red
-    puts "                                 |  |".red
+    puts "                                 |" + "  |".red
     puts "                                 |  |"
     puts "                                 |  |"
     puts "    ________                  ___|  |"

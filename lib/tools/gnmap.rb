@@ -5,9 +5,10 @@
 
 require_relative 'tool'
 require_relative 'gpty'
+require_relative '../helpers/parsers/nmapparser'
 require_relative '../menus/dns'
 
-class Nmap < Tool
+class GNmap < Tool
   def initialize(title)
     @title = title
     # Path variables
@@ -18,6 +19,8 @@ class Nmap < Tool
     @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
                   "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
     @@out_file = "/usr/share/gladius/output/nmap_" + @@out_file_tstamp
+    @@out_xml_file = @@out_file + ".xml"
+    @@out_gladius_file = @@out_xml_file + ".gladius"
     @@pid_tstamp = "%10.10f" % @@time.to_f
     @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
   end
@@ -46,12 +49,25 @@ class Nmap < Tool
     end
   end
   
+  # Rescue interrupts
   def resc
     puts
     puts "Discovery stopped due to interrupt.".red
     clean_exit
   end
 
+  # Parse and display results
+  def parse
+    NmapParser.new(@@out_xml_file).open_ports
+    puts "Nmap output files are here:".light_yellow
+    puts @@out_file + ".gnmap"
+    puts @@out_file + ".nmap"
+    puts @@out_xml_file
+    puts
+    puts "Summary output has been parsed and put here:".light_yellow
+    puts @@out_gladius_file
+  end
+  
   # Scan top 25 tcp ports
   def tcp_very_quick
     header_nmap
@@ -71,6 +87,7 @@ class Nmap < Tool
       x.time = @@pid_tstamp
       x.cmd = @@path + " -v -T5 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -94,8 +111,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSV -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSV -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -119,8 +137,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -144,8 +163,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sS -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sS -Pn --min-hostgroup 128 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -169,8 +189,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -194,8 +215,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -219,8 +241,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sU -Pn --min-hostgroup 128 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -244,8 +267,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSUV -Pn --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSUV -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -269,8 +293,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 256 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt
@@ -294,8 +319,9 @@ class Nmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSU -Pn --min-hostgroup 256 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSU -Pn --min-hostgroup 128 -p1-65535 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
+      parse
       clean_exit
     end
   rescue Interrupt

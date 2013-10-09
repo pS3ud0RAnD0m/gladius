@@ -1,0 +1,14 @@
+$Id: INSTALL 145 2009-03-03 21:13:04Z kjak $
+
+Nmap::Parser uses Minero Aoki's setup.rb for installation
+
+
+As root:
+
+# ruby setup.rb all
+
+
+For any additional help try:
+
+$ ruby setup.rb --help
+

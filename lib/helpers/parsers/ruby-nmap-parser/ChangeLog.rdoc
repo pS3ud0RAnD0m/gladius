@@ -1,0 +1,249 @@
+= Ruby Nmap::Parser ChangeLog
+
+$Id: ChangeLog.rdoc 219 2010-06-02 03:46:41Z kjak $
+
+=== 0.3.5 (Jun 1 2010)
+
+* Nmap::Parser.new() now no longer accepts a string to parse, but rather a hash
+  of options (more on this below).  new() of course returns a new Parser object,
+  but now after you have the object you call instance parsing methods such as
+  parsescan() or parsefile() to do the work.  All of the class methods which
+  previously existed are still available; they're just wrappers around new()
+  and the instance methods now.
+
+* Switched from parsing the XML using the tree-style approach to using a stream
+  approach.  It was kind of a pain in the ass setting up the "listener" class
+  and associated helper structures since I've never done it before, but it
+  was all well worth it to help speed things up.  I'm still using REXML instead
+  of something I've heard to be much faster (e.g. libxml) because I think a
+  big determining factor on what to use is its availability.  REXML has come in
+  Ruby's standard library since 1.8.
+
+* You can now parse using callbacks.  Tell Parser what method or proc you want
+  to use like this:
+	Nmap::Parser.new(:callback => mymeth)
+  Now as soon as a new Host object is created (which happens a lot faster now
+  thanks to the stream-style XML parsing), it will be passed to your callback
+  much like this:
+  	mymeth.call(newhostobj)
+  The callback is run in a new thread.
+
+* Added support for the SCTP scanning capabilities Nmap newly acquired.
+
+* Added getport(), getports() and getportlist() methods to ::Host.  The first
+  argument can be symbol specifying the desired protocol to use (:tcp, :udp,
+  :sctp or :ip), and the rest is the same as the corresponding method, e.g.
+	getports(:tcp, 'open')
+  is the same as
+	tcp_ports('open')
+
+  getports() also supports an :any type to give matching ports from all
+  protocols.  I want to thank Tom Sellers (nmap(a)fadedcode.net) for discussing
+  this latter aspect with me as he had the general idea for this functionality
+  but just a different design in mind.
+
+  The first argument can also be an array of symbols specifying the protocols
+  to use, such as [:tcp, :udp].
+
+* Added numhosts() to ::Session, which currently returns the number of up, down
+  or total hosts scanned.  This can be very different from calling things like
+  hosts.size or get_ips.size in Parser because Nmap usually won't list all of
+  the individual hosts that it doesn't know or assume to be up (unless, for
+  example, you're doing a ping or list scan).
+
+* Added a + operator to Nmap::Parser to return a new Parser object containing
+  hosts from both operands (but no duplicates from the second, as determined by
+  host.addr info).  rawxml and session are both nil in the new object.  The new
+  combination? method is provided to return a boolean value depending on whether
+  or not the current object is just a combination of others.
+
+* Added exit and errormsg to ::Session for the new XML attributes.  The former
+  specifies if Nmap exited successfully ("success") or in error ("error"), and
+  if applicable, in the latter provides the error message.
+
+* Added version constants to Parser:
+	Major - Major version number (currently 0)
+	Minor - Minor version number (currently 3)
+	Teeny - Teeny version number (currently 5)
+	Stage - Development stage ("release" or "dev", currently the former)
+	Version - Pre-built string in the form Major.Minor.Teeny
+
+* Fixed some methods in ::OS which could have lead to an exception if given
+  an invalid index.
+
+* Fixed get_ips() in ::Parser which was broken and would end up generating
+  an ArgumentError.
+
+* Have scan_time in ::Session take on (stop_time-start_time).to_f (which was
+  its original value) if the "elapsed" XML attribute isn't available.  I added
+  this attribute to Nmap, but I was totally absent-minded here and completely
+  neglected earlier versions.  Thanks to Dustin Webber (dustinw(a)aos5.com)
+  for the report of 0.0 results.
+
+* Fixed the tcpsequence_index Host attribute so that it's an integer instead
+  of a string (from the XML parsing).
+
+* Added proto to ::Port to hold the port protocol (e.g. "tcp").  This is one
+  of those simple things that just should've been in from the start.  Thanks
+  to Tom Sellers (nmap(a)fadedcode.net) for the patch.
+
+* Fixed the regex which looks for output options (-o*) in parsescan(); it was
+  matching things like the script name smb-os-discovery.  Thanks to Russell
+  Fulton (r.fulton(a)auckland.ac.nz) for the report and fix.
+
+* Instead of being quite so anal, the Parser now accepts XML not only as a
+  String but also as anything responding to to_str().
+
+* Use /usr/bin/env in the shebang (#!) lines of the example scripts for some
+  improved portability.  Thanks to Daniel Roethlisberger (daniel(a)roe.ch) for
+  noticing the problem and taking care of this.
+
+* The mysterious and totally inconspicuously named :blinken key can also be
+  used in the new() option hash. :)
+ 
+* Made a lot of internal implementation improvements, including (but most
+  definitely not limited to!) doing some metaprogramming.
+
+* Added some unit tests, starting with test/test.ts.rb.  The tests performed
+  now are messy and incomplete so far, but I originally wrote them nearly a
+  year ago and I think that it's better than nothing.  I hope to eventually
+  have unit tests covering every aspect of the parser, even all of the little
+  tedious things I was too lazy to write tests for before.  Any help writing
+  tests would be much appreciated! :)
+
+* Made many documentation improvements.
+
+* Renamed this ChangeLog to ChangeLog.rdoc and formatted it RDoc-style.
+
+=== 0.3.2 (Feb 8 2009)
+
+* Fixed a state matching bug in methods like tcp_ports() in which a specified
+  state would sometimes match an unrelated one.  Now these methods properly
+  match all states exactly as well as combinations like "open|filtered" as
+  they should.  (This bug didn't affect matching "open" ports).
+
+* Added parsestring() to parse a string of XML data.  This is currently just
+  an alias for new()
+
+* Added an examples directory to hold some (currently simple) scripts
+
+* Added <=> method to ExtraPorts which compares port counts
+
+* Added <=> method to Traceroute::Hop which compares TTLs
+
+* Updated scan_time in ::Session to use the new "elapsed" attribute (which
+  can give a floating point value)
+
+* Improved exception messages raised by the library
+
+* Many doc and general code improvements
+
+=== 0.3.1 (Jan 1 2009)
+
+* Enhanced port specification parsing code
+
+* Added the newer starttime and endtime host attributes (individual host
+  scan times) to ::Host
+
+* Added the newer scanflags scaninfo attribute as scanflags() in ::Session
+  for printing the scanflags associated with the specified scan type (e.g.
+  "PSHACK" for scan type "ack")
+
+* Various implementation reworkings
+
+* Many documentation updates
+
+=== 0.3 (Apr 24 2008)
+
+* Moved the library (and changed the filename) from nmapparser to
+  nmap/parser, so any existing scripts need to be updated
+
+* Added nmap-parser.gemspec as a gem will be available from now on
+
+* Added parseread() for reading and parsing XML from any object that
+  responds to a read() method that returns a String
+
+* Added tcp_port(), udp_port() and ip_proto() to ::Host for requesting a
+  Port object for a single port
+
+* Added tcp_script(), udp_script() and script() to ::Host for requesting
+  a single Script object
+
+* Added script() and script_output() to ::Port for requesting either the
+  Script object or output for the specified script
+
+* Added hop() to ::Traceroute for requesting the Hop object for the host
+  at the specified hop (TTL)
+
+* Nmap::Parser.[get_]host() and Nmap::Parser.del[ete]_host() now operate
+  on an IP address or hostname
+
+* Methods and class members which are naturally numeric (port numbers,
+  TTL counts, RTT, etc.) are now returned as such.  Before they were
+  being returned as strings from the XML parsing.
+
+* Nmap::Parser.new() now yields the new object to a block if one is
+  given.  This was supposed to be implemented before, but wasn't.
+
+* ::Port, ::OS::OSClass and ::OS::OSMatch now all have a <=> operator
+  for sorting
+
+* Nmap::Parser now has a == operator defined which compares the rawxml
+  members
+
+* All previously available arrays have been turned into methods which,
+  besides just returning the array, yields each element to a block if
+  one is given.  Most arrays were set up this way already, but this
+  will be the "standard" way arrays are presented now.  Any existing
+  code will still work without change because Ruby is awesome like that.
+
+* Methods which take an array index or hash key have been updated to use
+  conversion methods (e.g. to_i and to_s) to allow for (depending on the
+  circumstance) more correct and straightforward use
+
+* Updated parsescan() to better check for Nmap output options (-o*)
+  being passed to it, and to use Open3.popen3() instead of IO.popen()
+  for running Nmap.  If Open3 fails to load, however, popen() is used.
+
+* Added the following aliases: ::Host hostnames -> all_hostnames, ::OS
+  names -> all_names, and ::Hop ipaddr -> addr
+
+* Fixed the ::OS tcpport_open, tcpport_closed, and udpport_closed methods
+
+* Fixed the ::Session stop_str and stop_time
+
+* Added a *lot* of comments, mainly for better RDoc documentation
+
+* Removed the addrtype member from ::Host as it wasn't useful and often
+  wrong
+
+* Removed min_parallelism and max_parallelism from ::Session as I seem
+  to have.. uh.. imagined they existed :)
+
+=== 0.2.1 (Jan 4 2008)
+
+* Fixed a bug that spawned from an assumption I made.  The parsing
+  would fail if OS detection was performed but the scan wasn't run
+  with -v or -d.  The OS fingerprint is printed in the XML output
+  if either of these are used.  I virtually always run with -d, so
+  the fingerprint was always there for me, and I just assumed that
+  the fingerprint is *always* printed.  parsescan() always sets -d,
+  so it isn't affected.
+
+=== 0.2 (Jan 3 2008)
+
+* Fixed a bug (typo) with the read accessor for the MAC address
+  information in ::Host (mac_addr and mac_vendor).  Thanks to
+  Stefan Friedli (stfr(a)scip.ch) for the report and patch.
+
+* Added extraports information via ::Host::ExtraPorts class
+
+* Added devicetype, ostype and the RPC lowver and highver to
+  ::Host::Port::Service
+
+* Updated and reworded docs
+
+=== 0.1 (Dec 11 2007)
+
+* Initial Release
+
