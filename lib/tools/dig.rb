@@ -20,14 +20,14 @@ class DiG < Tool
     # Get dns server
     dns_server = `nslookup server |grep Server |awk '{print $2}'`.chomp
     puts "Gladius identified the following DNS server for Kerberos enumeration: " + dns_server
-    puts "Hit 'Enter' to continue or input another DNS server IP:".light_yellow
+    puts "Hit <Enter> to continue or input another DNS server IP:".light_yellow
     dns_server_diff = gets.chomp
 
     # Get domain
     domain = `cat /etc/resolv.conf |grep domain |awk '{print $2}'`.chomp
     unless domain.empty?
       puts "Gladius identified the following domain for Kerberos enumeration: " + domain
-      puts "Hit 'Enter' to continue or input another domain:".light_yellow
+      puts "Hit <Enter> to continue or input another domain:".light_yellow
       domain_diff = gets.chomp
     else
       puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow

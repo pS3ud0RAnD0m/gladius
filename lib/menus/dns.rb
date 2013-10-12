@@ -3,7 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative '../tools/dnsrecon'
 require_relative '../tools/fierce'
@@ -16,7 +15,7 @@ class DNS < Menu
     puts "1.  Identify Domain Controllers (DiG)"
     puts "2.  Attempt a zone transfer (DNSrecon)"
     puts "3.  Attempt a zone transfer and enum standard records (DNSrecon)"
-    puts "4.  Attempt a zone transfer and brute force records (Fierce)"
+    puts "4.  Attempt a zone transfer and dictionary attack records (Fierce)"
     puts "5.  Perform Google search for sub-domains and hosts (DNSrecon)"
     puts "6.  Perform reverse lookups for an IP block (DNSrecon)"
     puts "88. Back"
@@ -29,9 +28,9 @@ class DNS < Menu
     elsif sel == 2
       DNSrecon.new("DNSrecon - Zone Transfer").transfer
     elsif sel == 3
-      DNSrecon.new("DNSrecon - Zone Transfer and Standard Records").standard
+      DNSrecon.new("DNSrecon - Zone Transfer or Lookup Standard Records").standard
     elsif sel == 4
-      Fierce.new("Fierce - Zone Transfer and Brute Records").brute
+      Fierce.new("Fierce - Zone Transfer or Brute Force Records").brute
     elsif sel == 5
       DNSrecon.new("DNSrecon - Google Search for Sub-domains and Hosts").google
     elsif sel == 6

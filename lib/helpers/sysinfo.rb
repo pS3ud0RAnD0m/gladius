@@ -3,8 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
-
 class SysInfo
   def initialize
   end

@@ -27,6 +27,7 @@ class NmapParser
         b = "Host #{host.addr}"
         a.puts b
         [:tcp, :udp].each do |type|
+# ttd: account for open/filtered results. currently showing both.
           host.getports(type, "open") do |port|
             # awk |sort |uniq; then blah ...
             service = port.service

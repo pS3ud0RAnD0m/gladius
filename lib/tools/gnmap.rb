@@ -327,4 +327,37 @@ class GNmap < Tool
   rescue Interrupt
     resc
   end
+  
+  # Custom scan
+  def custom
+    header_nmap
+    a = File.open(@@hosts, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    hosts = @@hosts
+    line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
+    if line_count == 0
+      puts "No hosts were input.".red
+      tcp_very_quick
+    else
+      puts
+      puts "Input your custom arguments and hit <Enter>:".light_yellow
+      puts "Examples:".yellow
+      puts "-v -sU -Pn -p161".yellow
+      puts "-v -T4 -sU -Pn -p22".yellow
+      puts
+      args = gets.chomp
+      puts
+      x = Gpty.new
+      x.time = @@pid_tstamp
+      x.cmd = @@path + " #{args} -iL " + @@hosts + " -oA " + @@out_file
+      x.shell
+      parse
+      clean_exit
+    end
+  rescue Interrupt
+    resc
+  end
 end  

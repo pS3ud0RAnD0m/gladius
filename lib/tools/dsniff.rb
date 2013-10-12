@@ -61,7 +61,8 @@ class Dsniff < Tool
     puts "YPPasswd      100009/rpc".yellow
     puts "YPServ        100004/rpc".yellow
     puts
-    puts "Note: It appears that this tool isn't displaying harvested FTP credentials until the sniffed connection is terminated.".yellow
+    puts "Note: This tool isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
+    puts "When done sniffing, press <Ctrl+c>.".light_yellow
   end
 
   def clean_exit
@@ -94,6 +95,7 @@ class Dsniff < Tool
   def results
     puts
     out_file = @@out_file
+# ttd: account for ANYTHING in the outfile
     rslt = open(@@out_file) { |a| a.grep(/PASS|USER|\//) }
     if rslt.count == 0
       puts "Dsniff did not find any credentials.".light_yellow
@@ -115,6 +117,7 @@ class Dsniff < Tool
     x.cmd = @@path + " -m -n -i any |tee " + @@out_file
     x.shell
     puts
+    clean_exit
   rescue Interrupt
     resc
   end

@@ -12,7 +12,7 @@ class Environment
   # Check requirements
   def requirements
     begin
-      require 'colorize'
+      #require 'colorize'
       require_relative '../menus/home'
       Home.new("Home                   v0.0.2").menu
     rescue LoadError

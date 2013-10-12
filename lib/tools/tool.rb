@@ -62,9 +62,10 @@ class Tool
   end
 
   # Supply examples for tool input.
-  # Call this with: example("cidr", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
+  # Call this with: example("cidr", "domain", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
   # Use any combination of the following:
     # cidr => 10.87.9.0/24
+    # domain => victima.com
     # fqdn => www.victima.com
     # fqdnp = fqdnPort => www.victima.com:443
     # ip => 224.87.9.54
@@ -82,6 +83,9 @@ class Tool
     args.each do |a|
       if a == "cidr"
         puts "10.87.9.0/24".yellow
+      end
+      if a == "domain"
+        puts "victima.com".yellow
       end
       if a == "fqdn"
         puts "www.victima.com".yellow

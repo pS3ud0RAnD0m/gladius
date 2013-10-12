@@ -27,7 +27,3 @@ class GetSysInfo
   end
 end
 
-a = GetSysInfo.new
-a.dns_server
-a.ip
-a.domain
