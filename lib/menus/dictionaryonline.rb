@@ -3,12 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
-require_relative 'menu'
-require_relative 'dictionary'
-require_relative '../tools/medusa'
-require_relative '../tools/hydra'
-require_relative '../tools/ncrack'
+require 'menu'
 
 class DictionaryOnline < Menu
   def menu
@@ -32,7 +27,7 @@ class DictionaryOnline < Menu
     puts "16. SMB (Ncrack) (NI)"
     puts "17. SMTP-VRFY (Hydra) (NI)"
     puts "18. SMTP (Hydra) (NI)"
-    puts "19. SNMP (Hydra) (NI)"
+    puts "19. SNMP (onesixtyone) (NI)"
     puts "20. SSH (Hydra)"
     puts "21. SVN (Hydra) (NI)"
     puts "22. TELNET (Hydra) (NI)"

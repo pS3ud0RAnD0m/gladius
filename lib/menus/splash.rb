@@ -3,7 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-class Splash
+module Splash
   def ascii
     puts
     puts "                                  /\\".red
@@ -26,5 +26,6 @@ class Splash
     puts "                                 (  )    Find a way or make one!"
     puts "                                  \\/"
     puts
+    Home.new("Home                   v0.0.2").menu
   end
 end

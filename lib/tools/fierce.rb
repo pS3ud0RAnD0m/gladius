@@ -9,16 +9,58 @@ require_relative 'gpty'
 class Fierce < Tool
   def initialize(title)
     @title = title
+    # Path variables
     @@path_tool = "fierce"
     @@path_hosts = "/usr/share/gladius/input/fierce-hosts.txt"
     @@hosts = []
+    # Variables for timestamping out files and child pid files
+    @@time = Time.now
+    @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
+                  "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
+    @@out_file = "/usr/share/gladius/output/fierce_" + @@out_file_tstamp + ".txt"
+    @@pid_tstamp = "%10.10f" % @@time.to_f
+    @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
   end
   
-  # Attempt a zone transfer and brute force records
+  # Ensure that tool's pid is killed, set int rescue and exit.
+  def clean_exit
+    if File.exists?(@@pid_file)
+      pid = File.read(@@pid_file)
+      `kill -9 #{pid}`
+      File.delete(@@pid_file)
+    end
+    puts
+    DNS.new("DNS").menu
+  rescue Interrupt
+    puts
+    puts "Exiting Gladius. Have a bloody day!".red
+    begin
+      Kernel.exit
+    rescue Exception => e
+    puts
+    end
+  end
+  
+  # Rescue mid-attack 
+  def resc
+    puts
+    puts "Brute force stopped due to interrupt.".red
+    clean_exit
+  end
+
+  # Display result file
+  def results
+    out_file = @@out_file
+    puts
+    puts "Raw output can be found here:".yellow
+    puts out_file
+  end
+  
+  # Attempt a zone transfer and dictionary attack records
   def brute
     header
     instruct_input_targets
-    example("fqdn")
+    example("domain")
     while line = gets
       @@hosts << line.chomp
     end
@@ -27,31 +69,31 @@ class Fierce < Tool
       DNS.new("DNS").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer and brute against " + host + " ..."
         puts
-        a = Gpty.new
-        a.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
-        a.shell
+        puts "Attempting a zone transfer and brute force against " + host + " ..."
+        puts
+        x = Gpty.new
+        x.time = @@pid_tstamp
+        x.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
+        x.shell
       end
-      puts
-      DNS.new("DNS").menu
+      results
+      clean_exit
     else
       l = @@hosts.count
-      puts "Attempting zone transfers and brutes against #{l} domains ..."
-        @@hosts.each do |host|
-          puts
-          a = Gpty.new
-          a.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host
-          a.shell
-        end
       puts
-      DNS.new("DNS").menu
+      puts "Attempting zone transfers and brute force attacks against #{l} domains ..."
+      @@hosts.each do |host|
+        puts
+        x = Gpty.new
+        x.time = @@pid_tstamp
+        x.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
+        x.shell
+      end
+      results
+      clean_exit
     end
-    # Catch interrupt
     rescue Interrupt
-      puts
-      puts "Brute stopped due to interrupt.".light_yellow
-      puts
-      DNS.new("DNS").menu
+      resc
   end
 end

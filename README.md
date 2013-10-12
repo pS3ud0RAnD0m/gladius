@@ -13,7 +13,7 @@ Change to the directory that is holding gladius.tar.bz2:
 `cd <dir/holding/gladius.tar.bz2>`
 
 
-Move, unpack, and clean-up Gladius:
+Move, unpack, and clean-up:
 
 `mv gladius.tar.bz2 /opt;cd /opt;tar jxf /opt/gladius.tar.bz2;rm -f /opt/gladius.tar.bz2`
 

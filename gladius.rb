@@ -3,23 +3,23 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-#require 'sqlite3'
-require 'fileutils'
-require_relative 'lib/menus/splash'
-require_relative 'lib/menus/home'
-require_relative 'lib/helpers/colorize'
-require_relative 'lib/helpers/constant'
-require_relative 'lib/helpers/dirstructure'
-
 begin
-# Check for dir structure, add what's needed
-DirStructure.new.create
-
-# Splash and go to home menu
-Splash.new.ascii
-Home.new("Home                   v0.0.2").menu
-
-# Catch errors
+  require_relative 'lib/helpers/path'
+  include Path
+  
+  # Add directories to the load path
+  Path.load
+  
+  # Add all requires
+  Path.req
+  
+  # Check for dir structure, add what's needed
+  include DirStructure
+  DirStructure.create
+  
+  # Splash
+  include Splash
+  ascii
 rescue Interrupt
   puts
   puts "Exiting Gladius. Have a bloody day!".red

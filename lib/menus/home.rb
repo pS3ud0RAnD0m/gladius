@@ -3,13 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative 'gatherinfo'
-require_relative 'sniffspoof'
-require_relative 'web'
-require_relative 'wireless'
-require_relative 'dictionary'
-require_relative 'kaliservices'
-
 class Home < Menu
   def menu
     header

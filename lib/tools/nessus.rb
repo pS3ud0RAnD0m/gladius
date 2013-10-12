@@ -54,6 +54,24 @@ class Nessus < Tool
     clean_exit
   end
   
+# ttd: parse results
+  # Parse and display results
+  #def results(search_term)
+  def results
+    puts
+    out_file = @@out_file
+    #rslt = open(@@out_file) { |a| a.grep(/\[#{search_term}\]/) }
+    #if rslt.count == 0
+    #  puts "Nessus did not find valid credentials.".light_yellow
+    #else
+    #  puts "Nessus found the following credentials:".light_yellow
+    #  puts rslt
+    #end
+    #puts
+    puts "Raw output can be found here:".yellow
+    puts out_file
+  end
+  
   # Discover anonymous FTP read/write logins:
   def ftp_anon
     header_nessus
@@ -73,10 +91,12 @@ class Nessus < Tool
       puts
     end
     @@hosts.each do |host|
+# ttd: @@out_file needs to be refreshed here
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -a -t " + host + " " + @@path_module
+      x.cmd = @@path + " -a -t " + host + " " + @@path_module + " |tee " + @@out_file
       x.shell
+      results
     end
     clean_exit
   rescue Interrupt

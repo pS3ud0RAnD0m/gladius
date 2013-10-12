@@ -3,7 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative '../helpers/colorize'
 require_relative 'menu'
 require_relative '../tools/gnmap'
 
@@ -11,7 +10,7 @@ class DiscoverServices < Menu
   def menu
     header
     puts "Select a scanning option:".light_yellow
-    puts "Insane Host Discovery:".yellow
+    puts "Insane Discovery:".yellow
     puts "1.  TCP top 25 ports"
     puts "Common Discovery:".yellow
     puts "2.  TCP top 1000 ports"
@@ -26,6 +25,7 @@ class DiscoverServices < Menu
     puts "9.  UDP all ports"
     puts "10. TCP/UDP all ports"
     puts "Other:".yellow
+    puts "11. Custom scan"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -51,6 +51,8 @@ class DiscoverServices < Menu
       GNmap.new("Nmap - UDP all ports").udp_full
     elsif sel == 10
       GNmap.new("Nmap - TCP/UDP all ports").tcp_udp_full
+    elsif sel == 11
+      GNmap.new("Nmap - Custom").custom
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

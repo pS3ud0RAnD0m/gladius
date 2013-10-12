@@ -35,7 +35,8 @@ class Hydra < Tool
     instruct_input_targets
     example("fqdn", "ip")
   end
-
+  
+  # Ensure that tool's pid is killed, set int rescue and exit.
   def clean_exit
     if File.exists?(@@pid_file)
       pid = File.read(@@pid_file)
@@ -62,10 +63,10 @@ class Hydra < Tool
   end
   
   # Parse and display results
-  def results(service)
+  def results(search_term)
     puts
     out_file = @@out_file
-    rslt = open(@@out_file) { |a| a.grep(/\[#{service}\]/) }
+    rslt = open(@@out_file) { |a| a.grep(/\[#{search_term}\]/) }
     if rslt.count == 0
       puts "Hydra did not find valid credentials.".light_yellow
     else

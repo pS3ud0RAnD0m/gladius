@@ -3,9 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-#require 'fileutils'
-
-class DirStructure
+module DirStructure
   def initialize
     @@onesixtyone_dict = Constant::PROJECT_ROOT + "/helpers/input/onesixtyone-dict.txt"
     @@apache_usernames = Constant::PROJECT_ROOT + "/helpers/input/apache-usernames.txt"
@@ -18,11 +16,9 @@ class DirStructure
     @@hydra_ssh_pwds = Constant::PROJECT_ROOT + "/helpers/input/hydra_ssh_pwds.txt"
   end
 
-  # change dir
-  Dir.chdir("/usr/share")
-  
   # create structure, if it doesn't exist
   def create
+    Dir.chdir("/usr/share")
     if Dir["gladius"] == []
       Dir.mkdir("gladius")
     end
