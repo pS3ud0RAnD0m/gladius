@@ -11,7 +11,7 @@ class Fierce < Tool
     @title = title
     # Path variables
     @@path_tool = "fierce"
-    @@path_hosts = "/usr/share/gladius/input/fierce-hosts.txt"
+    @@path_hosts = "/usr/share/gladius/input/fierce_hosts.txt"
     @@hosts = []
     # Variables for timestamping out files and child pid files
     @@time = Time.now

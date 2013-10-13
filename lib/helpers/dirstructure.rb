@@ -4,77 +4,80 @@
 # Version: 0.0.2
 
 module DirStructure
-  def initialize
-    @@onesixtyone_dict = Constant::PROJECT_ROOT + "/helpers/input/onesixtyone-dict.txt"
-    @@apache_usernames = Constant::PROJECT_ROOT + "/helpers/input/apache-usernames.txt"
-    @@fierce_hosts = Constant::PROJECT_ROOT + "/helpers/input/fierce-hosts.txt"
-    @@hydra_ftp_usrs = Constant::PROJECT_ROOT + "/helpers/input/hydra_ftp_usrs.txt"
-    @@hydra_ftp_pwds = Constant::PROJECT_ROOT + "/helpers/input/hydra_ftp_pwds.txt"
-    @@hydra_mysql_usrs = Constant::PROJECT_ROOT + "/helpers/input/hydra_mysql_usrs.txt"
-    @@hydra_mysql_pwds = Constant::PROJECT_ROOT + "/helpers/input/hydra_mysql_pwds.txt"
-    @@hydra_ssh_usrs = Constant::PROJECT_ROOT + "/helpers/input/hydra_ssh_usrs.txt"
-    @@hydra_ssh_pwds = Constant::PROJECT_ROOT + "/helpers/input/hydra_ssh_pwds.txt"
-  end
-
   # create structure, if it doesn't exist
   def create
-    Dir.chdir("/usr/share")
-    if Dir["gladius"] == []
-      Dir.mkdir("gladius")
+    # variables
+    onesixtyone_dict = source + "onesixtyone-dict.txt"
+    apache_usernames = source + "apache-usernames.txt"
+    fierce_hosts = source + "fierce-hosts.txt"
+    hydra_ftp_usrs = source + "hydra_ftp_usrs.txt"
+    hydra_ftp_pwds = source + "hydra_ftp_pwds.txt"
+    hydra_mysql_usrs = source + "hydra_mysql_usrs.txt"
+    hydra_mysql_pwds = source + "hydra_mysql_pwds.txt"
+    hydra_ssh_usrs = source + "hydra_ssh_usrs.txt"
+    hydra_ssh_pwds = source + "hydra_ssh_pwds.txt"
+
+    # Create dirs
+    if Dir[usr_g] == []
+      Dir.mkdir(usr_g)
     end
-    if Dir["gladius/input"] == []
-      Dir.mkdir("gladius/input")
+    if Dir[usr_i] == []
+      Dir.mkdir(usr_i)
     end
-    if Dir["gladius/output"] == []
-      Dir.mkdir("gladius/output")
+    if Dir[usr_o] == []
+      Dir.mkdir(usr_o)
     end
-    if Dir["gladius/config"] == []
-      Dir.mkdir("gladius/config")
+    if Dir[usr_c] == []
+      Dir.mkdir(usr_c)
     end
-    if Dir["gladius/tmp"] == []
-      Dir.mkdir("gladius/tmp")
+    if Dir[usr_t] == []
+      Dir.mkdir(usr_t)
     end
-    if Dir["gladius/tmp/pids"] == []
-      Dir.mkdir("gladius/tmp/pids")
+    if Dir[usr_tp] == []
+      Dir.mkdir(usr_tp)
     end
-    if !File.exists?("gladius/config/gladius.conf")
-      FileUtils.touch("gladius/config/gladius.conf")
+    # Create input files
+    Dir.chdir(usr_i)
+    if !File.exists?("stdn_hosts.txt")
+      FileUtils.touch("stdn_hosts.txt")
     end
-    if !File.exists?("gladius/input/stdn_hosts.txt")
-      FileUtils.touch("gladius/input/stdn_hosts.txt")
+    if !File.exists?("stdn_usrs.txt")
+      FileUtils.touch("stdn_usrs.txt")
     end
-    if !File.exists?("gladius/input/stdn_usrs.txt")
-      FileUtils.touch("gladius/input/stdn_usrs.txt")
+    if !File.exists?("stdn_pwds.txt")
+      FileUtils.touch("stdn_pwds.txt")
     end
-    if !File.exists?("gladius/input/stdn_pwds.txt")
-      FileUtils.touch("gladius/input/stdn_pwds.txt")
+    if !File.exists?("onesixtyone-dict.txt")
+      FileUtils.cp onesixtyone_dict, 'onesixtyone_dict.txt'
     end
-    if !File.exists?("gladius/input/onesixtyone-dict.txt")
-      FileUtils.cp @@onesixtyone_dict, 'gladius/input/onesixtyone-dict.txt'
+    if !File.exists?("apache-usernames.txt")
+      FileUtils.cp apache_usernames, 'apache_usernames.txt'
     end
-    if !File.exists?("gladius/input/apache-usernames.txt")
-      FileUtils.cp @@apache_usernames, 'gladius/input/apache-usernames.txt'
+    if !File.exists?("fierce-hosts.txt")
+      FileUtils.cp fierce_hosts, 'fierce_hosts.txt'
     end
-    if !File.exists?("gladius/input/fierce-hosts.txt")
-      FileUtils.cp @@fierce_hosts, 'gladius/input/fierce-hosts.txt'
+    if !File.exists?("hydra_ftp_usrs.txt")
+      FileUtils.cp hydra_ftp_usrs, 'hydra_ftp_usrs.txt'
     end
-    if !File.exists?("gladius/input/hydra_ftp_usrs.txt")
-      FileUtils.cp @@hydra_ftp_usrs, 'gladius/input/hydra_ftp_usrs.txt'
+    if !File.exists?("hydra_ftp_pwds.txt")
+      FileUtils.cp hydra_ftp_pwds, 'hydra_ftp_pwds.txt'
     end
-    if !File.exists?("gladius/input/hydra_ftp_pwds.txt")
-      FileUtils.cp @@hydra_ftp_pwds, 'gladius/input/hydra_ftp_pwds.txt'
+    if !File.exists?("hydra_mysql_usrs.txt")
+      FileUtils.cp hydra_mysql_usrs, 'hydra_mysql_usrs.txt'
     end
-    if !File.exists?("gladius/input/hydra_mysql_usrs.txt")
-      FileUtils.cp @@hydra_mysql_usrs, 'gladius/input/hydra_mysql_usrs.txt'
+    if !File.exists?("hydra_mysql_pwds.txt")
+      FileUtils.cp hydra_mysql_pwds, 'hydra_mysql_pwds.txt'
     end
-    if !File.exists?("gladius/input/hydra_mysql_pwds.txt")
-      FileUtils.cp @@hydra_mysql_pwds, 'gladius/input/hydra_mysql_pwds.txt'
+    if !File.exists?("hydra_ssh_usrs.txt")
+      FileUtils.cp hydra_ssh_usrs, 'hydra_ssh_usrs.txt'
     end
-    if !File.exists?("gladius/input/hydra_ssh_usrs.txt")
-      FileUtils.cp @@hydra_ssh_usrs, 'gladius/input/hydra_ssh_usrs.txt'
+    if !File.exists?("hydra_ssh_pwds.txt")
+      FileUtils.cp hydra_ssh_pwds, 'hydra_ssh_pwds.txt'  
     end
-    if !File.exists?("gladius/input/hydra_ssh_pwds.txt")
-      FileUtils.cp @@hydra_ssh_pwds, 'gladius/input/hydra_ssh_pwds.txt'
+    # Create config file
+    Dir.chdir(usr_c)
+    if !File.exists?("gladius.conf")
+      FileUtils.touch("gladius.conf")
     end
   end
 end

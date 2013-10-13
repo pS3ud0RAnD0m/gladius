@@ -4,7 +4,7 @@
 # Version: 0.0.2
 
 module Splash
-  def ascii
+  def battle
     puts
     puts "                                  /\\".red
     puts "                                 /  \\".red
@@ -26,6 +26,10 @@ module Splash
     puts "                                 (  )    Find a way or make one!"
     puts "                                  \\/"
     puts
+    
+    # Check for dir structure, add what's needed
+    include DirStructure
+    DirStructure.create
     Home.new("Home                   v0.0.2").menu
   end
 end

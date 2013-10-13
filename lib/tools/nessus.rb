@@ -87,6 +87,7 @@ class Nessus < Tool
       puts
     else
       hosts_count = @@hosts.count.to_s
+# ttd: remove "puts" prior to launch statement for all other tools, as well.
       puts "Discovering anonymous FTP logins against " + hosts_count + " targets ..."
       puts
     end

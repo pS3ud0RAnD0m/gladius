@@ -11,7 +11,7 @@ class Onesixtyone < Tool
     @title = title
     # Path variables
     @@path = "onesixtyone"
-    @@path_dict = "/usr/share/gladius/input/onesixtyone-dict.txt"
+    @@path_dict = "/usr/share/gladius/input/onesixtyone_dict.txt"
     @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
     # Variables for timestamping out files and child pid files
     @@time = Time.now

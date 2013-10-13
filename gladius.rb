@@ -6,20 +6,14 @@
 begin
   require_relative 'lib/helpers/path'
   include Path
-  
-  # Add directories to the load path
+  # Put soldiers into formation
   Path.load
-  
-  # Add all requires
+  # Ready all weapons
   Path.req
-  
-  # Check for dir structure, add what's needed
-  include DirStructure
-  DirStructure.create
-  
-  # Splash
+  # Splash into battle
   include Splash
-  ascii
+  battle
+# Tactical retreat
 rescue Interrupt
   puts
   puts "Exiting Gladius. Have a bloody day!".red
