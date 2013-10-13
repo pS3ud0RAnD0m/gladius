@@ -34,7 +34,7 @@ class KaliServices < Menu
     elsif sel == 5
       IPtables.new("List IPtables Rules").list
     elsif sel == 88
-      Home.new("Home").menu
+      Home.new.menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
