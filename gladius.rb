@@ -4,15 +4,15 @@
 # Version: 0.0.2
 
 begin
+  # Ready weapons and form up
   require_relative 'lib/helpers/path'
   include Path
-  # Put soldiers into formation
   Path.load
-  # Ready all weapons
   Path.req
+  include DirStructure
+  DirStructure.check
   # Splash into battle
-  include Splash
-  battle
+  Session.new.create
 # Tactical retreat
 rescue Interrupt
   puts

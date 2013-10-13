@@ -5,7 +5,7 @@
 
 module DirStructure
   # create structure, if it doesn't exist
-  def create
+  def check
     # variables
     onesixtyone_dict = source + "onesixtyone-dict.txt"
     apache_usernames = source + "apache-usernames.txt"
@@ -18,6 +18,7 @@ module DirStructure
     hydra_ssh_pwds = source + "hydra_ssh_pwds.txt"
 
     # Create dirs
+    # See Path for variable details
     if Dir[usr_g] == []
       Dir.mkdir(usr_g)
     end
@@ -29,6 +30,15 @@ module DirStructure
     end
     if Dir[usr_c] == []
       Dir.mkdir(usr_c)
+    end
+    if Dir[usr_c_sess] == []
+      Dir.mkdir(usr_c_sess)
+    end
+    if Dir[usr_c_sess_unnamed] == []
+      Dir.mkdir(usr_c_sess_unnamed)
+    end
+    if Dir[usr_c_sess_named] == []
+      Dir.mkdir(usr_c_sess_named)
     end
     if Dir[usr_t] == []
       Dir.mkdir(usr_t)

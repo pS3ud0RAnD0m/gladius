@@ -3,8 +3,8 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-module Splash
-  def battle
+class Splash
+  def display
     puts
     puts "                                  /\\".red
     puts "                                 /  \\".red
@@ -26,10 +26,5 @@ module Splash
     puts "                                 (  )    Find a way or make one!"
     puts "                                  \\/"
     puts
-    
-    # Check for dir structure, add what's needed
-    include DirStructure
-    DirStructure.create
-    Home.new("Home                   v0.0.2").menu
   end
 end
