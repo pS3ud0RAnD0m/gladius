@@ -42,3 +42,5 @@ Symlink:
 Run from anywhere:
 
 `gladius`
+
+pull test
