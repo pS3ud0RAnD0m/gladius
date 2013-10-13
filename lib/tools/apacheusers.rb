@@ -10,7 +10,7 @@ class ApacheUsers < Tool
   def initialize(title)
     @title = title
     @@path_tool = "apache-users"
-    @@path_names = "/usr/share/gladius/input/apache-usernames.txt"
+    @@path_names = "/usr/share/gladius/input/apache_usernames.txt"
     @@hosts = []
   end
   
