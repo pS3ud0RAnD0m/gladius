@@ -26,7 +26,7 @@ class Wireless < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      Home.new("Home").menu
+      Home.new.menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red
