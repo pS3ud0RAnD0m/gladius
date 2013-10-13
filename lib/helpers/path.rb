@@ -12,12 +12,14 @@ module Path
     $:.push lib_root + "/menus"
     $:.push lib_root + "/tools"
     $:.push lib_root + "/helpers"
+    $:.push lib_root + "/helpers/parsers"
   end
   
   def req
     Dir[lib_root + "/menus/*.rb"].each { |a| require a }
     Dir[lib_root + "/tools/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
+    Dir[lib_root + "/helpers/parsers/*.rb"].each { |a| require a }
     require 'fileutils'
   end
   
@@ -39,7 +41,19 @@ module Path
   
   def usr_c
     usr = "/usr/share/gladius/config"
-  end 
+  end
+
+  def usr_c_sess
+    usr = "/usr/share/gladius/config/sessions"
+  end
+
+  def usr_c_sess_unnamed
+    usr = "/usr/share/gladius/config/sessions/unnamed"
+  end
+  
+  def usr_c_sess_named
+    usr = "/usr/share/gladius/config/sessions/named"
+  end
 
   def usr_t
     usr = "/usr/share/gladius/tmp"

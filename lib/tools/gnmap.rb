@@ -3,11 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative 'tool'
-require_relative 'gpty'
-require_relative '../helpers/parsers/nmapparser'
-require_relative '../menus/dns'
-
 class GNmap < Tool
   def initialize(title)
     @title = title
@@ -111,7 +106,7 @@ class GNmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSV -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sS -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
       parse
       clean_exit
@@ -267,7 +262,7 @@ class GNmap < Tool
       puts
       x = Gpty.new
       x.time = @@pid_tstamp
-      x.cmd = @@path + " -v -T4 -sSUV -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
+      x.cmd = @@path + " -v -T4 -sSU -Pn --min-hostgroup 128 -iL " + @@hosts + " -oA " + @@out_file
       x.shell
       parse
       clean_exit

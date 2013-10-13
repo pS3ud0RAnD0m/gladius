@@ -3,9 +3,15 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-class Home < Menu
+class Home
+  def header_home
+    puts "------------------------------"
+    puts "Home                   v0.0.2"
+    puts "------------------------------"
+  end
+    
   def menu
-    header
+    header_home
     puts "Select a category:".light_yellow
     puts "1.  Gather information"
     puts "2.  Sniffing and Spoofing"
@@ -44,4 +50,3 @@ class Home < Menu
     end
   end
 end
-
