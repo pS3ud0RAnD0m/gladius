@@ -22,8 +22,7 @@ class Ncrack < Tool
   def header_ncrack
     header
     puts
-    instruct_input_targets
-    example("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
+    instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
   end
   
   # Brute force ssh

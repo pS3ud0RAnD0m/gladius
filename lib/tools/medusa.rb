@@ -24,8 +24,7 @@ class Medusa < Tool
     puts "The target exhaustion time is ~7 hours per host, assuming ~26 attempts per minute.".light_yellow
     puts "If the exhaustion time needs modified, edit the appropriate input files w/in the /usr/share/gladius/input directory.".light_yellow
     puts
-    instruct_input_targets
-    example("fqdn", "ip")
+    instruct_input_targets("fqdn", "ip")
   end
   
   # Brute force ssh

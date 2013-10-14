@@ -24,8 +24,7 @@ class Onesixtyone < Tool
 
   def header_onesixtyone
     header
-    instruct_input_targets
-    example("ip")
+    instruct_input_targets("ip")
   end
   
     # Ensure that tool's pid is killed, set int rescue and exit.

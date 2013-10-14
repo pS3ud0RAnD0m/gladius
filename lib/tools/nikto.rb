@@ -19,8 +19,7 @@ class Nikto < Tool
 
   def header_nikto
     header
-    instruct_input_targets
-    example("fqdnp", "ipp", "url")
+    instruct_input_targets("fqdnp", "ipp", "url")
   end
   
   # Identify common vulns

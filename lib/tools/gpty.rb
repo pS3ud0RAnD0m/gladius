@@ -3,21 +3,18 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require 'pty'
-
 class Gpty
   attr_accessor :cmd
-  attr_accessor :time
+  attr_accessor :pid_file
 
   def shell
     begin
-      a = "#{time}"
+      a = "#{pid_file}"
       b = "#{cmd}"
-      c = "/usr/share/gladius/tmp/pids/#{time}"
       puts "Running: #{cmd}".light_yellow
       PTY.spawn( b ) do |stdin, stdout, pid|
         begin
-          d = File.open(c, "w") { |file| file.write("#{pid}") }
+          c = File.open(a, "w") { |file| file.write("#{pid}") }
           stdin.each { |line| print line }
         rescue Errno::EIO
           #puts "Exit needs resolved........".red

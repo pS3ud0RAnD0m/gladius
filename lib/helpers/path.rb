@@ -7,7 +7,7 @@ module Path
   def lib_root
     root = File.expand_path("..", File.dirname(__FILE__))
   end
-  
+
   def load
     $:.push lib_root + "/menus"
     $:.push lib_root + "/tools"
@@ -21,10 +21,11 @@ module Path
     Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/parsers/*.rb"].each { |a| require a }
     require 'fileutils'
+    require 'pty'
   end
   
   def usr
-    usr = "/usr/share"
+    a = "/usr/share"
   end
   
   def usr_g
@@ -32,49 +33,55 @@ module Path
   end
   
   def usr_i
-    usr = "/usr/share/gladius/input"
+    a = "/usr/share/gladius/input"
   end
   
   def usr_o
-    usr = "/usr/share/gladius/output"
+    a = "/usr/share/gladius/output"
   end
   
   def usr_c
-    usr = "/usr/share/gladius/config"
+    a = "/usr/share/gladius/config"
   end
 
   def usr_c_sess
-    usr = "/usr/share/gladius/config/sessions"
+    a = "/usr/share/gladius/config/sessions"
   end
 
   def usr_c_sess_unnamed
-    usr = "/usr/share/gladius/config/sessions/unnamed"
+    a = "/usr/share/gladius/config/sessions/unnamed"
   end
   
   def usr_c_sess_named
-    usr = "/usr/share/gladius/config/sessions/named"
+    a = "/usr/share/gladius/config/sessions/named"
   end
 
   def usr_t
-    usr = "/usr/share/gladius/tmp"
+    a = "/usr/share/gladius/tmp"
   end
   
+# ttd: see how trailing slash effect dirstructure creation.
   def usr_tp
-    usr = "/usr/share/gladius/tmp/pids"
+    a = "/usr/share/gladius/tmp/pids/"
   end
   
   def source
     a = lib_root + "/helpers/input/"
   end
 
-  def out_file(tool)
+  def get_out_file(tool)
+    time = Time.now
+    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T")
+  end
+  
+  def get_out_file_txt(tool)
     time = Time.now
     out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T.txt")
   end
 
-  def pid_file
+  def get_pid_file
     time = Time.now
     pid_tstamp = "%10.10f" % time.to_f
-    pid_file = time.strftime(usr + "tmp/pids/" + pid_tstamp + ".pid")
+    pid_file = time.strftime(usr_tp + pid_tstamp + ".pid")
   end
 end
