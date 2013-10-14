@@ -32,8 +32,7 @@ class Hydra < Tool
 
   def header_hydra
     header
-    instruct_input_targets
-    example("fqdn", "ip")
+    instruct_input_targets("fqdn", "ip")
   end
   
   # Ensure that tool's pid is killed, set int rescue and exit.

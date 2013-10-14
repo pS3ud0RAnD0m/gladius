@@ -26,8 +26,7 @@ class Nessus < Tool
     header
     puts "CIDRs and ranges entered into NASLs are very slow, so you should only input hosts that are listening on the appropriate port.".yellow
     puts
-    instruct_input_targets
-    example("fqdn", "ip")
+    instruct_input_targets("fqdn", "ip")
   end
 
   def clean_exit

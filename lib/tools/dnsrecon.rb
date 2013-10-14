@@ -16,8 +16,7 @@ class DNSrecon < Tool
   # Attempt a zone transfer:
   def transfer
     header
-    instruct_input_targets
-    example("fqdn")
+    instruct_input_targets("fqdn")
     while line = gets
       @@hosts << line.chomp
     end
@@ -57,8 +56,7 @@ class DNSrecon < Tool
   # Attempt a zone transfer, then enum standard records:
   def standard
     header
-    instruct_input_targets
-    example("fqdn")
+    instruct_input_targets("fqdn")
     while line = gets
       @@hosts << line.chomp
     end
@@ -98,8 +96,7 @@ class DNSrecon < Tool
   # Perform Google search for sub-domains and @@hosts:
   def google
     header
-    instruct_input_targets
-    example("cidr")
+    instruct_input_targets("cidr")
     while line = gets
       @@hosts << line.chomp
     end
@@ -139,8 +136,7 @@ class DNSrecon < Tool
   # Reverse lookups for given block
   def reverse
     header
-    instruct_input_targets
-    example("iprl", "cidr")
+    instruct_input_targets("iprl", "cidr")
     while line = gets
       @@hosts << line.chomp
     end

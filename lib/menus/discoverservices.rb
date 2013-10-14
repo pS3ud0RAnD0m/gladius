@@ -32,27 +32,27 @@ class DiscoverServices < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      GNmap.new("Nmap - TCP top 25 ports").tcp_very_quick
+      GNmap.new("Nmap - TCP top 25 ports").menu("tcp_very_quick")
     elsif sel == 2
-      GNmap.new("Nmap - TCP top 1000 ports").tcp_quick
+      GNmap.new("Nmap - TCP top 1000 ports").menu("tcp_quick")
     elsif sel == 3
-      GNmap.new("Nmap - UDP top 1000 ports").udp_quick
+      GNmap.new("Nmap - UDP top 1000 ports").menu("udp_quick")
     elsif sel == 4
-      GNmap.new("Nmap - TCP/UDP top 1000 ports").tcp_udp_quick
+      GNmap.new("Nmap - TCP/UDP top 1000 ports").menu("tcp_udp_quick")
     elsif sel == 5
-      GNmap.new("Nmap - TCP top 1000 ports with scripts").tcp_quick_scripts
+      GNmap.new("Nmap - TCP top 1000 ports with scripts").menu("tcp_quick_scripts")
     elsif sel == 6
-      GNmap.new("Nmap - UDP top 1000 ports with scripts").udp_quick_scripts
+      GNmap.new("Nmap - UDP top 1000 ports with scripts").menu("udp_quick_scripts")
     elsif sel == 7
-      GNmap.new("Nmap - TCP/UDP top 1000 ports with scripts").tcp_udp_quick_scripts
+      GNmap.new("Nmap - TCP/UDP top 1000 ports with scripts").menu("tcp_udp_quick_scripts")
     elsif sel == 8
-      GNmap.new("Nmap - TCP all ports").tcp_full
+      GNmap.new("Nmap - TCP all ports").menu("tcp_full")
     elsif sel == 9
-      GNmap.new("Nmap - UDP all ports").udp_full
+      GNmap.new("Nmap - UDP all ports").menu("udp_full")
     elsif sel == 10
-      GNmap.new("Nmap - TCP/UDP all ports").tcp_udp_full
+      GNmap.new("Nmap - TCP/UDP all ports").menu("tcp_udp_full")
     elsif sel == 11
-      GNmap.new("Nmap - Custom").custom
+      GNmap.new("Nmap - Custom").menu("custom")
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

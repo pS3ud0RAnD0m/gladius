@@ -13,8 +13,7 @@ class MSF < Tool
   ## Discover anonymous FTP read/write logins:
   #def ftp_anon
   #  header
-  #  instruct_input_targets
-  #  example("fqdn", "ip", "iprf", "cidr")
+  #  instruct_input_targets("fqdn", "ip", "iprf", "cidr")
   #  while line = gets
   #    @@target << line.chomp
   #  end

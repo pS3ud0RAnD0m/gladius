@@ -59,8 +59,7 @@ class Fierce < Tool
   # Attempt a zone transfer and dictionary attack records
   def brute
     header
-    instruct_input_targets
-    example("domain")
+    instruct_input_targets("domain")
     while line = gets
       @@hosts << line.chomp
     end

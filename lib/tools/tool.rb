@@ -23,6 +23,22 @@ class Tool
     puts @title
     puts "------------------------------"
   end
+
+  def get_out_file(tool)
+    time = Time.now
+    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T")
+  end
+  
+  def get_out_file_txt(tool)
+    time = Time.now
+    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T.txt")
+  end
+
+  def get_pid_file
+    time = Time.now
+    pid_tstamp = "%10.10f" % time.to_f
+    pid_file = time.strftime(usr_tp + pid_tstamp + ".pid")
+  end
   
   def get_host
     puts "Input target port number: [localhost:)]".light_yellow
@@ -46,21 +62,6 @@ class Tool
     end
   end
 
-  def instruct_input_targets
-    puts "Input target(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
-  end
-  
-  def instruct_input_usrs
-    puts "Input user(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
-  end
-  
-  def instruct_input_pswds
-    puts "Input password(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
-  end
-
   # Supply examples for tool input.
   # Call this with: example("cidr", "domain", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
   # Use any combination of the following:
@@ -74,7 +75,9 @@ class Tool
     # iprl = ipRangeLong => 192.168.10.15-192.168.10.20
     # iprf = ipRangeFlexible => 192.168.15-250.0-255
     # url => https://www.victima.com/
-  def example(*args)
+  def instruct_input_targets(*args)
+    puts "Input target(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
     if args.count == 1
       puts "Example:".yellow
     else
@@ -113,5 +116,26 @@ class Tool
       end
     end
     puts
+  end
+  
+  def instruct_input_usrs
+    puts "Input user(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+  end
+  
+  def instruct_input_pswds
+    puts "Input password(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+  end
+  
+  def run(cmd)
+    puts
+    @pid_file = get_pid_file
+    x = Gpty.new
+    x.pid_file = @pid_file
+    x.cmd = cmd
+    x.shell
+    parse
+    clean_exit
   end
 end
