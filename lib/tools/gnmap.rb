@@ -7,30 +7,28 @@ class GNmap < Tool
   def initialize(title)
     @title = title
     @path = "nmap"
-    @hosts = "/usr/share/gladius/input/stdn_hosts.txt"
-    @name = "nmap"
+    @name = @path
+    @hosts_file = Path.hosts_file
   end
 
-  def header_nmap
+  # Get target(s) and pass to relevant scan method
+  def menu(scan_type)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
-  end
-
-  def menu(scan_type)
-    header_nmap
-    a = File.open(@hosts, "w")
+    a = File.open(@hosts_file, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts
+    hosts = @hosts_file
     line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
     if line_count == 0
       puts "No hosts were input.".red
-      get_hosts
+      menu
     else
       case scan_type
-        when "tcp_very_quick" then tcp_very_quick
+        when "tcp_very_quick_lan" then tcp_very_quick_lan
+        when "tcp_very_quick_wan" then tcp_very_quick_wan
         when "tcp_quick" then tcp_quick
         when "udp_quick" then udp_quick
         when "tcp_udp_quick" then tcp_udp_quick
@@ -43,137 +41,116 @@ class GNmap < Tool
         when "custom" then custom
       end
     end
-# ttd: fix this interrupt
   rescue Interrupt
-    resc
+    GExeption.new.exit_tool("Nmap", "DiscoverServices")
   end
 
-  # Parse and display results
-  def parse
+  # Parse and exit
+  def clean_exit
     @out_xml_file = @out_file + ".xml"
-    NmapParser.new(@out_xml_file).open_ports
+    puts
     puts "Nmap output files are here:".light_yellow
     puts @out_file + ".gnmap"
     puts @out_file + ".nmap"
     puts @out_xml_file
-    puts
-    puts "Summary output has been parsed and put here:".light_yellow
-    puts @out_xml_file + ".gladius"
-  end
-
-  def clean_exit
-    if File.exists?(@pid_file)
-      pid = File.read(@pid_file)
-      `kill -9 #{pid}`
-      File.delete(@pid_file)
+    begin
+      NmapParser.new(@out_xml_file).open_ports
+      puts "Summary output has been parsed and put here:".light_yellow
+      puts @out_xml_file + ".gladius"
+    rescue Exception => e
     end
     puts
     DiscoverServices.new("Discover Services").menu
   rescue Interrupt
-    puts
-    puts "Exiting Gladius. Have a bloody day!".red
-    begin
-      Kernel.exit
-    rescue Exception => e
-    puts
-    end
+    GExeption.new.exit_gladius
   end
   
-  # Rescue interrupts
-  def resc
-    puts
-    puts "Discovery stopped due to interrupt.".red
+  # Scan top 25 tcp ports on LAN
+  def tcp_very_quick_lan
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -T5 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @hosts_file + " -oA " + @out_file
+    run(cmd)
     clean_exit
   end
 
-  # Scan top 25 tcp ports
-  def tcp_very_quick
+  # Scan top 25 tcp ports on WAN
+  def tcp_very_quick_wan
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T5 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
   
   # Scan top 1000 tcp ports
   def tcp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
   
   # Scan top 1000 tcp ports with scripts
   def tcp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
 
   # Scan all tcp ports
   def tcp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
 
   # Scan top 1000 udp ports
   def udp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
   
   # Scan top 1000 udp ports with scripts
   def udp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
 
   # Scan all udp ports
   def udp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
  
   # Scan top 1000 tcp/udp ports
   def tcp_udp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
   
   # Scan top 1000 tcp/udp ports with scripts
   def tcp_udp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
 
   # Scan all tcp/udp ports
   def tcp_udp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
   
   # Custom scan
@@ -185,9 +162,8 @@ class GNmap < Tool
     puts
     args = gets.chomp
     @out_file = get_out_file(@name)
-    cmd = @path + " #{args} -iL " + @hosts + " -oA " + @out_file
+    cmd = @path + " #{args} -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
-  rescue Interrupt
-    resc
+    clean_exit
   end
 end  

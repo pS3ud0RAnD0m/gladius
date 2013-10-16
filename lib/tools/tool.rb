@@ -3,8 +3,6 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require 'time'
-
 class Tool
   attr_accessor :title
 
@@ -130,12 +128,18 @@ class Tool
   
   def run(cmd)
     puts
-    @pid_file = get_pid_file
+    pid_file = get_pid_file
     x = Gpty.new
-    x.pid_file = @pid_file
+    x.pid_file = pid_file
     x.cmd = cmd
     x.shell
-    parse
-    clean_exit
+  rescue Interrupt
+    puts
+    puts "Stopped due to interrupt.".red
+    if File.exists?(pid_file)
+      pid = File.read(pid_file)
+      `kill -9 #{pid}`
+      File.delete(pid_file)
+    end
   end
 end
