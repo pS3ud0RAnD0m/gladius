@@ -22,8 +22,60 @@ module Path
     Dir[lib_root + "/helpers/parsers/*.rb"].each { |a| require a }
     require 'fileutils'
     require 'pty'
+    require 'time'
+
   end
-  
+
+# ttd: square get_path and replace all path methods (look at gpty)
+  def get_path(my_alias)
+    #case my_alias
+    #  when "hosts_file" then puts "/usr/share/gladius/input/stdn_hosts.txt"
+    #  when "hosts_file" then a = "/usr/share/gladius/input/stdn_hosts.txt"
+    #  when "hosts_file" then hosts_file
+    #end
+  end
+
+# ttd: ensure that your paths are dry here
+  def ftp_pwds
+    a = "/usr/share/gladius/input/hydra_ftp_pwds.txt"
+  end
+
+  def ftp_usrs
+    a = "/usr/share/gladius/input/hydra_ftp_usrs.txt"
+  end
+
+  def mysql_pwds
+    a = "/usr/share/gladius/input/hydra_mysql_pwds.txt"
+  end
+
+  def mysql_usrs
+    a = "/usr/share/gladius/input/hydra_mysql_usrs.txt"
+  end
+
+  def ssh_pwds
+    a = "/usr/share/gladius/input/hydra_ssh_pwds.txt"
+  end
+
+  def ssh_usrs
+    a = "/usr/share/gladius/input/hydra_ssh_usrs.txt"
+  end
+
+  def stdn_pwds
+    a = "/usr/share/gladius/input/stdn_pwds.txt"
+  end
+
+  def stdn_usrs
+    a = "/usr/share/gladius/input/stdn_usrs.txt"
+  end
+
+
+
+
+
+  def hosts_file
+    a = "/usr/share/gladius/input/stdn_hosts.txt"
+  end
+
   def usr
     a = "/usr/share"
   end

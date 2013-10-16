@@ -15,9 +15,5 @@ begin
   Session.new.create
 # Tactical retreat
 rescue Interrupt
-  puts
-  puts "Exiting Gladius. Have a bloody day!".red
-  puts
-rescue Exception => e
-  puts e
+  GExeption.new.exit_gladius
 end
