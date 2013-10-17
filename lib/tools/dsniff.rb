@@ -1,26 +1,20 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'tool'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class Dsniff < Tool
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    # Path variables
-    @@path = "dsniff"
-    # Variables for timestamping out files and child pid files
-    @@time = Time.now
-    @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
-                  "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/dsniff_" + @@out_file_tstamp + ".txt"
-    @@pid_tstamp = "%10.10f" % @@time.to_f
-    @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
+    @path = "dsniff"
+    @name = @path
   end
 
-  def header_dsniff
+###############################################################################
+# DRY methods
+###############################################################################
+  # List supported protocols and exit instructions
+  def menu(scan_type)
     header
     puts "Sniffing for plaintext credentials on the following ports:".light_yellow
     puts "AIM           5190,9898/tcp".yellow
@@ -63,40 +57,17 @@ class Dsniff < Tool
     puts
     puts "Note: This tool isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
     puts "When done sniffing, press <Ctrl+c>.".light_yellow
+    case scan_type
+      when "all" then all
+    end
   end
 
+  # Parse and exit
   def clean_exit
-    if File.exists?(@@pid_file)
-      pid = File.read(@@pid_file)
-      `kill -9 #{pid}`
-      File.delete(@@pid_file)
-    end
-    results
     puts
-    SniffSpoof.new("Sniffing and Spoofing").menu
-  rescue Interrupt
-    puts
-    puts "Exiting Gladius. Have a bloody day!".red
-    begin
-      Kernel.exit
-    rescue Exception => e
-    puts
-    end
-  end
-  
-  # Rescue mid-attack 
-  def resc
-    puts
-    puts "Sniffing stopped due to interrupt.".red
-    clean_exit
-  end
-  
-  # Parse and display results
-  def results
-    puts
-    out_file = @@out_file
+    out_file = @out_file
 # ttd: account for ANYTHING in the outfile
-    rslt = open(@@out_file) { |a| a.grep(/PASS|USER|\//) }
+    rslt = open(@out_file) { |a| a.grep(/PASS|USER|\//) }
     if rslt.count == 0
       puts "Dsniff did not find any credentials.".light_yellow
     else
@@ -106,19 +77,22 @@ class Dsniff < Tool
       puts "Raw output can be found here:".yellow
       puts out_file
     end
+    puts
+    case @prev_menu
+      when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
+    end
+  rescue Interrupt
+    GExeption.new.exit_gladius
   end
   
+###############################################################################
+# Sniff methods
+###############################################################################
   # Sniff for plaintext creds against all supported protocols
   def all
-    header_dsniff
-    puts
-    x = Gpty.new
-    x.time = @@pid_tstamp
-    x.cmd = @@path + " -m -n -i any |tee " + @@out_file
-    x.shell
-    puts
+    @out_file = get_out_file(@name)
+    cmd = @path + " -m -n -i any |tee " + @out_file
+    run(cmd)
     clean_exit
-  rescue Interrupt
-    resc
   end
 end  
