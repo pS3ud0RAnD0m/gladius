@@ -133,6 +133,9 @@ class Tool
     x.pid_file = pid_file
     x.cmd = cmd
     x.shell
+    if File.exists?(pid_file)
+      File.delete(pid_file)
+    end
   rescue Interrupt
     puts
     puts "Stopped due to interrupt.".red

@@ -22,6 +22,7 @@ class GExeption
     puts
     case back
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
+      when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
     end
   rescue Interrupt
     GExeption.new.exit_gladius

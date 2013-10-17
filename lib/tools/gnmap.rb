@@ -156,13 +156,14 @@ class GNmap < Tool
   # Custom scan
   def custom
     puts "Input your custom arguments and hit <Enter>:".light_yellow
+    puts "Note: Do not include -v or input/output paths.".yellow
     puts "Examples:".yellow
-    puts "-v -sUV -Pn -p161".yellow
-    puts "-v -A -T4 -sSV -Pn -p22".yellow
+    puts "-sUV -Pn -p161".yellow
+    puts "-A -T4 -sSV -Pn -p22".yellow
     puts
     args = gets.chomp
     @out_file = get_out_file(@name)
-    cmd = @path + " #{args} -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v #{args} -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
