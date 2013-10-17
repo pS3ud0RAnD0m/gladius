@@ -4,13 +4,17 @@
 # Version: 0.0.2
 
 class GNmap < Tool
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
     @path = "nmap"
     @name = @path
     @hosts_file = Path.hosts_file
   end
 
+###############################################################################
+# DRY methods
+###############################################################################
   # Get target(s) and pass to relevant scan method
   def menu(scan_type)
     header
@@ -27,6 +31,7 @@ class GNmap < Tool
       menu
     else
       case scan_type
+        # Pass discovery scans
         when "tcp_very_quick_lan" then tcp_very_quick_lan
         when "tcp_very_quick_wan" then tcp_very_quick_wan
         when "tcp_quick" then tcp_quick
@@ -39,10 +44,13 @@ class GNmap < Tool
         when "udp_full" then udp_full
         when "tcp_udp_full" then tcp_udp_full
         when "custom" then custom
+        # Pass script scans
+        when "script_ftp_anon" then script_ftp_anon
+        when "script_tftp_files" then script_tftp_files
       end
     end
   rescue Interrupt
-    GExeption.new.exit_tool("Nmap", "DiscoverServices")
+    GExeption.new.exit_tool("Nmap", @prev_menu)
   end
 
   # Parse and exit
@@ -60,11 +68,18 @@ class GNmap < Tool
     rescue Exception => e
     end
     puts
-    DiscoverServices.new("Discover Services").menu
+    case @prev_menu
+      when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
+      when "FTP" then FTP.new("Gather Information - FTP").menu
+      when "TFTP" then TFTP.new("Gather Information - TFTP").menu
+    end
   rescue Interrupt
     GExeption.new.exit_gladius
   end
-  
+
+###############################################################################
+# Discovery scans
+###############################################################################
   # Scan top 25 tcp ports on LAN
   def tcp_very_quick_lan
     @out_file = get_out_file(@name)
@@ -164,6 +179,25 @@ class GNmap < Tool
     args = gets.chomp
     @out_file = get_out_file(@name)
     cmd = @path + " -v #{args} -iL " + @hosts_file + " -oA " + @out_file
+    run(cmd)
+    clean_exit
+  end
+
+###############################################################################
+# Script scans
+###############################################################################
+  # Discover anonymous ftp
+  def script_ftp_anon
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -Pn -sS -p21 --script=ftp-anon -iL " + @hosts_file + " -oA " + @out_file
+    run(cmd)
+    clean_exit
+  end
+  
+  # Discover tftp files
+  def script_tftp_files
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -Pn -sU -p69 --script=tftp-enum -iL " + @hosts_file + " -oA " + @out_file
     run(cmd)
     clean_exit
   end

@@ -4,10 +4,7 @@
 # Version: 0.0.2
 
 class Tool
-  attr_accessor :title
-
-  def initialize(title)
-    @title = title
+  def initialize
     @host = host
     @hosts = []
     @port = port
