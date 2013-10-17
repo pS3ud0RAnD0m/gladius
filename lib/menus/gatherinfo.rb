@@ -27,7 +27,7 @@ class GatherInfo < Menu
     puts "10. SNMP"
     puts "11. SSH (NI)"
     puts "12. Telnet (NI)"
-    puts "13. TFTP (NI)"
+    puts "13. TFTP"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -64,8 +64,7 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 13
-      puts "Not implemented yet.".red
-      menu
+      TFTP.new("Gather Information - TFTP").menu
     elsif sel == 88
       Home.new.menu
     elsif sel == 99
