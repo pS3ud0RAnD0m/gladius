@@ -35,6 +35,7 @@ module Path
   end
 
 # ttd: ensure that your paths are dry here
+# ttd: scale path names, e.g., "mysql_usrs_long.txt"
   def ftp_pwds
     a = "/usr/share/gladius/input/hydra_ftp_pwds.txt"
   end
@@ -51,6 +52,11 @@ module Path
     a = "/usr/share/gladius/input/hydra_mysql_usrs.txt"
   end
 
+  def snmp_comm_strings_long
+    a = "/usr/share/gladius/input/onesixtyone_dict.txt"
+    a = "/usr/share/gladius/input/snmp_comm_strings_long.txt"
+  end
+  
   def ssh_pwds
     a = "/usr/share/gladius/input/hydra_ssh_pwds.txt"
   end
@@ -66,10 +72,6 @@ module Path
   def stdn_usrs
     a = "/usr/share/gladius/input/stdn_usrs.txt"
   end
-
-
-
-
 
   def hosts_file
     a = "/usr/share/gladius/input/stdn_hosts.txt"

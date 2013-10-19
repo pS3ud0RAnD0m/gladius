@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'menu'
-require_relative '../tools/gnmap'
 
 class DiscoverServices < Menu
   def menu
@@ -29,7 +27,6 @@ class DiscoverServices < Menu
     puts "12. Custom scan"
     puts "88. Back"
     puts "99. Exit Gladius"
-
     sel = gets.to_i
     puts
     if sel == 1

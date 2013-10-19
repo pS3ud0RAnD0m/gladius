@@ -14,15 +14,19 @@ class GExeption
     puts
     end
   end
-  
+
   # Cleanly exit a tool
   def exit_tool(tool, back)
     puts
     puts "Exiting #{tool}.".red
     puts
     case back
+# ttd: add all menus to this list
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+      when "HTTP" then HTTP.new("HTTP(S)").menu
+      when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
+      when "SNMP" then SNMP.new("SNMP").menu
     end
   rescue Interrupt
     GExeption.new.exit_gladius

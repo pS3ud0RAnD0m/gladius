@@ -2,14 +2,6 @@
 
 # Author: p$3ud0R@nD0m
 
-#require_relative 'menu'
-#require_relative 'home'
-require_relative 'dns'
-require_relative 'ftp'
-require_relative 'http'
-require_relative 'snmp'
-require_relative 'discoverservices'
-
 class GatherInfo < Menu
   def menu
     header
@@ -23,10 +15,11 @@ class GatherInfo < Menu
     puts "7.  Netbios-SMB (NI)"
     puts "8.  Oracle (NI)"
     puts "9.  RDP (NI)"
-    puts "10. SNMP"
-    puts "11. SSH (NI)"
-    puts "12. Telnet (NI)"
-    puts "13. TFTP"
+    puts "10. SMTP"
+    puts "11. SNMP"
+    puts "12. SSH (NI)"
+    puts "13. Telnet (NI)"
+    puts "14. TFTP"
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -55,14 +48,16 @@ class GatherInfo < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 10
-      SNMP.new("SNMP").menu
+      SMTP.new("Gather Information - SMTP").menu
     elsif sel == 11
-      puts "Not implemented yet.".red
-      menu
+      SNMP.new("Gather Information - SNMP").menu
     elsif sel == 12
       puts "Not implemented yet.".red
       menu
     elsif sel == 13
+      puts "Not implemented yet.".red
+      menu
+    elsif sel == 14
       TFTP.new("Gather Information - TFTP").menu
     elsif sel == 88
       Home.new.menu

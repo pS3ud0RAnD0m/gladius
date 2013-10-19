@@ -13,7 +13,7 @@ class Dsniff < Tool
 ###############################################################################
 # DRY methods
 ###############################################################################
-  # List supported protocols and exit instructions
+  # List supported protocols and exit instructions, then pass to relevant sniff method
   def menu(scan_type)
     header
     puts "Sniffing for plaintext credentials on the following ports:".light_yellow
@@ -75,7 +75,7 @@ class Dsniff < Tool
       puts rslt
       puts
       puts "Raw output can be found here:".yellow
-      puts out_file
+      puts @out_file
     end
     puts
     case @prev_menu
@@ -90,7 +90,7 @@ class Dsniff < Tool
 ###############################################################################
   # Sniff for plaintext creds against all supported protocols
   def all
-    @out_file = get_out_file(@name)
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -m -n -i any |tee " + @out_file
     run(cmd)
     clean_exit
