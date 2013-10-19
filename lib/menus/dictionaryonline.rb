@@ -42,14 +42,14 @@ class DictionaryOnline < Menu
     case selection
       when 1 then puts "Not implemented yet.".red
         menu
-      when 2 then Hydra.new("Hydra - FTP Online Dictionary Attack").menu("ftp")
+      when 2 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").menu("ftp")
       when 3 then puts "Not implemented yet.".red
         menu
       when 4 then puts "Not implemented yet.".red
         menu
       when 5 then puts "Not implemented yet.".red
         menu
-      when 6 then Hydra.new("Hydra - MySQL Online Dictionary Attack").menu("mysql")
+      when 6 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").menu("mysql")
       when 7 then puts "Not implemented yet.".red
         menu
       when 8 then puts "Not implemented yet.".red
@@ -76,7 +76,7 @@ class DictionaryOnline < Menu
         menu
       when 19 then puts "Not implemented yet.".red
         menu
-      when 20 then Hydra.new("Hydra - SSH Online Dictionary Attack").menu("ssh")
+      when 20 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
       when 21 then puts "Not implemented yet.".red
         menu
       when 22 then puts "Not implemented yet.".red

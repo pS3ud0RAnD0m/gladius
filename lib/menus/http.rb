@@ -1,13 +1,8 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'menu'
-require_relative '../tools/sslscan'
-require_relative '../tools/nikto'
-require_relative '../tools/gladius'
-require_relative '../tools/apacheusers'
 
 class HTTP < Menu
   def menu
@@ -28,7 +23,7 @@ class HTTP < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 3
-      Nikto.new("Nikto - ID Common Web Vulns").common
+      Nikto.new("HTTP", "Nikto - ID Common Web Vulns").menu("common")
     elsif sel == 4
       ApacheUsers.new("Apache-users - Enum Users").fingerprint
     elsif sel == 88

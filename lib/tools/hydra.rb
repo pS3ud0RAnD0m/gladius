@@ -4,7 +4,8 @@
 # Version: 0.0.2
 
 class Hydra < Tool
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
     @path = "hydra"
     @name = @path
@@ -19,6 +20,10 @@ class Hydra < Tool
     @stdn_usrs = Path.stdn_usrs
   end
 
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant dictionary method
   def menu(scan_type)
     header
     instruct_input_targets("fqdn", "ip")
@@ -111,7 +116,7 @@ class Hydra < Tool
       #when "web-form" then web_form
     end
   rescue Interrupt
-    GExeption.new.exit_tool("Hydra", "DictionaryOnline")
+    GExeption.new.exit_tool("Hydra", @prev_menu)
   end
   
   # Parse and exit
@@ -126,16 +131,23 @@ class Hydra < Tool
       puts rslt
     end
     puts
-    puts "Raw output can be found here:".yellow
-    puts out_file
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
     puts
-    DictionaryOnline.new("Online Dictionary Attacks").menu
+    case @prev_menu
+      when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+    end
   rescue Interrupt
     GExeption.new.exit_gladius
   end
-  
+
+###############################################################################
+# Dictionary methods
+###############################################################################
   def ftp_gladius_long
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs + " -P " + @ftp_pwds + " -M " + @hosts_file + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
@@ -165,7 +177,7 @@ class Hydra < Tool
     end
     a.close
     stdn_pwds = @stdn_pwds
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
@@ -184,14 +196,14 @@ class Hydra < Tool
     puts
     pwds_lst = gets.chomp
     puts
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
   end
 
   def mysql_gladius_long
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @mysql_usrs + " -P " + @mysql_pwds + " -M " + @hosts_file + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
@@ -225,7 +237,7 @@ class Hydra < Tool
     end
     a.close
     stdn_pwds = @stdn_pwds
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
@@ -244,14 +256,14 @@ class Hydra < Tool
     puts
     pwds_lst = gets.chomp
     puts
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
 
   def ssh_gladius_long
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs + " -P " + @ssh_pwds + " -M " + @hosts_file + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
@@ -280,7 +292,7 @@ class Hydra < Tool
     end
     a.close
     stdn_pwds = @stdn_pwds
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " ssh |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
@@ -299,7 +311,7 @@ class Hydra < Tool
     puts
     pwds_lst = gets.chomp
     puts
-    @out_file = get_out_file(@name) + ".txt"
+    @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " ssh |tee " + @out_file
     run(cmd)
     clean_exit("ssh")

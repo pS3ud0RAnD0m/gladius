@@ -7,7 +7,8 @@ module DirStructure
   # create structure, if it doesn't exist
   def check
     # variables
-    onesixtyone_dict = source + "onesixtyone-dict.txt"
+# ttd: scale path names, e.g., "mysql_usrs_long.txt"
+    snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
     apache_usernames = source + "apache-usernames.txt"
     fierce_hosts = source + "fierce-hosts.txt"
     hydra_ftp_usrs = source + "hydra_ftp_usrs.txt"
@@ -57,8 +58,8 @@ module DirStructure
     if !File.exists?("stdn_pwds.txt")
       FileUtils.touch("stdn_pwds.txt")
     end
-    if !File.exists?("onesixtyone-dict.txt")
-      FileUtils.cp onesixtyone_dict, 'onesixtyone_dict.txt'
+    if !File.exists?("snmp_comm_strings_long.txt")
+      FileUtils.cp snmp_comm_strings_long, 'snmp_comm_strings_long'
     end
     if !File.exists?("apache-usernames.txt")
       FileUtils.cp apache_usernames, 'apache_usernames.txt'

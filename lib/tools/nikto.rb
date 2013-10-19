@@ -1,52 +1,81 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'tool'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class Nikto < Tool
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    @path_tool = "nikto"
-    @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
-    @@time = Time.now
-    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
-    "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/nikto_" + @@t + ".html"
+    @path = "nikto"
+    @name = @path
+    @hosts_file = Path.hosts_file
   end
 
-  def header_nikto
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant scan method
+  def menu(scan_type)
     header
-    instruct_input_targets("fqdnp", "ipp", "url")
-  end
-  
-  # Identify common vulns
-  def common
-    header_nikto
-    a = File.open(@@hosts, "w")
+    puts "Will your targets be using SSL? (Y/n)".light_yellow
+    ssl = gets.chomp.downcase
+    case ssl
+      when "n" then scan_type = "common"
+      else scan_type = "common_ssl"
+    end
+    puts
+    instruct_input_targets("fqdn", "ip", "fqdnp", "ipp", "url")
+    a = File.open(@hosts_file, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @@hosts
+    hosts = @hosts_file
     line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
     if line_count == 0
-      puts "No targets were input.".red
+      puts "No hosts were input.".red
+      menu
     else
-      puts
-      a = Gpty.new
-      a.cmd =  @path_tool + " -ssl -C all -h " + @@hosts + " -output " + @@out_file
-      a.shell
-      puts
+      case scan_type
+        # Pass discovery scans
+        when "common" then common
+        when "common_ssl" then common_ssl
+      end
     end
-    HTTP.new("HTTP(s)").menu
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Scan stopped due to interrupt.".light_yellow
-      puts
-      HTTP.new("HTTP(s)").menu
+  rescue Interrupt
+    GExeption.new.exit_tool("Nikto", @prev_menu)
+  end
+  
+  def clean_exit
+    puts
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
+    puts
+    case @prev_menu
+      when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
+    end
+  rescue Interrupt
+    GExeption.new.exit_gladius
+  end
+
+###############################################################################
+# Discovery methods
+###############################################################################
+  # Discover common vulns without SSL
+  def common
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -C all -h " + @hosts_file + " -output " + @out_file
+    run(cmd)
+    clean_exit
+  end
+
+  # Discover common vulns over SSL
+  def common_ssl
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -ssl -C all -h " + @hosts_file + " -output " + @out_file
+    run(cmd)
+    clean_exit
   end
 end
