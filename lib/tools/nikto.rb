@@ -45,7 +45,8 @@ class Nikto < Tool
   rescue Interrupt
     GExeption.new.exit_tool("Nikto", @prev_menu)
   end
-  
+
+  # Cleanly exit
   def clean_exit
     puts
     if File.exist?(@out_file)

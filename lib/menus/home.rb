@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 class Home
   def header_home
@@ -19,8 +18,10 @@ class Home
     puts "4.  Wireless attacks (NI)"
     puts "5.  Dictionary attacks"
     puts "6.  Configure Kali services"
+    puts "7.  Miscellaneous scripts"
     puts "99. Exit Gladius"
-    
+
+# ttd_1: refactor all menus
     sel = gets.to_i
     puts
     if sel == 1
@@ -33,11 +34,12 @@ class Home
     elsif sel == 4
       puts "Not implemented yet.".red
       menu
-      #Wireless.new("Wireless Attacks").menu
     elsif sel == 5
       Dictionary.new("Dictionary Attacks").menu
     elsif sel == 6
       KaliServices.new("Configure Kali Services").menu
+    elsif sel == 7
+      MiscScripts.new("Miscellaneous scripts").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

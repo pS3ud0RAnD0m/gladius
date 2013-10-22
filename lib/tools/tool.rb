@@ -18,14 +18,15 @@ class Tool
     puts "------------------------------"
   end
 
+# ttd: "get_out_file..." methods need ported to path
   def get_out_file(tool)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T")
+    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S")
   end
   
   def get_out_file_txt(tool)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%T.txt")
+    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S.txt")
   end
 
   def get_pid_file

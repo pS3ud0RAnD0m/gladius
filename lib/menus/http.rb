@@ -18,7 +18,7 @@ class HTTP < Menu
     sel = gets.to_i
     puts
     if sel == 1
-      SSLScan.new("SSLScan - ID Protcols and Ciphers").scan
+      SSLScan.new("HTTP", "SSLScan - ID Protcols and Ciphers").menu("common")
     elsif sel == 2
       puts "Not implemented yet.".red
       menu

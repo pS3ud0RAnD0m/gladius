@@ -28,6 +28,7 @@ class NmapParser
   end
 
   def open_ports_csv
+    puts "Parsing ...".yellow
     open_filtered
     parser = Nmap::Parser.parsefile(@tmp_file)
     File.open(@out_file, "w") do |a|
@@ -57,6 +58,7 @@ class NmapParser
         end
       end
     end
+# ttd: this needs to be rescued, so the tmp file isn't left after an interrupt
     File.delete(@tmp_file)
   end
 
