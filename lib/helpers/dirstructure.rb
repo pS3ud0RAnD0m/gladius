@@ -11,15 +11,16 @@ module DirStructure
     snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
     apache_usernames = source + "apache-usernames.txt"
     fierce_hosts = source + "fierce-hosts.txt"
-    hydra_ftp_usrs = source + "hydra_ftp_usrs.txt"
-    hydra_ftp_pwds = source + "hydra_ftp_pwds.txt"
-    hydra_mysql_usrs = source + "hydra_mysql_usrs.txt"
-    hydra_mysql_pwds = source + "hydra_mysql_pwds.txt"
-    hydra_ssh_usrs = source + "hydra_ssh_usrs.txt"
-    hydra_ssh_pwds = source + "hydra_ssh_pwds.txt"
+    ftp_usrs_long = source + "ftp_usrs_long.txt"
+    ftp_pwds_long = source + "ftp_pwds_long.txt"
+    mysql_usrs_long = source + "mysql_usrs_long.txt"
+    mysql_pwds_long = source + "mysql_pwds_long.txt"
+    ssh_usrs_long = source + "ssh_usrs_long.txt"
+    ssh_pwds_long = source + "ssh_pwds_long.txt"
 
     # Create dirs
     # See Path for variable details
+# ttd: make these "each do" ..
     if Dir[usr_g] == []
       Dir.mkdir(usr_g)
     end
@@ -67,23 +68,23 @@ module DirStructure
     if !File.exists?("fierce-hosts.txt")
       FileUtils.cp fierce_hosts, 'fierce_hosts.txt'
     end
-    if !File.exists?("hydra_ftp_usrs.txt")
-      FileUtils.cp hydra_ftp_usrs, 'hydra_ftp_usrs.txt'
+    if !File.exists?("ftp_usrs_long.txt")
+      FileUtils.cp ftp_usrs_long, 'ftp_usrs_long.txt'
     end
-    if !File.exists?("hydra_ftp_pwds.txt")
-      FileUtils.cp hydra_ftp_pwds, 'hydra_ftp_pwds.txt'
+    if !File.exists?("ftp_pwds_long.txt")
+      FileUtils.cp ftp_pwds_long, 'ftp_pwds_long.txt'
     end
-    if !File.exists?("hydra_mysql_usrs.txt")
-      FileUtils.cp hydra_mysql_usrs, 'hydra_mysql_usrs.txt'
+    if !File.exists?("mysql_usrs_long.txt")
+      FileUtils.cp mysql_usrs_long, 'mysql_usrs_long.txt'
     end
-    if !File.exists?("hydra_mysql_pwds.txt")
-      FileUtils.cp hydra_mysql_pwds, 'hydra_mysql_pwds.txt'
+    if !File.exists?("mysql_pwds_long.txt")
+      FileUtils.cp mysql_pwds_long, 'mysql_pwds_long.txt'
     end
-    if !File.exists?("hydra_ssh_usrs.txt")
-      FileUtils.cp hydra_ssh_usrs, 'hydra_ssh_usrs.txt'
+    if !File.exists?("ssh_usrs_long.txt")
+      FileUtils.cp ssh_usrs_long, 'ssh_usrs_long.txt'
     end
-    if !File.exists?("hydra_ssh_pwds.txt")
-      FileUtils.cp hydra_ssh_pwds, 'hydra_ssh_pwds.txt'  
+    if !File.exists?("ssh_pwds_long.txt")
+      FileUtils.cp ssh_pwds_long, 'ssh_pwds_long.txt'  
     end
     # Create config file
     Dir.chdir(usr_c)

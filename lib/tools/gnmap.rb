@@ -8,7 +8,7 @@ class GNmap < Tool
     @title = title
     @path = "nmap"
     @name = @path
-    @hosts_file = Path.hosts_file
+    @stdn_hosts = Path.get_path("stdn_hosts")
   end
 
 ###############################################################################
@@ -18,13 +18,13 @@ class GNmap < Tool
   def menu(scan_type)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
-    a = File.open(@hosts_file, "w")
+    a = File.open(@stdn_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts_file
-    line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
+    stdn_hosts = @stdn_hosts
+    line_count = `wc -l #{stdn_hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
       menu
@@ -86,7 +86,7 @@ class GNmap < Tool
   # Scan top 25 tcp ports on LAN
   def tcp_very_quick_lan
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T5 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T5 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -94,7 +94,7 @@ class GNmap < Tool
   # Scan top 25 tcp ports on WAN
   def tcp_very_quick_wan
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -Pn -sS --top-ports 25 --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -102,7 +102,7 @@ class GNmap < Tool
   # Scan top 1000 tcp ports
   def tcp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -110,7 +110,7 @@ class GNmap < Tool
   # Scan top 1000 tcp ports with scripts
   def tcp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSV -Pn --script=all --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -118,7 +118,7 @@ class GNmap < Tool
   # Scan all tcp ports
   def tcp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sS -Pn --min-hostgroup 128 -p1-65535 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -126,7 +126,7 @@ class GNmap < Tool
   # Scan top 1000 udp ports
   def udp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -134,7 +134,7 @@ class GNmap < Tool
   # Scan top 1000 udp ports with scripts
   def udp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sUV -Pn --script=all --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -142,7 +142,7 @@ class GNmap < Tool
   # Scan all udp ports
   def udp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sU -Pn --min-hostgroup 128 -p1-65535 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -150,7 +150,7 @@ class GNmap < Tool
   # Scan top 1000 tcp/udp ports
   def tcp_udp_quick
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -158,7 +158,7 @@ class GNmap < Tool
   # Scan top 1000 tcp/udp ports with scripts
   def tcp_udp_quick_scripts
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 128 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSUV -Pn --script=all --min-hostgroup 128 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -166,7 +166,7 @@ class GNmap < Tool
   # Scan all tcp/udp ports
   def tcp_udp_full
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -p1-65535 -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -T4 -sSU -Pn --min-hostgroup 128 -p1-65535 -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -181,7 +181,7 @@ class GNmap < Tool
     puts
     args = gets.chomp
     @out_file = get_out_file(@name)
-    cmd = @path + " -v #{args} -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v #{args} -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -192,7 +192,7 @@ class GNmap < Tool
   # Discover anonymous ftp
   def script_ftp_anon
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -Pn -sS -p21 --script=ftp-anon -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -Pn -sS -p21 --script=ftp-anon -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -200,7 +200,7 @@ class GNmap < Tool
   # Discover smtp open relay
   def script_smtp_open_relay
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -Pn -sS -p25,465,587 --script=smtp-open-relay -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -Pn -sS -p25,465,587 --script=smtp-open-relay -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
@@ -208,7 +208,7 @@ class GNmap < Tool
   # Discover tftp files
   def script_tftp_files
     @out_file = get_out_file(@name)
-    cmd = @path + " -v -Pn -sU -p69 --script=tftp-enum -iL " + @hosts_file + " -oA " + @out_file
+    cmd = @path + " -v -Pn -sU -p69 --script=tftp-enum -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
