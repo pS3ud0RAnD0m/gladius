@@ -31,7 +31,7 @@ class Nikto < Tool
     end
     a.close
     hosts = @hosts_file
-    line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
+    line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
       menu

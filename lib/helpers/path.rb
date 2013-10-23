@@ -25,13 +25,42 @@ module Path
 
   end
 
-# ttd: square get_path and replace all path methods (look at gpty)
-  def get_path(my_alias)
-    #case my_alias
-    #  when "hosts_file" then puts "/usr/share/gladius/input/stdn_hosts.txt"
-    #  when "hosts_file" then a = "/usr/share/gladius/input/stdn_hosts.txt"
-    #  when "hosts_file" then hosts_file
-    #end
+# ttd: Replace all path methods with this
+# ttd: Replace all dirstruct methods with this
+  def get_path(g_alias)
+    # Path.get_path("usr")
+    path =
+      {
+        # Directories
+        'config_sess_named'   => '/usr/share/gladius/config/sessions/named/',
+        'config_sess_unnamed' => '/usr/share/gladius/config/sessions/unnamed/',
+        'config_sess'         => '/usr/share/gladius/config/sessions/',
+        'config'              => '/usr/share/gladius/config/',
+        'input'               => '/usr/share/gladius/input/',
+        'output'              => '/usr/share/gladius/output/',
+        'tmp_pids'            => '/usr/share/gladius/tmp/pids/',
+        'tmp'                 => '/usr/share/gladius/tmp/',
+        'usr_g'               => '/usr/share/gladius/',
+        'usr'                 => '/usr/share/',
+        # Files
+        'ftp_pwds_long'          => '/usr/share/gladius/input/ftp_pwds_long.txt',
+        'ftp_pwds_short'         => '/usr/share/gladius/input/ftp_pwds_short.txt',
+        'ftp_usrs_long'          => '/usr/share/gladius/input/ftp_usrs_long.txt',
+        'ftp_usrs_short'         => '/usr/share/gladius/input/ftp_usrs_short.txt',
+        'mysql_pwds_long'        => '/usr/share/gladius/input/mysql_pwds_long.txt',
+        'mysql_pwds_short'       => '/usr/share/gladius/input/mysql_pwds_short.txt',
+        'mysql_usrs_long'        => '/usr/share/gladius/input/mysql_usrs_long.txt',
+        'mysql_usrs_short'       => '/usr/share/gladius/input/mysql_usrs_short.txt',
+        'snmp_comm_strings_long' => '/usr/share/gladius/input/snmp_comm_strings_long.txt',
+        'ssh_pwds_long'          => '/usr/share/gladius/input/ssh_pwds_long.txt',
+        'ssh_pwds_short'         => '/usr/share/gladius/input/ssh_pwds_short.txt',
+        'ssh_usrs_long'          => '/usr/share/gladius/input/hydra_ssh_usrs_long.txt',
+        'ssh_usrs_short'         => '/usr/share/gladius/input/hydra_ssh_usrs_short.txt',
+        'stdn_hosts'             => '/usr/share/gladius/input/stdn_hosts.txt',
+        'stdn_pwds'              => '/usr/share/gladius/input/stdn_pwds.txt',
+        'stdn_usrs'              => '/usr/share/gladius/input/stdn_usrs.txt'
+      }
+    path[g_alias]
   end
 
 # ttd: ensure that your paths are dry here

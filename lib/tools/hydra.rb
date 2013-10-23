@@ -9,15 +9,15 @@ class Hydra < Tool
     @title = title
     @path = "hydra"
     @name = @path
-    @hosts_file = Path.hosts_file
-    @ftp_pwds = Path.ftp_pwds
-    @ftp_usrs = Path.ftp_usrs
-    @mysql_pwds = Path.mysql_pwds
-    @mysql_usrs = Path.mysql_usrs
-    @ssh_pwds = Path.ssh_pwds
-    @ssh_usrs = Path.ssh_usrs
-    @stdn_pwds = Path.stdn_pwds
-    @stdn_usrs = Path.stdn_usrs
+    @stdn_hosts = Path.get_path("stdn_hosts")
+    @ftp_pwds_long_long = Path.get_path("ftp_pwds_long")
+    @ftp_usrs_long = Path.get_path("ftp_usrs_long")
+    @mysql_pwds_long = Path.get_path("mysql_pwds_long")
+    @mysql_usrs_long = Path.get_path("mysql_usrs_long")
+    @ssh_pwds_long = Path.get_path("ssh_pwds_long")
+    @ssh_usrs_long = Path.get_path("ssh_usrs_long")
+    @stdn_pwds = Path.get_path("stdn_pwds")
+    @stdn_usrs = Path.get_path("stdn_usrs")
   end
 
 ###############################################################################
@@ -27,13 +27,13 @@ class Hydra < Tool
   def menu(scan_type)
     header
     instruct_input_targets("fqdn", "ip")
-    a = File.open(@hosts_file, "w")
+    a = File.open(@stdn_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts_file
-    line_count = `wc -l #{hosts} |awk '{print $1}'`.to_i
+    stdn_hosts = @stdn_hosts
+    line_count = `wc -l #{stdn_hosts}`.to_i
     puts
     case line_count
       when 0 then puts "No hosts were input.".red
@@ -148,7 +148,7 @@ class Hydra < Tool
 ###############################################################################
   def ftp_gladius_long
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs + " -P " + @ftp_pwds + " -M " + @hosts_file + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs_long + " -P " + @ftp_pwds_long + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
   end
@@ -178,7 +178,7 @@ class Hydra < Tool
     a.close
     stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
   end
@@ -188,23 +188,23 @@ class Hydra < Tool
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
     puts
-    usrs_lst = gets.chomp
+    stdn_usrs = gets.chomp
     puts
     puts "Input your password file and press 'Enter'.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/passwords.txt".yellow
     puts
-    pwds_lst = gets.chomp
+    stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
   end
 
   def mysql_gladius_long
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @mysql_usrs + " -P " + @mysql_pwds + " -M " + @hosts_file + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
@@ -238,7 +238,7 @@ class Hydra < Tool
     a.close
     stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
@@ -248,23 +248,23 @@ class Hydra < Tool
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
     puts
-    usrs_lst = gets.chomp
+    stdn_usrs = gets.chomp
     puts
     puts "Input your password file and press 'Enter'.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/passwords.txt".yellow
     puts
-    pwds_lst = gets.chomp
+    stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
 
   def ssh_gladius_long
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs + " -P " + @ssh_pwds + " -M " + @hosts_file + " ssh -s 22 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
   end
@@ -293,7 +293,7 @@ class Hydra < Tool
     a.close
     stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @hosts_file + " ssh |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ssh |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
   end
@@ -303,16 +303,16 @@ class Hydra < Tool
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
     puts
-    usrs_lst = gets.chomp
+    stdn_usrs = gets.chomp
     puts
     puts "Input your password file and press 'Enter'.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/passwords.txt".yellow
     puts
-    pwds_lst = gets.chomp
+    stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{usrs_lst} -P #{pwds_lst} -M " + @hosts_file + " ssh |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ssh |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
   end
