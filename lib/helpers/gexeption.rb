@@ -21,7 +21,7 @@ class GExeption
     puts "Exiting #{tool}.".red
     puts
     case back
-# ttd: add all menus to this list
+# ttd_2: add all menus to this list
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
       when "HTTP" then HTTP.new("HTTP(S)").menu

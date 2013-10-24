@@ -21,7 +21,7 @@ class Home
     puts "7.  Miscellaneous scripts"
     puts "99. Exit Gladius"
 
-# ttd_1: refactor all menus
+# ttd_2: refactor all menus
     sel = gets.to_i
     puts
     if sel == 1

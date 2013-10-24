@@ -66,7 +66,7 @@ class Dsniff < Tool
   def clean_exit
     puts
     out_file = @out_file
-# ttd: account for ANYTHING in the outfile
+# ttd_1: account for ANYTHING in the outfile
     rslt = open(@out_file) { |a| a.grep(/PASS|USER|\//) }
     if rslt.count == 0
       puts "Dsniff did not find any credentials.".light_yellow

@@ -9,7 +9,7 @@ class HTTP < Menu
     header
     puts "Select an option:".light_yellow
     puts "1.  ID supported SSL/TLS protcols and ciphers (SSLScan)"
-    puts "2.  ID supported HTTP methods (Gladius) (NI)"
+    puts "2.  ID supported HTTP methods (Nmap)"
     puts "3.  ID common vulns (Nikto)"
     puts "4.  Apache - Enum users (Apache-users)"
     puts "88. Back"
@@ -20,8 +20,7 @@ class HTTP < Menu
     if sel == 1
       SSLScan.new("HTTP", "SSLScan - ID Protcols and Ciphers").menu("common")
     elsif sel == 2
-      puts "Not implemented yet.".red
-      menu
+      GNmap.new("HTTP", "Nmap - ID Supported HTTP Methods").menu("script_http_methods")
     elsif sel == 3
       Nikto.new("HTTP", "Nikto - ID Common Web Vulns").menu("common")
     elsif sel == 4

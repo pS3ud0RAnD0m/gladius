@@ -45,6 +45,7 @@ class GNmap < Tool
         when "custom" then custom
         # Pass script scans
         when "script_ftp_anon" then script_ftp_anon
+        when "script_http_methods" then script_http_methods
         when "script_smtp_open_relay" then script_smtp_open_relay
         when "script_tftp_files" then script_tftp_files
       end
@@ -56,23 +57,27 @@ class GNmap < Tool
   # Parse and exit
   def clean_exit
     puts
-    @out_xml_file = @out_file + ".xml"
-    if File.exist?(@out_xml_file)
+    out_xml_file = @out_file + ".xml"
+    if File.exist?(out_xml_file)
+      scan_interrupt_status = `grep "Nmap done" #{out_xml_file} |wc -l`.to_i
       puts "Nmap output files are here:".light_yellow
       puts @out_file + ".gnmap"
       puts @out_file + ".nmap"
-      puts @out_xml_file
-      begin
-        NmapParser.new(@out_xml_file).open_ports_csv
-        puts "An Excel-ready file showing only open ports has been parsed and put here:".light_yellow
-        puts @out_file + ".csv"
-      rescue Exception => e
+      puts out_xml_file
+      if scan_interrupt_status == 1
+        begin
+          NmapParser.new(out_xml_file).open_ports_csv
+          puts "An Excel-ready file showing only open ports has been parsed and put here:".light_yellow
+          puts @out_file + ".csv"
+        rescue Exception => e
+        end
       end
     end    
     puts
     case @prev_menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "FTP" then FTP.new("Gather Information - FTP").menu
+      when "HTTP" then HTTP.new("Gather Information - HTTP").menu
       when "SMTP" then SMTP.new("Gather Information - SMTP").menu
       when "TFTP" then TFTP.new("Gather Information - TFTP").menu
     end
@@ -189,6 +194,7 @@ class GNmap < Tool
 ###############################################################################
 # Script scans
 ###############################################################################
+# ttd_1: need to tweak the clean exit for these scripts
   # Discover anonymous ftp
   def script_ftp_anon
     @out_file = get_out_file(@name)
@@ -197,6 +203,15 @@ class GNmap < Tool
     clean_exit
   end
 
+# ttd_1: need to ask for ports
+  # Discover enabled http methods
+  def script_http_methods
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -Pn -sS -p80,443 --script=http-methods -iL " + @stdn_hosts + " -oA " + @out_file
+    run(cmd)
+    clean_exit
+  end
+  
   # Discover smtp open relay
   def script_smtp_open_relay
     @out_file = get_out_file(@name)

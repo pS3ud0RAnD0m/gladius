@@ -17,7 +17,7 @@ class Nikto < Tool
   # Get target(s) and pass to relevant scan method
   def menu(scan_type)
     header
-    puts "Will your targets be using SSL? (Y/n)".light_yellow
+    puts "Will your targets be using SSL? [Y/n]".light_yellow
     ssl = gets.chomp.downcase
     case ssl
       when "n" then scan_type = "common"

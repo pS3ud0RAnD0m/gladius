@@ -58,11 +58,10 @@ class NmapParser
         end
       end
     end
-# ttd: this needs to be rescued, so the tmp file isn't left after an interrupt
     File.delete(@tmp_file)
   end
 
-# ttd_1: add this human friendly output option
+# ttd_3: add this human friendly output option
   def open_ports
     parser = @parser
     puts "Nmap args: #{parser.session.scan_args}"

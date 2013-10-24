@@ -1,13 +1,11 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 module DirStructure
   # create structure, if it doesn't exist
   def check
     # variables
-# ttd: scale path names, e.g., "mysql_usrs_long.txt"
     snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
     apache_usernames = source + "apache-usernames.txt"
     fierce_hosts = source + "fierce-hosts.txt"
@@ -19,8 +17,7 @@ module DirStructure
     ssh_pwds_long = source + "ssh_pwds_long.txt"
 
     # Create dirs
-    # See Path for variable details
-# ttd: make these "each do" ..
+# ttd_3: make these "each do" ..
     if Dir[usr_g] == []
       Dir.mkdir(usr_g)
     end

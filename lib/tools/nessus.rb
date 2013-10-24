@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
-require_relative 'tool'
-require_relative 'gpty'
-
+# ttd_3: if offering nessus support, we need to check for it's existence. 
 class Nessus < Tool
   def initialize(title)
     @title = title
@@ -53,7 +50,6 @@ class Nessus < Tool
     clean_exit
   end
   
-# ttd: parse results
   # Parse and display results
   #def results(search_term)
   def results
@@ -86,12 +82,10 @@ class Nessus < Tool
       puts
     else
       hosts_count = @@hosts.count.to_s
-# ttd: remove "puts" prior to launch statement for all other tools, as well.
       puts "Discovering anonymous FTP logins against " + hosts_count + " targets ..."
       puts
     end
     @@hosts.each do |host|
-# ttd: @@out_file needs to be refreshed here
       x = Gpty.new
       x.time = @@pid_tstamp
       x.cmd = @@path + " -a -t " + host + " " + @@path_module + " |tee " + @@out_file
