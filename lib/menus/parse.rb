@@ -6,8 +6,8 @@ require_relative 'menu'
 
 class Parse < Menu
   
-# ttd: fix interrupts
-# ttd_1: modularize: split top to menu and bottom to tools
+# ttd_1: fix interrupts
+# ttd_2: modularize: split top to menu and bottom to tools
   def menu
     header
     puts "Select a file type to parse:".light_yellow

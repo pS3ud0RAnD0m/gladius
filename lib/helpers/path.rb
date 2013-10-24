@@ -25,8 +25,8 @@ module Path
 
   end
 
-# ttd: Replace all path methods with this
-# ttd: Replace all dirstruct methods with this
+# ttd_2: Replace all path methods with this
+# ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
   def get_path(g_alias)
     # Path.get_path("usr")
     path =
@@ -63,37 +63,10 @@ module Path
     path[g_alias]
   end
 
-# ttd: ensure that your paths are dry here
-# ttd: scale path names, e.g., "mysql_usrs_long.txt"
-  def ftp_pwds
-    a = "/usr/share/gladius/input/hydra_ftp_pwds.txt"
-  end
-
-  def ftp_usrs
-    a = "/usr/share/gladius/input/hydra_ftp_usrs.txt"
-  end
-
-  def mysql_pwds
-    a = "/usr/share/gladius/input/hydra_mysql_pwds.txt"
-  end
-
-  def mysql_usrs
-    a = "/usr/share/gladius/input/hydra_mysql_usrs.txt"
-  end
-
   def snmp_comm_strings_long
-    a = "/usr/share/gladius/input/onesixtyone_dict.txt"
     a = "/usr/share/gladius/input/snmp_comm_strings_long.txt"
   end
   
-  def ssh_pwds
-    a = "/usr/share/gladius/input/hydra_ssh_pwds.txt"
-  end
-
-  def ssh_usrs
-    a = "/usr/share/gladius/input/hydra_ssh_usrs.txt"
-  end
-
   def stdn_pwds
     a = "/usr/share/gladius/input/stdn_pwds.txt"
   end
@@ -142,7 +115,6 @@ module Path
     a = "/usr/share/gladius/tmp"
   end
   
-# ttd: see how trailing slash effect dirstructure creation.
   def usr_tp
     a = "/usr/share/gladius/tmp/pids/"
   end

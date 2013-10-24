@@ -18,7 +18,7 @@ class Tool
     puts "------------------------------"
   end
 
-# ttd: "get_out_file..." methods need ported to path
+# ttd_3: "get_out_file..." methods need ported to path
   def get_out_file(tool)
     time = Time.now
     out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S")
