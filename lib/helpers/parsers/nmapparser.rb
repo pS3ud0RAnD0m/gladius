@@ -14,6 +14,15 @@ class NmapParser
     @nmap_base_name = @nmap_xml_file.to_s.gsub(/.xml/, '') 
     @tmp_file = @nmap_base_name + "_tmp.xml"
     @out_file = @nmap_base_name + ".csv"
+    @nmap_exit_status = 1
+  end
+
+  def xml_check
+    nmap_xml_file = @nmap_xml_file
+    @nmap_exit_status = `grep "Nmap done" #{nmap_xml_file} |wc -l`.to_i
+    if @nmap_exit_status == 0
+      puts "Incomplete Nmap XML file detected. Gladius will not parse it.".red
+    end
   end
 
   # To ensure "open|filtered" states are not considered "open", this method creates a
@@ -24,41 +33,50 @@ class NmapParser
     text = File.read(@tmp_file)
     output_of_gsub = text.gsub("open|f", "opn|f")
     File.open(@tmp_file, "w") {|file| file.puts output_of_gsub}
-    puts
   end
 
   def open_ports_csv
-    puts "Parsing ...".yellow
-    open_filtered
-    parser = Nmap::Parser.parsefile(@tmp_file)
-    File.open(@out_file, "w") do |a|
-      a.puts "Open ports from " + @nmap_xml_file
-      parser.hosts("up") do |host|
-        addr = host.addr
-        if host.hostname
-          hostname = host.hostname.to_s
-        else
-          hostname = "nohostname"
-        end
-        [:tcp, :udp].each do |type|
-          host.getports(type, "open") do |port|
-            service = port.service
-            service_info = ",#{port.num}/#{port.proto}"
-            if service.name
-              service_info = ",#{port.num}/#{port.proto},#{service.name}"
+    xml_check
+    if @nmap_exit_status == 1
+      puts "Parsing XML ...".yellow
+      open_filtered
+      parser = Nmap::Parser.parsefile(@tmp_file)
+      File.open(@out_file, "w") do |a|
+        a.puts "Open ports from " + @nmap_xml_file
+        parser.hosts("up") do |host|
+          addr = host.addr
+          if host.hostname
+            hostname = host.hostname.to_s
+          else
+            hostname = "nohostname"
+          end
+          [:tcp, :udp].each do |type|
+            host.getports(type, "open") do |port|
+              service = port.service
+              service_info = ",#{port.num}/#{port.proto}"
+              if service.name
+                service_info = ",#{port.num}/#{port.proto},#{service.name}"
+              end
+              if service.product
+                service_info = ",#{port.num}/#{port.proto},#{service.name},#{service.product}"
+              end
+              if service.version
+                service_info = ",#{port.num}/#{port.proto},#{service.name},#{service.product} #{service.version}"
+              end
+              a.puts addr + "," + hostname + service_info
             end
-            if service.product
-              service_info = ",#{port.num}/#{port.proto},#{service.name},#{service.product}"
-            end
-            if service.version
-              service_info = ",#{port.num}/#{port.proto},#{service.name},#{service.product} #{service.version}"
-            end
-            a.puts addr + "," + hostname + service_info
           end
         end
       end
+      puts "An Excel-ready file showing only open ports has been parsed and put here:".light_yellow
+      puts @out_file
     end
-    File.delete(@tmp_file)
+    if File.exist?(@tmp_file)
+      File.delete(@tmp_file)
+    end
+  rescue
+    puts
+    GExeption.new.home
   end
 
 # ttd_3: add this human friendly output option

@@ -6,11 +6,10 @@ require_relative 'menu'
 
 class Parse < Menu
   
-# ttd_1: fix interrupts
 # ttd_2: modularize: split top to menu and bottom to tools
   def menu
     header
-    puts "Select a file type to parse:".light_yellow
+    puts "Select a task:".light_yellow
     puts "1.  Nmap XML > CSV spreadsheet (Gladius)"
     #puts "2.  Nmap XML > open ports text file (Gladius)"
     puts "88. Back"
@@ -44,14 +43,11 @@ class Parse < Menu
     if File.exist?(in_file)
       begin
         NmapParser.new(in_file).open_ports_csv
-        puts "An Excel-ready file showing only open ports has been parsed and put here:".light_yellow
-        out_file = in_file.gsub(/xml/, 'csv') 
-        puts out_file
         puts
-# ttd_1: not exiting correctly
-      rescue Exception => e
+        menu
+      rescue
+        GExeption.new.home
       end
-      MiscScripts.new("Miscellaneous scripts").menu
     else
       puts in_file + " does not exist".red
       menu
@@ -60,5 +56,3 @@ class Parse < Menu
     GExeption.new.exit_gladius
   end
 end
-
-

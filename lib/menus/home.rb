@@ -17,8 +17,8 @@ class Home
     puts "3.  Web attacks (NI)"
     puts "4.  Wireless attacks (NI)"
     puts "5.  Dictionary attacks"
-    puts "6.  Configure Kali services"
-    puts "7.  Miscellaneous scripts"
+    puts "6.  Config Kali services"
+    puts "7.  Misc scripts"
     puts "99. Exit Gladius"
 
 # ttd_2: refactor all menus
