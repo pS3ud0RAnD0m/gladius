@@ -59,20 +59,12 @@ class GNmap < Tool
     puts
     out_xml_file = @out_file + ".xml"
     if File.exist?(out_xml_file)
-      scan_interrupt_status = `grep "Nmap done" #{out_xml_file} |wc -l`.to_i
       puts "Nmap output files are here:".light_yellow
       puts @out_file + ".gnmap"
       puts @out_file + ".nmap"
       puts out_xml_file
-      if scan_interrupt_status == 1
-        begin
-          NmapParser.new(out_xml_file).open_ports_csv
-          puts "An Excel-ready file showing only open ports has been parsed and put here:".light_yellow
-          puts @out_file + ".csv"
-        rescue Exception => e
-        end
-      end
-    end    
+      NmapParser.new(out_xml_file).open_ports_csv
+    end
     puts
     case @prev_menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
@@ -194,7 +186,6 @@ class GNmap < Tool
 ###############################################################################
 # Script scans
 ###############################################################################
-# ttd_1: need to tweak the clean exit for these scripts
   # Discover anonymous ftp
   def script_ftp_anon
     @out_file = get_out_file(@name)
@@ -203,7 +194,7 @@ class GNmap < Tool
     clean_exit
   end
 
-# ttd_1: need to ask for ports
+# ttd_1: HTTP method: Ask for ports
   # Discover enabled http methods
   def script_http_methods
     @out_file = get_out_file(@name)

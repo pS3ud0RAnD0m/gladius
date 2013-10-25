@@ -1,9 +1,18 @@
 #!/usr/bin/env ruby
 
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
+# ttd_2: Ensure all interrupts are using this class.
 class GExeption
+  # log exception
+  def log
+  end
+  
+  # Rescue to home
+  def home
+    Home.new.menu
+  end
+  
   # Cleanly exit gladius
   def exit_gladius
     puts
@@ -11,11 +20,11 @@ class GExeption
     begin
       Kernel.exit
     rescue Exception => e
-    puts
+      puts
     end
   end
 
-  # Cleanly exit a tool
+  # Rescue to previous menu
   def exit_tool(tool, back)
     puts
     puts "Exiting #{tool}.".red
