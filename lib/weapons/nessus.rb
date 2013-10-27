@@ -3,7 +3,7 @@
 # Author: p$3ud0R@nD0m
 
 # ttd_3: if offering nessus support, we need to check for it's existence. 
-class Nessus < Tool
+class Nessus < Weapon
   def initialize(title)
     @title = title
     # Path variables

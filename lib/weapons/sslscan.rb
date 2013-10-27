@@ -2,7 +2,7 @@
 
 # Author: p$3ud0R@nD0m
 
-class SSLScan < Tool
+class SSLScan < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
@@ -35,7 +35,7 @@ class SSLScan < Tool
       end
     end
   rescue Interrupt
-    GExeption.new.exit_tool("SSLScan", @prev_menu)
+    GExeption.new.exit_weapon("SSLScan", @prev_menu)
   end
     
   # Cleanly exit

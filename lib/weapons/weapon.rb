@@ -2,7 +2,8 @@
 
 # Author: p$3ud0R@nD0m
 
-class Tool
+# ttd_1: Refactor all weapons
+class Weapon
   def initialize
     @host = host
     @hosts = []
@@ -19,14 +20,14 @@ class Tool
   end
 
 # ttd_3: "get_out_file..." methods need ported to path
-  def get_out_file(tool)
+  def get_out_file(weapon)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S")
+    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S")
   end
   
-  def get_out_file_txt(tool)
+  def get_out_file_txt(weapon)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S.txt")
+    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S.txt")
   end
 
   def get_pid_file
@@ -57,7 +58,7 @@ class Tool
     end
   end
 
-  # Supply examples for tool input.
+  # Supply examples for weapon input.
   # Call this with: example("cidr", "domain", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
   # Use any combination of the following:
     # cidr => 10.87.9.0/24

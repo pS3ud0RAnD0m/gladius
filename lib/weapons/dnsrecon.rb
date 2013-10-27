@@ -3,10 +3,10 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative 'tool'
+require_relative 'weapon'
 require_relative 'gpty'
 
-class DNSrecon < Tool
+class DNSrecon < Weapon
   def initialize(title)
     @title = title
     @@path = "dnsrecon"

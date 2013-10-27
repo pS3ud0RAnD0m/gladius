@@ -20,35 +20,23 @@ class Home
     puts "6.  Config Kali services"
     puts "7.  Misc scripts"
     puts "99. Exit Gladius"
-
-# ttd_2: refactor all menus
+# ttd_1: refactor all menus
     sel = gets.to_i
-    puts
-    if sel == 1
-      GatherInfo.new("Gather Information").menu
-    elsif sel == 2
-      SniffSpoof.new("Sniffing and Spoofing").menu
-    elsif sel == 3
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 4
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 5
-      Dictionary.new("Dictionary Attacks").menu
-    elsif sel == 6
-      KaliServices.new("Configure Kali Services").menu
-    elsif sel == 7
-      MiscScripts.new("Miscellaneous scripts").menu
-    elsif sel == 99
-      begin
-      puts "Exiting Gladius. Have a bloody day!".red
-      puts
-      rescue Interrupt
-      end
-    else
-      puts "Invalid selection.".red
-      menu
+    case sel
+      when 1 then GatherInfo.new("Gather Information").menu
+      when 2 then SniffSpoof.new("Sniffing and Spoofing").menu
+      when 3 then puts "Not implemented yet.".red
+        menu
+      when 4 then puts "Not implemented yet.".red
+        menu
+      when 5 then Dictionary.new("Dictionary Attacks").menu
+      when 6 then KaliServices.new("Configure Kali Services").menu
+      when 7 then MiscScripts.new("Miscellaneous scripts").menu
+      when 99 then GExeption.new.exit_gladius
+      else 
+        puts "Invalid selection.".red
+        puts
+        menu
     end
   end
 end

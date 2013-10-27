@@ -3,7 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-class DiG < Tool
+class DiG < Weapon
   def initialize(title)
     @title = title
     @@path = "/usr/bin/dig"

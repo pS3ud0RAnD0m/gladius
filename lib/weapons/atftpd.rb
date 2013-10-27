@@ -4,10 +4,10 @@
 # Version: 0.0.2
 
 require_relative '../helpers/sysinfo'
-require_relative 'tool'
+require_relative 'weapon'
 require_relative 'gpty'
 
-class Atftpd < Tool
+class Atftpd < Weapon
   def initialize(title)
     @title = title
     @@path = "dsniff"

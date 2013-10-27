@@ -2,7 +2,7 @@
 
 # Author: p$3ud0R@nD0m
 
-class GNmap < Tool
+class GNmap < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
@@ -51,7 +51,7 @@ class GNmap < Tool
       end
     end
   rescue Interrupt
-    GExeption.new.exit_tool("Nmap", @prev_menu)
+    GExeption.new.exit_weapon("Nmap", @prev_menu)
   end
 
   # Parse and exit

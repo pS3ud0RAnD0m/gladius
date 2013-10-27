@@ -6,7 +6,7 @@ require_relative 'menu'
 
 class Parse < Menu
   
-# ttd_2: modularize: split top to menu and bottom to tools
+# ttd_2: modularize: split top to menu and bottom to weapons
   def menu
     header
     puts "Select a task:".light_yellow
@@ -18,20 +18,21 @@ class Parse < Menu
     puts
     case sel
       when 1 then in_file_type = "nmap_xml"
-        puts "Input the full path to your Nmap XML file and press 'Enter'.".light_yellow
+        puts "Input the full path to your Nmap XML file and press <Enter>.".light_yellow
         puts "Examples:".yellow
-        puts "/usr/share/gladius/output/nmap_2013-10-11_23:32:03.xml".yellow
+        puts "/usr/share/gladius/output/nmap_2013-10-11_23-32-03.xml".yellow
         puts "/root/Desktop/nmap_output.xml".yellow
       when 2 then in_file_type = "nmap_xml"
         puts "Input the full path to your Nmap XML file and press 'Enter'.".light_yellow
         puts "Examples:".yellow
-        puts "/usr/share/gladius/output/nmap_2013-10-11_23:32:03.xml".yellow
+        puts "/usr/share/gladius/output/nmap_2013-10-11_23-32-03.xml".yellow
         puts "/root/Desktop/nmap_output.xml".yellow
       when 88 then MiscScripts.new("Miscellaneous scripts").menu
       when 99 then
         begin
           puts "Exiting Gladius. Have a bloody day!".red
           puts
+# ttd_1: Break at file input request not clean.
         rescue Interrupt
         end
       else
