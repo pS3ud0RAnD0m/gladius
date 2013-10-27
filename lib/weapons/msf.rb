@@ -3,7 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-class MSF < Tool
+class MSF < Weapon
   #def initialize(title)
   #  @title = title
   #  @@path = "/usr/local/bin/msfcli"

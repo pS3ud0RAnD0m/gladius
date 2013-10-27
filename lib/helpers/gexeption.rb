@@ -25,9 +25,9 @@ class GExeption
   end
 
   # Rescue to previous menu
-  def exit_tool(tool, back)
+  def exit_weapon(weapon, back)
     puts
-    puts "Exiting #{tool}.".red
+    puts "Exiting #{weapon}.".red
     puts
     case back
 # ttd_2: add all menus to this list

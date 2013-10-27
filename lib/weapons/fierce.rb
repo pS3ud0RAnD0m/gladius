@@ -3,14 +3,14 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative 'tool'
+require_relative 'weapon'
 require_relative 'gpty'
 
-class Fierce < Tool
+class Fierce < Weapon
   def initialize(title)
     @title = title
     # Path variables
-    @@path_tool = "fierce"
+    @@path_weapon = "fierce"
     @@path_hosts = "/usr/share/gladius/input/fierce_hosts.txt"
     @@hosts = []
     # Variables for timestamping out files and child pid files
@@ -22,7 +22,7 @@ class Fierce < Tool
     @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
   end
   
-  # Ensure that tool's pid is killed, set int rescue and exit.
+  # Ensure that weapon's pid is killed, set int rescue and exit.
   def clean_exit
     if File.exists?(@@pid_file)
       pid = File.read(@@pid_file)
@@ -73,7 +73,7 @@ class Fierce < Tool
         puts
         x = Gpty.new
         x.time = @@pid_tstamp
-        x.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
+        x.cmd = @@path_weapon + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
         x.shell
       end
       results
@@ -86,7 +86,7 @@ class Fierce < Tool
         puts
         x = Gpty.new
         x.time = @@pid_tstamp
-        x.cmd = @@path_tool + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
+        x.cmd = @@path_weapon + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
         x.shell
       end
       results

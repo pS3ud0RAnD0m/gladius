@@ -2,81 +2,77 @@
 
 # Author: p$3ud0R@nD0m
 
-class Nikto < Tool
+require 'weapon'
+
+class Onesixtyone < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
-    @path = "nikto"
+    @path = "onesixtyone"
     @name = @path
     @hosts_file = Path.hosts_file
+    @snmp_comm_strings_long = "/usr/share/gladius/input/snmp_comm_strings_long.txt"
   end
 
 ###############################################################################
 # DRY methods
 ###############################################################################
-  # Get target(s) and pass to relevant scan method
+
   def menu(scan_type)
     header
-    puts "Will your targets be using SSL? [Y/n]".light_yellow
-    ssl = gets.chomp.downcase
-    case ssl
-      when "n" then scan_type = "common"
-      else scan_type = "common_ssl"
-    end
-    puts
-    instruct_input_targets("fqdn", "ip", "fqdnp", "ipp", "url")
-    a = File.open(@hosts_file, "w")
+    instruct_input_targets("ip")
+    a = File.open(@@hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts_file
+    hosts = @@hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
-      menu
     else
       case scan_type
-        # Pass discovery scans
-        when "common" then common
-        when "common_ssl" then common_ssl
+        when "dictionary_long" then dictionary_long
       end
     end
   rescue Interrupt
-    GExeption.new.exit_tool("Nikto", @prev_menu)
+    GExeption.new.exit_weapon("Onesixtyone", @prev_menu)
   end
 
-  # Cleanly exit
-  def clean_exit
+  # Parse and exit
+  def clean_exit(search_term)
     puts
+    out_file = @@out_file
     if File.exist?(@out_file)
+      line_count = `wc -l #{out_file}`.to_i
+      if line_count == 0
+        puts "Onesixtyone did not find valid credentials.".light_yellow
+      else
+        puts "Onesixtyone found the following credentials:".light_yellow
+        a = `cat #{out_file}`
+        puts a
+      end
+      puts
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
     puts
     case @prev_menu
-      when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
+      when "SNMP" then SNMP.new("Gather Information - SNMP").menu
     end
   rescue Interrupt
     GExeption.new.exit_gladius
   end
 
 ###############################################################################
-# Discovery methods
+# Dictionary methods
 ###############################################################################
-  # Discover common vulns without SSL
-  def common
+  # Discover common community strings:
+  def dictionary_long
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -C all -h " + @hosts_file + " -output " + @out_file
+    cmd = @path + " -c " + @snmp_comm_strings_long + " -i #{hosts} -d -o " + @out_file
     run(cmd)
-    clean_exit
+# ttd_1: search_term needs to be fixed. currently "public".
+    clean_exit("public")
   end
-
-  # Discover common vulns over SSL
-  def common_ssl
-    @out_file = get_out_file_txt(@name)
-    cmd = @path + " -ssl -C all -h " + @hosts_file + " -output " + @out_file
-    run(cmd)
-    clean_exit
-  end
-end
+end  

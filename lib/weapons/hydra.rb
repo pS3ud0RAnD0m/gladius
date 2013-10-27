@@ -3,7 +3,7 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-class Hydra < Tool
+class Hydra < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
@@ -116,7 +116,7 @@ class Hydra < Tool
       #when "web-form" then web_form
     end
   rescue Interrupt
-    GExeption.new.exit_tool("Hydra", @prev_menu)
+    GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
   
   # Parse and exit

@@ -9,14 +9,14 @@ module Path
 
   def load
     $:.push lib_root + "/menus"
-    $:.push lib_root + "/tools"
+    $:.push lib_root + "/weapons"
     $:.push lib_root + "/helpers"
     $:.push lib_root + "/helpers/parsers"
   end
   
   def req
     Dir[lib_root + "/menus/*.rb"].each { |a| require a }
-    Dir[lib_root + "/tools/*.rb"].each { |a| require a }
+    Dir[lib_root + "/weapons/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/parsers/*.rb"].each { |a| require a }
     require 'fileutils'
@@ -123,14 +123,14 @@ module Path
     a = lib_root + "/helpers/input/"
   end
 
-  def get_out_file(tool)
+  def get_out_file(weapon)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S")
+    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S")
   end
   
-  def get_out_file_txt(tool)
+  def get_out_file_txt(weapon)
     time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + tool + "_%F_%H-%M-%S.txt")
+    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S.txt")
   end
 
   def get_pid_file

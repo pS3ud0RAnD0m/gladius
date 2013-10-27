@@ -2,7 +2,7 @@
 
 # Author: p$3ud0R@nD0m
 
-class Dsniff < Tool
+class Dsniff < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
@@ -55,7 +55,7 @@ class Dsniff < Tool
     puts "YPPasswd      100009/rpc".yellow
     puts "YPServ        100004/rpc".yellow
     puts
-    puts "Note: This tool isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
+    puts "Note: This weapon isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
     puts "When done sniffing, press <Ctrl+c>.".light_yellow
     case scan_type
       when "all" then all

@@ -3,43 +3,44 @@
 # Author:  p$3ud0R@nD0m
 # Version: 0.0.2
 
-require_relative 'tool'
+require_relative 'weapon'
 require_relative 'gpty'
 
-class Gladius < Tool
+class ApacheUsers < Weapon
   def initialize(title)
     @title = title
-    #@@path = "blah............................................"
+    @@path_weapon = "apache-users"
+    @@path_names = "/usr/share/gladius/input/apache_usernames.txt"
     @@hosts = []
   end
   
-  # Attempt a zone transfer and brute force records
-  def brute
+  # Enum Users
+  def fingerprint
     header
+    instruct_input_targets("fqdn", "ip")
     while line = gets
       @@hosts << line.chomp
     end
     if @@hosts.count == 0
       puts "No hosts were input.".red
-      puts
-      menu
+      HTTP.new("HTTP(S)").menu
     elsif @@hosts.count == 1
       @@hosts.each do |host|
-        puts "Attempting a zone transfer and brute against " + host + "..."
+        puts "Attempting to enum users on " + host + " ..."
         puts
         i = Gpty.new
-        i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "stdn_hosts.txt -dns " + host
+        i.cmd = @@path_weapon + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
         i.shell
       end
       puts
       HTTP.new("HTTP(S)").menu
     else
       l = @@hosts.count
-      puts "Attempting zone transfers and brutes against #{l} domains..."
+      puts "Attempting to enum users on #{l} hosts ..."
         @@hosts.each do |host|
           puts
           i = Gpty.new
-          i.cmd = @@path + "fierce.pl --threads 2 -wordlist " + @@path + "stdn_hosts.txt -dns " + host
+          i.cmd = @@path_weapon + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
           i.shell
         end
       puts

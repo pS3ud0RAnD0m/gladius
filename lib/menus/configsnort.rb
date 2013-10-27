@@ -4,7 +4,7 @@
 # Version: 0.0.2
 
 require_relative 'menu'
-require_relative '../tools/snortservice'
+require_relative '../weapons/snortservice'
 
 class ConfigSnort < Menu
   def menu

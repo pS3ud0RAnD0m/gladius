@@ -4,9 +4,9 @@
 # Version: 0.0.2
 
 require_relative 'menu'
-require_relative '../tools/dnsrecon'
-require_relative '../tools/fierce'
-require_relative '../tools/dig'
+require_relative '../weapons/dnsrecon'
+require_relative '../weapons/fierce'
+require_relative '../weapons/dig'
 
 class DNS < Menu
   def menu
