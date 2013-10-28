@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 module DirStructure
@@ -15,6 +13,7 @@ module DirStructure
     mysql_pwds_long = source + "mysql_pwds_long.txt"
     ssh_usrs_long = source + "ssh_usrs_long.txt"
     ssh_pwds_long = source + "ssh_pwds_long.txt"
+    gladius_iptables = Path.get_source_path("gladius_iptables")
 
     # Create dirs
 # ttd_3: make these "each do" ..
@@ -70,6 +69,9 @@ module DirStructure
     end
     if !File.exists?("ftp_pwds_long.txt")
       FileUtils.cp ftp_pwds_long, 'ftp_pwds_long.txt'
+    end
+    if !File.exists?("gladius_iptables")
+      FileUtils.cp gladius_iptables, 'gladius_iptables'
     end
     if !File.exists?("mysql_usrs_long.txt")
       FileUtils.cp mysql_usrs_long, 'mysql_usrs_long.txt'

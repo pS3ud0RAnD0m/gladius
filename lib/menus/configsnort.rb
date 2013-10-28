@@ -27,7 +27,7 @@ class ConfigSnort < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      KaliServices.new("Configure Back Track Services").menu
+      KaliSupport.new("Configure Back Track Services").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

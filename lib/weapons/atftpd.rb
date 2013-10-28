@@ -39,6 +39,6 @@ class Atftpd < Weapon
       #atftpd --daemon --port 69 --bind-address 10.0.12.103 --logfile /var/log/atftpd.log /tmp/tftp
     end
     puts
-    KaliServices.new("Configure Kali Services").menu
+    KaliSupport.new("Configure Kali Services").menu
   end
 end  

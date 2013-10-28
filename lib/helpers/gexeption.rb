@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 # ttd_2: Ensure all interrupts are using this class.
@@ -28,16 +26,19 @@ class GExeption
   def exit_weapon(weapon, back)
     puts
     puts "Exiting #{weapon}.".red
-    puts
     case back
 # ttd_2: add all menus to this list
-      when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+      when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
+      when "FTP" then FTP.new("Gather Information - FTP").menu
       when "HTTP" then HTTP.new("HTTP(S)").menu
+      when "ParseFile" then ParseFile.new("Parse Files").menu
       when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
       when "SNMP" then SNMP.new("SNMP").menu
+      when "SMTP" then SMTP.new("Gather Information - SMTP").menu
+      when "TFTP" then TFTP.new("Gather Information - TFTP").menu
     end
   rescue Interrupt
-    GExeption.new.exit_gladius
+    exit_gladius
   end
 end
