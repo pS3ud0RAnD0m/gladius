@@ -21,7 +21,7 @@ class SniffSpoof < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 88
-      Home.new.menu
+      NetworkAttacks.new("Network Attacks").menu
     elsif sel == 99
       begin
       puts "Exiting Gladius. Have a bloody day!".red

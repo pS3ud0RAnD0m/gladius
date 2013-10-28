@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 module Path
@@ -11,18 +9,17 @@ module Path
     $:.push lib_root + "/menus"
     $:.push lib_root + "/weapons"
     $:.push lib_root + "/helpers"
-    $:.push lib_root + "/helpers/parsers"
+    $:.push lib_root + "/helpers/thirdparty"
   end
   
   def req
     Dir[lib_root + "/menus/*.rb"].each { |a| require a }
     Dir[lib_root + "/weapons/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
-    Dir[lib_root + "/helpers/parsers/*.rb"].each { |a| require a }
+    Dir[lib_root + "/helpers/thirdparty/*.rb"].each { |a| require a }
     require 'fileutils'
     require 'pty'
     require 'time'
-
   end
 
 # ttd_2: Replace all path methods with this
@@ -47,6 +44,7 @@ module Path
         'ftp_pwds_short'         => '/usr/share/gladius/input/ftp_pwds_short.txt',
         'ftp_usrs_long'          => '/usr/share/gladius/input/ftp_usrs_long.txt',
         'ftp_usrs_short'         => '/usr/share/gladius/input/ftp_usrs_short.txt',
+        'gladius_iptables'       => '/usr/share/gladius/input/iptables',
         'mysql_pwds_long'        => '/usr/share/gladius/input/mysql_pwds_long.txt',
         'mysql_pwds_short'       => '/usr/share/gladius/input/mysql_pwds_short.txt',
         'mysql_usrs_long'        => '/usr/share/gladius/input/mysql_usrs_long.txt',
@@ -63,6 +61,17 @@ module Path
     path[g_alias]
   end
 
+# ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
+  def get_source_path(g_alias)
+    # Path.get_path("usr")
+    path =
+      {
+        # Files
+        "gladius_iptables" => lib_root + "/helpers/input/gladius_iptables"
+      }
+    path[g_alias]
+  end
+  
   def snmp_comm_strings_long
     a = "/usr/share/gladius/input/snmp_comm_strings_long.txt"
   end

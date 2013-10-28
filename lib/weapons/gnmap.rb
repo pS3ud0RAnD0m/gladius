@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 class GNmap < Weapon
@@ -63,18 +61,9 @@ class GNmap < Weapon
       puts @out_file + ".gnmap"
       puts @out_file + ".nmap"
       puts out_xml_file
-      NmapParser.new(out_xml_file).open_ports_csv
+      NmapParser.new(@prev_menu, out_xml_file).open_ports_csv
     end
-    puts
-    case @prev_menu
-      when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
-      when "FTP" then FTP.new("Gather Information - FTP").menu
-      when "HTTP" then HTTP.new("Gather Information - HTTP").menu
-      when "SMTP" then SMTP.new("Gather Information - SMTP").menu
-      when "TFTP" then TFTP.new("Gather Information - TFTP").menu
-    end
-  rescue Interrupt
-    GExeption.new.exit_gladius
+    exit_weapon
   end
 
 ###############################################################################

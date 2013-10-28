@@ -1,15 +1,14 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 # This script uses ruby-nmap-parser-0.3.5
 # For more information go to http://rubynmap.sourceforge.net.
 # The license is located at gladius/lib/helpers/parsers/ruby-nmap-parser/LICENSE.
 
-require_relative 'ruby-nmap-parser/lib/nmap/parser'
+require_relative 'thirdparty/ruby-nmap-parser/lib/nmap/parser'
 
 class NmapParser
-  def initialize(nmap_xml_file)
+  def initialize(prev_menu, nmap_xml_file)
+    @prev_menu = prev_menu
     @nmap_xml_file = nmap_xml_file
     @nmap_base_name = @nmap_xml_file.to_s.gsub(/.xml/, '') 
     @tmp_file = @nmap_base_name + "_tmp.xml"
@@ -75,8 +74,7 @@ class NmapParser
       File.delete(@tmp_file)
     end
   rescue
-    puts
-    GExeption.new.home
+    GExeption.new.exit_weapon("Parser", @prev_menu)
   end
 
 # ttd_3: add this human friendly output option

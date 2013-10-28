@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 class Hydra < Weapon
   def initialize(prev_menu, title)
@@ -74,7 +71,6 @@ class Hydra < Weapon
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password lists."
     input_method = gets.to_i
-    puts
     case scan_type
       #when "cvs" then cvs
       when "ftp"
@@ -135,12 +131,7 @@ class Hydra < Weapon
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
-    puts
-    case @prev_menu
-      when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
-    end
-  rescue Interrupt
-    GExeption.new.exit_gladius
+  exit_weapon
   end
 
 ###############################################################################

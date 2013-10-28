@@ -1,19 +1,15 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'menu'
-require_relative 'dns'
-require_relative 'ftp'
 
-class Wireless < Menu
+class WebAttacks < Menu
   
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Rogue AP (NI)"
-    puts "2.  RADIUS MiTM (FreeRADIUS) (NI)"
+    puts "1.  ..."
+    puts "2.  ..."
+    puts "3.  ..."
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -23,6 +19,9 @@ class Wireless < Menu
       puts "Not implemented yet.".red
       menu
     elsif sel == 2
+      puts "Not implemented yet.".red
+      menu
+    elsif sel == 3
       puts "Not implemented yet.".red
       menu
     elsif sel == 88

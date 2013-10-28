@@ -1,24 +1,21 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class IPtables < Weapon
   def initialize(title)
     @title = title
-    @@path = "iptables"
-    @@path_giptables = Constant::PROJECT_ROOT + "/helpers/input/iptables"
-    @@path_kiptables = "/etc/init.d/iptables"
+    @path = "iptables"
+    
+    #@gladius_iptables = Path.get_path("gladius_iptables")
+    #@system_iptables = Path.get_path("system_iptables")
+    @path_giptables = Constant::PROJECT_ROOT + "/helpers/input/iptables"
+    @path_kiptables = "/etc/init.d/iptables"
   end
 
   # Check the status of iptables config
   def status
     puts
     header
-    if File.exist?(@@path_kiptables)
+    if File.exist?(@path_kiptables)
       puts "/etc/init.d/iptables already exists. Do you want to overwrite it? [Y/n]".light_yellow
       sel = gets.chomp
       if sel.downcase == "y" || sel.empty?
@@ -26,10 +23,10 @@ class IPtables < Weapon
       elsif sel.downcase == "n"
         puts "Let's just look at the active rules then.".light_yellow
         i = Gpty.new
-        i.cmd = @@path + " -L -nv"
+        i.cmd = @path + " -L -nv"
         i.shell
         puts
-        KaliServices.new("Configure Kali Services").menu
+        KaliSupport.new("Configure Kali Services").menu
       else
         puts "Invalid selection.".red
         status
@@ -41,8 +38,8 @@ class IPtables < Weapon
     
   # Configure ruleset
   def config
-    path_giptables = @@path_giptables
-    path_kiptables = @@path_kiptables
+    path_giptables = @path_giptables
+    path_kiptables = @path_kiptables
     a = Gpty.new
     puts "The current ruleset is:".light_yellow
     a.cmd = "iptables -L -nv"
@@ -69,16 +66,16 @@ class IPtables < Weapon
     puts "All interesting drops are being logged to /var/log/iptables.log".light_yellow
     puts "You can modify the rules by editing /etc/init.d/iptables, then running 'service iptables restart'.".light_yellow
     puts
-    KaliServices.new("Configure Kali Services").menu
+    KaliSupport.new("Configure Kali Services").menu
   end
   
   # List ruleset
   def list
     header
     i = Gpty.new
-    i.cmd = @@path + " -L -nv"
+    i.cmd = @path + " -L -nv"
     i.shell
     puts
-    KaliServices.new("Configure Kali Services").menu
+    KaliSupport.new("Configure Kali Services").menu
   end
 end
