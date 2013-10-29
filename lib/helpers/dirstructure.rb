@@ -1,12 +1,12 @@
 # Author: p$3ud0R@nD0m
 
 module DirStructure
-  # create structure, if it doesn't exist
+  # create structure, if it doesn"t exist
   def check
     # variables
     snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
-    apache_usernames = source + "apache-usernames.txt"
-    fierce_hosts = source + "fierce-hosts.txt"
+    apache_users_long = source + "apache_users_long.txt"
+    dns_hosts_long = source + "dns_hosts_long.txt"
     ftp_usrs_long = source + "ftp_usrs_long.txt"
     ftp_pwds_long = source + "ftp_pwds_long.txt"
     mysql_usrs_long = source + "mysql_usrs_long.txt"
@@ -14,7 +14,8 @@ module DirStructure
     ssh_usrs_long = source + "ssh_usrs_long.txt"
     ssh_pwds_long = source + "ssh_pwds_long.txt"
     gladius_iptables = Path.get_source_path("gladius_iptables")
-
+    vpn_group_id_long = Path.get_source_path("vpn_group_id_long")
+    
     # Create dirs
 # ttd_3: make these "each do" ..
     if Dir[usr_g] == []
@@ -56,35 +57,39 @@ module DirStructure
       FileUtils.touch("stdn_pwds.txt")
     end
     if !File.exists?("snmp_comm_strings_long.txt")
-      FileUtils.cp snmp_comm_strings_long, 'snmp_comm_strings_long'
+      FileUtils.cp snmp_comm_strings_long, "snmp_comm_strings_long"
     end
-    if !File.exists?("apache-usernames.txt")
-      FileUtils.cp apache_usernames, 'apache_usernames.txt'
+    if !File.exists?("apache_users_long.txt")
+      FileUtils.cp apache_users_long, "apache_users_long.txt"
     end
-    if !File.exists?("fierce-hosts.txt")
-      FileUtils.cp fierce_hosts, 'fierce_hosts.txt'
+    if !File.exists?("dns_hosts_long.txt")
+      FileUtils.cp dns_hosts_long, "dns_hosts_long.txt"
     end
     if !File.exists?("ftp_usrs_long.txt")
-      FileUtils.cp ftp_usrs_long, 'ftp_usrs_long.txt'
+      FileUtils.cp ftp_usrs_long, "ftp_usrs_long.txt"
     end
     if !File.exists?("ftp_pwds_long.txt")
-      FileUtils.cp ftp_pwds_long, 'ftp_pwds_long.txt'
+      FileUtils.cp ftp_pwds_long, "ftp_pwds_long.txt"
     end
     if !File.exists?("gladius_iptables")
-      FileUtils.cp gladius_iptables, 'gladius_iptables'
+      FileUtils.cp gladius_iptables, "gladius_iptables"
     end
     if !File.exists?("mysql_usrs_long.txt")
-      FileUtils.cp mysql_usrs_long, 'mysql_usrs_long.txt'
+      FileUtils.cp mysql_usrs_long, "mysql_usrs_long.txt"
     end
     if !File.exists?("mysql_pwds_long.txt")
-      FileUtils.cp mysql_pwds_long, 'mysql_pwds_long.txt'
+      FileUtils.cp mysql_pwds_long, "mysql_pwds_long.txt"
     end
     if !File.exists?("ssh_usrs_long.txt")
-      FileUtils.cp ssh_usrs_long, 'ssh_usrs_long.txt'
+      FileUtils.cp ssh_usrs_long, "ssh_usrs_long.txt"
     end
     if !File.exists?("ssh_pwds_long.txt")
-      FileUtils.cp ssh_pwds_long, 'ssh_pwds_long.txt'  
+      FileUtils.cp ssh_pwds_long, "ssh_pwds_long.txt"  
     end
+    if !File.exists?("vpn_group_id_long.txt")
+      FileUtils.cp vpn_group_id_long, "vpn_group_id_long.txt"  
+    end
+    vpn_group_id_long
     # Create config file
     Dir.chdir(usr_c)
     if !File.exists?("gladius.conf")

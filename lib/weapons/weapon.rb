@@ -151,6 +151,7 @@ class Weapon
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "FTP" then FTP.new("Gather Information - FTP").menu
       when "HTTP" then HTTP.new("HTTP(S)").menu
+      when "KaliSupport" then KaliSupport.new("Configure Kali Services").menu
       when "ParseFile" then ParseFile.new("Parse Files").menu
       when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
       when "SNMP" then SNMP.new("SNMP").menu
