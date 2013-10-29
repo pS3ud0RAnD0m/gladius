@@ -1,0 +1,17 @@
+DefaultRAGroup
+users
+Users
+Admin
+admin
+remoteusers
+RemoteUsers
+remoteadmin
+RemoteAdmin
+test
+temp
+Test
+Temp
+testgroup
+tempgroup
+TestGroup
+TempGroup

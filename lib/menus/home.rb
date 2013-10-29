@@ -30,7 +30,6 @@ class Home
       when 6 then KaliSupport.new("Kali Support").menu
       when 99 then GExeption.new.exit_gladius
       else puts "Invalid selection.".red
-        puts
         menu
     end
   end

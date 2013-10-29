@@ -1,17 +1,11 @@
-#!/usr/bin/env ruby
-
 # Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
 
 class Fierce < Weapon
   def initialize(title)
     @title = title
     # Path variables
     @@path_weapon = "fierce"
-    @@path_hosts = "/usr/share/gladius/input/fierce_hosts.txt"
+    @@path_hosts = "/usr/share/gladius/input/dns_hosts_long.txt"
     @@hosts = []
     # Variables for timestamping out files and child pid files
     @@time = Time.now
