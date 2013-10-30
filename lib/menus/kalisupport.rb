@@ -20,7 +20,7 @@ class KaliSupport < Menu
       when 1 then ParseFile.new("Parse Files").menu
       when 2 then IPtables.new("KaliSupport", "List IPtables Rules").menu("list")
       when 3 then IPtables.new("KaliSupport", "Configure IPtables Rules").menu("config")
-      when 4 then Atftpd.new("KaliSupport", "Setup a TFTP server").menu("setup")
+      when 4 then Atftpd.new("KaliSupport", "Setup a TFTP server").menu("config")
       when 5 then puts "Not implemented yet.".red
         menu
       when 6 then puts "Not implemented yet.".red
