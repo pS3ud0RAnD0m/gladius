@@ -17,7 +17,7 @@ class Gpty
           c = File.open(a, "w") { |file| file.write("#{pid}") }
           stdin.each { |line| print line }
         rescue Errno::EIO
-          #puts "Exit needs resolved........".red
+# ttd_2: Exit needs resolved.
         end
       end
     rescue PTY::ChildExited

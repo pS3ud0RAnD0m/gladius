@@ -13,7 +13,7 @@ class GNmap < Weapon
 # DRY methods
 ###############################################################################
   # Get target(s) and pass to relevant scan method
-  def menu(scan_type)
+  def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
     a = File.open(@stdn_hosts, "w")
@@ -27,7 +27,7 @@ class GNmap < Weapon
       puts "No hosts were input.".red
       menu
     else
-      case scan_type
+      case run_method
         # Pass discovery scans
         when "tcp_very_quick_lan" then tcp_very_quick_lan
         when "tcp_very_quick_wan" then tcp_very_quick_wan
@@ -67,7 +67,7 @@ class GNmap < Weapon
   end
 
 ###############################################################################
-# Discovery methods
+# Run methods
 ###############################################################################
   # Scan top 25 tcp ports on LAN
   def tcp_very_quick_lan

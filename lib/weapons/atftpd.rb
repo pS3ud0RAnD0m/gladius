@@ -32,9 +32,11 @@ class Atftpd < Weapon
       puts "IPtables is not dropping. Consider configuring IPtables soon."
       config
     end
+  rescue Interrupt
+    GExeption.new.exit_weapon("aftpd", @prev_menu)
   end
 
-  # Parse and exit
+  # Exit
   def clean_exit
     exit_weapon
   end
@@ -44,21 +46,24 @@ class Atftpd < Weapon
 ###############################################################################
   # Setup a TFTP server
   def config
+     if Dir["/tmp/tftp"] == []
+      Dir.mkdir("/tmp/tftp")
+      puts "Created the /tmp/tftp directory.".yellow
+    end
     cmd = @path + " --daemon --port 69 --logfile /var/log/atftpd.log /tmp/tftp"
     run(cmd)
-    atftpd_status = `netstat -an |grep udp |grep 69`
+    atftpd_status = `netstat -an |grep 'udp.*69'`
     if atftpd_status.empty?
-      cmd = "netstat -an |grep udp |grep 69"
+      cmd = "netstat -an |grep 'udp.*69'"
       run(cmd)
       puts
-      puts "Hmmmm, the server doesn't appear to have started:".red
+      puts "Hmmmm, the server doesn't appear to have started.".red
       puts "Personally, I would try it again because I have seen it require a few attempts before.".yellow
     else
-      cmd = "netstat -an |grep udp |grep 69"
+      cmd = "netstat -an |grep 'udp.*69'"
       run(cmd)
-      puts "The server is running:".light_yellow
-      puts
-      puts "You can shutdown the server with 'killall atftpd'.".light_yellow
+      puts "The server is running!".light_yellow
+      puts "You can shutdown the server with 'killall atftpd'.".yellow
     end
     clean_exit
   end

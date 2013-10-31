@@ -115,13 +115,29 @@ class Weapon
   def instruct_input_usrs
     puts "Input user(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+    puts "Examples:".yellow
   end
   
-  def instruct_input_pswds
+  def instruct_input_pwds
     puts "Input password(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+    puts "Examples:".yellow
   end
-  
+
+  def instruct_input_usrs_list
+    puts "Input your user file and press 'Enter'.".light_yellow
+    puts "Example:".yellow
+    puts "/root/Desktop/users.txt".yellow
+    puts
+  end
+
+  def instruct_input_pwds_list
+    puts "Input your user file and press 'Enter'.".light_yellow
+    puts "Example:".yellow
+    puts "/root/Desktop/passwords.txt".yellow
+    puts
+  end
+
   def run(cmd)
     puts
     pid_file = get_pid_file
@@ -149,6 +165,7 @@ class Weapon
 # ttd_2: add all menus to this list
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
+      when "DNS" then DNS.new("Gather Information - DNS").menu
       when "FTP" then FTP.new("Gather Information - FTP").menu
       when "HTTP" then HTTP.new("HTTP(S)").menu
       when "KaliSupport" then KaliSupport.new("Configure Kali Services").menu
