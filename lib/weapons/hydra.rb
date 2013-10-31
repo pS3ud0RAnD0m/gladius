@@ -21,7 +21,7 @@ class Hydra < Weapon
 # DRY methods
 ###############################################################################
   # Get target(s) and pass to relevant dictionary method
-  def menu(scan_type)
+  def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip")
     a = File.open(@stdn_hosts, "w")
@@ -43,7 +43,7 @@ class Hydra < Weapon
       else line_count = line_count.to_s
         puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
     end
-    case scan_type
+    case run_method
       when "cvs" then puts
       when "ftp" then puts "1. 476 attempts/host = 14 users * 34 passwords"
       when "http" then puts
@@ -71,7 +71,7 @@ class Hydra < Weapon
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password lists."
     input_method = gets.to_i
-    case scan_type
+    case run_method
       #when "cvs" then cvs
       when "ftp"
         case input_method
@@ -135,7 +135,7 @@ class Hydra < Weapon
   end
 
 ###############################################################################
-# Dictionary methods
+# Run methods
 ###############################################################################
   def ftp_gladius_long
     @out_file = get_out_file_txt(@name)
@@ -146,7 +146,6 @@ class Hydra < Weapon
 
   def ftp_stdn
     instruct_input_usrs
-    puts "Examples:".yellow
     puts "root".yellow
     puts "ftp".yellow
     puts
@@ -157,8 +156,7 @@ class Hydra < Weapon
     a.close
     stdn_usrs = @stdn_usrs
     puts
-    instruct_input_pswds
-    puts "Examples:".yellow
+    instruct_input_pwds
     puts "password".yellow
     puts "abc123".yellow
     puts
@@ -175,16 +173,10 @@ class Hydra < Weapon
   end
   
   def ftp_stdn_list
-    puts "Input your user file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/users.txt".yellow
-    puts
+    instruct_input_usrs_list
     stdn_usrs = gets.chomp
     puts
-    puts "Input your password file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/passwords.txt".yellow
-    puts
+    instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
@@ -202,7 +194,6 @@ class Hydra < Weapon
   
   def mysql_stdn
     instruct_input_usrs
-    puts "Examples:".yellow
     puts "root".yellow
     puts "mysql".yellow
     puts
@@ -213,8 +204,7 @@ class Hydra < Weapon
     a.close
     stdn_usrs = @stdn_usrs
     puts
-    instruct_input_pswds
-    puts "Examples:".yellow
+    instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
     puts "mysql".yellow
@@ -235,16 +225,10 @@ class Hydra < Weapon
   end
   
   def mysql_stdn_list
-    puts "Input your user file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/users.txt".yellow
-    puts
+    instruct_input_usrs_list
     stdn_usrs = gets.chomp
     puts
-    puts "Input your password file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/passwords.txt".yellow
-    puts
+    instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
@@ -262,7 +246,6 @@ class Hydra < Weapon
 
   def ssh_stdn
     instruct_input_usrs
-    puts "Examples:".yellow
     puts "root".yellow
     puts
     a = File.open(@stdn_usrs, "w")
@@ -272,8 +255,7 @@ class Hydra < Weapon
     a.close
     stdn_usrs = @stdn_usrs
     puts
-    instruct_input_pswds
-    puts "Examples:".yellow
+    instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
     puts
@@ -290,16 +272,10 @@ class Hydra < Weapon
   end
   
   def ssh_stdn_list
-    puts "Input your user file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/users.txt".yellow
-    puts
+    instruct_input_usrs_list
     stdn_usrs = gets.chomp
     puts
-    puts "Input your password file and press 'Enter'.".light_yellow
-    puts "Example:".yellow
-    puts "/root/Desktop/passwords.txt".yellow
-    puts
+    instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)

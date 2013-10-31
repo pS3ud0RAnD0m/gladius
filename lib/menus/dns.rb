@@ -1,12 +1,6 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'menu'
-require_relative '../weapons/dnsrecon'
-require_relative '../weapons/fierce'
-require_relative '../weapons/dig'
 
 class DNS < Menu
   def menu
@@ -20,21 +14,20 @@ class DNS < Menu
     puts "6.  Perform reverse lookups for an IP block (DNSrecon)"
     puts "88. Back"
     puts "99. Exit Gladius"
-
     sel = gets.to_i
     puts
     if sel == 1
-      DiG.new("DiG - Identify Domain Controllers").idcontrollers
+      DiG.new("DNS", "DiG - Identify Domain Controllers").menu("idcontrollers")
     elsif sel == 2
-      DNSrecon.new("DNSrecon - Zone Transfer").transfer
+      DNSrecon.new("DNS", "DNSrecon - Zone Transfer").menu("transfer")
     elsif sel == 3
-      DNSrecon.new("DNSrecon - Zone Transfer or Lookup Standard Records").standard
+      DNSrecon.new("DNS", "DNSrecon - Zone Transfer or Lookup Standard Records").menu("standard")
     elsif sel == 4
-      Fierce.new("Fierce - Zone Transfer or Brute Force Records").brute
+      Fierce.new("DNS", "Fierce - Zone Transfer or Brute Force Records").menu("brute")
     elsif sel == 5
-      DNSrecon.new("DNSrecon - Google Search for Sub-domains and Hosts").google
+      DNSrecon.new("DNS", "DNSrecon - Google Search for Sub-domains and Hosts").menu("google")
     elsif sel == 6
-      DNSrecon.new("DNSrecon - Reverse Lookups").reverse
+      DNSrecon.new("DNS", "DNSrecon - Reverse Lookups").menu("reverse")
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99
