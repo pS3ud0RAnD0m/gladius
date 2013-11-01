@@ -12,7 +12,7 @@ class GNmap < Weapon
 ###############################################################################
 # DRY methods
 ###############################################################################
-  # Get target(s) and pass to relevant scan method
+  # Get target(s) and pass to relevant run method
   def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")

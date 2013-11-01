@@ -23,7 +23,7 @@ class DNS < Menu
     elsif sel == 3
       DNSrecon.new("DNS", "DNSrecon - Zone Transfer or Lookup Standard Records").menu("standard")
     elsif sel == 4
-      Fierce.new("DNS", "Fierce - Zone Transfer or Brute Force Records").menu("brute")
+      Fierce.new("DNS", "Fierce - Zone Transfer or Brute Force Records").menu("dictionary")
     elsif sel == 5
       DNSrecon.new("DNS", "DNSrecon - Google Search for Sub-domains and Hosts").menu("google")
     elsif sel == 6
