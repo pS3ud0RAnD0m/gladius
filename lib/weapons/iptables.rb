@@ -89,7 +89,7 @@ class IPtables < Weapon
     run(cmd)
     cmd = "echo 'kern.warning /var/log/iptables.log' |cat >> /etc/rsyslog.conf"
     run(cmd)
-# ttd_2: add logrotate here
+# ttd_1: add logrotate here
     cmd = "service rsyslog restart"
     run(cmd)
     cmd = "service iptables restart"

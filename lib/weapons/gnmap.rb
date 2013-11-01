@@ -29,6 +29,7 @@ class GNmap < Weapon
     else
       case run_method
         # Pass discovery scans
+        when "ping_discovery" then ping_discovery
         when "tcp_very_quick_lan" then tcp_very_quick_lan
         when "tcp_very_quick_wan" then tcp_very_quick_wan
         when "tcp_quick" then tcp_quick
@@ -69,6 +70,14 @@ class GNmap < Weapon
 ###############################################################################
 # Run methods
 ###############################################################################
+  # Scan ARP/ICMP discovery
+  def ping_discovery
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -T4 -sn --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
+    run(cmd)
+    clean_exit
+  end
+  
   # Scan top 25 tcp ports on LAN
   def tcp_very_quick_lan
     @out_file = get_out_file(@name)
