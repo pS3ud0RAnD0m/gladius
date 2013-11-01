@@ -12,7 +12,7 @@ class DNSrecon < Weapon
 ###############################################################################
 # DRY methods
 ###############################################################################
-  # Get target(s) and pass to relevant scan method
+  # Get target(s) and pass to relevant run method
   def menu(run_method)
     header
     case run_method
@@ -45,6 +45,10 @@ class DNSrecon < Weapon
 
   # Exit
   def clean_exit
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
     exit_weapon
   end
   
@@ -53,7 +57,7 @@ class DNSrecon < Weapon
 ###############################################################################
   # Attempt a zone transfer:
   def transfer
-# ttd_2: Consolidate out files for all run methods.
+# ttd_1: Consolidate out files for all run methods.
     @stdn_hosts.each do |host|
     @out_file = get_out_file_txt(@name)
     cmd = @path + " --threads 2 -t axfr -d " + host

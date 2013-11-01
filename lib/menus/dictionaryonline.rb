@@ -10,6 +10,7 @@ class DictionaryOnline < Menu
     header
     puts "Select a service to attack:".light_yellow
     puts "1.  CVS (Hydra) (NI)"
+# ttd_1: add dns (fierce)
     puts "2.  FTP (Hydra)"
     puts "3.  HTTP(S) (Hydra) (NI)"
     puts "4.  IMAP (Hydra) (NI)"

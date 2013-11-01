@@ -1,92 +1,63 @@
 # Author:  p$3ud0R@nD0m
 
 class Fierce < Weapon
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    # Path variables
-    @@path_weapon = "fierce"
-    @@path_hosts = "/usr/share/gladius/input/dns_hosts_long.txt"
-    @@hosts = []
-    # Variables for timestamping out files and child pid files
-    @@time = Time.now
-    @@out_file_tstamp = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + \
-                  "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/fierce_" + @@out_file_tstamp + ".txt"
-    @@pid_tstamp = "%10.10f" % @@time.to_f
-    @@pid_file = "/usr/share/gladius/tmp/pids/" + @@pid_tstamp
-  end
-  
-  # Ensure that weapon's pid is killed, set int rescue and exit.
-  def clean_exit
-    if File.exists?(@@pid_file)
-      pid = File.read(@@pid_file)
-      `kill -9 #{pid}`
-      File.delete(@@pid_file)
-    end
-    puts
-    DNS.new("DNS").menu
-  rescue Interrupt
-    puts
-    puts "Exiting Gladius. Have a bloody day!".red
-    begin
-      Kernel.exit
-    rescue Exception => e
-    puts
-    end
-  end
-  
-  # Rescue mid-attack 
-  def resc
-    puts
-    puts "Brute force stopped due to interrupt.".red
-    clean_exit
+    @path = "fierce"
+    @name = @path
+    @stdn_hosts = []
+    @dns_hosts_long = Path.get_path("dns_hosts_long")
   end
 
-  # Display result file
-  def results
-    out_file = @@out_file
-    puts
-    puts "Raw output can be found here:".yellow
-    puts out_file
-  end
-  
-  # Attempt a zone transfer and dictionary attack records
-  def brute
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant run method
+  def menu(run_method)
     header
-    instruct_input_targets("domain")
+    case run_method
+      when "dictionary" then instruct_input_targets("domain")
+    end
     while line = gets
-      @@hosts << line.chomp
+      @stdn_hosts << line.chomp
     end
-    if @@hosts.count == 0
+    if @stdn_hosts.count == 0
       puts "No hosts were input.".red
-      DNS.new("DNS").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts
-        puts "Attempting a zone transfer and brute force against " + host + " ..."
-        puts
-        x = Gpty.new
-        x.time = @@pid_tstamp
-        x.cmd = @@path_weapon + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
-        x.shell
-      end
-      results
-      clean_exit
-    else
-      l = @@hosts.count
-      puts
-      puts "Attempting zone transfers and brute force attacks against #{l} domains ..."
-      @@hosts.each do |host|
-        puts
-        x = Gpty.new
-        x.time = @@pid_tstamp
-        x.cmd = @@path_weapon + " --threads 2 -wordlist " + @@path_hosts + " -dns " + host + " -file " + @@out_file
-        x.shell
-      end
-      results
-      clean_exit
+      menu
+    elsif @stdn_hosts.count == 1
+      puts "Targeting " + @stdn_hosts[0] + " ..."
+    else 
+      hosts_count = @stdn_hosts.count
+      puts "Targeting #{hosts_count} domains ..."
     end
-    rescue Interrupt
-      resc
+    case run_method
+      when "dictionary" then dictionary
+    end
+  rescue Interrupt
+    GExeption.new.exit_weapon("Fierce", @prev_menu)
+  end
+
+  # Exit
+  def clean_exit
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
+    exit_weapon
+  end
+
+###############################################################################
+# Run methods
+###############################################################################
+  # Attempt a zone transfer and dictionary attack records
+  def dictionary
+# ttd_1: Consolidate out files for all run methods.
+    @stdn_hosts.each do |host|
+      @out_file = get_out_file_txt(@name)
+      cmd = @path + " --threads 2 -wordlist " + @dns_hosts_long + " -dns " + host + " -file " + @out_file
+      run(cmd)
+    end
+    clean_exit
   end
 end

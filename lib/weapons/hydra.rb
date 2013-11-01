@@ -20,7 +20,7 @@ class Hydra < Weapon
 ###############################################################################
 # DRY methods
 ###############################################################################
-  # Get target(s) and pass to relevant dictionary method
+  # Get target(s) and pass to relevant run method
   def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip")

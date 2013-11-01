@@ -40,6 +40,7 @@ module Path
         "usr_g"               => "/usr/share/gladius/",
         "usr"                 => "/usr/share/",
         # Files
+        "dns_hosts_long"         => "/usr/share/gladius/input/dns_hosts_long.txt",
         "ftp_pwds_long"          => "/usr/share/gladius/input/ftp_pwds_long.txt",
         "ftp_pwds_short"         => "/usr/share/gladius/input/ftp_pwds_short.txt",
         "ftp_usrs_long"          => "/usr/share/gladius/input/ftp_usrs_long.txt",
