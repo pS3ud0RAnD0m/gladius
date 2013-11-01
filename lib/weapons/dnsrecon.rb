@@ -1,175 +1,94 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class DNSrecon < Weapon
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    @@path = "dnsrecon"
-    @@hosts = []
+    @path = "dnsrecon"
+    @name = @path
+    @stdn_hosts = []
   end
 
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant scan method
+  def menu(run_method)
+    header
+    case run_method
+      when "transfer" then instruct_input_targets("fqdn")
+      when "standard" then instruct_input_targets("fqdn")
+      when "google" then instruct_input_targets("cidr")
+      when "reverse" then instruct_input_targets("iprl", "cidr")
+    end
+    while line = gets
+      @stdn_hosts << line.chomp
+    end
+    if @stdn_hosts.count == 0
+      puts "No hosts were input.".red
+      menu
+    elsif @stdn_hosts.count == 1
+      puts "Targeting " + @stdn_hosts[0] + " ..."
+    else 
+      hosts_count = @stdn_hosts.count
+      puts "Targeting #{hosts_count} domains ..."
+    end
+    case run_method
+      when "transfer" then transfer
+      when "standard" then standard
+      when "google" then google
+      when "reverse" then reverse
+    end
+  rescue Interrupt
+    GExeption.new.exit_weapon("DNSRecon", @prev_menu)
+  end
+
+  # Exit
+  def clean_exit
+    exit_weapon
+  end
+  
+###############################################################################
+# Run methods
+###############################################################################
   # Attempt a zone transfer:
   def transfer
-    header
-    instruct_input_targets("fqdn")
-    while line = gets
-      @@hosts << line.chomp
+# ttd_2: Consolidate out files for all run methods.
+    @stdn_hosts.each do |host|
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " --threads 2 -t axfr -d " + host
+    run(cmd)
     end
-    if @@hosts.count == 0
-      puts "No hosts were input.".red
-      DNS.new("DNS").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts "Attempting a zone transfer against " + host + " ..."
-        puts
-        i = Gpty.new
-        i.cmd = @@path + " --threads 2 -t axfr -d " + host
-        i.shell
-      end
-      puts
-      DNS.new("DNS").menu
-    else
-      l = @@hosts.count
-      puts "Attempting zone transfers against #{l} domains ..."
-        @@hosts.each do |host|
-          puts
-          i = Gpty.new
-          i.cmd = @@path + " --threads 2 -t axfr -d " + host
-          i.shell
-        end
-      puts
-      DNS.new("DNS").menu
-    end
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Attempt stopped due to interrupt.".light_yellow
-      puts
-      DNS.new("DNS").menu
+    clean_exit
   end
   
   # Attempt a zone transfer, then enum standard records:
   def standard
-    header
-    instruct_input_targets("fqdn")
-    while line = gets
-      @@hosts << line.chomp
+    @stdn_hosts.each do |host|
+      @out_file = get_out_file_txt(@name)
+      cmd = @path + " --threads 2 -a -d " + host
+      run(cmd)
     end
-    if @@hosts.count == 0
-      puts "No hosts were input.".red
-      DNS.new("DNS").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts "Attempting a zone transfer and standard enum against " + host + " ..."
-        puts
-        i = Gpty.new
-        i.cmd = @@path + " --threads 2 -a -d " + host
-        i.shell
-      end
-      puts
-      DNS.new("DNS").menu
-    else
-      l = @@hosts.count
-      puts "Attempting zone transfers and standard enums against #{l} domains ..."
-        @@hosts.each do |host|
-          puts
-          i = Gpty.new
-          i.cmd = @@path + " --threads 2 -a -d " + host
-          i.shell
-        end
-      puts
-      DNS.new("DNS").menu
-    end
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Attempt stopped due to interrupt.".light_yellow
-      puts
-      DNS.new("DNS").menu
+    clean_exit
   end
 
-  # Perform Google search for sub-domains and @@hosts:
+  # Perform Google search for sub-domains and @stdn_hosts:
   def google
-    header
-    instruct_input_targets("cidr")
-    while line = gets
-      @@hosts << line.chomp
+    @stdn_hosts.each do |host|
+      @out_file = get_out_file_txt(@name)
+      cmd = @path + " --threads 2 -t goo -d " + host
+      run(cmd)
     end
-    if @@hosts.count == 0
-      puts "No hosts were input.".red
-      DNS.new("DNS").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts "Performing Google search for sub-domains and hosts against " + host + " ..."
-        puts
-        i = Gpty.new
-        i.cmd = @@path + " --threads 2 -t goo -d " + host
-        i.shell
-      end
-      puts
-      DNS.new("DNS").menu
-    else
-      l = @@hosts.count
-      puts "Performing Google search for sub-domains and hosts against #{l} domains ..."
-        @@hosts.each do |host|
-          puts
-          i = Gpty.new
-          i.cmd = @@path + " --threads 2 -t goo -d " + host
-          i.shell
-        end
-      puts
-      DNS.new("DNS").menu
-    end
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Search stopped due to interrupt.".light_yellow
-      puts
-      DNS.new("DNS").menu
+    clean_exit
   end
   
   # Reverse lookups for given block
   def reverse
-    header
-    instruct_input_targets("iprl", "cidr")
-    while line = gets
-      @@hosts << line.chomp
+    @stdn_hosts.each do |host|
+      @out_file = get_out_file_txt(@name)
+      cmd = @path + " --threads 2 -t rvl -r " + host
+      run(cmd)
     end
-    if @@hosts.count == 0
-      puts "No hosts were input.".red
-      DNS.new("DNS").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts "Performing reverse lookups against " + host + " ..."
-        puts
-        i = Gpty.new
-        i.cmd = @@path + " --threads 2 -t rvl -r " + host
-        i.shell
-      end
-      puts
-      DNS.new("DNS").menu
-    else
-      l = @@hosts.count
-      puts "Performing reverse lookups against #{l} targets ..."
-        @@hosts.each do |host|
-          puts
-          i = Gpty.new
-          i.cmd = @@path + " --threads 2 -t rvl -r " + host
-          i.shell
-        end
-      puts
-      DNS.new("DNS").menu
-    end
-    # Catch interrupt
-    rescue Interrupt
-      puts
-      puts "Lookups stopped due to interrupt.".light_yellow
-      puts
-      DNS.new("DNS").menu
+    clean_exit
   end
 end  

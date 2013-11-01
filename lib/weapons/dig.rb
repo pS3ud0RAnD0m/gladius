@@ -6,7 +6,6 @@ class DiG < Weapon
     @title = title
     @path = "dig"
     @name = @path
-    @hosts = []
   end
 
 ###############################################################################
