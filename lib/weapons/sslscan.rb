@@ -8,7 +8,7 @@ class SSLScan < Weapon
     @title = title
     @path = "sslscan"
     @name = @path
-    @hosts_file = Path.hosts_file
+    @stdn_hosts = Path.get_path("stdn_hosts")
   end
 
 ###############################################################################
@@ -18,12 +18,12 @@ class SSLScan < Weapon
   def menu(scan_type)
     header
     instruct_input_targets("fqdn", "fqdnp", "ip", "ipp")
-    a = File.open(@hosts_file, "w")
+    a = File.open(@stdn_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts_file
+    hosts = @stdn_hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
@@ -60,7 +60,7 @@ class SSLScan < Weapon
   # Discover supported SSL/TLS certs
   def common
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " --no-failed --targets=" + @hosts_file + " |tee " + @out_file
+    cmd = @path + " --no-failed --targets=" + @stdn_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end
