@@ -51,16 +51,11 @@ class SSLScan < Weapon
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
-    puts
-    case @prev_menu
-      when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
-    end
-  rescue Interrupt
-    GExeption.new.exit_gladius
+    exit_weapon
   end
   
 ###############################################################################
-# Discovery methods
+# Run methods
 ###############################################################################
   # Discover supported SSL/TLS certs
   def common
