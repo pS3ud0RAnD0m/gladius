@@ -57,7 +57,7 @@ module DirStructure
       FileUtils.touch("stdn_pwds.txt")
     end
     if !File.exists?("snmp_comm_strings_long.txt")
-      FileUtils.cp snmp_comm_strings_long, "snmp_comm_strings_long"
+      FileUtils.cp snmp_comm_strings_long, "snmp_comm_strings_long.txt"
     end
     if !File.exists?("apache_users_long.txt")
       FileUtils.cp apache_users_long, "apache_users_long.txt"

@@ -30,6 +30,7 @@ class GExeption
 # ttd_2: add all menus to this list
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
+      when "DNS" then DNS.new("Gather Information - DNS").menu
       when "FTP" then FTP.new("Gather Information - FTP").menu
       when "HTTP" then HTTP.new("HTTP(S)").menu
       when "KaliSupport" then KaliSupport.new("Configure Kali Services").menu

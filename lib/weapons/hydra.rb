@@ -34,7 +34,7 @@ class Hydra < Weapon
     puts
     case line_count
       when 0 then puts "No hosts were input.".red
-        menu
+        menu(run_method)
       when 1 then puts "Select your tactic:".light_yellow
         puts "Since only 1 host was input, we recommend option 1.".yellow
       when 2..5 then line_count = line_count.to_s

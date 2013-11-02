@@ -1,10 +1,4 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class Gladius < Weapon
   def initialize(title)

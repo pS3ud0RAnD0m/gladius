@@ -1,50 +1,62 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
+# Author: p$3ud0R@nD0m
 
 class ApacheUsers < Weapon
-  def initialize(title)
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    @@path_weapon = "apache-users"
-    @@path_names = "/usr/share/gladius/input/apache_usernames.txt"
-    @@hosts = []
+    @path = "apache-users"
+    @name = @path
+    @apache_users_long = Path.get_path("apache_users_long")
+    @stdn_hosts = []
   end
-  
-  # Enum Users
-  def fingerprint
+
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant run method
+  def menu(run_method)
     header
+# ttd_1: get ports via x.x.x.x:80, then parse and pass to run methods
     instruct_input_targets("fqdn", "ip")
     while line = gets
-      @@hosts << line.chomp
+      @stdn_hosts << line.chomp
     end
-    if @@hosts.count == 0
+    if @stdn_hosts.count == 0
       puts "No hosts were input.".red
-      HTTP.new("HTTP(S)").menu
-    elsif @@hosts.count == 1
-      @@hosts.each do |host|
-        puts "Attempting to enum users on " + host + " ..."
-        puts
-        i = Gpty.new
-        i.cmd = @@path_weapon + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
-        i.shell
-      end
-      puts
-      HTTP.new("HTTP(S)").menu
-    else
-      l = @@hosts.count
-      puts "Attempting to enum users on #{l} hosts ..."
-        @@hosts.each do |host|
-          puts
-          i = Gpty.new
-          i.cmd = @@path_weapon + " -s 0 -e 403 -p 80 -t 8 -l " + @@path_names + " -h " + host
-          i.shell
-        end
-      puts
-      HTTP.new("HTTP(S)").menu
+      menu(run_method)
+    elsif @stdn_hosts.count == 1
+      puts "Targeting " + @stdn_hosts[0] + " ..."
+    else 
+      hosts_count = @stdn_hosts.count
+      puts "Targeting #{hosts_count} domains ..."
     end
+    case run_method
+      when "enum" then enum
+    end
+  rescue Interrupt
+    GExeption.new.exit_weapon("Apache-users", @prev_menu)
+  end
+
+  # Exit
+  def clean_exit
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
+    exit_weapon
+  end
+
+###############################################################################
+# Run methods
+###############################################################################
+  # Enum users
+  def enum
+# ttd_1: Consolidate out files for all run methods.
+    @stdn_hosts.each do |host|
+      @out_file = get_out_file_txt(@name)
+      cmd = @path + " -s 0 -e 403 -p 80 -t 8 -l " + @apache_users_long + " -h " + host
+      run(cmd)
+    end
+    clean_exit
   end
 end
