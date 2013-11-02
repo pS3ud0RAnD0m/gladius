@@ -8,7 +8,7 @@ class Nikto < Weapon
     @title = title
     @path = "nikto"
     @name = @path
-    @hosts_file = Path.hosts_file
+    @stdn_hosts = Path.get_path("stdn_hosts")
   end
 
 ###############################################################################
@@ -25,12 +25,12 @@ class Nikto < Weapon
     end
     puts
     instruct_input_targets("fqdn", "ip", "fqdnp", "ipp", "url")
-    a = File.open(@hosts_file, "w")
+    a = File.open(@stdn_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @hosts_file
+    hosts = @stdn_hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
@@ -46,28 +46,22 @@ class Nikto < Weapon
     GExeption.new.exit_weapon("Nikto", @prev_menu)
   end
 
-  # Cleanly exit
+  # Exit
   def clean_exit
-    puts
     if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
-    puts
-    case @prev_menu
-      when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
-    end
-  rescue Interrupt
-    GExeption.new.exit_gladius
+    exit_weapon
   end
 
 ###############################################################################
-# Discovery methods
+# Run methods
 ###############################################################################
   # Discover common vulns without SSL
   def common
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -C all -h " + @hosts_file + " -output " + @out_file
+    cmd = @path + " -C all -h " + @stdn_hosts + " -output " + @out_file
     run(cmd)
     clean_exit
   end
@@ -75,7 +69,7 @@ class Nikto < Weapon
   # Discover common vulns over SSL
   def common_ssl
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -ssl -C all -h " + @hosts_file + " -output " + @out_file
+    cmd = @path + " -ssl -C all -h " + @stdn_hosts + " -output " + @out_file
     run(cmd)
     clean_exit
   end
