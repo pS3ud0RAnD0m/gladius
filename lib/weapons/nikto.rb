@@ -15,13 +15,13 @@ class Nikto < Weapon
 # DRY methods
 ###############################################################################
   # Get target(s) and pass to relevant scan method
-  def menu(scan_type)
+  def menu(run_method)
     header
     puts "Will your targets be using SSL? [Y/n]".light_yellow
     ssl = gets.chomp.downcase
     case ssl
-      when "n" then scan_type = "common"
-      else scan_type = "common_ssl"
+      when "n" then run_method = "common"
+      else run_method = "common_ssl"
     end
     puts
     instruct_input_targets("fqdn", "ip", "fqdnp", "ipp", "url")
@@ -34,9 +34,9 @@ class Nikto < Weapon
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
-      menu
+      menu(run_method)
     else
-      case scan_type
+      case run_method
         # Pass discovery scans
         when "common" then common
         when "common_ssl" then common_ssl

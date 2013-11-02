@@ -22,9 +22,9 @@ class HTTP < Menu
     elsif sel == 2
       GNmap.new("HTTP", "Nmap - ID Supported HTTP Methods").menu("script_http_methods")
     elsif sel == 3
-      Nikto.new("HTTP", "Nikto - ID Common Web Vulns").menu("common")
+      Nikto.new("HTTP", "Nikto - ID Common Web Vulns").menu("")
     elsif sel == 4
-      ApacheUsers.new("Apache-users - Enum Users").fingerprint
+      ApacheUsers.new("HTTP", "Apache-users - Enum Users").menu("")
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

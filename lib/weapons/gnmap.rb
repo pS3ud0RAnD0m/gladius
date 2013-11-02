@@ -25,7 +25,7 @@ class GNmap < Weapon
     line_count = `wc -l #{stdn_hosts}`.to_i
     if line_count == 0
       puts "No hosts were input.".red
-      menu
+      menu(run_method)
     else
       case run_method
         # Pass discovery scans
