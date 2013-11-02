@@ -62,27 +62,13 @@ class Dsniff < Weapon
     end
   end
 
-  # Parse and exit
+  # Exit
   def clean_exit
-    puts
-    out_file = @out_file
-# ttd_1: account for ANYTHING in the outfile
-    rslt = open(@out_file) { |a| a.grep(/PASS|USER|\//) }
-    if rslt.count == 0
-      puts "Dsniff did not find any credentials.".light_yellow
-    else
-      puts "Dsniff found the following credentials:".light_yellow
-      puts rslt
-      puts
+    if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
-    puts
-    case @prev_menu
-      when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
-    end
-  rescue Interrupt
-    GExeption.new.exit_gladius
+    exit_weapon
   end
   
 ###############################################################################

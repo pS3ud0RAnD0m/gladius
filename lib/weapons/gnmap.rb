@@ -71,6 +71,7 @@ class GNmap < Weapon
 # Run methods
 ###############################################################################
   # Scan ARP/ICMP discovery
+# ttd_2: arp/icmp ping: parse up hosts
   def ping_discovery
     @out_file = get_out_file(@name)
     cmd = @path + " -v -T4 -sn --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
