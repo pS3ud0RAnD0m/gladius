@@ -87,6 +87,7 @@ class IPtables < Weapon
     puts "Created #{system_iptables_log}".light_yellow
     cmd = "chmod 600 /var/log/iptables.log"
     run(cmd)
+# ttd_2: only echo into rsyslog.conf when not there.
     cmd = "echo 'kern.warning /var/log/iptables.log' |cat >> /etc/rsyslog.conf"
     run(cmd)
 # ttd_1: add logrotate here

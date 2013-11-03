@@ -1,6 +1,5 @@
 # Author: p$3ud0R@nD0m
 
-# ttd_1: Refactor all weapons
 class Weapon
   def initialize
     @host = host

@@ -7,6 +7,7 @@ class GNmap < Weapon
     @path = "nmap"
     @name = @path
     @stdn_hosts = Path.get_path("stdn_hosts")
+    @snmp_comm_strings_long = Path.get_path("snmp_comm_strings_long")
   end
 
 ###############################################################################
@@ -45,6 +46,7 @@ class GNmap < Weapon
         # Pass script scans
         when "script_ftp_anon" then script_ftp_anon
         when "script_http_methods" then script_http_methods
+        when "script_snmp_dictionary" then script_snmp_dictionary
         when "script_smtp_open_relay" then script_smtp_open_relay
         when "script_tftp_files" then script_tftp_files
       end
@@ -185,6 +187,7 @@ class GNmap < Weapon
 ###############################################################################
 # Script scans
 ###############################################################################
+# ttd_2: parse these scripts better
   # Discover anonymous ftp
   def script_ftp_anon
     @out_file = get_out_file(@name)
@@ -198,6 +201,14 @@ class GNmap < Weapon
   def script_http_methods
     @out_file = get_out_file(@name)
     cmd = @path + " -v -Pn -sS -p80,443 --script=http-methods -iL " + @stdn_hosts + " -oA " + @out_file
+    run(cmd)
+    clean_exit
+  end
+
+  # Dictionary attack snmp
+  def script_snmp_dictionary
+    @out_file = get_out_file(@name)
+    cmd = @path + " -v -Pn -sU -p161 --script=snmp-brute --script-args snmp-brute.communitiesdb=" + @snmp_comm_strings_long + " -iL " + @stdn_hosts + " -oA " + @out_file
     run(cmd)
     clean_exit
   end
