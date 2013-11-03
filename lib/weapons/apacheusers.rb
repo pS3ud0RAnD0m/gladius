@@ -54,7 +54,7 @@ class ApacheUsers < Weapon
 # ttd_1: Consolidate out files for all run methods.
     @stdn_hosts.each do |host|
       @out_file = get_out_file_txt(@name)
-      cmd = @path + " -s 0 -e 403 -p 80 -t 8 -l " + @apache_users_long + " -h " + host
+      cmd = @path + " -s 0 -e 403 -p 80 -t 8 -l " + @apache_users_long + " -h " + host + " |tee " + @out_file
       run(cmd)
     end
     clean_exit

@@ -118,13 +118,15 @@ class Hydra < Weapon
   # Parse and exit
   def clean_exit(search_term)
     puts
-    out_file = @out_file
-    rslt = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
-    if rslt.count == 0
-      puts "Hydra did not find valid credentials.".light_yellow
-    else
-      puts "Hydra found the following credentials:".light_yellow
-      puts rslt
+    if File.exist?(@out_file)
+      out_file = @out_file
+      results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
+      if results.count == 0
+        puts "Hydra did not find valid credentials.".light_yellow
+      else
+        puts "Hydra found the following credentials:".light_yellow
+        puts results
+      end
     end
     puts
     if File.exist?(@out_file)

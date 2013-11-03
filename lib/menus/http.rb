@@ -24,7 +24,7 @@ class HTTP < Menu
     elsif sel == 3
       Nikto.new("HTTP", "Nikto - ID Common Web Vulns").menu("")
     elsif sel == 4
-      ApacheUsers.new("HTTP", "Apache-users - Enum Users").menu("")
+      ApacheUsers.new("HTTP", "Apache-users - Enum Users").menu("enum")
     elsif sel == 88
       GatherInfo.new("Information Gathering").menu
     elsif sel == 99

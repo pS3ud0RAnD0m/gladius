@@ -46,12 +46,12 @@ class Onesixtyone < Weapon
         puts "Onesixtyone did not find valid credentials.".light_yellow
       else
         puts "Onesixtyone found the following credentials:".light_yellow
-        a = `cat #{out_file}`
-        puts a
+        results = `cat #{out_file}`
+        puts results
+        puts
+        puts "Raw output can be found here:".yellow
+        puts @out_file
       end
-      puts
-      puts "Raw output can be found here:".yellow
-      puts @out_file
     end
     exit_weapon
   end
@@ -64,7 +64,7 @@ class Onesixtyone < Weapon
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -c " + @snmp_comm_strings_long + " -i " + @stdn_hosts + " -d -o " + @out_file
     run(cmd)
-# ttd_1: search_term needs to be fixed. currently "public".
+# ttd_3: search_term needs to be fixed. currently "public".
     clean_exit("public")
   end
 end  
