@@ -27,18 +27,23 @@ class GExeption
     puts
     puts "Exiting #{weapon}.".red
     case back
-# ttd_1: add all menus to this list
-      when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
-      when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
-      when "DNS" then DNS.new("Gather Information - DNS").menu
-      when "FTP" then FTP.new("Gather Information - FTP").menu
-      when "HTTP" then HTTP.new("HTTP(S)").menu
-      when "KaliSupport" then KaliSupport.new("Configure Kali Services").menu
-      when "ParseFile" then ParseFile.new("Parse Files").menu
-      when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
-      when "SNMP" then SNMP.new("SNMP").menu
-      when "SMTP" then SMTP.new("Gather Information - SMTP").menu
-      when "TFTP" then TFTP.new("Gather Information - TFTP").menu
+       when "Dictionary" then Dictionary.new("Dictionary Attacks").menu
+       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+       when "DiscoverServices" then DiscoverServices.new("Nmap - Discover Services").menu
+       when "DNS" then DNS.new("Gather Information - DNS").menu
+       when "FTP" then FTP.new("Gather Information - FTP").menu
+       when "GatherInfo" then GatherInfo.new("Gather Information").menu
+       when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
+       when "KaliSupport" then KaliSupport.new("Kali Support").menu
+       when "NetbiosSMB" then NetbiosSMB.new("Gather Information - Netbios-SMB").menu
+       when "NetworkAttacks" then NetworkAttacks.new("Network Attacks").menu
+       when "ParseFile" then ParseFile.new("Parse Files").menu
+       when "SMTP" then SMTP.new("Gather Information - SMTP").menu
+       when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
+       when "SNMP" then SNMP.new("Gather Information - SNMP").menu
+       when "SnortService" then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
+       when "TFTP" then TFTP.new("Gather Information - TFTP").menu
+       when "VPNAttacks" then VPNAttacks.new("VPN Attacks").menu
     end
   rescue Interrupt
     exit_gladius

@@ -7,7 +7,7 @@ class SysInfo
 ###############################################################################
 # Get methods
 ###############################################################################
-# ttd_4: Rubify get methods these.
+# ttd_4: Rubify get methods.
   # Get the Operating System
   def get_os
   end
