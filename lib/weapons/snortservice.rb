@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'weapon'
 require_relative 'gpty'

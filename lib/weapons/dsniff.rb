@@ -1,5 +1,3 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
 
 class Dsniff < Weapon
@@ -72,9 +70,10 @@ class Dsniff < Weapon
   end
   
 ###############################################################################
-# Sniff methods
+# Run methods
 ###############################################################################
   # Sniff for plaintext creds against all supported protocols
+# ttd_4: why is /usr/share/gladius/config/dsniff.services being created?
   def all
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -m -n -i any |tee " + @out_file

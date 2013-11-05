@@ -2,7 +2,7 @@
 
 class Session
   def create
-    Splash.new.display
+    Splash.new.iterate
     Home.new.menu
   end
 end
