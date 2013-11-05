@@ -14,9 +14,8 @@ class KaliSupport < Menu
     puts "6.  Server - Setup an HTTP(S) server (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
-    sel = gets.to_i
-    puts
-    case sel
+    selection = gets.to_i
+    case selection
       when 1 then ParseFile.new("Parse Files").menu
       when 2 then IPtables.new("KaliSupport", "List IPtables Rules").menu("list")
       when 3 then IPtables.new("KaliSupport", "Configure IPtables Rules").menu("config")
@@ -27,8 +26,7 @@ class KaliSupport < Menu
         menu 
       when 88 then Home.new.menu
       when 99 then GExeption.new.exit_gladius
-      else
-        puts "Invalid selection.".red
+      else puts "Invalid selection.".red
         menu
     end
   end

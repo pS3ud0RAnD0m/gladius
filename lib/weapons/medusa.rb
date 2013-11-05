@@ -1,19 +1,12 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
-
-require_relative 'weapon'
-require_relative 'gpty'
-require_relative '../menus/dictionaryonline'
+# Author: p$3ud0R@nD0m
 
 class Medusa < Weapon
   def initialize(title)
     @title = title
     @@path = "medusa"
     @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
-#    @@sshulist = "/usr/share/gladius/input/medusa_ssh_users.txt"
-#    @@sshplist = "/usr/share/gladius/input/medusa_ssh_passwords.txt"
+    #@@sshulist = "/usr/share/gladius/input/medusa_ssh_users.txt"
+    #@@sshplist = "/usr/share/gladius/input/medusa_ssh_passwords.txt"
     @@time = Time.now
     @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
     @@out_file = "/usr/share/gladius/output/medusa_" + @@t + ".txt"

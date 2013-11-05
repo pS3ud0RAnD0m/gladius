@@ -17,7 +17,6 @@ class Home
     puts "5.  Dictionary attacks"
     puts "6.  Kali support"
     puts "99. Exit Gladius"
-# ttd_1: refactor all menus
     selection = gets.to_i
     case selection
       when 1 then GatherInfo.new("Gather Information").menu

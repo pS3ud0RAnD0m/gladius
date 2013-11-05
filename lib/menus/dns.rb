@@ -14,31 +14,18 @@ class DNS < Menu
     puts "6.  Perform reverse lookups for an IP block (DNSrecon)"
     puts "88. Back"
     puts "99. Exit Gladius"
-    sel = gets.to_i
-    puts
-    if sel == 1
-      DiG.new("DNS", "DiG - Identify Domain Controllers").menu("idcontrollers")
-    elsif sel == 2
-      DNSrecon.new("DNS", "DNSrecon - Zone Transfer").menu("transfer")
-    elsif sel == 3
-      DNSrecon.new("DNS", "DNSrecon - Zone Transfer or Lookup Standard Records").menu("standard")
-    elsif sel == 4
-      Fierce.new("DNS", "Fierce - Zone Transfer or Brute Force Records").menu("dictionary")
-    elsif sel == 5
-      DNSrecon.new("DNS", "DNSrecon - Google Search for Sub-domains and Hosts").menu("google")
-    elsif sel == 6
-      DNSrecon.new("DNS", "DNSrecon - Reverse Lookups").menu("reverse")
-    elsif sel == 88
-      GatherInfo.new("Information Gathering").menu
-    elsif sel == 99
-      begin
-      puts "Exiting Gladius. Have a bloody day!".red
-      puts
-      rescue Interrupt
-      end
-    else
-      puts "Invalid selection.".red
-      menu
+    selection = gets.to_i
+    case selection
+      when 1 then DiG.new("DNS", "DiG - Identify Domain Controllers").menu("idcontrollers")
+      when 2 then DNSrecon.new("DNS", "DNSrecon - Zone Transfer").menu("transfer")
+      when 3 then DNSrecon.new("DNS", "DNSrecon - Zone Transfer or Lookup Standard Records").menu("standard")
+      when 4 then Fierce.new("DNS", "Fierce - Zone Transfer or Brute Force Records").menu("dictionary")
+      when 5 then DNSrecon.new("DNS", "DNSrecon - Google Search for Sub-domains and Hosts").menu("google")
+      when 6 then DNSrecon.new("DNS", "DNSrecon - Reverse Lookups").menu("reverse")
+      when 88 then GatherInfo.new("Information Gathering").menu
+      when 99 then GExeption.new.exit_gladius
+      else puts "Invalid selection.".red
+        menu
     end
   end
 end

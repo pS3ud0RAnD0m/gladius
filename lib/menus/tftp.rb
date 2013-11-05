@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
 # Author:  p$3ud0R@nD0m
-# Version: 0.0.2
 
 require_relative 'menu'
 
@@ -19,7 +16,7 @@ class TFTP < Menu
       when 88 then GatherInfo.new("Information Gathering").menu
       when 99 then GExeption.new.exit_gladius
       else puts "Invalid selection.".red
-      menu
+        menu
     end
   end
 end

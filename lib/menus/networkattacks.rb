@@ -8,8 +8,8 @@ class NetworkAttacks < Menu
     puts "2.  VPN attacks"
     puts "88. Back"
     puts "99. Exit Gladius"
-    sel = gets.to_i
-    case sel
+    selection = gets.to_i
+    case selection
       when 1 then SniffSpoof.new("Sniffing and Spoofing").menu
       when 2 then VPNAttacks.new("VPN Attacks").menu
       when 4 then puts "Not implemented yet.".red
@@ -17,7 +17,6 @@ class NetworkAttacks < Menu
       when 88 then Home.new.menu
       when 99 then GExeption.new.exit_gladius
       else puts "Invalid selection.".red
-        puts
         menu
     end
   end
