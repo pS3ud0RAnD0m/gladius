@@ -1,10 +1,6 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 require_relative 'menu'
-require_relative '../weapons/snortservice'
 
 class ConfigSnort < Menu
   def menu
@@ -15,29 +11,17 @@ class ConfigSnort < Menu
     puts "3.  Start Snort and Snorby (Gladius) (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
-
-    sel = gets.to_i
-    puts
-    if sel == 1
-      SnortService.new("Upgrade/Install Snort/Snorby and Start").install
-    elsif sel == 2
-      puts "Not implemented yet.".red
+    selection = gets.to_i
+    case selection
+      when 1 then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
+      when 2 then puts "Not implemented yet.".red
       menu
-    elsif sel == 3
-      puts "Not implemented yet.".red
+      when 3 then puts "Not implemented yet.".red
       menu
-    elsif sel == 88
-      KaliSupport.new("Configure Back Track Services").menu
-    elsif sel == 99
-      begin
-      puts "Exiting Gladius. Have a bloody day!".red
-      puts
-      rescue Interrupt
-      end
-    else
-      puts "Invalid selection.".red
-      menu
+      when 88 then KaliSupport.new("Configure Back Track Services").menu
+      when 99 then GExeption.new.exit_gladius
+      else puts "Invalid selection.".red
+        menu
     end
   end
 end
-

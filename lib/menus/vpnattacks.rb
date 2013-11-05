@@ -7,14 +7,13 @@ class VPNAttacks < Menu
     puts "1.  Aggressive IKE - grab and crack hash (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
-    sel = gets.to_i
-    case sel
+    selection = gets.to_i
+    case selection
       when 1 then puts "Not implemented yet.".red
         menu
       when 88 then NetworkAttacks.new("Network Attacks").menu
       when 99 then GExeption.new.exit_gladius
       else puts "Invalid selection.".red
-        puts
         menu
     end
   end

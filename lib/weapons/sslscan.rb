@@ -1,6 +1,7 @@
-#!/usr/bin/env ruby
-
 # Author: p$3ud0R@nD0m
+
+# ttd_2: figure out why require_relative 'weapon' is needed.
+require_relative 'weapon'
 
 class SSLScan < Weapon
   def initialize(prev_menu, title)

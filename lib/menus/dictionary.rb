@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-# Author:  p$3ud0R@nD0m
-# Version: 0.0.2
+# Author: p$3ud0R@nD0m
 
 class Dictionary < Menu
   def menu
@@ -12,28 +9,17 @@ class Dictionary < Menu
     puts "3.  Offline dictionary attacks (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
-
-    sel = gets.to_i
-    puts
-    if sel == 1
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 2
-      DictionaryOnline.new("Online Dictionary Attacks").menu
-    elsif sel == 3
-      puts "Not implemented yet.".red
-      menu
-    elsif sel == 88
-      Home.new.menu
-    elsif sel == 99
-      begin
-      puts "Exiting Gladius. Have a bloody day!".red
-      rescue Interrupt
-      end
-    else
-      puts "Invalid selection.".red
-      menu
+    selection = gets.to_i
+    case selection
+      when 1 then puts "Not implemented yet.".red
+        menu
+      when 2 then DictionaryOnline.new("Online Dictionary Attacks").menu
+      when 3 then puts "Not implemented yet.".red
+        menu
+      when 88 then Home.new.menu
+      when 99 then GExeption.new.exit_gladius
+      else puts "Invalid selection.".red
+        menu
     end
   end
 end
-
