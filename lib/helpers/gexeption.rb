@@ -27,7 +27,7 @@ class GExeption
     puts
     puts "Exiting #{weapon}.".red
     case back
-# ttd_2: add all menus to this list
+# ttd_1: add all menus to this list
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "DNS" then DNS.new("Gather Information - DNS").menu

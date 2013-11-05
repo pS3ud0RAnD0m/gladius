@@ -47,6 +47,7 @@ module Path
         "ftp_usrs_long"          => "/usr/share/gladius/input/ftp_usrs_long.txt",
         "ftp_usrs_short"         => "/usr/share/gladius/input/ftp_usrs_short.txt",
         "gladius_iptables"       => "/usr/share/gladius/input/gladius_iptables",
+        "gladius_config"         => "/usr/share/gladius/config/gladius.conf",
         "mysql_pwds_long"        => "/usr/share/gladius/input/mysql_pwds_long.txt",
         "mysql_pwds_short"       => "/usr/share/gladius/input/mysql_pwds_short.txt",
         "mysql_usrs_long"        => "/usr/share/gladius/input/mysql_usrs_long.txt",

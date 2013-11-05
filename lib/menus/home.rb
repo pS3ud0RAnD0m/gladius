@@ -18,8 +18,8 @@ class Home
     puts "6.  Kali support"
     puts "99. Exit Gladius"
 # ttd_1: refactor all menus
-    sel = gets.to_i
-    case sel
+    selection = gets.to_i
+    case selection
       when 1 then GatherInfo.new("Gather Information").menu
       when 2 then NetworkAttacks.new("Network Attacks").menu
       when 3 then puts "Not implemented yet.".red

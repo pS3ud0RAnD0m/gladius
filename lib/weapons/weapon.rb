@@ -161,7 +161,7 @@ class Weapon
   def exit_weapon
     puts
     case @prev_menu
-# ttd_2: add all menus to this list
+# ttd_1: add all menus to this list
       when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
       when "DiscoverServices" then DiscoverServices.new("Discover Services").menu
       when "DNS" then DNS.new("Gather Information - DNS").menu
