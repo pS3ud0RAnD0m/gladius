@@ -3,7 +3,7 @@
 module DirStructure
   # create structure, if it doesn"t exist
   def check
-    # variables
+    # Source variables
     snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
     apache_users_long = source + "apache_users_long.txt"
     dns_hosts_long = source + "dns_hosts_long.txt"
@@ -13,9 +13,15 @@ module DirStructure
     mysql_pwds_long = source + "mysql_pwds_long.txt"
     ssh_usrs_long = source + "ssh_usrs_long.txt"
     ssh_pwds_long = source + "ssh_pwds_long.txt"
-    gladius_iptables = Path.get_source_path("gladius_iptables")
-    vpn_group_id_long = Path.get_source_path("vpn_group_id_long")
+    gladius_iptables_source = Path.get_source_path("gladius_iptables_source")
+    vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long_source")
+    gladius_conf_source = Path.get_source_path("gladius_conf_source")
     
+    # Destination variables
+    gladius_iptables = Path.get_path("gladius_iptables")
+    gladius_conf = Path.get_path("gladius_conf")
+    vpn_group_id_long = Path.get_path("vpn_group_id_long")
+
     # Create dirs
 # ttd_3: make these "each do" ..
     if Dir[usr_g] == []
@@ -89,11 +95,10 @@ module DirStructure
     if !File.exists?("vpn_group_id_long.txt")
       FileUtils.cp vpn_group_id_long, "vpn_group_id_long.txt"  
     end
-    vpn_group_id_long
     # Create config file
-    Dir.chdir(usr_c)
-    if !File.exists?("gladius.conf")
-      FileUtils.touch("gladius.conf")
+    splash_line = `grep previous_splash #{gladius_conf} 2> /dev/null |wc -l`.to_i
+    if !File.exists?(gladius_conf) || splash_line == 0
+      FileUtils.cp gladius_conf_source, gladius_conf
     end
   end
 end

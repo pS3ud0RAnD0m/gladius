@@ -2,13 +2,13 @@
 
 class Splash
   def initialize
-    @gladius_config = Path.get_path("gladius_config")
+    @gladius_conf = Path.get_path("gladius_conf")
   end
 
 # ttd_4: Refactor splash iteration.
   def iterate
-    if File.exist?(@gladius_config)
-      splash_line = open(@gladius_config) { |a| a.grep(/previous_splash/) }
+    if File.exist?(@gladius_conf)
+      splash_line = open(@gladius_conf) { |a| a.grep(/previous_splash/) }
       splash_line_array = splash_line.to_s.split
       old_splash_value = splash_line_array[2].to_i
       case old_splash_value
@@ -26,9 +26,9 @@ class Splash
       old_splash_value_string = old_splash_value.to_s
       new_splash_value_string = new_splash_value.to_s
       display(new_splash_value)
-      a = File.read(@gladius_config)
+      a = File.read(@gladius_conf)
       replace = a.gsub(/#{old_splash_value_string}/, new_splash_value_string)
-      File.open(@gladius_config, "w") {|file| file.puts replace}
+      File.open(@gladius_conf, "w") {|file| file.puts replace}
     end
   end
 

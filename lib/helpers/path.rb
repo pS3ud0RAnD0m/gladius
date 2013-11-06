@@ -47,7 +47,7 @@ module Path
         "ftp_usrs_long"          => "/usr/share/gladius/input/ftp_usrs_long.txt",
         "ftp_usrs_short"         => "/usr/share/gladius/input/ftp_usrs_short.txt",
         "gladius_iptables"       => "/usr/share/gladius/input/gladius_iptables",
-        "gladius_config"         => "/usr/share/gladius/config/gladius.conf",
+        "gladius_conf"           => "/usr/share/gladius/config/gladius.conf",
         "mysql_pwds_long"        => "/usr/share/gladius/input/mysql_pwds_long.txt",
         "mysql_pwds_short"       => "/usr/share/gladius/input/mysql_pwds_short.txt",
         "mysql_usrs_long"        => "/usr/share/gladius/input/mysql_usrs_long.txt",
@@ -73,8 +73,9 @@ module Path
     path =
       {
         # Files
-        "gladius_iptables" => lib_root + "/helpers/input/gladius_iptables",
-        "vpn_group_id_long" => lib_root + "/helpers/input/vpn_group_id_long.txt"
+        "gladius_iptables_source" => lib_root + "/helpers/input/gladius_iptables",
+        "gladius_conf_source" => lib_root + "/helpers/input/gladius.conf",
+        "vpn_group_id_long_source" => lib_root + "/helpers/input/vpn_group_id_long.txt"
       }
     path[g_alias]
   end
