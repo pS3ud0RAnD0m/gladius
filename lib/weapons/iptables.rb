@@ -7,8 +7,10 @@ class IPtables < Weapon
     @path = "iptables"
     @name = @path
     @gladius_iptables = Path.get_path("gladius_iptables")
+    @gladius_iptables_logrotate = Path.get_path("gladius_iptables_logrotate")
     @system_iptables = Path.get_path("system_iptables")
     @system_iptables_log = Path.get_path("system_iptables_log")
+    @system_iptables_logrotate = Path.get_path("system_iptables_logrotate")
   end
 
 ###############################################################################
@@ -21,8 +23,9 @@ class IPtables < Weapon
       when "list" then list
       when "config" then
         puts "This will create the files listed below, configure boot-time run and logging.".light_yellow
-        puts "/var/log/iptables.log".yellow
         puts "/etc/init.d/iptables".yellow
+        puts "/var/log/iptables.log".yellow
+        puts "/etc/logrotate.d/iptables".yellow
         puts "Do you want to continue? [Y/n]".light_yellow
         sel = gets.chomp.downcase
         if sel == "y" || sel.empty?
@@ -78,23 +81,29 @@ class IPtables < Weapon
   def config
     system_iptables = @system_iptables
     system_iptables_log = @system_iptables_log
+    system_iptables_logrotate = @system_iptables_logrotate
     puts "The current ruleset is:".light_yellow
     cmd = "iptables -L -nv"
     run(cmd)
     FileUtils.cp @gladius_iptables, @system_iptables
     puts "Created #{system_iptables}".light_yellow
-    FileUtils.touch(@system_iptables_log)
+    
+    FileUtils.cp @gladius_iptables_logrotate, @system_iptables_logrotate
+    puts "Created #{system_iptables_logrotate}".light_yellow
+    if !File.exists?(@system_iptables_log)
+      FileUtils.touch(@system_iptables_log)
+    end
     puts "Created #{system_iptables_log}".light_yellow
     cmd = "chmod 600 /var/log/iptables.log"
     run(cmd)
 # ttd_2: only echo into rsyslog.conf when not there.
-    cmd = "echo 'kern.warning /var/log/iptables.log' |cat >> /etc/rsyslog.conf"
+    cmd = "echo 'kern.warning /var/log/iptables.log' >>/etc/rsyslog.conf"
     run(cmd)
-# ttd_1: add logrotate here
     cmd = "service rsyslog restart"
     run(cmd)
     cmd = "service iptables restart"
     run(cmd)
+    puts "No output is expected."
     cmd = "update-rc.d iptables defaults"
     run(cmd)
     puts
@@ -104,7 +113,10 @@ class IPtables < Weapon
     puts
     puts "All outbound traffic is permitted.".yellow
     puts "All interesting drops are being logged to /var/log/iptables.log".yellow
-    puts "You can modify the rules by editing /etc/init.d/iptables, then running 'service iptables restart'.".yellow
+    puts "Logs are being rotated and zipped daily.".yellow
+    puts "Seven (7) days of logs are being kept.".yellow
+    puts "You can modify log rotation by editing /etc/logrotate.d/iptables.".yellow
+    puts "You can modify rules by editing /etc/init.d/iptables, then running 'service iptables restart'.".yellow
     clean_exit
   end
 end
