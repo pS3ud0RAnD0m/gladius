@@ -13,12 +13,15 @@ module DirStructure
     mysql_pwds_long = source + "mysql_pwds_long.txt"
     ssh_usrs_long = source + "ssh_usrs_long.txt"
     ssh_pwds_long = source + "ssh_pwds_long.txt"
+    
     gladius_iptables_source = Path.get_source_path("gladius_iptables_source")
+    gladius_iptables_logrotate_source = Path.get_source_path("gladius_iptables_logrotate_source")
     vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long_source")
     gladius_conf_source = Path.get_source_path("gladius_conf_source")
     
     # Destination variables
     gladius_iptables = Path.get_path("gladius_iptables")
+    gladius_iptables_logrotate = Path.get_path("gladius_iptables_logrotate")
     gladius_conf = Path.get_path("gladius_conf")
     vpn_group_id_long = Path.get_path("vpn_group_id_long")
 
@@ -77,8 +80,11 @@ module DirStructure
     if !File.exists?("ftp_pwds_long.txt")
       FileUtils.cp ftp_pwds_long, "ftp_pwds_long.txt"
     end
-    if !File.exists?("gladius_iptables")
-      FileUtils.cp gladius_iptables, "gladius_iptables"
+    if !File.exists?(gladius_iptables)
+      FileUtils.cp gladius_iptables_source, gladius_iptables
+    end
+    if !File.exists?(gladius_iptables_logrotate)
+      FileUtils.cp gladius_iptables_logrotate_source, gladius_iptables_logrotate
     end
     if !File.exists?("mysql_usrs_long.txt")
       FileUtils.cp mysql_usrs_long, "mysql_usrs_long.txt"
@@ -92,8 +98,8 @@ module DirStructure
     if !File.exists?("ssh_pwds_long.txt")
       FileUtils.cp ssh_pwds_long, "ssh_pwds_long.txt"  
     end
-    if !File.exists?("vpn_group_id_long.txt")
-      FileUtils.cp vpn_group_id_long, "vpn_group_id_long.txt"  
+    if !File.exists?(vpn_group_id_long)
+      FileUtils.cp vpn_group_id_long_source, vpn_group_id_long
     end
     # Create config file
     splash_line = `grep previous_splash #{gladius_conf} 2> /dev/null |wc -l`.to_i

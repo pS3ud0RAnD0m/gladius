@@ -40,29 +40,31 @@ module Path
         "usr_g"               => "/usr/share/gladius/",
         "usr"                 => "/usr/share/",
         # Files
-        "apache_users_long"      => "/usr/share/gladius/input/apache_users_long.txt",
-        "dns_hosts_long"         => "/usr/share/gladius/input/dns_hosts_long.txt",
-        "ftp_pwds_long"          => "/usr/share/gladius/input/ftp_pwds_long.txt",
-        "ftp_pwds_short"         => "/usr/share/gladius/input/ftp_pwds_short.txt",
-        "ftp_usrs_long"          => "/usr/share/gladius/input/ftp_usrs_long.txt",
-        "ftp_usrs_short"         => "/usr/share/gladius/input/ftp_usrs_short.txt",
-        "gladius_iptables"       => "/usr/share/gladius/input/gladius_iptables",
-        "gladius_conf"           => "/usr/share/gladius/config/gladius.conf",
-        "mysql_pwds_long"        => "/usr/share/gladius/input/mysql_pwds_long.txt",
-        "mysql_pwds_short"       => "/usr/share/gladius/input/mysql_pwds_short.txt",
-        "mysql_usrs_long"        => "/usr/share/gladius/input/mysql_usrs_long.txt",
-        "mysql_usrs_short"       => "/usr/share/gladius/input/mysql_usrs_short.txt",
-        "snmp_comm_strings_long" => "/usr/share/gladius/input/snmp_comm_strings_long.txt",
-        "ssh_pwds_long"          => "/usr/share/gladius/input/ssh_pwds_long.txt",
-        "ssh_pwds_short"         => "/usr/share/gladius/input/ssh_pwds_short.txt",
-        "ssh_usrs_long"          => "/usr/share/gladius/input/hydra_ssh_usrs_long.txt",
-        "ssh_usrs_short"         => "/usr/share/gladius/input/hydra_ssh_usrs_short.txt",
-        "stdn_hosts"             => "/usr/share/gladius/input/stdn_hosts.txt",
-        "stdn_pwds"              => "/usr/share/gladius/input/stdn_pwds.txt",
-        "stdn_usrs"              => "/usr/share/gladius/input/stdn_usrs.txt",
-        "system_iptables"        => "/etc/init.d/iptables",
-        "system_iptables_log"    => "/var/log/iptables.log",
-        "vpn_group_id_long"      => "/usr/share/gladius/input/vpn_group_id_long.txt"
+        "apache_users_long"          => "/usr/share/gladius/input/apache_users_long.txt",
+        "dns_hosts_long"             => "/usr/share/gladius/input/dns_hosts_long.txt",
+        "ftp_pwds_long"              => "/usr/share/gladius/input/ftp_pwds_long.txt",
+        "ftp_pwds_short"             => "/usr/share/gladius/input/ftp_pwds_short.txt",
+        "ftp_usrs_long"              => "/usr/share/gladius/input/ftp_usrs_long.txt",
+        "ftp_usrs_short"             => "/usr/share/gladius/input/ftp_usrs_short.txt",
+        "gladius_conf"               => "/usr/share/gladius/config/gladius.conf",
+        "gladius_iptables"           => "/usr/share/gladius/input/iptables",
+        "gladius_iptables_logrotate" => "/usr/share/gladius/input/iptables_logrotate",
+        "mysql_pwds_long"            => "/usr/share/gladius/input/mysql_pwds_long.txt",
+        "mysql_pwds_short"           => "/usr/share/gladius/input/mysql_pwds_short.txt",
+        "mysql_usrs_long"            => "/usr/share/gladius/input/mysql_usrs_long.txt",
+        "mysql_usrs_short"           => "/usr/share/gladius/input/mysql_usrs_short.txt",
+        "snmp_comm_strings_long"     => "/usr/share/gladius/input/snmp_comm_strings_long.txt",
+        "ssh_pwds_long"              => "/usr/share/gladius/input/ssh_pwds_long.txt",
+        "ssh_pwds_short"             => "/usr/share/gladius/input/ssh_pwds_short.txt",
+        "ssh_usrs_long"              => "/usr/share/gladius/input/hydra_ssh_usrs_long.txt",
+        "ssh_usrs_short"             => "/usr/share/gladius/input/hydra_ssh_usrs_short.txt",
+        "stdn_hosts"                 => "/usr/share/gladius/input/stdn_hosts.txt",
+        "stdn_pwds"                  => "/usr/share/gladius/input/stdn_pwds.txt",
+        "stdn_usrs"                  => "/usr/share/gladius/input/stdn_usrs.txt",
+        "system_iptables"            => "/etc/init.d/iptables",
+        "system_iptables_log"        => "/var/log/iptables.log",
+        "system_iptables_logrotate"  => "/etc/logrotate.d/iptables",
+        "vpn_group_id_long"          => "/usr/share/gladius/input/vpn_group_id_long.txt"
       }
     path[g_alias]
   end
@@ -73,7 +75,8 @@ module Path
     path =
       {
         # Files
-        "gladius_iptables_source" => lib_root + "/helpers/input/gladius_iptables",
+        "gladius_iptables_source" => lib_root + "/helpers/input/iptables",
+        "gladius_iptables_logrotate_source" => lib_root + "/helpers/input/iptables_logrotate",
         "gladius_conf_source" => lib_root + "/helpers/input/gladius.conf",
         "vpn_group_id_long_source" => lib_root + "/helpers/input/vpn_group_id_long.txt"
       }
