@@ -87,7 +87,7 @@ class IPtables < Weapon
     run(cmd)
     FileUtils.cp @gladius_iptables, @system_iptables
     puts "Created #{system_iptables}".light_yellow
-    
+# ttd_2: Validate iptables.log is rotating properly.
     FileUtils.cp @gladius_iptables_logrotate, @system_iptables_logrotate
     puts "Created #{system_iptables_logrotate}".light_yellow
     if !File.exists?(@system_iptables_log)

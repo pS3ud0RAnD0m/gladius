@@ -196,7 +196,7 @@ class GNmap < Weapon
     clean_exit
   end
 
-# ttd_1: HTTP method: Ask for ports
+# ttd_2: HTTP method: Ask for ports
   # Discover enabled http methods
   def script_http_methods
     @out_file = get_out_file(@name)

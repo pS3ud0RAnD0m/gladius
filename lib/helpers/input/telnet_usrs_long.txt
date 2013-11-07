@@ -1,0 +1,12 @@
+cisco
+root
+telnet
+www
+backup
+ftp
+mysql
+guest
+admin
+postgres
+nobody
+oracle

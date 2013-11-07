@@ -8,6 +8,7 @@ class ApacheUsers < Weapon
     @name = @path
     @apache_users_long = Path.get_path("apache_users_long")
     @stdn_hosts = []
+    @port = ""
   end
 
 ###############################################################################
@@ -16,7 +17,6 @@ class ApacheUsers < Weapon
   # Get target(s) and pass to relevant run method
   def menu(run_method)
     header
-# ttd_1: get ports via x.x.x.x:80, then parse and pass to run methods
     instruct_input_targets("fqdn", "ip")
     while line = gets
       @stdn_hosts << line.chomp
@@ -24,11 +24,12 @@ class ApacheUsers < Weapon
     if @stdn_hosts.count == 0
       puts "No hosts were input.".red
       menu(run_method)
-    elsif @stdn_hosts.count == 1
-      puts "Targeting " + @stdn_hosts[0] + " ..."
-    else 
-      hosts_count = @stdn_hosts.count
-      puts "Targeting #{hosts_count} domains ..."
+    end
+# ttd_2: Mature this port request.
+    puts "What port would you like to use? [443]".light_yellow
+    @port = gets.chomp
+    if @port.empty?
+      @port = "443"
     end
     case run_method
       when "enum" then enum
@@ -57,7 +58,7 @@ class ApacheUsers < Weapon
       `echo "------------------------------" >>#{out_file}`
       `echo "#{host}" >>#{out_file}`
       `echo "------------------------------" >>#{out_file}`
-      cmd = @path + " -s 0 -e 403 -p 80 -t 8 -l " + @apache_users_long + " -h " + host + " |tee -a " + @out_file
+      cmd = @path + " -s 0 -e 403 -p " + @port + " -t 8 -l " + @apache_users_long + " -h " + host + " |tee -a " + @out_file
       run(cmd)
     end
     clean_exit
