@@ -52,10 +52,13 @@ class Fierce < Weapon
 ###############################################################################
   # Attempt a zone transfer and dictionary attack records
   def dictionary
-# ttd_1: Consolidate out files for all run methods.
+    @out_file = get_out_file_txt(@name)
+    out_file = @out_file
     @stdn_hosts.each do |host|
-      @out_file = get_out_file_txt(@name)
-      cmd = @path + " --threads 2 -wordlist " + @dns_hosts_long + " -dns " + host + " -file " + @out_file
+      `echo "------------------------------" >>#{out_file}`
+      `echo "#{host}" >>#{out_file}`
+      `echo "------------------------------" >>#{out_file}`
+      cmd = @path + " --threads 2 -wordlist " + @dns_hosts_long + " -dns " + host + " |tee -a " + @out_file
       run(cmd)
     end
     clean_exit

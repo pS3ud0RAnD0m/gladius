@@ -57,20 +57,27 @@ class DNSrecon < Weapon
 ###############################################################################
   # Attempt a zone transfer:
   def transfer
-# ttd_1: Consolidate out files for all run methods.
-    @stdn_hosts.each do |host|
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " --threads 2 -t axfr -d " + host
-    run(cmd)
+    out_file = @out_file
+    @stdn_hosts.each do |host|
+      `echo "------------------------------" >>#{out_file}`
+      `echo "#{host}" >>#{out_file}`
+      `echo "------------------------------" >>#{out_file}`
+      cmd = @path + " --threads 2 -t axfr -d " + host + " |tee -a " + @out_file
+      run(cmd)
     end
     clean_exit
   end
   
   # Attempt a zone transfer, then enum standard records:
   def standard
+    @out_file = get_out_file_txt(@name)
+    out_file = @out_file
     @stdn_hosts.each do |host|
-      @out_file = get_out_file_txt(@name)
-      cmd = @path + " --threads 2 -a -d " + host
+      `echo "------------------------------" >>#{out_file}`
+      `echo "#{host}" >>#{out_file}`
+      `echo "------------------------------" >>#{out_file}`
+      cmd = @path + " --threads 2 -a -d " + host + " |tee -a " + @out_file
       run(cmd)
     end
     clean_exit
@@ -78,9 +85,13 @@ class DNSrecon < Weapon
 
   # Perform Google search for sub-domains and @stdn_hosts:
   def google
+    @out_file = get_out_file_txt(@name)
+    out_file = @out_file
     @stdn_hosts.each do |host|
-      @out_file = get_out_file_txt(@name)
-      cmd = @path + " --threads 2 -t goo -d " + host
+      `echo "------------------------------" >>#{out_file}`
+      `echo "#{host}" >>#{out_file}`
+      `echo "------------------------------" >>#{out_file}`
+      cmd = @path + " --threads 2 -t goo -d " + host + " |tee -a " + @out_file
       run(cmd)
     end
     clean_exit
@@ -88,9 +99,13 @@ class DNSrecon < Weapon
   
   # Reverse lookups for given block
   def reverse
+    @out_file = get_out_file_txt(@name)
+    out_file = @out_file
     @stdn_hosts.each do |host|
-      @out_file = get_out_file_txt(@name)
-      cmd = @path + " --threads 2 -t rvl -r " + host
+      `echo "------------------------------" >>#{out_file}`
+      `echo "#{host}" >>#{out_file}`
+      `echo "------------------------------" >>#{out_file}`
+      cmd = @path + " --threads 2 -t rvl -r " + host + " |tee -a " + @out_file
       run(cmd)
     end
     clean_exit
