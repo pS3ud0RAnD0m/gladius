@@ -12,7 +12,7 @@ class SNMP < Menu
     selection = gets.to_i
     case selection
       when 1 then GNmap.new("SNMP", "Nmap - Discover SNMP Community Strings").menu("script_snmp_dictionary")
-      when 88 then GNmap.new("Information Gathering").menu
+      when 88 then GatherInfo.new("Information Gathering").menu
       when 99 then GExeption.new.exit_gladius
       else puts "Invalid selection.".red
         menu

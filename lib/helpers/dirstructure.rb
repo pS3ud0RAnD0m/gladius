@@ -11,18 +11,23 @@ module DirStructure
     ftp_pwds_long = source + "ftp_pwds_long.txt"
     mysql_usrs_long = source + "mysql_usrs_long.txt"
     mysql_pwds_long = source + "mysql_pwds_long.txt"
-    ssh_usrs_long = source + "ssh_usrs_long.txt"
-    ssh_pwds_long = source + "ssh_pwds_long.txt"
     
-    gladius_iptables_source = Path.get_source_path("gladius_iptables_source")
-    gladius_iptables_logrotate_source = Path.get_source_path("gladius_iptables_logrotate_source")
-    vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long_source")
     gladius_conf_source = Path.get_source_path("gladius_conf_source")
-    
+    gladius_iptables_logrotate_source = Path.get_source_path("gladius_iptables_logrotate_source")
+    gladius_iptables_source = Path.get_source_path("gladius_iptables_source")
+    ssh_usrs_long_source = Path.get_source_path("ssh_usrs_long")
+    ssh_pwds_long_source = Path.get_source_path("ssh_pwds_long")
+    telnet_usrs_long_source = Path.get_source_path("telnet_usrs_long")
+    telnet_pwds_long_source = Path.get_source_path("telnet_pwds_long")
+    vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long_source")
     # Destination variables
+    gladius_conf = Path.get_path("gladius_conf")
     gladius_iptables = Path.get_path("gladius_iptables")
     gladius_iptables_logrotate = Path.get_path("gladius_iptables_logrotate")
-    gladius_conf = Path.get_path("gladius_conf")
+    ssh_usrs_long = Path.get_path("ssh_usrs_long")
+    ssh_pwds_long = Path.get_path("ssh_pwds_long")
+    telnet_usrs_long = Path.get_path("telnet_usrs_long")
+    telnet_pwds_long = Path.get_path("telnet_pwds_long")
     vpn_group_id_long = Path.get_path("vpn_group_id_long")
 
     # Create dirs
@@ -92,11 +97,17 @@ module DirStructure
     if !File.exists?("mysql_pwds_long.txt")
       FileUtils.cp mysql_pwds_long, "mysql_pwds_long.txt"
     end
-    if !File.exists?("ssh_usrs_long.txt")
-      FileUtils.cp ssh_usrs_long, "ssh_usrs_long.txt"
+    if !File.exists?(ssh_usrs_long)
+      FileUtils.cp ssh_usrs_long_source, ssh_usrs_long
     end
-    if !File.exists?("ssh_pwds_long.txt")
-      FileUtils.cp ssh_pwds_long, "ssh_pwds_long.txt"  
+    if !File.exists?(ssh_pwds_long)
+      FileUtils.cp ssh_pwds_long_source, ssh_pwds_long
+    end
+    if !File.exists?(telnet_usrs_long)
+      FileUtils.cp telnet_usrs_long_source, telnet_usrs_long
+    end
+    if !File.exists?(telnet_pwds_long)
+      FileUtils.cp telnet_pwds_long_source, telnet_pwds_long
     end
     if !File.exists?(vpn_group_id_long)
       FileUtils.cp vpn_group_id_long_source, vpn_group_id_long

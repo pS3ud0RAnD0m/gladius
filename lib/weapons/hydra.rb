@@ -15,6 +15,8 @@ class Hydra < Weapon
     @ssh_usrs_long = Path.get_path("ssh_usrs_long")
     @stdn_pwds = Path.get_path("stdn_pwds")
     @stdn_usrs = Path.get_path("stdn_usrs")
+    @telnet_pwds_long = Path.get_path("telnet_pwds_long")
+    @telnet_usrs_long = Path.get_path("telnet_usrs_long")
   end
 
 ###############################################################################
@@ -63,7 +65,7 @@ class Hydra < Weapon
       when "smtp-enum" then puts
       when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
       when "svn" then puts
-      when "telnet" then puts
+      when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
       when "vmauthd" then puts
       when "vnc" then puts
       when "web-form" then puts
@@ -106,7 +108,12 @@ class Hydra < Weapon
           when 3 then ssh_stdn_list
         end
       #when "svn" then svn
-      #when "telnet" then telnet
+      when "telnet"
+        case input_method
+          when 1 then telnet_gladius_long
+          when 2 then telnet_stdn
+          when 3 then telnet_stdn_list
+        end
       #when "vmauthd" then vmauthd
       #when "vnc" then vnc
       #when "web-form" then web_form
@@ -268,7 +275,7 @@ class Hydra < Weapon
     a.close
     stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ssh |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
   end
@@ -281,8 +288,56 @@ class Hydra < Weapon
     stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ssh |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
+  end
+  
+  def telnet_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @telnet_usrs_long + " -P " + @telnet_pwds_long + " -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
+    run(cmd)
+    clean_exit("telnet")
+  end
+
+  def telnet_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts "cisco".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "cisco".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
+    run(cmd)
+    clean_exit("telnet")
+  end
+  
+  def telnet_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
+    run(cmd)
+    clean_exit("telnet")
   end
 end  

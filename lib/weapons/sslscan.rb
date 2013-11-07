@@ -31,7 +31,6 @@ class SSLScan < Weapon
       menu(scan_type)
     else
       case scan_type
-        # Pass discovery scans
         when "common" then common
       end
     end

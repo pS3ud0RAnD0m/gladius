@@ -28,7 +28,7 @@ class DictionaryOnline < Menu
     puts "20. SNMP (Nmap)"
     puts "21. SSH (Hydra)"
     puts "22. SVN (Hydra) (NI)"
-    puts "23. Telnet (Hydra) (NI)"
+    puts "23. Telnet (Hydra)"
     puts "24. VMAuthd (Hydra) (NI)"
     puts "25. VNC (Hydra) (NI)"
     puts "26. Web-Form (Hydra) (NI)"
@@ -77,8 +77,7 @@ class DictionaryOnline < Menu
       when 21 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
       when 22 then puts "Not implemented yet.".red
         menu
-      when 23 then puts "Not implemented yet.".red
-        menu
+      when 23 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
       when 24 then puts "Not implemented yet.".red
         menu
       when 25 then puts "Not implemented yet.".red

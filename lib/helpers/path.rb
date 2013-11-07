@@ -56,14 +56,18 @@ module Path
         "snmp_comm_strings_long"     => "/usr/share/gladius/input/snmp_comm_strings_long.txt",
         "ssh_pwds_long"              => "/usr/share/gladius/input/ssh_pwds_long.txt",
         "ssh_pwds_short"             => "/usr/share/gladius/input/ssh_pwds_short.txt",
-        "ssh_usrs_long"              => "/usr/share/gladius/input/hydra_ssh_usrs_long.txt",
-        "ssh_usrs_short"             => "/usr/share/gladius/input/hydra_ssh_usrs_short.txt",
+        "ssh_usrs_long"              => "/usr/share/gladius/input/ssh_usrs_long.txt",
+        "ssh_usrs_short"             => "/usr/share/gladius/input/ssh_usrs_short.txt",
         "stdn_hosts"                 => "/usr/share/gladius/input/stdn_hosts.txt",
         "stdn_pwds"                  => "/usr/share/gladius/input/stdn_pwds.txt",
         "stdn_usrs"                  => "/usr/share/gladius/input/stdn_usrs.txt",
         "system_iptables"            => "/etc/init.d/iptables",
         "system_iptables_log"        => "/var/log/iptables.log",
         "system_iptables_logrotate"  => "/etc/logrotate.d/iptables",
+        "telnet_pwds_long"           => "/usr/share/gladius/input/telnet_pwds_long.txt",
+        "telnet_pwds_short"          => "/usr/share/gladius/input/telnet_pwds_short.txt",
+        "telnet_usrs_long"           => "/usr/share/gladius/input/telnet_usrs_long.txt",
+        "telnet_usrs_short"          => "/usr/share/gladius/input/telnet_usrs_short.txt",
         "vpn_group_id_long"          => "/usr/share/gladius/input/vpn_group_id_long.txt"
       }
     path[g_alias]
@@ -75,10 +79,14 @@ module Path
     path =
       {
         # Files
-        "gladius_iptables_source" => lib_root + "/helpers/input/iptables",
+        "gladius_conf_source"               => lib_root + "/helpers/input/gladius.conf",
         "gladius_iptables_logrotate_source" => lib_root + "/helpers/input/iptables_logrotate",
-        "gladius_conf_source" => lib_root + "/helpers/input/gladius.conf",
-        "vpn_group_id_long_source" => lib_root + "/helpers/input/vpn_group_id_long.txt"
+        "gladius_iptables_source"           => lib_root + "/helpers/input/iptables",
+        "ssh_usrs_long"                     => lib_root + "/helpers/input/ssh_usrs_long.txt",
+        "ssh_pwds_long"                     => lib_root + "/helpers/input/ssh_pwds_long.txt",
+        "telnet_usrs_long"                  => lib_root + "/helpers/input/telnet_usrs_long.txt",
+        "telnet_pwds_long"                  => lib_root + "/helpers/input/telnet_pwds_long.txt",
+        "vpn_group_id_long_source"          => lib_root + "/helpers/input/vpn_group_id_long.txt"
       }
     path[g_alias]
   end
