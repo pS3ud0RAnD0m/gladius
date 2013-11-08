@@ -2,6 +2,13 @@
 
 # Author: p$3ud0R@nD0m
 
+unless ARGV.empty?
+  ARGV.clear
+  puts "No need for arguments."
+  puts "Entering Gladius in 3 seconds ..."
+  sleep(3)
+end
+
 begin
   # Ready weapons and form up
   require_relative 'lib/helpers/path'
