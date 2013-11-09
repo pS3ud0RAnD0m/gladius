@@ -25,6 +25,7 @@ class ApacheUsers < Weapon
       puts "No hosts were input.".red
       menu(run_method)
     end
+    
 # ttd_2: Mature this port request.
     puts "What port would you like to use? [443]".light_yellow
     @port = gets.chomp
@@ -32,7 +33,7 @@ class ApacheUsers < Weapon
       @port = "443"
     end
     case run_method
-      when "enum" then enum
+    when "enum" then enum
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Apache-users", @prev_menu)

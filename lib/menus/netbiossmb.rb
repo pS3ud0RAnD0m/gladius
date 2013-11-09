@@ -3,7 +3,6 @@
 require_relative 'menu'
 
 class NetbiosSMB < Menu
-  
   def menu
   end
 end

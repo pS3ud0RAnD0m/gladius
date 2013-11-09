@@ -15,7 +15,7 @@ class DiG < Weapon
   def menu(run_method)
     header
     case run_method
-      when "idcontrollers" then idcontrollers
+    when "idcontrollers" then idcontrollers
     end
   rescue Interrupt
     GExeption.new.exit_weapon("DiG", @prev_menu)

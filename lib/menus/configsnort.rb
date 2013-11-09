@@ -11,17 +11,18 @@ class ConfigSnort < Menu
     puts "3.  Start Snort and Snorby (Gladius) (NI)"
     puts "88. Back"
     puts "99. Exit Gladius"
+    
     selection = gets.to_i
     case selection
-      when 1 then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
-      when 2 then puts "Not implemented yet.".red
+    when 1 then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
+    when 2 then puts "Not implemented yet.".red
+    menu
+    when 3 then puts "Not implemented yet.".red
+    menu
+    when 88 then KaliSupport.new("Configure Back Track Services").menu
+    when 99 then GExeption.new.exit_gladius
+    else puts "Invalid selection.".red
       menu
-      when 3 then puts "Not implemented yet.".red
-      menu
-      when 88 then KaliSupport.new("Configure Back Track Services").menu
-      when 99 then GExeption.new.exit_gladius
-      else puts "Invalid selection.".red
-        menu
     end
   end
 end

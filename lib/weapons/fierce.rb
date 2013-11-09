@@ -17,7 +17,7 @@ class Fierce < Weapon
   def menu(run_method)
     header
     case run_method
-      when "dictionary" then instruct_input_targets("domain")
+    when "dictionary" then instruct_input_targets("domain")
     end
     while line = gets
       @stdn_hosts << line.chomp
@@ -32,7 +32,7 @@ class Fierce < Weapon
       puts "Targeting #{hosts_count} domains ..."
     end
     case run_method
-      when "dictionary" then dictionary
+    when "dictionary" then dictionary
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Fierce", @prev_menu)
