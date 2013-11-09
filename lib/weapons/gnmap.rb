@@ -29,26 +29,27 @@ class GNmap < Weapon
       menu(run_method)
     else
       case run_method
-        # Pass discovery scans
-        when "ping_discovery" then ping_discovery
-        when "tcp_very_quick_lan" then tcp_very_quick_lan
-        when "tcp_very_quick_wan" then tcp_very_quick_wan
-        when "tcp_quick" then tcp_quick
-        when "udp_quick" then udp_quick
-        when "tcp_udp_quick" then tcp_udp_quick
-        when "tcp_quick_scripts" then tcp_quick_scripts
-        when "udp_quick_scripts" then udp_quick_scripts
-        when "tcp_udp_quick_scripts" then tcp_udp_quick_scripts
-        when "tcp_full" then tcp_full
-        when "udp_full" then udp_full
-        when "tcp_udp_full" then tcp_udp_full
-        when "custom" then custom
-        # Pass script scans
-        when "script_ftp_anon" then script_ftp_anon
-        when "script_http_methods" then script_http_methods
-        when "script_snmp_dictionary" then script_snmp_dictionary
-        when "script_smtp_open_relay" then script_smtp_open_relay
-        when "script_tftp_files" then script_tftp_files
+      # Pass discovery scans
+      when "ping_discovery" then ping_discovery
+      when "tcp_very_quick_lan" then tcp_very_quick_lan
+      when "tcp_very_quick_wan" then tcp_very_quick_wan
+      when "tcp_quick" then tcp_quick
+      when "udp_quick" then udp_quick
+      when "tcp_udp_quick" then tcp_udp_quick
+      when "tcp_quick_scripts" then tcp_quick_scripts
+      when "udp_quick_scripts" then udp_quick_scripts
+      when "tcp_udp_quick_scripts" then tcp_udp_quick_scripts
+      when "tcp_full" then tcp_full
+      when "udp_full" then udp_full
+      when "tcp_udp_full" then tcp_udp_full
+      when "custom" then custom
+        
+      # Pass script scans
+      when "script_ftp_anon" then script_ftp_anon
+      when "script_http_methods" then script_http_methods
+      when "script_snmp_dictionary" then script_snmp_dictionary
+      when "script_smtp_open_relay" then script_smtp_open_relay
+      when "script_tftp_files" then script_tftp_files
       end
     end
   rescue Interrupt

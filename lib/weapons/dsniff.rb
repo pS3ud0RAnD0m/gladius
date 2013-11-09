@@ -56,7 +56,7 @@ class Dsniff < Weapon
     puts "Note: This weapon isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
     puts "When done sniffing, press <Ctrl+c>.".light_yellow
     case scan_type
-      when "all" then all
+    when "all" then all
     end
   end
 

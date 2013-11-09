@@ -1,8 +1,5 @@
 # Author: p$3ud0R@nD0m
 
-require_relative 'weapon'
-require_relative 'gpty'
-
 class SnortService < Weapon
   def initialize(title)
     @title = title

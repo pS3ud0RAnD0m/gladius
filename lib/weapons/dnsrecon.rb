@@ -16,10 +16,10 @@ class DNSrecon < Weapon
   def menu(run_method)
     header
     case run_method
-      when "transfer" then instruct_input_targets("fqdn")
-      when "standard" then instruct_input_targets("fqdn")
-      when "google" then instruct_input_targets("cidr")
-      when "reverse" then instruct_input_targets("iprl", "cidr")
+    when "transfer" then instruct_input_targets("fqdn")
+    when "standard" then instruct_input_targets("fqdn")
+    when "google" then instruct_input_targets("cidr")
+    when "reverse" then instruct_input_targets("iprl", "cidr")
     end
     while line = gets
       @stdn_hosts << line.chomp
@@ -34,10 +34,10 @@ class DNSrecon < Weapon
       puts "Targeting #{hosts_count} domains ..."
     end
     case run_method
-      when "transfer" then transfer
-      when "standard" then standard
-      when "google" then google
-      when "reverse" then reverse
+    when "transfer" then transfer
+    when "standard" then standard
+    when "google" then google
+    when "reverse" then reverse
     end
   rescue Interrupt
     GExeption.new.exit_weapon("DNSRecon", @prev_menu)

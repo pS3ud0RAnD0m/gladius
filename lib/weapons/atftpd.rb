@@ -19,12 +19,12 @@ class Atftpd < Weapon
     unless drop_status.empty?
       tftp_rule_status = `iptables -L INPUT -nv |grep "udp dpt:69" |grep ACCEPT`
       unless tftp_rule_status.empty?
-        puts "Inbound TFTP rule detected. The firewall looks good.".yellow
+        puts "Inbound TFTP rule detected. The firewall looks good.".light_yellow
         puts tftp_rule_status
         config
       else
-        puts "IPtables' INPUT chain is dropping.".yellow
-        puts "Inbound TFTP rule not detected. Please verify your firewall settings.".yellow
+        puts "IPtables' INPUT chain is dropping.".light_yellow
+        puts "Inbound TFTP rule not detected. Please verify your firewall settings.".light_yellow
         puts "There should be a rule similar to this:"
         puts "/sbin/iptables -C INPUT -p udp --dport 69 -j ACCEPT"
       end
@@ -48,7 +48,7 @@ class Atftpd < Weapon
   def config
      if Dir["/tmp/tftp"] == []
       Dir.mkdir("/tmp/tftp")
-      puts "Created the /tmp/tftp directory.".yellow
+      puts "Created the /tmp/tftp directory.".light_yellow
     end
     cmd = @path + " --daemon --port 69 --logfile /var/log/atftpd.log /tmp/tftp"
     run(cmd)

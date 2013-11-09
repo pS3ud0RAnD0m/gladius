@@ -20,23 +20,23 @@ class IPtables < Weapon
   def menu(run_method)
     header
     case run_method
-      when "list" then list
-      when "config" then
-        puts "This will create the files listed below, configure boot-time run and logging.".light_yellow
-        puts "/etc/init.d/iptables".yellow
-        puts "/var/log/iptables.log".yellow
-        puts "/etc/logrotate.d/iptables".yellow
-        puts "Do you want to continue? [Y/n]".light_yellow
-        sel = gets.chomp.downcase
-        if sel == "y" || sel.empty?
-          config_existance
-        elsif sel == "n"
-          puts "Let's just look at the active rules then.".light_yellow
-          list
-        else
-          puts "Invalid selection.".red
-          menu("config")
-        end
+    when "list" then list
+    when "config" then
+      puts "This will create the files listed below, configure boot-time run and logging.".light_yellow
+      puts "/etc/init.d/iptables".yellow
+      puts "/var/log/iptables.log".yellow
+      puts "/etc/logrotate.d/iptables".yellow
+      puts "Do you want to continue? [Y/n]".light_yellow
+      sel = gets.chomp.downcase
+      if sel == "y" || sel.empty?
+        config_existance
+      elsif sel == "n"
+        puts "Let's just look at the active rules then.".light_yellow
+        list
+      else
+        puts "Invalid selection.".red
+        menu("config")
+      end
     end
   rescue Interrupt
     GExeption.new.exit_weapon("IPtables", @prev_menu)
@@ -87,7 +87,6 @@ class IPtables < Weapon
     run(cmd)
     FileUtils.cp @gladius_iptables, @system_iptables
     puts "Created #{system_iptables}".light_yellow
-# ttd_2: Validate iptables.log is rotating properly.
     FileUtils.cp @gladius_iptables_logrotate, @system_iptables_logrotate
     puts "Created #{system_iptables_logrotate}".light_yellow
     if !File.exists?(@system_iptables_log)

@@ -35,88 +35,90 @@ class Hydra < Weapon
     line_count = `wc -l #{stdn_hosts}`.to_i
     puts
     case line_count
-      when 0 then puts "No hosts were input.".red
-        menu(run_method)
-      when 1 then puts "Select your tactic:".light_yellow
-        puts "Since only 1 host was input, we recommend option 1.".yellow
-      when 2..5 then line_count = line_count.to_s
-        puts "Select your tactic:".light_yellow
-        puts "Since only #{line_count} hosts were input, we recommend option 1.".yellow
-      else line_count = line_count.to_s
-        puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
+    when 0 then puts "No hosts were input.".red
+      menu(run_method)
+    when 1 then puts "Select your tactic:".light_yellow
+      puts "Since only 1 host was input, we recommend option 1.".yellow
+    when 2..5 then line_count = line_count.to_s
+      puts "Select your tactic:".light_yellow
+      puts "Since only #{line_count} hosts were input, we recommend option 1.".yellow
+    else line_count = line_count.to_s
+      puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
     end
+    
     case run_method
-      when "cvs" then puts
-      when "ftp" then puts "1. 476 attempts/host = 14 users * 34 passwords"
-      when "http" then puts
-      when "imap" then puts
-      when "mssql" then puts
-      when "mysql" then puts "1. 12 attempts/host = 2 users * 6 passwords"
-      when "ncp" then puts
-      when "nntp" then puts
-      when "pcanywhere" then puts
-      when "pop3" then puts
-      when "postgres" then puts
-      when "rexec" then puts
-      when "rlogin" then puts
-      when "rsh" then puts
-      when "smb" then puts
-      when "smtp" then puts
-      when "smtp-enum" then puts
-      when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-      when "svn" then puts
-      when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-      when "vmauthd" then puts
-      when "vnc" then puts
-      when "web-form" then puts
+    when "cvs" then puts
+    when "ftp" then puts "1. 476 attempts/host = 14 users * 34 passwords"
+    when "http" then puts
+    when "imap" then puts
+    when "mssql" then puts
+    when "mysql" then puts "1. 12 attempts/host = 2 users * 6 passwords"
+    when "ncp" then puts
+    when "nntp" then puts
+    when "pcanywhere" then puts
+    when "pop3" then puts
+    when "postgres" then puts
+    when "rexec" then puts
+    when "rlogin" then puts
+    when "rsh" then puts
+    when "smb" then puts
+    when "smtp" then puts
+    when "smtp-enum" then puts
+    when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "svn" then puts
+    when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "vmauthd" then puts
+    when "vnc" then puts
+    when "web-form" then puts
     end
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password lists."
+    
     input_method = gets.to_i
     case run_method
-      #when "cvs" then cvs
-      when "ftp"
-        case input_method
-          when 1 then ftp_gladius_long
-          when 2 then ftp_stdn
-          when 3 then ftp_stdn_list
-        end
-      #when "http" then http
-      #when "imap" then imap
-      #when "mssql" then mssql
-      when "mysql"
-        case input_method
-          when 1 then mysql_gladius_long
-          when 2 then mysql_stdn
-          when 3 then mysql_stdn_list
-        end
-      #when "ncp" then ncp
-      #when "nntp" then nntp
-      #when "pcanywhere" then pcanywhere
-      #when "pop3" then pop3
-      #when "postgres" then postgres
-      #when "rexec" then rexec
-      #when "rlogin" then rlogin
-      #when "rsh" then rsh
-      #when "smb" then smb
-      #when "smtp" then smtp
-      #when "smtp-enum" then smtp_enum
-      when "ssh"
-        case input_method
-          when 1 then ssh_gladius_long
-          when 2 then ssh_stdn
-          when 3 then ssh_stdn_list
-        end
-      #when "svn" then svn
-      when "telnet"
-        case input_method
-          when 1 then telnet_gladius_long
-          when 2 then telnet_stdn
-          when 3 then telnet_stdn_list
-        end
-      #when "vmauthd" then vmauthd
-      #when "vnc" then vnc
-      #when "web-form" then web_form
+    #when "cvs" then cvs
+    when "ftp"
+      case input_method
+        when 1 then ftp_gladius_long
+        when 2 then ftp_stdn
+        when 3 then ftp_stdn_list
+      end
+    #when "http" then http
+    #when "imap" then imap
+    #when "mssql" then mssql
+    when "mysql"
+      case input_method
+        when 1 then mysql_gladius_long
+        when 2 then mysql_stdn
+        when 3 then mysql_stdn_list
+      end
+    #when "ncp" then ncp
+    #when "nntp" then nntp
+    #when "pcanywhere" then pcanywhere
+    #when "pop3" then pop3
+    #when "postgres" then postgres
+    #when "rexec" then rexec
+    #when "rlogin" then rlogin
+    #when "rsh" then rsh
+    #when "smb" then smb
+    #when "smtp" then smtp
+    #when "smtp-enum" then smtp_enum
+    when "ssh"
+      case input_method
+        when 1 then ssh_gladius_long
+        when 2 then ssh_stdn
+        when 3 then ssh_stdn_list
+      end
+    #when "svn" then svn
+    when "telnet"
+      case input_method
+        when 1 then telnet_gladius_long
+        when 2 then telnet_stdn
+        when 3 then telnet_stdn_list
+      end
+    #when "vmauthd" then vmauthd
+    #when "vnc" then vnc
+    #when "web-form" then web_form
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Hydra", @prev_menu)

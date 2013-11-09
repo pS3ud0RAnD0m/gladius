@@ -12,16 +12,16 @@ class Splash
       splash_line_array = splash_line.to_s.split
       old_splash_value = splash_line_array[2].to_i
       case old_splash_value
-        when 1 then new_splash_value = 2
-        when 2 then new_splash_value = 3
-        when 3 then new_splash_value = 4
-        when 4 then new_splash_value = 5
-        when 5 then new_splash_value = 6
-        when 6 then new_splash_value = 7
-        when 7 then new_splash_value = 8
-        when 8 then new_splash_value = 9
-        when 9 then new_splash_value = 1
-        else new_splash_value = 8
+      when 1 then new_splash_value = 2
+      when 2 then new_splash_value = 3
+      when 3 then new_splash_value = 4
+      when 4 then new_splash_value = 5
+      when 5 then new_splash_value = 6
+      when 6 then new_splash_value = 7
+      when 7 then new_splash_value = 8
+      when 8 then new_splash_value = 9
+      when 9 then new_splash_value = 1
+      else new_splash_value = 8
       end
       old_splash_value_string = old_splash_value.to_s
       new_splash_value_string = new_splash_value.to_s
@@ -34,16 +34,16 @@ class Splash
 
   def display(splash_value)
     case splash_value
-      when 1 then splash_1
-      when 2 then splash_2
-      when 3 then splash_3
-      when 4 then splash_4
-      when 5 then splash_5
-      when 6 then splash_6
-      when 7 then splash_7
-      when 8 then splash_8
-      when 9 then splash_9
-      else splash_9
+    when 1 then splash_1
+    when 2 then splash_2
+    when 3 then splash_3
+    when 4 then splash_4
+    when 5 then splash_5
+    when 6 then splash_6
+    when 7 then splash_7
+    when 8 then splash_8
+    when 9 then splash_9
+    else splash_9
     end
   end
 
@@ -64,9 +64,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|"
     puts "                                [_  _]"
     puts "                                  ()"
-    puts "    Viam inveniam aut faciam!     ()"
+    puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )    Find a way or make one!"
+    puts "                                 (  )"
     puts "                                  \\/"
     puts
   end
@@ -88,9 +88,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|"
     puts "                                [_  _]"
     puts "                                  ()"
-    puts "    Viam inveniam aut faciam!     ()"
+    puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )    Find a way or make one!"
+    puts "                                 (  )"
     puts "                                  \\/"
     puts
   end
@@ -112,9 +112,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|"
     puts "                                [_  _]"
     puts "                                  ()"
-    puts "    Viam inveniam aut faciam!     ()"
+    puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )    Find a way or make one!"
+    puts "                                 (  )"
     puts "                                  \\/"
     puts
   end
@@ -136,9 +136,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     " + "()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red + "Find a way or make one!"
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end
@@ -160,9 +160,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     " + "()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    Find a way or make one!".red
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end
@@ -184,9 +184,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     ()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    Find a way or make one!".red
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end
@@ -208,9 +208,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     ()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    Find a way or make one!".red
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end
@@ -232,9 +232,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     ()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    Find a way or make one!".red
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end
@@ -256,9 +256,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Viam inveniam aut faciam!     ()".red
+    puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    Find a way or make one!".red
+    puts "                                 (  )    ".red
     puts "                                  \\/".red
     puts
   end

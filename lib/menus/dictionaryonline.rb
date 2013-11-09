@@ -38,56 +38,56 @@ class DictionaryOnline < Menu
     selection = gets.to_i
     puts
     case selection
-      when 1 then puts "Not implemented yet.".red
-        menu
-      when 2 then Fierce.new("DNS", "Fierce - DNS Transfer or Online Dictionary Attack").menu("dictionary")
-      when 3 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").menu("ftp")
-      when 4 then puts "Not implemented yet.".red
-        menu
-      when 5 then puts "Not implemented yet.".red
-        menu
-      when 6 then puts "Not implemented yet.".red
-        menu
-      when 7 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").menu("mysql")
-      when 8 then puts "Not implemented yet.".red
-        menu
-      when 9 then puts "Not implemented yet.".red
-        menu
-      when 10 then puts "Not implemented yet.".red
-        menu
-      when 11 then puts "Not implemented yet.".red
-        menu
-      when 12 then puts "Not implemented yet.".red
-        menu
-      when 13 then puts "Not implemented yet.".red
-        menu
-      when 14 then puts "Not implemented yet.".red
-        menu
-      when 15 then puts "Not implemented yet.".red
-        menu
-      when 16 then puts "Not implemented yet.".red
-        menu
-      when 17 then puts "Not implemented yet.".red
-        menu
-      when 18 then puts "Not implemented yet.".red
-        menu
-      when 19 then puts "Not implemented yet.".red
-        menu
-      when 20 then GNmap.new("SNMP", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
-      when 21 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
-      when 22 then puts "Not implemented yet.".red
-        menu
-      when 23 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
-      when 24 then puts "Not implemented yet.".red
-        menu
-      when 25 then puts "Not implemented yet.".red
-        menu
-      when 26 then puts "Not implemented yet.".red
-        menu
-      when 88 then Dictionary.new("Dictionary Attacks").menu
-      when 99 then GExeption.new.exit_gladius
-      else puts "Invalid selection.".red
+    when 1 then puts "Not implemented yet.".red
       menu
+    when 2 then Fierce.new("DNS", "Fierce - DNS Transfer or Online Dictionary Attack").menu("dictionary")
+    when 3 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").menu("ftp")
+    when 4 then puts "Not implemented yet.".red
+      menu
+    when 5 then puts "Not implemented yet.".red
+      menu
+    when 6 then puts "Not implemented yet.".red
+      menu
+    when 7 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").menu("mysql")
+    when 8 then puts "Not implemented yet.".red
+      menu
+    when 9 then puts "Not implemented yet.".red
+      menu
+    when 10 then puts "Not implemented yet.".red
+      menu
+    when 11 then puts "Not implemented yet.".red
+      menu
+    when 12 then puts "Not implemented yet.".red
+      menu
+    when 13 then puts "Not implemented yet.".red
+      menu
+    when 14 then puts "Not implemented yet.".red
+      menu
+    when 15 then puts "Not implemented yet.".red
+      menu
+    when 16 then puts "Not implemented yet.".red
+      menu
+    when 17 then puts "Not implemented yet.".red
+      menu
+    when 18 then puts "Not implemented yet.".red
+      menu
+    when 19 then puts "Not implemented yet.".red
+      menu
+    when 20 then GNmap.new("SNMP", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
+    when 21 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
+    when 22 then puts "Not implemented yet.".red
+      menu
+    when 23 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
+    when 24 then puts "Not implemented yet.".red
+      menu
+    when 25 then puts "Not implemented yet.".red
+      menu
+    when 26 then puts "Not implemented yet.".red
+      menu
+    when 88 then Dictionary.new("Dictionary Attacks").menu
+    when 99 then GExeption.new.exit_gladius
+    else puts "Invalid selection.".red
+    menu
     end
   end
 end

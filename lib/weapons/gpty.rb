@@ -21,20 +21,4 @@ class Gpty
       puts "The child process exited!"
     end
   end
-
-  def shell_basic
-    begin
-      i = "#{cmd}"
-      puts "Running: #{cmd}"
-      PTY.spawn( i ) do |stdin, stdout, pid|
-        begin
-          stdin.each { |line| print line }
-        rescue Errno::EIO
-          #puts "Exit needs resolved........".red
-        end
-      end
-    rescue PTY::ChildExited
-      puts "The child process exited!"
-    end
-  end  
 end
