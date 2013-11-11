@@ -66,7 +66,7 @@ class Splash
     puts "                                  ()"
     puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )"
+    puts "                                 (  )    If you want peace, prepare for war!"
     puts "                                  \\/"
     puts
   end
@@ -90,7 +90,7 @@ class Splash
     puts "                                  ()"
     puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )"
+    puts "                                 (  )    If you want peace, prepare for war!"
     puts "                                  \\/"
     puts
   end
@@ -114,7 +114,7 @@ class Splash
     puts "                                  ()"
     puts "    Si vis pacem, para bellum!    ()"
     puts "                                  ()"
-    puts "                                 (  )"
+    puts "                                 (  )    If you want peace, prepare for war!"
     puts "                                  \\/"
     puts
   end
@@ -136,9 +136,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Si vis pacem, para bellum!    ()".red
+    puts "    Si vis pacem, para bellum!    " + "()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )".red + "    If you want peace, prepare for war!"
     puts "                                  \\/".red
     puts
   end
@@ -160,9 +160,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Si vis pacem, para bellum!    ()".red
+    puts "    Viam inveniam aut faciam!" + "     ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )    Find a way or make one!".red
     puts "                                  \\/".red
     puts
   end
@@ -184,9 +184,9 @@ class Splash
     puts "          \\/           \\/     \\/ " + "|__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Si vis pacem, para bellum!    ()".red
+    puts "    Viam inveniam aut faciam!     ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )    Find a way or make one!".red
     puts "                                  \\/".red
     puts
   end
@@ -208,9 +208,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Si vis pacem, para bellum!    ()".red
+    puts "    Viam inveniam aut faciam!     ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )    Find a way or make one!".red
     puts "                                  \\/".red
     puts
   end
@@ -232,9 +232,9 @@ class Splash
     puts "          \\/           \\/     \\/ |__|".red
     puts "                                [_  _]".red
     puts "                                  ()".red
-    puts "    Si vis pacem, para bellum!    ()".red
+    puts "    Viam inveniam aut faciam!     ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )    Find a way or make one!".red
     puts "                                  \\/".red
     puts
   end
@@ -258,7 +258,7 @@ class Splash
     puts "                                  ()".red
     puts "    Si vis pacem, para bellum!    ()".red
     puts "                                  ()".red
-    puts "                                 (  )    ".red
+    puts "                                 (  )    If you want peace, prepare for war!".red
     puts "                                  \\/".red
     puts
   end
