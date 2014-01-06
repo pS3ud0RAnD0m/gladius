@@ -13,6 +13,7 @@ module Path
   end
   
   def req
+    require lib_root + "/weapons/weapon"
     Dir[lib_root + "/menus/*.rb"].each { |a| require a }
     Dir[lib_root + "/weapons/*.rb"].each { |a| require a }
     Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
