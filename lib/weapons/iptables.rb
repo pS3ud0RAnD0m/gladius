@@ -82,7 +82,7 @@ class IPtables < Weapon
     system_iptables = @system_iptables
     system_iptables_log = @system_iptables_log
     system_iptables_logrotate = @system_iptables_logrotate
-    puts "The current ruleset is:".light_yellow
+    puts "The current ruleset is ...".light_yellow
     cmd = "iptables -L -nv"
     run(cmd)
     FileUtils.cp @gladius_iptables, @system_iptables
@@ -102,11 +102,11 @@ class IPtables < Weapon
     run(cmd)
     cmd = "service iptables restart"
     run(cmd)
-    puts "No output is expected."
+    puts "No output is expected.".yellow
     cmd = "update-rc.d iptables defaults"
     run(cmd)
     puts
-    puts "The new ruleset is:".light_yellow
+    puts "The new ruleset is ...".light_yellow
     cmd = "iptables -L -nv"
     run(cmd)
     puts
