@@ -17,7 +17,7 @@ class DictionaryOnline < Menu
     puts "9.  NNTP (Hydra) (NI)"
     puts "10. PCAnywhere (Hydra) (NI)"
     puts "11. POP3 (Hydra) (NI)"
-    puts "12. PostgreSQL (Hydra) (NI)"
+    puts "12. PostgreSQL (Hydra)"
     puts "13. RDP (Ncrack) (NI)"
     puts "14. Rexec (Hydra) (NI)"
     puts "15. Rlogin (Hydra) (NI)"
@@ -57,8 +57,7 @@ class DictionaryOnline < Menu
       menu
     when 11 then puts "Not implemented yet.".red
       menu
-    when 12 then puts "Not implemented yet.".red
-      menu
+    when 12 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").menu("postgresql")
     when 13 then puts "Not implemented yet.".red
       menu
     when 14 then puts "Not implemented yet.".red

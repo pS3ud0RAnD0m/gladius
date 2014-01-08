@@ -1,0 +1,7 @@
+postgres
+scott
+admin
+root
+viewuser
+Admin
+dbadmin

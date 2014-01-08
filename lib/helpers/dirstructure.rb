@@ -7,27 +7,45 @@ module DirStructure
     snmp_comm_strings_long = source + "snmp_comm_strings_long.txt"
     apache_users_long = source + "apache_users_long.txt"
     dns_hosts_long = source + "dns_hosts_long.txt"
-    ftp_usrs_long = source + "ftp_usrs_long.txt"
-    ftp_pwds_long = source + "ftp_pwds_long.txt"
-    mysql_usrs_long = source + "mysql_usrs_long.txt"
-    mysql_pwds_long = source + "mysql_pwds_long.txt"
-    
-    gladius_conf_source = Path.get_source_path("gladius_conf_source")
-    gladius_iptables_logrotate_source = Path.get_source_path("gladius_iptables_logrotate_source")
-    gladius_iptables_source = Path.get_source_path("gladius_iptables_source")
-    ssh_usrs_long_source = Path.get_source_path("ssh_usrs_long")
+    ftp_usrs_long_source = Path.get_source_path("ftp_usrs_long")
+    ftp_pwds_long_source = Path.get_source_path("ftp_pwds_long")
+    gladius_conf_source = Path.get_source_path("gladius_conf")
+    gladius_iptables_logrotate_source = Path.get_source_path("gladius_iptables_logrotate")
+    gladius_iptables_source = Path.get_source_path("gladius_iptables")
+    mysql_pwds_long_source = Path.get_source_path("mysql_pwds_long")
+    mysql_usrs_long_source = Path.get_source_path("mysql_usrs_long")
+    postgresql_pwds_long_source = Path.get_source_path("postgresql_pwds_long")
+    postgresql_usrs_long_source = Path.get_source_path("postgresql_usrs_long")
     ssh_pwds_long_source = Path.get_source_path("ssh_pwds_long")
-    telnet_usrs_long_source = Path.get_source_path("telnet_usrs_long")
+    ssh_usrs_long_source = Path.get_source_path("ssh_usrs_long")
     telnet_pwds_long_source = Path.get_source_path("telnet_pwds_long")
-    vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long_source")
+    telnet_usrs_long_source = Path.get_source_path("telnet_usrs_long")
+    vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long")
+    
     # Destination variables
+    config = Path.get_path("config")
+    config_sess = Path.get_path("config_sess")
+    config_sess_named = Path.get_path("config_sess_named")
+    config_sess_unnamed = Path.get_path("config_sess_unnamed")
+    input = Path.get_path("input")
+    output = Path.get_path("output")
+    tmp = Path.get_path("tmp")
+    tmp_pids = Path.get_path("tmp_pids")
+    usr = Path.get_path("usr")
+    usr_g = Path.get_path("usr_g")
+    ftp_usrs_long = Path.get_path("ftp_usrs_long")
+    ftp_pwds_long = Path.get_path("ftp_pwds_long")
     gladius_conf = Path.get_path("gladius_conf")
     gladius_iptables = Path.get_path("gladius_iptables")
     gladius_iptables_logrotate = Path.get_path("gladius_iptables_logrotate")
-    ssh_usrs_long = Path.get_path("ssh_usrs_long")
+    mysql_pwds_long = Path.get_path("mysql_pwds_long")
+    mysql_usrs_long = Path.get_path("mysql_usrs_long")
+    postgresql_pwds_long = Path.get_path("postgresql_pwds_long")
+    postgresql_usrs_long = Path.get_path("postgresql_usrs_long")
     ssh_pwds_long = Path.get_path("ssh_pwds_long")
-    telnet_usrs_long = Path.get_path("telnet_usrs_long")
+    ssh_usrs_long = Path.get_path("ssh_usrs_long")
     telnet_pwds_long = Path.get_path("telnet_pwds_long")
+    telnet_usrs_long = Path.get_path("telnet_usrs_long")
     vpn_group_id_long = Path.get_path("vpn_group_id_long")
 
     # Create dirs
@@ -35,32 +53,32 @@ module DirStructure
     if Dir[usr_g] == []
       Dir.mkdir(usr_g)
     end
-    if Dir[usr_i] == []
-      Dir.mkdir(usr_i)
+    if Dir[input] == []
+      Dir.mkdir(input)
     end
-    if Dir[usr_o] == []
-      Dir.mkdir(usr_o)
+    if Dir[output] == []
+      Dir.mkdir(output)
     end
-    if Dir[usr_c] == []
-      Dir.mkdir(usr_c)
+    if Dir[output] == []
+      Dir.mkdir(config)
     end
-    if Dir[usr_c_sess] == []
-      Dir.mkdir(usr_c_sess)
+    if Dir[config_sess] == []
+      Dir.mkdir(config_sess)
     end
-    if Dir[usr_c_sess_unnamed] == []
-      Dir.mkdir(usr_c_sess_unnamed)
+    if Dir[config_sess_unnamed] == []
+      Dir.mkdir(config_sess_unnamed)
     end
-    if Dir[usr_c_sess_named] == []
-      Dir.mkdir(usr_c_sess_named)
+    if Dir[config_sess_named] == []
+      Dir.mkdir(config_sess_named)
     end
-    if Dir[usr_t] == []
-      Dir.mkdir(usr_t)
+    if Dir[tmp] == []
+      Dir.mkdir(tmp)
     end
-    if Dir[usr_tp] == []
-      Dir.mkdir(usr_tp)
+    if Dir[tmp_pids] == []
+      Dir.mkdir(tmp_pids)
     end
     # Create input files
-    Dir.chdir(usr_i)
+    Dir.chdir(input)
     if !File.exists?("stdn_hosts.txt")
       FileUtils.touch("stdn_hosts.txt")
     end
@@ -79,11 +97,11 @@ module DirStructure
     if !File.exists?("dns_hosts_long.txt")
       FileUtils.cp dns_hosts_long, "dns_hosts_long.txt"
     end
-    if !File.exists?("ftp_usrs_long.txt")
-      FileUtils.cp ftp_usrs_long, "ftp_usrs_long.txt"
+    if !File.exists?(ftp_usrs_long)
+      FileUtils.cp ftp_usrs_long_source, ftp_usrs_long
     end
-    if !File.exists?("ftp_pwds_long.txt")
-      FileUtils.cp ftp_pwds_long, "ftp_pwds_long.txt"
+    if !File.exists?(ftp_pwds_long)
+      FileUtils.cp ftp_pwds_long_source, ftp_pwds_long
     end
     if !File.exists?(gladius_iptables)
       FileUtils.cp gladius_iptables_source, gladius_iptables
@@ -91,11 +109,17 @@ module DirStructure
     if !File.exists?(gladius_iptables_logrotate)
       FileUtils.cp gladius_iptables_logrotate_source, gladius_iptables_logrotate
     end
-    if !File.exists?("mysql_usrs_long.txt")
-      FileUtils.cp mysql_usrs_long, "mysql_usrs_long.txt"
+    if !File.exists?(mysql_usrs_long)
+      FileUtils.cp mysql_usrs_long_source, mysql_usrs_long
     end
-    if !File.exists?("mysql_pwds_long.txt")
-      FileUtils.cp mysql_pwds_long, "mysql_pwds_long.txt"
+    if !File.exists?(mysql_pwds_long)
+      FileUtils.cp mysql_pwds_long_source, mysql_pwds_long
+    end
+    if !File.exists?(postgresql_usrs_long)
+      FileUtils.cp postgresql_usrs_long_source, postgresql_usrs_long
+    end
+    if !File.exists?(postgresql_pwds_long)
+      FileUtils.cp postgresql_pwds_long_source, postgresql_pwds_long
     end
     if !File.exists?(ssh_usrs_long)
       FileUtils.cp ssh_usrs_long_source, ssh_usrs_long
