@@ -26,7 +26,7 @@ module Path
 # ttd_2: Replace all path methods with this
 # ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
   def get_path(g_alias)
-    # Path.get_path("usr")
+    # Usage: Path.get_path("usr")
     path =
       {
         # Directories
@@ -39,7 +39,6 @@ module Path
         "tmp_pids"            => "/usr/share/gladius/tmp/pids/",
         "tmp"                 => "/usr/share/gladius/tmp/",
         "usr_g"               => "/usr/share/gladius/",
-        "usr"                 => "/usr/share/",
         # Files
         "apache_users_long"          => "/usr/share/gladius/input/apache_users_long.txt",
         "dns_hosts_long"             => "/usr/share/gladius/input/dns_hosts_long.txt",
@@ -54,6 +53,10 @@ module Path
         "mysql_pwds_short"           => "/usr/share/gladius/input/mysql_pwds_short.txt",
         "mysql_usrs_long"            => "/usr/share/gladius/input/mysql_usrs_long.txt",
         "mysql_usrs_short"           => "/usr/share/gladius/input/mysql_usrs_short.txt",
+        "postgresql_pwds_long"       => "/usr/share/gladius/input/postgresql_pwds_long.txt",
+        "postgresql_pwds_short"      => "/usr/share/gladius/input/postgresql_pwds_short.txt",
+        "postgresql_usrs_long"       => "/usr/share/gladius/input/postgresql_usrs_long.txt",
+        "postgresql_usrs_short"      => "/usr/share/gladius/input/postgresql_usrs_short.txt",
         "snmp_comm_strings_long"     => "/usr/share/gladius/input/snmp_comm_strings_long.txt",
         "ssh_pwds_long"              => "/usr/share/gladius/input/ssh_pwds_long.txt",
         "ssh_pwds_short"             => "/usr/share/gladius/input/ssh_pwds_short.txt",
@@ -76,25 +79,27 @@ module Path
 
 # ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
   def get_source_path(g_alias)
-    # Path.get_path("usr")
+    # Usage: Path.get_source_path("gladius_conf_source")
     path =
       {
         # Files
-        "gladius_conf_source"               => lib_root + "/helpers/input/gladius.conf",
-        "gladius_iptables_logrotate_source" => lib_root + "/helpers/input/iptables_logrotate",
-        "gladius_iptables_source"           => lib_root + "/helpers/input/iptables",
-        "ssh_usrs_long"                     => lib_root + "/helpers/input/ssh_usrs_long.txt",
-        "ssh_pwds_long"                     => lib_root + "/helpers/input/ssh_pwds_long.txt",
-        "telnet_usrs_long"                  => lib_root + "/helpers/input/telnet_usrs_long.txt",
-        "telnet_pwds_long"                  => lib_root + "/helpers/input/telnet_pwds_long.txt",
-        "vpn_group_id_long_source"          => lib_root + "/helpers/input/vpn_group_id_long.txt"
+        "gladius_conf"               => lib_root + "/helpers/input/gladius.conf",
+        "gladius_iptables_logrotate" => lib_root + "/helpers/input/iptables_logrotate",
+        "gladius_iptables"           => lib_root + "/helpers/input/iptables",
+        "mysql_pwds_long"            => lib_root + "/helpers/input/mysql_pwds_long.txt",
+        "mysql_usrs_long"            => lib_root + "/helpers/input/mysql_usrs_long.txt",
+        "postgresql_pwds_long"       => lib_root + "/helpers/input/postgresql_pwds_long.txt",
+        "postgresql_usrs_long"       => lib_root + "/helpers/input/postgresql_usrs_long.txt",
+        "ssh_pwds_long"              => lib_root + "/helpers/input/ssh_pwds_long.txt",
+        "ssh_usrs_long"              => lib_root + "/helpers/input/ssh_usrs_long.txt",
+        "telnet_pwds_long"           => lib_root + "/helpers/input/telnet_pwds_long.txt",
+        "telnet_usrs_long"           => lib_root + "/helpers/input/telnet_usrs_long.txt",
+        "vpn_group_id_long"          => lib_root + "/helpers/input/vpn_group_id_long.txt"
       }
     path[g_alias]
   end
   
-  def snmp_comm_strings_long
-    a = "/usr/share/gladius/input/snmp_comm_strings_long.txt"
-  end
+
   
   def stdn_pwds
     a = "/usr/share/gladius/input/stdn_pwds.txt"
@@ -108,46 +113,6 @@ module Path
     a = "/usr/share/gladius/input/stdn_hosts.txt"
   end
 
-  def usr
-    a = "/usr/share"
-  end
-  
-  def usr_g
-    usr = "/usr/share/gladius"
-  end
-  
-  def usr_i
-    a = "/usr/share/gladius/input"
-  end
-  
-  def usr_o
-    a = "/usr/share/gladius/output"
-  end
-  
-  def usr_c
-    a = "/usr/share/gladius/config"
-  end
-
-  def usr_c_sess
-    a = "/usr/share/gladius/config/sessions"
-  end
-
-  def usr_c_sess_unnamed
-    a = "/usr/share/gladius/config/sessions/unnamed"
-  end
-  
-  def usr_c_sess_named
-    a = "/usr/share/gladius/config/sessions/named"
-  end
-
-  def usr_t
-    a = "/usr/share/gladius/tmp"
-  end
-  
-  def usr_tp
-    a = "/usr/share/gladius/tmp/pids/"
-  end
-  
   def source
     a = lib_root + "/helpers/input/"
   end
@@ -164,7 +129,8 @@ module Path
 
   def get_pid_file
     time = Time.now
+    tmp_pids = Path.get_path("tmp_pids")
     pid_tstamp = "%10.10f" % time.to_f
-    pid_file = time.strftime(usr_tp + pid_tstamp + ".pid")
+    pid_file = time.strftime(tmp_pids + pid_tstamp + ".pid")
   end
 end

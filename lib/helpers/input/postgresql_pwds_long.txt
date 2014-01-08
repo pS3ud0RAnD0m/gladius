@@ -1,0 +1,7 @@
+toor
+password
+temp
+admin
+dbpass
+viewuser1
+svcPASS83

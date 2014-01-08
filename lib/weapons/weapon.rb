@@ -29,8 +29,9 @@ class Weapon
 
   def get_pid_file
     time = Time.now
+    tmp_pids = Path.get_path("tmp_pids")
     pid_tstamp = "%10.10f" % time.to_f
-    pid_file = time.strftime(usr_tp + pid_tstamp + ".pid")
+    pid_file = time.strftime(tmp_pids + pid_tstamp + ".pid")
   end
   
   def get_host

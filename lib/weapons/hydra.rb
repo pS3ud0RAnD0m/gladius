@@ -11,6 +11,8 @@ class Hydra < Weapon
     @ftp_usrs_long = Path.get_path("ftp_usrs_long")
     @mysql_pwds_long = Path.get_path("mysql_pwds_long")
     @mysql_usrs_long = Path.get_path("mysql_usrs_long")
+    @postgresql_pwds_long = Path.get_path("postgresql_pwds_long")
+    @postgresql_usrs_long = Path.get_path("postgresql_usrs_long")
     @ssh_pwds_long = Path.get_path("ssh_pwds_long")
     @ssh_usrs_long = Path.get_path("ssh_usrs_long")
     @stdn_pwds = Path.get_path("stdn_pwds")
@@ -52,12 +54,12 @@ class Hydra < Weapon
     when "http" then puts
     when "imap" then puts
     when "mssql" then puts
-    when "mysql" then puts "1. 12 attempts/host = 2 users * 6 passwords"
+    when "mysql" then puts "1. 21 attempts/host = 3 users * 7 passwords"
     when "ncp" then puts
     when "nntp" then puts
     when "pcanywhere" then puts
     when "pop3" then puts
-    when "postgres" then puts
+    when "postgresql" then puts "1. 72 attempts/host = 8 users * 9 passwords"
     when "rexec" then puts
     when "rlogin" then puts
     when "rsh" then puts
@@ -72,7 +74,7 @@ class Hydra < Weapon
     when "web-form" then puts
     end
     puts "2. Input your own users and passwords."
-    puts "3. Input your own user and password lists."
+    puts "3. Input your own user and password files."
     
     input_method = gets.to_i
     case run_method
@@ -96,7 +98,12 @@ class Hydra < Weapon
     #when "nntp" then nntp
     #when "pcanywhere" then pcanywhere
     #when "pop3" then pop3
-    #when "postgres" then postgres
+    when "postgresql"
+      case input_method
+        when 1 then postgresql_gladius_long
+        when 2 then postgresql_stdn
+        when 3 then postgresql_stdn_list
+      end
     #when "rexec" then rexec
     #when "rlogin" then rlogin
     #when "rsh" then rsh
@@ -198,7 +205,7 @@ class Hydra < Weapon
 
   def mysql_gladius_long
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdn_hosts + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
@@ -230,7 +237,7 @@ class Hydra < Weapon
     a.close
     stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
@@ -243,9 +250,62 @@ class Hydra < Weapon
     stdn_pwds = gets.chomp
     puts
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
+  end
+
+  def postgresql_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @postgresql_usrs_long + " -P " + @postgresql_pwds_long + " -M " + @stdn_hosts + " postgres |tee " + @out_file
+    run(cmd)
+    clean_exit("postgresql")
+  end
+  
+  def postgresql_stdn
+    instruct_input_usrs
+    puts "password".yellow
+    puts "postgres".yellow
+    puts "admin".yellow
+    puts "root".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "password".yellow
+    puts "postgres".yellow
+    puts "admin".yellow
+    puts "toor".yellow
+    puts "temp".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " postgres |tee " + @out_file
+    run(cmd)
+    clean_exit("postgresql")
+  end
+  
+  def postgresql_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " postgres |tee " + @out_file
+    run(cmd)
+    clean_exit("postgresql")
   end
 
   def ssh_gladius_long
