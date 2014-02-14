@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class SnortService - Ruby Nmap::Parser</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/weapons/snortservice.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Weapon.html">Weapon</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-install">#install</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/gladius_conf.html">gladius.conf</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables.html">iptables</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/BUGS.html">BUGS</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/ChangeLog_rdoc.html">ChangeLog</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/INSTALL.html">INSTALL</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/README.html">README</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/TODO.html">TODO</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/nmap-parser_gemspec.html">nmap-parser.gemspec</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/large_xml.html">large.xml</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/other_xml.html">other.xml</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ApacheUsers.html">ApacheUsers</a>
+  
+    <li><a href="./Atftpd.html">Atftpd</a>
+  
+    <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./ConfigTable.html">ConfigTable</a>
+  
+    <li><a href="./ConfigTable/BoolItem.html">ConfigTable::BoolItem</a>
+  
+    <li><a href="./ConfigTable/ExecItem.html">ConfigTable::ExecItem</a>
+  
+    <li><a href="./ConfigTable/Item.html">ConfigTable::Item</a>
+  
+    <li><a href="./ConfigTable/MetaConfigEnvironment.html">ConfigTable::MetaConfigEnvironment</a>
+  
+    <li><a href="./ConfigTable/PackageSelectionItem.html">ConfigTable::PackageSelectionItem</a>
+  
+    <li><a href="./ConfigTable/PathItem.html">ConfigTable::PathItem</a>
+  
+    <li><a href="./ConfigTable/ProgramItem.html">ConfigTable::ProgramItem</a>
+  
+    <li><a href="./ConfigTable/SelectItem.html">ConfigTable::SelectItem</a>
+  
+    <li><a href="./Constant.html">Constant</a>
+  
+    <li><a href="./DNS.html">DNS</a>
+  
+    <li><a href="./DNSrecon.html">DNSrecon</a>
+  
+    <li><a href="./DiG.html">DiG</a>
+  
+    <li><a href="./Dictionary.html">Dictionary</a>
+  
+    <li><a href="./DictionaryOnline.html">DictionaryOnline</a>
+  
+    <li><a href="./DirStructure.html">DirStructure</a>
+  
+    <li><a href="./DiscoverServices.html">DiscoverServices</a>
+  
+    <li><a href="./Dsniff.html">Dsniff</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./Errno.html">Errno</a>
+  
+    <li><a href="./Errno/ENOTEMPTY.html">Errno::ENOTEMPTY</a>
+  
+    <li><a href="./FTP.html">FTP</a>
+  
+    <li><a href="./Fierce.html">Fierce</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./FileOperations.html">FileOperations</a>
+  
+    <li><a href="./GExeption.html">GExeption</a>
+  
+    <li><a href="./GNmap.html">GNmap</a>
+  
+    <li><a href="./GatherInfo.html">GatherInfo</a>
+  
+    <li><a href="./Gladius.html">Gladius</a>
+  
+    <li><a href="./Gpty.html">Gpty</a>
+  
+    <li><a href="./HTTP.html">HTTP</a>
+  
+    <li><a href="./Home.html">Home</a>
+  
+    <li><a href="./HookScriptAPI.html">HookScriptAPI</a>
+  
+    <li><a href="./Hydra.html">Hydra</a>
+  
+    <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./Installer.html">Installer</a>
+  
+    <li><a href="./Installer/Shebang.html">Installer::Shebang</a>
+  
+    <li><a href="./KaliSupport.html">KaliSupport</a>
+  
+    <li><a href="./MSF.html">MSF</a>
+  
+    <li><a href="./Medusa.html">Medusa</a>
+  
+    <li><a href="./Menu.html">Menu</a>
+  
+    <li><a href="./Ncrack.html">Ncrack</a>
+  
+    <li><a href="./Nessus.html">Nessus</a>
+  
+    <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
+  
+    <li><a href="./NetworkAttacks.html">NetworkAttacks</a>
+  
+    <li><a href="./Nikto.html">Nikto</a>
+  
+    <li><a href="./Nmap.html">Nmap</a>
+  
+    <li><a href="./Nmap/Parser.html">Nmap::Parser</a>
+  
+    <li><a href="./Nmap/Parser/Host.html">Nmap::Parser::Host</a>
+  
+    <li><a href="./Nmap/Parser/Host/ExtraPorts.html">Nmap::Parser::Host::ExtraPorts</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS.html">Nmap::Parser::Host::OS</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSClass.html">Nmap::Parser::Host::OS::OSClass</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSMatch.html">Nmap::Parser::Host::OS::OSMatch</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port.html">Nmap::Parser::Host::Port</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port/Service.html">Nmap::Parser::Host::Port::Service</a>
+  
+    <li><a href="./Nmap/Parser/Host/Script.html">Nmap::Parser::Host::Script</a>
+  
+    <li><a href="./Nmap/Parser/Host/Times.html">Nmap::Parser::Host::Times</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute.html">Nmap::Parser::Host::Traceroute</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute/Hop.html">Nmap::Parser::Host::Traceroute::Hop</a>
+  
+    <li><a href="./Nmap/Parser/Session.html">Nmap::Parser::Session</a>
+  
+    <li><a href="./Nmap/UnitTest.html">Nmap::UnitTest</a>
+  
+    <li><a href="./Nmap/UnitTest/Host.html">Nmap::UnitTest::Host</a>
+  
+    <li><a href="./Nmap/UnitTest/LargeDotXml.html">Nmap::UnitTest::LargeDotXml</a>
+  
+    <li><a href="./Nmap/UnitTest/Parser.html">Nmap::UnitTest::Parser</a>
+  
+    <li><a href="./NmapParser.html">NmapParser</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Onesixtyone.html">Onesixtyone</a>
+  
+    <li><a href="./Parse.html">Parse</a>
+  
+    <li><a href="./ParseFile.html">ParseFile</a>
+  
+    <li><a href="./Path.html">Path</a>
+  
+    <li><a href="./RspecTest.html">RspecTest</a>
+  
+    <li><a href="./SMTP.html">SMTP</a>
+  
+    <li><a href="./SNMP.html">SNMP</a>
+  
+    <li><a href="./SSLScan.html">SSLScan</a>
+  
+    <li><a href="./Session.html">Session</a>
+  
+    <li><a href="./SetupError.html">SetupError</a>
+  
+    <li><a href="./SniffSpoof.html">SniffSpoof</a>
+  
+    <li><a href="./SnortService.html">SnortService</a>
+  
+    <li><a href="./Splash.html">Splash</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./SysInfo.html">SysInfo</a>
+  
+    <li><a href="./TFTP.html">TFTP</a>
+  
+    <li><a href="./ToplevelInstaller.html">ToplevelInstaller</a>
+  
+    <li><a href="./ToplevelInstallerMulti.html">ToplevelInstallerMulti</a>
+  
+    <li><a href="./VPNAttacks.html">VPNAttacks</a>
+  
+    <li><a href="./Weapon.html">Weapon</a>
+  
+    <li><a href="./WebAttacks.html">WebAttacks</a>
+  
+    <li><a href="./WirelessAttacks.html">WirelessAttacks</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class SnortService</h1>
+
+  <div id="description" class="description">
+    
+<p>Author: p$3ud0R@nD0m</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(title)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/weapons/snortservice.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">title</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-install" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Install and configure Snort w/Snorby</p>
+          
+          
+
+          
+          <div class="method-source-code" id="install-source">
+            <pre><span class="ruby-comment"># File lib/weapons/snortservice.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install</span>
+  <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Downloading and installing Snorby&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Running: cd /var/www&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-string">&quot;/var/www&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;git clone git://github.com/Snorby/snorby.git&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Running: cd /var/www/snorby&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-string">&quot;/var/www/snorby&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;gem install rake -v 0.9.2&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;bundle install&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+    <span class="ruby-identifier">puts</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Editing Snorby's database files&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--------------------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;cp /var/www/snorby/config/database.yml.example /var/www/snorby/config/database.yml&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;cp /var/www/snorby/config/snorby_config.yml.example /var/www/snorby/config/snorby_config.yml&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Editing: /var/www/snorby/config/database.yml&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;/var/www/snorby/config/database.yml&quot;</span>)
+  <span class="ruby-identifier">replace</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/&quot;Enter Password Here&quot;/</span>, <span class="ruby-string">&quot;toor&quot;</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;/var/www/snorby/config/database.yml&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">replace</span>}
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Configuring MySQL&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;service mysql start&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;/root/Desktop/dev/scripts/rb/gladius/lib/shells/mysql.sh snorby snorby snorby&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;/root/Desktop/dev/scripts/rb/gladius/lib/shells/mysql.sh snorby snort snort&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Removing old Snort install&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;---------------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;apt-get -y remove snort&quot;</span>
+  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Instructions for installing Snort-MySQL&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;During the install, you'll need to answer a few GLI (ncurses) questions.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No worries. Need be, the settings can easily be changed later.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Open another shell and run the following command:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;apt-get -y install snort-mysql&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Answer the questions as follows:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Address range for the local network: =&gt; &lt;ip_address/32&gt;&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Set up a database for snort-mysql to log to? =&gt; Yes&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Once you've completed the instructions directly above, hit Enter.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Configuring Snort&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Editing: /etc/snort/snort.conf&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&quot;/etc/snort/snort.conf&quot;</span>)
+  <span class="ruby-identifier">replace</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/# output database: log, mysql, user=root password=test dbname=db/</span>, <span class="ruby-string">&quot;output database: log, mysql, user=snort password=snort dbname=snorby&quot;</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;/etc/snort/snort.conf&quot;</span>, <span class="ruby-string">&quot;w&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">replace</span>}
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-string">&quot;/etc/snort/db-pending-config&quot;</span>)
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;mv /etc/snort/db-pending-config /etc/snort/db-pending-config.orig&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Starting Services&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Running: cd /var/www/snorby&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-string">&quot;/var/www/snorby&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;bundle exec rake snorby:setup RAILS_ENV=production&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;bundle exec rails server -e production --binding=127.0.0.1 -d&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;service snort start&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;ps -ef |grep -v grep |grep \&quot;snort\\|rails\&quot;&quot;</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span>
+  
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Snorby is ready!&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-----------------&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Navigate to http://localhost:3000&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;u = snorby@snorby.org&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;p = snorby&quot;</span>.<span class="ruby-identifier">yellow</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

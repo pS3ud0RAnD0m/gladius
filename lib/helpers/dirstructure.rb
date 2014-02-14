@@ -20,7 +20,10 @@ module DirStructure
     ssh_usrs_long_source = Path.get_source_path("ssh_usrs_long")
     telnet_pwds_long_source = Path.get_source_path("telnet_pwds_long")
     telnet_usrs_long_source = Path.get_source_path("telnet_usrs_long")
+    tftp_file_list_source = Path.get_source_path("tftp_file_list")
     vpn_group_id_long_source = Path.get_source_path("vpn_group_id_long")
+    windows_pwds_long_source = Path.get_source_path("windows_pwds_long")
+    windows_usrs_long_source = Path.get_source_path("windows_usrs_long")
     
     # Destination variables
     config = Path.get_path("config")
@@ -46,7 +49,10 @@ module DirStructure
     ssh_usrs_long = Path.get_path("ssh_usrs_long")
     telnet_pwds_long = Path.get_path("telnet_pwds_long")
     telnet_usrs_long = Path.get_path("telnet_usrs_long")
+    tftp_file_list = Path.get_path("tftp_file_list")
     vpn_group_id_long = Path.get_path("vpn_group_id_long")
+    windows_pwds_long = Path.get_path("windows_pwds_long")
+    windows_usrs_long = Path.get_path("windows_usrs_long")
 
     # Create dirs
 # ttd_3: make these "each do" ..
@@ -133,8 +139,17 @@ module DirStructure
     if !File.exists?(telnet_pwds_long)
       FileUtils.cp telnet_pwds_long_source, telnet_pwds_long
     end
+    if !File.exists?(tftp_file_list)
+      FileUtils.cp tftp_file_list_source, tftp_file_list
+    end
     if !File.exists?(vpn_group_id_long)
       FileUtils.cp vpn_group_id_long_source, vpn_group_id_long
+    end
+    if !File.exists?(windows_usrs_long)
+      FileUtils.cp windows_usrs_long_source, windows_usrs_long
+    end
+    if !File.exists?(windows_pwds_long)
+      FileUtils.cp windows_pwds_long_source, windows_pwds_long
     end
     # Create config file
     splash_line = `grep previous_splash #{gladius_conf} 2> /dev/null |wc -l`.to_i

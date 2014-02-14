@@ -1,7 +1,9 @@
-toor
+tiger
+postgres
 password
-temp
 admin
+toor
+temp
 dbpass
 viewuser1
 svcPASS83

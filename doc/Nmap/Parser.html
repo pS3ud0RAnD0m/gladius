@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Nmap::Parser - Ruby Nmap::Parser</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+<div id="table-of-contents">
+  <nav class="section">
+    <h3 class="section-header">Table of Contents</h3>
+    <ul>
+      <li><a href="#label-What+Is+This+Library+For%3F">What Is This Library For?</a>
+      <li><a href="#label-Conventions">Conventions</a>
+      <li><a href="#label-Module+Hierarchy">Module Hierarchy</a>
+      <li><a href="#label-Examples">Examples</a>
+      <li><a href="#label-Parsing+XML+Data+Already+Available+as+a+String">Parsing XML Data Already Available as a String</a>
+      <li><a href="#label-Reading+and+Parsing+From+a+File">Reading and Parsing From a File</a>
+      <li><a href="#label-Reading+and+Parsing+From+an+Object">Reading and Parsing From an Object</a>
+      <li><a href="#label-Scanning+and+Parsing">Scanning and Parsing</a>
+      <li><a href="#label-Registering+a+Callback">Registering a Callback</a>
+      <li><a href="#label-Doing+a+Bit+More">Doing a Bit More</a>
+      <li><a href="#label-Credits">Credits</a>
+    </ul>
+  </nav>
+</div>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb
+    <li>lib/helpers/thirdparty/ruby-nmap-parser/test/large.ut.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-2B">#+</a>
+    
+    <li ><a href="#method-i-3D-3D">#==</a>
+    
+    <li ><a href="#method-i-combination-3F">#combination?</a>
+    
+    <li ><a href="#method-i-del_host">#del_host</a>
+    
+    <li ><a href="#method-i-delete_host">#delete_host</a>
+    
+    <li ><a href="#method-i-get_host">#get_host</a>
+    
+    <li ><a href="#method-i-get_ips">#get_ips</a>
+    
+    <li ><a href="#method-i-host">#host</a>
+    
+    <li ><a href="#method-i-hosts">#hosts</a>
+    
+    <li ><a href="#method-i-parsefile">#parsefile</a>
+    
+    <li ><a href="#method-i-parseread">#parseread</a>
+    
+    <li ><a href="#method-i-parsescan">#parsescan</a>
+    
+    <li ><a href="#method-i-parsestring">#parsestring</a>
+    
+    <li ><a href="#method-i-self.parsefile-28filename-29">#self.parsefile(filename)</a>
+    
+    <li ><a href="#method-i-self.parseread-28obj-29">#self.parseread(obj)</a>
+    
+    <li ><a href="#method-i-self.parsescan-28nmap-2Cargs-2Ctargets-3D-5B-5D-29">#self.parsescan(nmap,args,targets=[])</a>
+    
+    <li ><a href="#method-i-self.parsestring-28str-29">#self.parsestring(str)</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../README_md.html">README</a>
+  
+    <li class="file"><a href="../bin/mysql_sh.html">mysql.sh</a>
+  
+    <li class="file"><a href="../doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="../lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/gladius_conf.html">gladius.conf</a>
+  
+    <li class="file"><a href="../lib/helpers/input/iptables.html">iptables</a>
+  
+    <li class="file"><a href="../lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
+  
+    <li class="file"><a href="../lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+  
+    <li class="file"><a href="../lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+  
+    <li class="file"><a href="../lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+  
+    <li class="file"><a href="../lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
+  
+    <li class="file"><a href="../lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/BUGS.html">BUGS</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/ChangeLog_rdoc.html">ChangeLog</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/INSTALL.html">INSTALL</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/README.html">README</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/TODO.html">TODO</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/nmap-parser_gemspec.html">nmap-parser.gemspec</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/test/xml/large_xml.html">large.xml</a>
+  
+    <li class="file"><a href="../lib/helpers/thirdparty/ruby-nmap-parser/test/xml/other_xml.html">other.xml</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../ApacheUsers.html">ApacheUsers</a>
+  
+    <li><a href="../Atftpd.html">Atftpd</a>
+  
+    <li><a href="../ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="../ConfigTable.html">ConfigTable</a>
+  
+    <li><a href="../ConfigTable/BoolItem.html">ConfigTable::BoolItem</a>
+  
+    <li><a href="../ConfigTable/ExecItem.html">ConfigTable::ExecItem</a>
+  
+    <li><a href="../ConfigTable/Item.html">ConfigTable::Item</a>
+  
+    <li><a href="../ConfigTable/MetaConfigEnvironment.html">ConfigTable::MetaConfigEnvironment</a>
+  
+    <li><a href="../ConfigTable/PackageSelectionItem.html">ConfigTable::PackageSelectionItem</a>
+  
+    <li><a href="../ConfigTable/PathItem.html">ConfigTable::PathItem</a>
+  
+    <li><a href="../ConfigTable/ProgramItem.html">ConfigTable::ProgramItem</a>
+  
+    <li><a href="../ConfigTable/SelectItem.html">ConfigTable::SelectItem</a>
+  
+    <li><a href="../Constant.html">Constant</a>
+  
+    <li><a href="../DNS.html">DNS</a>
+  
+    <li><a href="../DNSrecon.html">DNSrecon</a>
+  
+    <li><a href="../DiG.html">DiG</a>
+  
+    <li><a href="../Dictionary.html">Dictionary</a>
+  
+    <li><a href="../DictionaryOnline.html">DictionaryOnline</a>
+  
+    <li><a href="../DirStructure.html">DirStructure</a>
+  
+    <li><a href="../DiscoverServices.html">DiscoverServices</a>
+  
+    <li><a href="../Dsniff.html">Dsniff</a>
+  
+    <li><a href="../Enumerable.html">Enumerable</a>
+  
+    <li><a href="../Errno.html">Errno</a>
+  
+    <li><a href="../Errno/ENOTEMPTY.html">Errno::ENOTEMPTY</a>
+  
+    <li><a href="../FTP.html">FTP</a>
+  
+    <li><a href="../Fierce.html">Fierce</a>
+  
+    <li><a href="../File.html">File</a>
+  
+    <li><a href="../FileOperations.html">FileOperations</a>
+  
+    <li><a href="../GExeption.html">GExeption</a>
+  
+    <li><a href="../GNmap.html">GNmap</a>
+  
+    <li><a href="../GatherInfo.html">GatherInfo</a>
+  
+    <li><a href="../Gladius.html">Gladius</a>
+  
+    <li><a href="../Gpty.html">Gpty</a>
+  
+    <li><a href="../HTTP.html">HTTP</a>
+  
+    <li><a href="../Home.html">Home</a>
+  
+    <li><a href="../HookScriptAPI.html">HookScriptAPI</a>
+  
+    <li><a href="../Hydra.html">Hydra</a>
+  
+    <li><a href="../IPtables.html">IPtables</a>
+  
+    <li><a href="../Installer.html">Installer</a>
+  
+    <li><a href="../Installer/Shebang.html">Installer::Shebang</a>
+  
+    <li><a href="../KaliSupport.html">KaliSupport</a>
+  
+    <li><a href="../MSF.html">MSF</a>
+  
+    <li><a href="../Medusa.html">Medusa</a>
+  
+    <li><a href="../Menu.html">Menu</a>
+  
+    <li><a href="../Ncrack.html">Ncrack</a>
+  
+    <li><a href="../Nessus.html">Nessus</a>
+  
+    <li><a href="../NetbiosSMB.html">NetbiosSMB</a>
+  
+    <li><a href="../NetworkAttacks.html">NetworkAttacks</a>
+  
+    <li><a href="../Nikto.html">Nikto</a>
+  
+    <li><a href="../Nmap.html">Nmap</a>
+  
+    <li><a href="../Nmap/Parser.html">Nmap::Parser</a>
+  
+    <li><a href="../Nmap/Parser/Host.html">Nmap::Parser::Host</a>
+  
+    <li><a href="../Nmap/Parser/Host/ExtraPorts.html">Nmap::Parser::Host::ExtraPorts</a>
+  
+    <li><a href="../Nmap/Parser/Host/OS.html">Nmap::Parser::Host::OS</a>
+  
+    <li><a href="../Nmap/Parser/Host/OS/OSClass.html">Nmap::Parser::Host::OS::OSClass</a>
+  
+    <li><a href="../Nmap/Parser/Host/OS/OSMatch.html">Nmap::Parser::Host::OS::OSMatch</a>
+  
+    <li><a href="../Nmap/Parser/Host/Port.html">Nmap::Parser::Host::Port</a>
+  
+    <li><a href="../Nmap/Parser/Host/Port/Service.html">Nmap::Parser::Host::Port::Service</a>
+  
+    <li><a href="../Nmap/Parser/Host/Script.html">Nmap::Parser::Host::Script</a>
+  
+    <li><a href="../Nmap/Parser/Host/Times.html">Nmap::Parser::Host::Times</a>
+  
+    <li><a href="../Nmap/Parser/Host/Traceroute.html">Nmap::Parser::Host::Traceroute</a>
+  
+    <li><a href="../Nmap/Parser/Host/Traceroute/Hop.html">Nmap::Parser::Host::Traceroute::Hop</a>
+  
+    <li><a href="../Nmap/Parser/Session.html">Nmap::Parser::Session</a>
+  
+    <li><a href="../Nmap/UnitTest.html">Nmap::UnitTest</a>
+  
+    <li><a href="../Nmap/UnitTest/Host.html">Nmap::UnitTest::Host</a>
+  
+    <li><a href="../Nmap/UnitTest/LargeDotXml.html">Nmap::UnitTest::LargeDotXml</a>
+  
+    <li><a href="../Nmap/UnitTest/Parser.html">Nmap::UnitTest::Parser</a>
+  
+    <li><a href="../NmapParser.html">NmapParser</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../Onesixtyone.html">Onesixtyone</a>
+  
+    <li><a href="../Parse.html">Parse</a>
+  
+    <li><a href="../ParseFile.html">ParseFile</a>
+  
+    <li><a href="../Path.html">Path</a>
+  
+    <li><a href="../RspecTest.html">RspecTest</a>
+  
+    <li><a href="../SMTP.html">SMTP</a>
+  
+    <li><a href="../SNMP.html">SNMP</a>
+  
+    <li><a href="../SSLScan.html">SSLScan</a>
+  
+    <li><a href="../Session.html">Session</a>
+  
+    <li><a href="../SetupError.html">SetupError</a>
+  
+    <li><a href="../SniffSpoof.html">SniffSpoof</a>
+  
+    <li><a href="../SnortService.html">SnortService</a>
+  
+    <li><a href="../Splash.html">Splash</a>
+  
+    <li><a href="../String.html">String</a>
+  
+    <li><a href="../SysInfo.html">SysInfo</a>
+  
+    <li><a href="../TFTP.html">TFTP</a>
+  
+    <li><a href="../ToplevelInstaller.html">ToplevelInstaller</a>
+  
+    <li><a href="../ToplevelInstallerMulti.html">ToplevelInstallerMulti</a>
+  
+    <li><a href="../VPNAttacks.html">VPNAttacks</a>
+  
+    <li><a href="../Weapon.html">Weapon</a>
+  
+    <li><a href="../WebAttacks.html">WebAttacks</a>
+  
+    <li><a href="../WirelessAttacks.html">WirelessAttacks</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Nmap::Parser</h1>
+
+  <div id="description" class="description">
+    
+<h2 id="label-What+Is+This+Library+For%3F">What Is This Library For?<span><a href="#label-What+Is+This+Library+For%3F">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>This library provides a Ruby interface to the <a
+href="../Nmap.html">Nmap</a> Security Scanner and its XML formatted scan
+data.  It can run <a href="../Nmap.html">Nmap</a> and parse its XML output
+directly from the scan, parse a file or string of XML scan data, or parse
+XML scan data from an object via its read() method.  This information is
+presented in an easy-to-use and intuitive fashion for further storage and
+manipulation.</p>
+
+<p>Note that while Anthony Persaud’s Perl <a
+href="Parser.html">Nmap::Parser</a> was certainly an inspiration when
+designing this library, there are a number of distinguishing
+characteristics.  Very briefly, this library contains more classes, many
+more methods, and has blocks extensively available.</p>
+
+<p>The <a href="../Nmap.html">Nmap</a> Security Scanner is an awesome utility
+written and maintained by Fyodor (fyodor(a)insecure.org).  Its main
+function is port scanning, but it also has service and operating system
+detection, its own scripting engine and a whole lot more.  One of its many
+available output formats is XML, which allows machines to handle all of the
+information instead of us slowly sifting through tons of output.</p>
+
+<h2 id="label-Conventions">Conventions<span><a href="#label-Conventions">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Depending on the data type, unavailable information is presented
+differently:</p>
+<ul><li>
+<p>Arrays are empty</p>
+</li><li>
+<p>Non-arrays are nil, unless it’s a method that returns the size of one of
+the previously mentioned empty arrays.  In this case they still return the
+size (which would be 0).</p>
+</li></ul>
+
+<p>All information available as arrays are presented via methods.  These
+methods not only return the array, but they also yield each element to a
+block if one is given.</p>
+
+<h2 id="label-Module+Hierarchy">Module Hierarchy<span><a href="#label-Module+Hierarchy">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<pre>Nmap::Parser
+|
++ Session           &lt;- Scan session information
+|
++ Host              &lt;- General host information
+  |
+  + ExtraPorts      &lt;- Ports consolidated in an &quot;ignored&quot; state
+  |
+  + Port            &lt;- General port information
+  | |
+  | + Service       &lt;- Port Service information
+  |
+  + Script          &lt;- NSE Script information (both host and port)
+  |
+  + Times           &lt;- Timimg information (round-trip time, etc)
+  |
+  + Traceroute      &lt;- General Traceroute information
+  | |
+  | + Hop           &lt;- Individual Hop information
+  |
+  + OS              &lt;- OS Detection information
+    |
+    + OSClass       &lt;- OS Class information
+    |
+    + OSMatch       &lt;- OS Match information</pre>
+
+<h2 id="label-Examples">Examples<span><a href="#label-Examples">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>There are two ways to go about getting a new <a
+href="Parser.html">Parser</a> object and actually parsing Nmap’s XML
+output:</p>
+<ul><li>
+<p>Call one of the <a href="Parser.html">Nmap::Parser</a> class methods to
+parse the XML and return a new <a href="Parser.html">Parser</a> object all
+in one step.</p>
+</li><li>
+<p>Call <a href="Parser.html#method-c-new">::new</a> to get a new object and
+then call one of the instance parsing methods (e.g. parsefile()).  The main
+reason to go this route is that new() takes a hash of options; for example,
+this is how the callback feature is implemented.</p>
+</li></ul>
+
+<h3 id="label-Parsing+XML+Data+Already+Available+as+a+String">Parsing XML Data Already Available as a <a href="../String.html">String</a><span><a href="#label-Parsing+XML+Data+Already+Available+as+a+String">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>This method is not limited to only <a href="../String.html">String</a>
+objects, but rather any object which responsds to to_str().</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'nmap/parser'</span>
+
+<span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>
+<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parsestring</span>(<span class="ruby-identifier">xml</span>)
+</pre>
+
+<p>or</p>
+
+<pre>parser = Nmap::Parser.parsestring(xml)</pre>
+
+<h3 id="label-Reading+and+Parsing+From+a+File">Reading and Parsing From a <a href="../File.html">File</a><span><a href="#label-Reading+and+Parsing+From+a+File">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'nmap/parser'</span>
+
+<span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsefile</span>(<span class="ruby-string">&quot;log.xml&quot;</span>)
+</pre>
+
+<h3 id="label-Reading+and+Parsing+From+an+Object">Reading and Parsing From an <a href="../Object.html">Object</a><span><a href="#label-Reading+and+Parsing+From+an+Object">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>This method can read from any object responding to a read() method that
+returns a <a href="../String.html">String</a> (or something else responding
+to to_str())</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'nmap/parser'</span>
+
+<span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parseread</span>(<span class="ruby-identifier">$stdin</span>)
+</pre>
+
+<h3 id="label-Scanning+and+Parsing">Scanning and Parsing<span><a href="#label-Scanning+and+Parsing">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>This is the only <a href="Parser.html">Parser</a> method that requires <a
+href="../Nmap.html">Nmap</a> to be available.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'nmap/parser'</span>
+
+<span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsescan</span>(<span class="ruby-string">&quot;sudo nmap&quot;</span>, <span class="ruby-string">&quot;-sVC 192.168.1.0/24&quot;</span>)
+</pre>
+
+<h3 id="label-Registering+a+Callback">Registering a Callback<span><a href="#label-Registering+a+Callback">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>To use a callback you create a new <a href="Parser.html">Parser</a> object
+and register a proc or method to call each time a new host is parsed, as
+soon as it’s parsed.  The callback is then run in a new thread and is
+passed the newly created <a href="Parser/Host.html">Nmap::Parser::Host</a>
+object.</p>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'nmap/parser'</span>
+
+<span class="ruby-identifier">callback</span> = <span class="ruby-identifier">proc</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;up&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Found #{host.addr}&quot;</span>
+<span class="ruby-keyword">end</span>
+
+<span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(:<span class="ruby-identifier">callback</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">callback</span>)
+<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parsefile</span>(<span class="ruby-string">&quot;nmaplog.xml&quot;</span>)
+
+<span class="ruby-comment"># Found 192.168.10.1</span>
+<span class="ruby-comment"># Found 192.168.10.2</span>
+<span class="ruby-comment"># Found 192.168.10.7</span>
+<span class="ruby-comment"># [...]</span>
+</pre>
+
+<h3 id="label-Doing+a+Bit+More">Doing a Bit More<span><a href="#label-Doing+a+Bit+More">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>After printing a little session information, this example will cycle
+through all of the up hosts, printing state and service information on the
+open TCP and UDP ports.  See the examples directory that comes with this
+library for more examples.</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Nmap args: #{parser.session.scan_args}&quot;</span>
+<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Runtime: #{parser.session.scan_time} seconds&quot;</span>
+<span class="ruby-identifier">puts</span>
+
+<span class="ruby-identifier">parser</span>.<span class="ruby-identifier">hosts</span>(<span class="ruby-string">&quot;up&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{host.addr} is up:&quot;</span>
+        <span class="ruby-identifier">puts</span>
+
+        [:<span class="ruby-identifier">tcp</span>, :<span class="ruby-identifier">udp</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">host</span>.<span class="ruby-identifier">getports</span>(<span class="ruby-identifier">type</span>, <span class="ruby-string">&quot;open&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">srv</span> = <span class="ruby-identifier">port</span>.<span class="ruby-identifier">service</span>
+
+                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Port ##{port.num}/#{port.proto} is open (#{port.reason})&quot;</span>
+                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tService: #{srv.name}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">name</span>
+                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tProduct: #{srv.product}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">product</span>
+                        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\tVersion: #{srv.version}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">srv</span>.<span class="ruby-identifier">version</span>
+                        <span class="ruby-identifier">puts</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">puts</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<h2 id="label-Credits">Credits<span><a href="#label-Credits">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Author &amp; Maintainer:</p>
+<ul><li>
+<p>Kris Katterjohn (katterjohn(a)gmail.com)</p>
+</li></ul>
+
+<p>Contributors (in chronological order of first contribution):</p>
+<ul><li>
+<p>Stefan Friedli (stfr(a)scip.ch)</p>
+</li><li>
+<p>Daniel Roethlisberger (daniel(a)roe.ch)</p>
+</li><li>
+<p>Dustin Webber (dustinw(a)aos5.com)</p>
+</li><li>
+<p>Tom Sellers (nmap(a)fadedcode.net)</p>
+</li><li>
+<p>Rory McCune (rorym(a)nmrconsult.net)</p>
+</li><li>
+<p>Russell Fulton (r.fulton(a)auckland.ac.nz)</p>
+</li></ul>
+
+<p>Thanks a lot for taking the time and helping out, everybody!</p>
+
+<p>For information on what each contributor actually did, please take a look
+at the project’s <a
+href="../lib/helpers/thirdparty/ruby-nmap-parser/ChangeLog_rdoc.html">ChangeLog</a>
+and Subversion logs.</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="Major">Major
+        
+        <dd class="description"><p><a href="Parser.html#Major">Major</a> version number</p>
+        
+      
+        <dt id="Minor">Minor
+        
+        <dd class="description"><p><a href="Parser.html#Minor">Minor</a> version number</p>
+        
+      
+        <dt id="Stage">Stage
+        
+        <dd class="description"><p>Development stage (currently “dev” or “release”)</p>
+        
+      
+        <dt id="Teeny">Teeny
+        
+        <dd class="description"><p><a href="Parser.html#Teeny">Teeny</a> version number</p>
+        
+      
+        <dt id="Version">Version
+        
+        <dd class="description"><p>Pre-built version string</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-rawxml" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">rawxml</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p>Raw XML output from the scan</p>
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-session" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">session</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Parser/Session.html">Session</a> object for the scan</p>
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(opts = {}) { |parser| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a fresh <a href="Parser.html">Parser</a> object, taking a hash of
+options as an optional argument.  Use the instance parsing methods to read
+in the XML and parse the data into the available classes.</p>
+
+<p>Returns the new <a href="Parser.html">Nmap::Parser</a> object and yields it
+to a block if one is given</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 538</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">opts</span> = {}) <span class="ruby-comment"># :yields: parser</span>
+        <span class="ruby-ivar">@hosts</span> = []
+        <span class="ruby-ivar">@fresh</span> = <span class="ruby-keyword">true</span>
+
+        <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">begin</span>
+                        <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;option_#{key}&quot;</span>, <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">key</span>])
+                <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NoMethodError</span>
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">yield</span> <span class="ruby-keyword">self</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-2B" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">+</span><span
+            class="method-args">(pa)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a new <a href="Parser.html">Parser</a> object with the following
+characteristics:</p>
+
+<pre>* rawxml = nil
+* session = nil
+* contains hosts from both operands.  If any of the hosts in the
+  first operand are also in the second (as determined by comparing
+  host.addr information), the duplicate hosts from the second one
+  are not available.</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="2B-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 446</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">pa</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">pa</span>.<span class="ruby-identifier">class</span>
+        <span class="ruby-identifier">n</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">n</span>.<span class="ruby-identifier">rawxml</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">n</span>.<span class="ruby-identifier">session</span> = <span class="ruby-keyword">nil</span>
+        [ <span class="ruby-keyword">self</span>.<span class="ruby-identifier">hosts</span>, <span class="ruby-identifier">pa</span>.<span class="ruby-identifier">hosts</span> ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">n</span>.<span class="ruby-identifier">addhosts</span>(<span class="ruby-identifier">h</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">n</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 2B-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 2B-method -->
+
+    
+      <div id="method-i-3D-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">==</span><span
+            class="method-args">(pa)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>This operator simply compares the rawxml members</p>
+          
+          
+
+          
+          <div class="method-source-code" id="3D-3D-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 435</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">pa</span>)
+        <span class="ruby-ivar">@rawxml</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">pa</span>.<span class="ruby-identifier">rawxml</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- 3D-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- 3D-3D-method -->
+
+    
+      <div id="method-i-combination-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">combination?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a boolean value depending on whether this object is just a
+combination of others (e.g. using +)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="combination-3F-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 459</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">combination?</span>
+        <span class="ruby-identifier">rawxml</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-ivar">@fresh</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- combination-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- combination-3F-method -->
+
+    
+      <div id="method-i-del_host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">del_host</span><span
+            class="method-args">(hostip)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Deletes host with the specified IP address or hostname <code>hostip</code></p>
+
+<p>Calling this method from inside of a block given to a method like hosts()
+or <a href="Parser.html#method-i-get_ips">#get_ips</a>() may lead to
+adverse effects.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="del_host-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 409</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">del_host</span>(<span class="ruby-identifier">hostip</span>)
+        <span class="ruby-ivar">@hosts</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">hostip</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">hostname</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">hostip</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- del_host-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Parser.html#method-i-delete_host">delete_host</a>
+        </div>
+        
+
+        
+      </div><!-- del_host-method -->
+
+    
+      <div id="method-i-delete_host" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">delete_host</span><span
+            class="method-args">(hostip)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Parser.html#method-i-del_host">del_host</a>
+        </div>
+        
+      </div><!-- delete_host-method -->
+
+    
+      <div id="method-i-get_host" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">get_host</span><span
+            class="method-args">(hostip)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Parser.html#method-i-host">host</a>
+        </div>
+        
+      </div><!-- get_host-method -->
+
+    
+      <div id="method-i-get_ips" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_ips</span><span
+            class="method-args">(status = "") { |addr| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of IPs scanned and yields them each to a block if one is
+given</p>
+
+<p>If an argument is given, only hosts matching <code>status</code> are given</p>
+
+<p>NOTE: Calling parser.get_ips(status).size can be very different than
+running parser.session.numhosts(status) because the information there and
+here are coming from different places in the XML.  <a
+href="../Nmap.html">Nmap</a> will not typically list individual hosts which
+it doesn’t know or assume are “up”.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_ips-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 427</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_ips</span>(<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-comment"># :yields: host.addr</span>
+        <span class="ruby-identifier">hosts</span>(<span class="ruby-identifier">status</span>).<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">yield</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+                <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_ips-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_ips-method -->
+
+    
+      <div id="method-i-host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">host</span><span
+            class="method-args">(hostip)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns a <a href="Parser/Host.html">Host</a> object for the host with the
+specified IP address or hostname <code>hostip</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="host-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 397</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">host</span>(<span class="ruby-identifier">hostip</span>)
+        <span class="ruby-ivar">@hosts</span>.<span class="ruby-identifier">find</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">hostip</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">hostname</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">hostip</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- host-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Parser.html#method-i-get_host">get_host</a>
+        </div>
+        
+
+        
+      </div><!-- host-method -->
+
+    
+      <div id="method-i-hosts" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hosts</span><span
+            class="method-args">(status = "") { |host| ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns an array of <a href="Parser/Host.html">Host</a> objects and yields
+them each to a block if one is given</p>
+
+<p>If an argument is given, only hosts matching <code>status</code> are given</p>
+
+<p>NOTE: Calling parser.hosts(status).size can be very different than running
+parser.session.numhosts(status) because the information there and here are
+coming from different places in the XML.  <a href="../Nmap.html">Nmap</a>
+will not typically list individual hosts which it doesn’t know or assume
+are “up”.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="hosts-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 386</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hosts</span>(<span class="ruby-identifier">status</span> = <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-comment"># :yields: host</span>
+        <span class="ruby-ivar">@hosts</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">status</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">status</span>
+                        <span class="ruby-keyword">yield</span> <span class="ruby-identifier">host</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">block_given?</span>
+                        <span class="ruby-identifier">host</span>
+                <span class="ruby-keyword">end</span>
+        }.<span class="ruby-identifier">compact</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hosts-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hosts-method -->
+
+    
+      <div id="method-i-parsefile" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parsefile</span><span
+            class="method-args">(filename)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Read and parse the contents of the <a href="../Nmap.html">Nmap</a> XML file
+<code>filename</code></p>
+          
+          
+
+          
+          <div class="method-source-code" id="parsefile-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 320</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parsefile</span>(<span class="ruby-identifier">filename</span>)
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">filename</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">parseread</span>(<span class="ruby-identifier">f</span>) }
+<span class="ruby-keyword">rescue</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">class</span>, <span class="ruby-node">&quot;Error parsing \&quot;#{filename}\&quot;: #{$!}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parsefile-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parsefile-method -->
+
+    
+      <div id="method-i-parseread" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parseread</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Read and parse XML from <code>obj</code>.  <code>obj</code> can be any
+object responding to a read() method that returns a <a
+href="../String.html">String</a> (or something else responding to
+to_str()).  IO and <a href="../File.html">File</a> are just a couple of
+examples.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parseread-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 311</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parseread</span>(<span class="ruby-identifier">obj</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:read</span>)
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;Passed object must respond to read()&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">parsestring</span>(<span class="ruby-identifier">obj</span>.<span class="ruby-identifier">read</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parseread-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parseread-method -->
+
+    
+      <div id="method-i-parsescan" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parsescan</span><span
+            class="method-args">(nmap, args, targets = [])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Essentially runs “<code>nmap</code> -d <code>args</code>
+<code>targets</code>”</p>
+
+<p><code>nmap</code> is here to allow you to do things like:</p>
+
+<p>parser.parsescan(“sudo ./nmap”, arguments, targets)</p>
+
+<p>and still make it easy for me to inject the options for XML output and
+debugging.</p>
+
+<p><code>args</code> can't contain arguments like -oA, -oX, etc. as these
+could interfere with Parser's processing.  If you need that other output,
+you could run <a href="../Nmap.html">Nmap</a> yourself and just pass the
+-oX output to <a href="Parser.html">Parser</a>. Or you could use rawxml to
+grab the XML from the scan and write it to a file, for example.</p>
+
+<p><code>targets</code> is an optional array of target specifications.  It's
+here only for convenience because you can also put any targets you want
+scanned in <code>args</code> (which is what I tend to do unless I happen to
+already have a collection of targets as an array).</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parsescan-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 355</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parsescan</span>(<span class="ruby-identifier">nmap</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">targets</span> = [])
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\s-o|^-o/</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;Output option (-o*) passed to parsescan()&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># Enable debugging and XML; pass args and targets</span>
+        <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;#{nmap} -d -oX - #{args} #{targets.join(&quot; &quot;)}&quot;</span>
+
+        <span class="ruby-keyword">begin</span>
+                <span class="ruby-comment"># First try popen3() if it loaded successfully..</span>
+                <span class="ruby-constant">Open3</span>.<span class="ruby-identifier">popen3</span>(<span class="ruby-identifier">command</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sin</span>, <span class="ruby-identifier">sout</span>, <span class="ruby-identifier">serr</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">parseread</span>(<span class="ruby-identifier">sout</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NameError</span>
+                <span class="ruby-comment"># ..but fall back to popen() if not</span>
+                <span class="ruby-constant">IO</span>.<span class="ruby-identifier">popen</span>(<span class="ruby-identifier">command</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">parseread</span>(<span class="ruby-identifier">io</span>)
+                <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parsescan-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parsescan-method -->
+
+    
+      <div id="method-i-parsestring" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parsestring</span><span
+            class="method-args">(str)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Read and parse a <a href="../String.html">String</a> (or something else
+responding to to_str()) of XML</p>
+          
+          
+
+          
+          <div class="method-source-code" id="parsestring-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 328</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parsestring</span>(<span class="ruby-identifier">str</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">str</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-value">:to_str</span>)
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;XML data should be a String, or must respond to to_str()&quot;</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_str</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parsestring-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parsestring-method -->
+
+    
+      <div id="method-i-self.parsefile-28filename-29" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self.parsefile(filename)</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrapper around the instance method’s functionality</p>
+
+<p>Returns a new <a href="Parser.html">Nmap::Parser</a> object and yields it
+to a block if one is given</p>
+          
+          
+
+          
+          <div class="method-source-code" id="self.parsefile-28filename-29-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 277</span>
+        </pre>
+          </div><!-- self.parsefile-28filename-29-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- self.parsefile-28filename-29-method -->
+
+    
+      <div id="method-i-self.parseread-28obj-29" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self.parseread(obj)</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrapper around the instance method’s functionality</p>
+
+<p>Returns a new <a href="Parser.html">Nmap::Parser</a> object and yields it
+to a block if one is given</p>
+          
+          
+
+          
+          <div class="method-source-code" id="self.parseread-28obj-29-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 283</span>
+        </pre>
+          </div><!-- self.parseread-28obj-29-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- self.parseread-28obj-29-method -->
+
+    
+      <div id="method-i-self.parsescan-28nmap-2Cargs-2Ctargets-3D-5B-5D-29" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self.parsescan(nmap,args,targets=[])</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrapper around the instance method’s functionality</p>
+
+<p>Returns a new <a href="Parser.html">Nmap::Parser</a> object and yields it
+to a block if one is given</p>
+          
+          
+
+          
+          <div class="method-source-code" id="self.parsescan-28nmap-2Cargs-2Ctargets-3D-5B-5D-29-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 289</span>
+        </pre>
+          </div><!-- self.parsescan-28nmap-2Cargs-2Ctargets-3D-5B-5D-29-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- self.parsescan-28nmap-2Cargs-2Ctargets-3D-5B-5D-29-method -->
+
+    
+      <div id="method-i-self.parsestring-28str-29" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">self.parsestring(str)</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrapper around the instance method’s functionality</p>
+
+<p>Returns a new <a href="Parser.html">Nmap::Parser</a> object and yields it
+to a block if one is given</p>
+          
+          
+
+          
+          <div class="method-source-code" id="self.parsestring-28str-29-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/lib/nmap/parser.rb, line 295</span>
+        </pre>
+          </div><!-- self.parsestring-28str-29-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- self.parsestring-28str-29-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

@@ -72,7 +72,12 @@ module Path
         "telnet_pwds_short"          => "/usr/share/gladius/input/telnet_pwds_short.txt",
         "telnet_usrs_long"           => "/usr/share/gladius/input/telnet_usrs_long.txt",
         "telnet_usrs_short"          => "/usr/share/gladius/input/telnet_usrs_short.txt",
-        "vpn_group_id_long"          => "/usr/share/gladius/input/vpn_group_id_long.txt"
+        "tftp_file_list"             => "/usr/share/gladius/input/tftp_file_list.txt",
+        "vpn_group_id_long"          => "/usr/share/gladius/input/vpn_group_id_long.txt",
+        "windows_pwds_long"          => "/usr/share/gladius/input/windows_pwds_long.txt",
+        "windows_pwds_short"         => "/usr/share/gladius/input/windows_pwds_short.txt",
+        "windows_usrs_long"          => "/usr/share/gladius/input/windows_usrs_long.txt",
+        "windows_usrs_short"         => "/usr/share/gladius/input/windows_usrs_short.txt"
       }
     path[g_alias]
   end
@@ -94,12 +99,13 @@ module Path
         "ssh_usrs_long"              => lib_root + "/helpers/input/ssh_usrs_long.txt",
         "telnet_pwds_long"           => lib_root + "/helpers/input/telnet_pwds_long.txt",
         "telnet_usrs_long"           => lib_root + "/helpers/input/telnet_usrs_long.txt",
-        "vpn_group_id_long"          => lib_root + "/helpers/input/vpn_group_id_long.txt"
+        "tftp_file_list"             => lib_root + "/helpers/input/tftp_file_list.txt",
+        "vpn_group_id_long"          => lib_root + "/helpers/input/vpn_group_id_long.txt",
+        "windows_pwds_long"          => lib_root + "/helpers/input/windows_pwds_long.txt",
+        "windows_usrs_long"          => lib_root + "/helpers/input/windows_usrs_long.txt"
       }
     path[g_alias]
   end
-  
-
   
   def stdn_pwds
     a = "/usr/share/gladius/input/stdn_pwds.txt"

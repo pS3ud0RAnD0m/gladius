@@ -1,0 +1,2664 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Installer - Ruby Nmap::Parser</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/helpers/thirdparty/ruby-nmap-parser/setup.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="FileOperations.html">FileOperations</a>
+  
+  
+  
+    <li><a class="include" href="HookScriptAPI.html">HookScriptAPI</a>
+  
+  
+  </ul>
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-clean_dir_bin">#clean_dir_bin</a>
+    
+    <li ><a href="#method-i-clean_dir_conf">#clean_dir_conf</a>
+    
+    <li ><a href="#method-i-clean_dir_data">#clean_dir_data</a>
+    
+    <li ><a href="#method-i-clean_dir_ext">#clean_dir_ext</a>
+    
+    <li ><a href="#method-i-clean_dir_lib">#clean_dir_lib</a>
+    
+    <li ><a href="#method-i-clean_dir_man">#clean_dir_man</a>
+    
+    <li ><a href="#method-i-config_dir_bin">#config_dir_bin</a>
+    
+    <li ><a href="#method-i-config_dir_conf">#config_dir_conf</a>
+    
+    <li ><a href="#method-i-config_dir_data">#config_dir_data</a>
+    
+    <li ><a href="#method-i-config_dir_ext">#config_dir_ext</a>
+    
+    <li ><a href="#method-i-config_dir_lib">#config_dir_lib</a>
+    
+    <li ><a href="#method-i-config_dir_man">#config_dir_man</a>
+    
+    <li ><a href="#method-i-distclean_dir_bin">#distclean_dir_bin</a>
+    
+    <li ><a href="#method-i-distclean_dir_conf">#distclean_dir_conf</a>
+    
+    <li ><a href="#method-i-distclean_dir_data">#distclean_dir_data</a>
+    
+    <li ><a href="#method-i-distclean_dir_ext">#distclean_dir_ext</a>
+    
+    <li ><a href="#method-i-distclean_dir_lib">#distclean_dir_lib</a>
+    
+    <li ><a href="#method-i-distclean_dir_man">#distclean_dir_man</a>
+    
+    <li ><a href="#method-i-dive_into">#dive_into</a>
+    
+    <li ><a href="#method-i-exec_clean">#exec_clean</a>
+    
+    <li ><a href="#method-i-exec_config">#exec_config</a>
+    
+    <li ><a href="#method-i-exec_distclean">#exec_distclean</a>
+    
+    <li ><a href="#method-i-exec_install">#exec_install</a>
+    
+    <li ><a href="#method-i-exec_setup">#exec_setup</a>
+    
+    <li ><a href="#method-i-exec_task_traverse">#exec_task_traverse</a>
+    
+    <li ><a href="#method-i-exec_test">#exec_test</a>
+    
+    <li ><a href="#method-i-existfiles">#existfiles</a>
+    
+    <li ><a href="#method-i-extconf">#extconf</a>
+    
+    <li ><a href="#method-i-glob_reject">#glob_reject</a>
+    
+    <li ><a href="#method-i-glob_select">#glob_select</a>
+    
+    <li ><a href="#method-i-globs2re">#globs2re</a>
+    
+    <li ><a href="#method-i-hookfiles">#hookfiles</a>
+    
+    <li ><a href="#method-i-inspect">#inspect</a>
+    
+    <li ><a href="#method-i-install_dir_bin">#install_dir_bin</a>
+    
+    <li ><a href="#method-i-install_dir_conf">#install_dir_conf</a>
+    
+    <li ><a href="#method-i-install_dir_data">#install_dir_data</a>
+    
+    <li ><a href="#method-i-install_dir_ext">#install_dir_ext</a>
+    
+    <li ><a href="#method-i-install_dir_lib">#install_dir_lib</a>
+    
+    <li ><a href="#method-i-install_dir_man">#install_dir_man</a>
+    
+    <li ><a href="#method-i-install_files">#install_files</a>
+    
+    <li ><a href="#method-i-libfiles">#libfiles</a>
+    
+    <li ><a href="#method-i-mapdir">#mapdir</a>
+    
+    <li ><a href="#method-i-new_shebang">#new_shebang</a>
+    
+    <li ><a href="#method-i-no_harm-3F">#no_harm?</a>
+    
+    <li ><a href="#method-i-noop">#noop</a>
+    
+    <li ><a href="#method-i-objdir_root">#objdir_root</a>
+    
+    <li ><a href="#method-i-open_atomic_writer">#open_atomic_writer</a>
+    
+    <li ><a href="#method-i-relpath">#relpath</a>
+    
+    <li ><a href="#method-i-rubyextentions">#rubyextentions</a>
+    
+    <li ><a href="#method-i-run_hook">#run_hook</a>
+    
+    <li ><a href="#method-i-setup_dir_bin">#setup_dir_bin</a>
+    
+    <li ><a href="#method-i-setup_dir_conf">#setup_dir_conf</a>
+    
+    <li ><a href="#method-i-setup_dir_data">#setup_dir_data</a>
+    
+    <li ><a href="#method-i-setup_dir_ext">#setup_dir_ext</a>
+    
+    <li ><a href="#method-i-setup_dir_lib">#setup_dir_lib</a>
+    
+    <li ><a href="#method-i-setup_dir_man">#setup_dir_man</a>
+    
+    <li ><a href="#method-i-srcdir_root">#srcdir_root</a>
+    
+    <li ><a href="#method-i-targetfiles">#targetfiles</a>
+    
+    <li ><a href="#method-i-traverse">#traverse</a>
+    
+    <li ><a href="#method-i-update_shebang_line">#update_shebang_line</a>
+    
+    <li ><a href="#method-i-verbose-3F">#verbose?</a>
+    
+    <li ><a href="#method-i-verbose_off">#verbose_off</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/gladius_conf.html">gladius.conf</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables.html">iptables</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/BUGS.html">BUGS</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/ChangeLog_rdoc.html">ChangeLog</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/INSTALL.html">INSTALL</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/README.html">README</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/TODO.html">TODO</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/nmap-parser_gemspec.html">nmap-parser.gemspec</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/large_xml.html">large.xml</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/other_xml.html">other.xml</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ApacheUsers.html">ApacheUsers</a>
+  
+    <li><a href="./Atftpd.html">Atftpd</a>
+  
+    <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./ConfigTable.html">ConfigTable</a>
+  
+    <li><a href="./ConfigTable/BoolItem.html">ConfigTable::BoolItem</a>
+  
+    <li><a href="./ConfigTable/ExecItem.html">ConfigTable::ExecItem</a>
+  
+    <li><a href="./ConfigTable/Item.html">ConfigTable::Item</a>
+  
+    <li><a href="./ConfigTable/MetaConfigEnvironment.html">ConfigTable::MetaConfigEnvironment</a>
+  
+    <li><a href="./ConfigTable/PackageSelectionItem.html">ConfigTable::PackageSelectionItem</a>
+  
+    <li><a href="./ConfigTable/PathItem.html">ConfigTable::PathItem</a>
+  
+    <li><a href="./ConfigTable/ProgramItem.html">ConfigTable::ProgramItem</a>
+  
+    <li><a href="./ConfigTable/SelectItem.html">ConfigTable::SelectItem</a>
+  
+    <li><a href="./Constant.html">Constant</a>
+  
+    <li><a href="./DNS.html">DNS</a>
+  
+    <li><a href="./DNSrecon.html">DNSrecon</a>
+  
+    <li><a href="./DiG.html">DiG</a>
+  
+    <li><a href="./Dictionary.html">Dictionary</a>
+  
+    <li><a href="./DictionaryOnline.html">DictionaryOnline</a>
+  
+    <li><a href="./DirStructure.html">DirStructure</a>
+  
+    <li><a href="./DiscoverServices.html">DiscoverServices</a>
+  
+    <li><a href="./Dsniff.html">Dsniff</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./Errno.html">Errno</a>
+  
+    <li><a href="./Errno/ENOTEMPTY.html">Errno::ENOTEMPTY</a>
+  
+    <li><a href="./FTP.html">FTP</a>
+  
+    <li><a href="./Fierce.html">Fierce</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./FileOperations.html">FileOperations</a>
+  
+    <li><a href="./GExeption.html">GExeption</a>
+  
+    <li><a href="./GNmap.html">GNmap</a>
+  
+    <li><a href="./GatherInfo.html">GatherInfo</a>
+  
+    <li><a href="./Gladius.html">Gladius</a>
+  
+    <li><a href="./Gpty.html">Gpty</a>
+  
+    <li><a href="./HTTP.html">HTTP</a>
+  
+    <li><a href="./Home.html">Home</a>
+  
+    <li><a href="./HookScriptAPI.html">HookScriptAPI</a>
+  
+    <li><a href="./Hydra.html">Hydra</a>
+  
+    <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./Installer.html">Installer</a>
+  
+    <li><a href="./Installer/Shebang.html">Installer::Shebang</a>
+  
+    <li><a href="./KaliSupport.html">KaliSupport</a>
+  
+    <li><a href="./MSF.html">MSF</a>
+  
+    <li><a href="./Medusa.html">Medusa</a>
+  
+    <li><a href="./Menu.html">Menu</a>
+  
+    <li><a href="./Ncrack.html">Ncrack</a>
+  
+    <li><a href="./Nessus.html">Nessus</a>
+  
+    <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
+  
+    <li><a href="./NetworkAttacks.html">NetworkAttacks</a>
+  
+    <li><a href="./Nikto.html">Nikto</a>
+  
+    <li><a href="./Nmap.html">Nmap</a>
+  
+    <li><a href="./Nmap/Parser.html">Nmap::Parser</a>
+  
+    <li><a href="./Nmap/Parser/Host.html">Nmap::Parser::Host</a>
+  
+    <li><a href="./Nmap/Parser/Host/ExtraPorts.html">Nmap::Parser::Host::ExtraPorts</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS.html">Nmap::Parser::Host::OS</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSClass.html">Nmap::Parser::Host::OS::OSClass</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSMatch.html">Nmap::Parser::Host::OS::OSMatch</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port.html">Nmap::Parser::Host::Port</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port/Service.html">Nmap::Parser::Host::Port::Service</a>
+  
+    <li><a href="./Nmap/Parser/Host/Script.html">Nmap::Parser::Host::Script</a>
+  
+    <li><a href="./Nmap/Parser/Host/Times.html">Nmap::Parser::Host::Times</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute.html">Nmap::Parser::Host::Traceroute</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute/Hop.html">Nmap::Parser::Host::Traceroute::Hop</a>
+  
+    <li><a href="./Nmap/Parser/Session.html">Nmap::Parser::Session</a>
+  
+    <li><a href="./Nmap/UnitTest.html">Nmap::UnitTest</a>
+  
+    <li><a href="./Nmap/UnitTest/Host.html">Nmap::UnitTest::Host</a>
+  
+    <li><a href="./Nmap/UnitTest/LargeDotXml.html">Nmap::UnitTest::LargeDotXml</a>
+  
+    <li><a href="./Nmap/UnitTest/Parser.html">Nmap::UnitTest::Parser</a>
+  
+    <li><a href="./NmapParser.html">NmapParser</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Onesixtyone.html">Onesixtyone</a>
+  
+    <li><a href="./Parse.html">Parse</a>
+  
+    <li><a href="./ParseFile.html">ParseFile</a>
+  
+    <li><a href="./Path.html">Path</a>
+  
+    <li><a href="./RspecTest.html">RspecTest</a>
+  
+    <li><a href="./SMTP.html">SMTP</a>
+  
+    <li><a href="./SNMP.html">SNMP</a>
+  
+    <li><a href="./SSLScan.html">SSLScan</a>
+  
+    <li><a href="./Session.html">Session</a>
+  
+    <li><a href="./SetupError.html">SetupError</a>
+  
+    <li><a href="./SniffSpoof.html">SniffSpoof</a>
+  
+    <li><a href="./SnortService.html">SnortService</a>
+  
+    <li><a href="./Splash.html">Splash</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./SysInfo.html">SysInfo</a>
+  
+    <li><a href="./TFTP.html">TFTP</a>
+  
+    <li><a href="./ToplevelInstaller.html">ToplevelInstaller</a>
+  
+    <li><a href="./ToplevelInstallerMulti.html">ToplevelInstallerMulti</a>
+  
+    <li><a href="./VPNAttacks.html">VPNAttacks</a>
+  
+    <li><a href="./Weapon.html">Weapon</a>
+  
+    <li><a href="./WebAttacks.html">WebAttacks</a>
+  
+    <li><a href="./WirelessAttacks.html">WirelessAttacks</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Installer</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="FILETYPES">FILETYPES
+        
+        <dd class="description">
+        
+      
+        <dt id="GLOB2REGEX">GLOB2REGEX
+        
+        <dd class="description">
+        
+      
+        <dt id="JUNK_FILES">JUNK_FILES
+        
+        <dd class="description"><p>picked up many entries from cvs-1.11.1/src/ignore.c</p>
+        
+      
+        <dt id="TESTDIR">TESTDIR
+        
+        <dd class="description"><p>TASK test</p>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(config, srcroot, objroot)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">config</span>, <span class="ruby-identifier">srcroot</span>, <span class="ruby-identifier">objroot</span>)
+  <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span>
+  <span class="ruby-ivar">@srcdir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">srcroot</span>)
+  <span class="ruby-ivar">@objdir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">objroot</span>)
+  <span class="ruby-ivar">@currdir</span> = <span class="ruby-string">'.'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-clean_dir_bin" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_bin</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- clean_dir_bin-method -->
+
+    
+      <div id="method-i-clean_dir_conf" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_conf</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- clean_dir_conf-method -->
+
+    
+      <div id="method-i-clean_dir_data" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_data</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- clean_dir_data-method -->
+
+    
+      <div id="method-i-clean_dir_ext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_ext</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="clean_dir_ext-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1486</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_dir_ext</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">extdir?</span>(<span class="ruby-identifier">curr_srcdir</span>())
+  <span class="ruby-identifier">make</span> <span class="ruby-string">'clean'</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-string">'Makefile'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clean_dir_ext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clean_dir_ext-method -->
+
+    
+      <div id="method-i-clean_dir_lib" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_lib</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- clean_dir_lib-method -->
+
+    
+      <div id="method-i-clean_dir_man" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_dir_man</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- clean_dir_man-method -->
+
+    
+      <div id="method-i-config_dir_bin" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_bin</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- config_dir_bin-method -->
+
+    
+      <div id="method-i-config_dir_conf" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_conf</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- config_dir_conf-method -->
+
+    
+      <div id="method-i-config_dir_data" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_data</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- config_dir_data-method -->
+
+    
+      <div id="method-i-config_dir_ext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_ext</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="config_dir_ext-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">config_dir_ext</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">extconf</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">extdir?</span>(<span class="ruby-identifier">curr_srcdir</span>())
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- config_dir_ext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- config_dir_ext-method -->
+
+    
+      <div id="method-i-config_dir_lib" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_lib</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- config_dir_lib-method -->
+
+    
+      <div id="method-i-config_dir_man" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">config_dir_man</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- config_dir_man-method -->
+
+    
+      <div id="method-i-distclean_dir_bin" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_bin</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- distclean_dir_bin-method -->
+
+    
+      <div id="method-i-distclean_dir_conf" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_conf</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- distclean_dir_conf-method -->
+
+    
+      <div id="method-i-distclean_dir_data" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_data</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- distclean_dir_data-method -->
+
+    
+      <div id="method-i-distclean_dir_ext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_ext</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="distclean_dir_ext-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1504</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">distclean_dir_ext</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">extdir?</span>(<span class="ruby-identifier">curr_srcdir</span>())
+  <span class="ruby-identifier">make</span> <span class="ruby-string">'distclean'</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-string">'Makefile'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- distclean_dir_ext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- distclean_dir_ext-method -->
+
+    
+      <div id="method-i-distclean_dir_lib" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_lib</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- distclean_dir_lib-method -->
+
+    
+      <div id="method-i-distclean_dir_man" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">distclean_dir_man</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- distclean_dir_man-method -->
+
+    
+      <div id="method-i-dive_into" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">dive_into</span><span
+            class="method-args">(rel) { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="dive_into-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1540</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">dive_into</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dir?</span>(<span class="ruby-node">&quot;#{@srcdir}/#{rel}&quot;</span>)
+
+  <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span> <span class="ruby-identifier">dir</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dir?</span>(<span class="ruby-identifier">dir</span>)
+  <span class="ruby-identifier">prevdir</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span> <span class="ruby-identifier">dir</span>
+  <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">'---&gt; '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rel</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+  <span class="ruby-ivar">@currdir</span> = <span class="ruby-identifier">rel</span>
+  <span class="ruby-keyword">yield</span>
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span> <span class="ruby-identifier">prevdir</span>
+  <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">'&lt;--- '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">rel</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+  <span class="ruby-ivar">@currdir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">rel</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- dive_into-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- dive_into-method -->
+
+    
+      <div id="method-i-exec_clean" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_clean</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TASK clean</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_clean-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1474</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_clean</span>
+  <span class="ruby-identifier">exec_task_traverse</span> <span class="ruby-string">'clean'</span>
+  <span class="ruby-identifier">rm_f</span> <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">savefile</span>
+  <span class="ruby-identifier">rm_f</span> <span class="ruby-string">'InstalledFiles'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_clean-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_clean-method -->
+
+    
+      <div id="method-i-exec_config" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_config</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TASK config</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_config-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1222</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_config</span>
+  <span class="ruby-identifier">exec_task_traverse</span> <span class="ruby-string">'config'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_config-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_config-method -->
+
+    
+      <div id="method-i-exec_distclean" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_distclean</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TASK distclean</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_distclean-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1495</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_distclean</span>
+  <span class="ruby-identifier">exec_task_traverse</span> <span class="ruby-string">'distclean'</span>
+  <span class="ruby-identifier">rm_f</span> <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">savefile</span>
+  <span class="ruby-identifier">rm_f</span> <span class="ruby-string">'InstalledFiles'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_distclean-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_distclean-method -->
+
+    
+      <div id="method-i-exec_install" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_install</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TASK install</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_install-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1340</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_install</span>
+  <span class="ruby-identifier">rm_f</span> <span class="ruby-string">'InstalledFiles'</span>
+  <span class="ruby-identifier">exec_task_traverse</span> <span class="ruby-string">'install'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_install-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_install-method -->
+
+    
+      <div id="method-i-exec_setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_setup</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>TASK setup</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_setup-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_setup</span>
+  <span class="ruby-identifier">exec_task_traverse</span> <span class="ruby-string">'setup'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_setup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_setup-method -->
+
+    
+      <div id="method-i-exec_task_traverse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_task_traverse</span><span
+            class="method-args">(task)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Traversing</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exec_task_traverse-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1517</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_task_traverse</span>(<span class="ruby-identifier">task</span>)
+  <span class="ruby-identifier">run_hook</span> <span class="ruby-node">&quot;pre-#{task}&quot;</span>
+  <span class="ruby-constant">FILETYPES</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-string">'ext'</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">config</span>(<span class="ruby-string">'without-ext'</span>) <span class="ruby-operator">==</span> <span class="ruby-string">'yes'</span>
+      <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">'skipping ext/* by user option'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+      <span class="ruby-keyword">next</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">traverse</span> <span class="ruby-identifier">task</span>, <span class="ruby-identifier">type</span>, <span class="ruby-node">&quot;#{task}_dir_#{type}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">run_hook</span> <span class="ruby-node">&quot;post-#{task}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_task_traverse-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_task_traverse-method -->
+
+    
+      <div id="method-i-exec_test" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exec_test</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="exec_test-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1454</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exec_test</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-string">'test'</span>)
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">'no test in this package'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">'Running tests...'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-string">'test/unit'</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">LoadError</span>
+    <span class="ruby-identifier">setup_rb_error</span> <span class="ruby-string">'test/unit cannot loaded.  You need Ruby 1.8 or later to invoke this task.'</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">runner</span> = <span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">AutoRunner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">true</span>)
+  <span class="ruby-identifier">runner</span>.<span class="ruby-identifier">to_run</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">TESTDIR</span>
+  <span class="ruby-identifier">runner</span>.<span class="ruby-identifier">run</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exec_test-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exec_test-method -->
+
+    
+      <div id="method-i-existfiles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">existfiles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="existfiles-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1415</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">existfiles</span>
+  <span class="ruby-identifier">glob_reject</span>(<span class="ruby-constant">JUNK_FILES</span>, (<span class="ruby-identifier">files_of</span>(<span class="ruby-identifier">curr_srcdir</span>()) <span class="ruby-operator">|</span> <span class="ruby-identifier">files_of</span>(<span class="ruby-string">'.'</span>)))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- existfiles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- existfiles-method -->
+
+    
+      <div id="method-i-extconf" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">extconf</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="extconf-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extconf</span>
+  <span class="ruby-identifier">ruby</span> <span class="ruby-node">&quot;#{curr_srcdir()}/extconf.rb&quot;</span>, <span class="ruby-operator">*</span><span class="ruby-ivar">@config</span>.<span class="ruby-identifier">config_opt</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- extconf-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- extconf-method -->
+
+    
+      <div id="method-i-glob_reject" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">glob_reject</span><span
+            class="method-args">(pats, ents)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="glob_reject-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1430</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">glob_reject</span>(<span class="ruby-identifier">pats</span>, <span class="ruby-identifier">ents</span>)
+  <span class="ruby-identifier">re</span> = <span class="ruby-identifier">globs2re</span>(<span class="ruby-identifier">pats</span>)
+  <span class="ruby-identifier">ents</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">ent</span><span class="ruby-operator">|</span> <span class="ruby-identifier">re</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">ent</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- glob_reject-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- glob_reject-method -->
+
+    
+      <div id="method-i-glob_select" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">glob_select</span><span
+            class="method-args">(pat, ents)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="glob_select-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1425</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">glob_select</span>(<span class="ruby-identifier">pat</span>, <span class="ruby-identifier">ents</span>)
+  <span class="ruby-identifier">re</span> = <span class="ruby-identifier">globs2re</span>([<span class="ruby-identifier">pat</span>])
+  <span class="ruby-identifier">ents</span>.<span class="ruby-identifier">select</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">ent</span><span class="ruby-operator">|</span> <span class="ruby-identifier">re</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">ent</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- glob_select-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- glob_select-method -->
+
+    
+      <div id="method-i-globs2re" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">globs2re</span><span
+            class="method-args">(pats)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="globs2re-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1442</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">globs2re</span>(<span class="ruby-identifier">pats</span>)
+  <span class="ruby-node">/\A(?:#{
+    pats.map {|pat| pat.gsub(/[\.\$\#\*]/) {|ch| GLOB2REGEX[ch] } }.join('|')
+  })\z/</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- globs2re-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- globs2re-method -->
+
+    
+      <div id="method-i-hookfiles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hookfiles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="hookfiles-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1419</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">hookfiles</span>
+  <span class="ruby-node">%w( pre-%s post-%s pre-%s.rb post-%s.rb )</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">fmt</span><span class="ruby-operator">|</span>
+    <span class="ruby-node">%w( config setup install clean )</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-identifier">fmt</span>, <span class="ruby-identifier">t</span>) }
+  }.<span class="ruby-identifier">flatten</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- hookfiles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hookfiles-method -->
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">inspect</span>
+  <span class="ruby-node">&quot;#&lt;#{self.class} #{File.basename(@srcdir)}&gt;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- inspect-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- inspect-method -->
+
+    
+      <div id="method-i-install_dir_bin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_bin</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_bin-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1345</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_bin</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">targetfiles</span>(), <span class="ruby-node">&quot;#{config('bindir')}/#{rel}&quot;</span>, <span class="ruby-value">0755</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_bin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_bin-method -->
+
+    
+      <div id="method-i-install_dir_conf" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_conf</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_conf-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1364</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_conf</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-comment"># FIXME: should not remove current config files</span>
+  <span class="ruby-comment"># (rename previous file to .old/.org)</span>
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">targetfiles</span>(), <span class="ruby-node">&quot;#{config('sysconfdir')}/#{rel}&quot;</span>, <span class="ruby-value">0644</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_conf-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_conf-method -->
+
+    
+      <div id="method-i-install_dir_data" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_data</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_data-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1360</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_data</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">targetfiles</span>(), <span class="ruby-node">&quot;#{config('datadir')}/#{rel}&quot;</span>, <span class="ruby-value">0644</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_data-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_data-method -->
+
+    
+      <div id="method-i-install_dir_ext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_ext</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_ext-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1353</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_ext</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">extdir?</span>(<span class="ruby-identifier">curr_srcdir</span>())
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">rubyextentions</span>(<span class="ruby-string">'.'</span>),
+                <span class="ruby-node">&quot;#{config('sodir')}/#{File.dirname(rel)}&quot;</span>,
+                <span class="ruby-value">0555</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_ext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_ext-method -->
+
+    
+      <div id="method-i-install_dir_lib" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_lib</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_lib-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1349</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_lib</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">libfiles</span>(), <span class="ruby-node">&quot;#{config('rbdir')}/#{rel}&quot;</span>, <span class="ruby-value">0644</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_lib-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_lib-method -->
+
+    
+      <div id="method-i-install_dir_man" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_dir_man</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_dir_man-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1370</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_dir_man</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">install_files</span> <span class="ruby-identifier">targetfiles</span>(), <span class="ruby-node">&quot;#{config('mandir')}/#{rel}&quot;</span>, <span class="ruby-value">0644</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_dir_man-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_dir_man-method -->
+
+    
+      <div id="method-i-install_files" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">install_files</span><span
+            class="method-args">(list, dest, mode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="install_files-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1374</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">install_files</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">dest</span>, <span class="ruby-identifier">mode</span>)
+  <span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">dest</span>, <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">install_prefix</span>
+  <span class="ruby-identifier">list</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fname</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">install</span> <span class="ruby-identifier">fname</span>, <span class="ruby-identifier">dest</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">install_prefix</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- install_files-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- install_files-method -->
+
+    
+      <div id="method-i-libfiles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">libfiles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="libfiles-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1381</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">libfiles</span>
+  <span class="ruby-identifier">glob_reject</span>(<span class="ruby-node">%w(*.y *.output)</span>, <span class="ruby-identifier">targetfiles</span>())
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- libfiles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- libfiles-method -->
+
+    
+      <div id="method-i-mapdir" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mapdir</span><span
+            class="method-args">(ents)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mapdir-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1397</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mapdir</span>(<span class="ruby-identifier">ents</span>)
+  <span class="ruby-identifier">ents</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">ent</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">ent</span>)
+    <span class="ruby-keyword">then</span> <span class="ruby-identifier">ent</span>                         <span class="ruby-comment"># objdir</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-node">&quot;#{curr_srcdir()}/#{ent}&quot;</span>   <span class="ruby-comment"># srcdir</span>
+    <span class="ruby-keyword">end</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mapdir-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mapdir-method -->
+
+    
+      <div id="method-i-new_shebang" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new_shebang</span><span
+            class="method-args">(old)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new_shebang-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1287</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new_shebang</span>(<span class="ruby-identifier">old</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-regexp">/\Aruby/</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">old</span>.<span class="ruby-identifier">cmd</span>)
+    <span class="ruby-constant">Shebang</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>(<span class="ruby-string">'rubypath'</span>), <span class="ruby-identifier">old</span>.<span class="ruby-identifier">args</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">old</span>.<span class="ruby-identifier">cmd</span>) <span class="ruby-operator">==</span> <span class="ruby-string">'env'</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">old</span>.<span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-string">'ruby'</span>
+    <span class="ruby-constant">Shebang</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>(<span class="ruby-string">'rubypath'</span>), <span class="ruby-identifier">old</span>.<span class="ruby-identifier">args</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>])
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">old</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">config</span>(<span class="ruby-string">'shebang'</span>) <span class="ruby-operator">==</span> <span class="ruby-string">'all'</span>
+    <span class="ruby-constant">Shebang</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>(<span class="ruby-string">'rubypath'</span>))
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new_shebang-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new_shebang-method -->
+
+    
+      <div id="method-i-no_harm-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">no_harm?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>module <a href="FileOperations.html">FileOperations</a> requires this</p>
+          
+          
+
+          
+          <div class="method-source-code" id="no_harm-3F-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1205</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">no_harm?</span>
+  <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">no_harm?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- no_harm-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- no_harm-3F-method -->
+
+    
+      <div id="method-i-noop" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">noop</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="noop-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1176</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">noop</span>(<span class="ruby-identifier">rel</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- noop-source -->
+          
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Installer.html#method-i-config_dir_bin">config_dir_bin</a>, <a href="Installer.html#method-i-config_dir_lib">config_dir_lib</a>, <a href="Installer.html#method-i-config_dir_data">config_dir_data</a>, <a href="Installer.html#method-i-config_dir_conf">config_dir_conf</a>, <a href="Installer.html#method-i-config_dir_man">config_dir_man</a>, <a href="Installer.html#method-i-setup_dir_lib">setup_dir_lib</a>, <a href="Installer.html#method-i-setup_dir_data">setup_dir_data</a>, <a href="Installer.html#method-i-setup_dir_conf">setup_dir_conf</a>, <a href="Installer.html#method-i-setup_dir_man">setup_dir_man</a>, <a href="Installer.html#method-i-clean_dir_bin">clean_dir_bin</a>, <a href="Installer.html#method-i-clean_dir_lib">clean_dir_lib</a>, <a href="Installer.html#method-i-clean_dir_data">clean_dir_data</a>, <a href="Installer.html#method-i-clean_dir_conf">clean_dir_conf</a>, <a href="Installer.html#method-i-clean_dir_man">clean_dir_man</a>, <a href="Installer.html#method-i-distclean_dir_bin">distclean_dir_bin</a>, <a href="Installer.html#method-i-distclean_dir_lib">distclean_dir_lib</a>, <a href="Installer.html#method-i-distclean_dir_data">distclean_dir_data</a>, <a href="Installer.html#method-i-distclean_dir_conf">distclean_dir_conf</a>, <a href="Installer.html#method-i-distclean_dir_man">distclean_dir_man</a>
+        </div>
+        
+
+        
+      </div><!-- noop-method -->
+
+    
+      <div id="method-i-objdir_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">objdir_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="objdir_root-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1187</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">objdir_root</span>
+  <span class="ruby-ivar">@objdir</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- objdir_root-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- objdir_root-method -->
+
+    
+      <div id="method-i-open_atomic_writer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">open_atomic_writer</span><span
+            class="method-args">(path, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="open_atomic_writer-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1298</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">open_atomic_writer</span>(<span class="ruby-identifier">path</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">tmpfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">+</span> <span class="ruby-string">'.tmp'</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">tmpfile</span>, <span class="ruby-string">'wb'</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">rename</span> <span class="ruby-identifier">tmpfile</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">unlink</span> <span class="ruby-identifier">tmpfile</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-identifier">tmpfile</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- open_atomic_writer-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- open_atomic_writer-method -->
+
+    
+      <div id="method-i-relpath" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">relpath</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="relpath-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">relpath</span>
+  <span class="ruby-ivar">@currdir</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- relpath-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- relpath-method -->
+
+    
+      <div id="method-i-rubyextentions" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rubyextentions</span><span
+            class="method-args">(dir)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="rubyextentions-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1385</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rubyextentions</span>(<span class="ruby-identifier">dir</span>)
+  <span class="ruby-identifier">ents</span> = <span class="ruby-identifier">glob_select</span>(<span class="ruby-node">&quot;*.#{@config.dllext}&quot;</span>, <span class="ruby-identifier">targetfiles</span>())
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">ents</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">setup_rb_error</span> <span class="ruby-node">&quot;no ruby extention exists: 'ruby #{$0} setup' first&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ents</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rubyextentions-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rubyextentions-method -->
+
+    
+      <div id="method-i-run_hook" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run_hook</span><span
+            class="method-args">(id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run_hook-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1555</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run_hook</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">path</span> = [ <span class="ruby-node">&quot;#{curr_srcdir()}/#{id}&quot;</span>,
+           <span class="ruby-node">&quot;#{curr_srcdir()}/#{id}.rb&quot;</span> ].<span class="ruby-identifier">detect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">cand</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">file?</span>(<span class="ruby-identifier">cand</span>) }
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">instance_eval</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">path</span>), <span class="ruby-identifier">path</span>, <span class="ruby-value">1</span>
+  <span class="ruby-keyword">rescue</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$DEBUG</span>
+    <span class="ruby-identifier">setup_rb_error</span> <span class="ruby-node">&quot;hook #{path} failed:\n&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">message</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run_hook-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run_hook-method -->
+
+    
+      <div id="method-i-setup_dir_bin" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_bin</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="setup_dir_bin-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1249</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup_dir_bin</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">files_of</span>(<span class="ruby-identifier">curr_srcdir</span>()).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fname</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">update_shebang_line</span> <span class="ruby-node">&quot;#{curr_srcdir()}/#{fname}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- setup_dir_bin-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- setup_dir_bin-method -->
+
+    
+      <div id="method-i-setup_dir_conf" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_conf</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- setup_dir_conf-method -->
+
+    
+      <div id="method-i-setup_dir_data" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_data</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- setup_dir_data-method -->
+
+    
+      <div id="method-i-setup_dir_ext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_ext</span><span
+            class="method-args">(rel)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="setup_dir_ext-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1257</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup_dir_ext</span>(<span class="ruby-identifier">rel</span>)
+  <span class="ruby-identifier">make</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">extdir?</span>(<span class="ruby-identifier">curr_srcdir</span>())
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- setup_dir_ext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- setup_dir_ext-method -->
+
+    
+      <div id="method-i-setup_dir_lib" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_lib</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- setup_dir_lib-method -->
+
+    
+      <div id="method-i-setup_dir_man" class="method-detail method-alias">
+        
+        <div class="method-heading">
+          <span class="method-name">setup_dir_man</span><span
+            class="method-args">(rel)</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+        </div>
+
+        
+
+        
+        <div class="aliases">
+          Alias for: <a href="Installer.html#method-i-noop">noop</a>
+        </div>
+        
+      </div><!-- setup_dir_man-method -->
+
+    
+      <div id="method-i-srcdir_root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">srcdir_root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Hook Script API base methods</p>
+          
+          
+
+          
+          <div class="method-source-code" id="srcdir_root-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">srcdir_root</span>
+  <span class="ruby-ivar">@srcdir</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- srcdir_root-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- srcdir_root-method -->
+
+    
+      <div id="method-i-targetfiles" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">targetfiles</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="targetfiles-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1393</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">targetfiles</span>
+  <span class="ruby-identifier">mapdir</span>(<span class="ruby-identifier">existfiles</span>() <span class="ruby-operator">-</span> <span class="ruby-identifier">hookfiles</span>())
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- targetfiles-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- targetfiles-method -->
+
+    
+      <div id="method-i-traverse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">traverse</span><span
+            class="method-args">(task, rel, mid)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="traverse-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1529</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">traverse</span>(<span class="ruby-identifier">task</span>, <span class="ruby-identifier">rel</span>, <span class="ruby-identifier">mid</span>)
+  <span class="ruby-identifier">dive_into</span>(<span class="ruby-identifier">rel</span>) {
+    <span class="ruby-identifier">run_hook</span> <span class="ruby-node">&quot;pre-#{task}&quot;</span>
+    <span class="ruby-identifier">__send__</span> <span class="ruby-identifier">mid</span>, <span class="ruby-identifier">rel</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">%r[\A.*?(?:/|\z)]</span>, <span class="ruby-string">''</span>)
+    <span class="ruby-identifier">directories_of</span>(<span class="ruby-identifier">curr_srcdir</span>()).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">traverse</span> <span class="ruby-identifier">task</span>, <span class="ruby-node">&quot;#{rel}/#{d}&quot;</span>, <span class="ruby-identifier">mid</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">run_hook</span> <span class="ruby-node">&quot;post-#{task}&quot;</span>
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- traverse-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- traverse-method -->
+
+    
+      <div id="method-i-update_shebang_line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_shebang_line</span><span
+            class="method-args">(path)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_shebang_line-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1265</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_shebang_line</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">no_harm?</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">config</span>(<span class="ruby-string">'shebang'</span>) <span class="ruby-operator">==</span> <span class="ruby-string">'never'</span>
+  <span class="ruby-identifier">old</span> = <span class="ruby-constant">Shebang</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">path</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">old</span>
+    <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;warning: #{path}: Shebang line includes too many args.  It is not portable and your program may not work.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">old</span>.<span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">new</span> = <span class="ruby-identifier">new_shebang</span>(<span class="ruby-identifier">old</span>)
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">new</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">old</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">config</span>(<span class="ruby-string">'shebang'</span>) <span class="ruby-operator">==</span> <span class="ruby-string">'all'</span>
+    <span class="ruby-identifier">new</span> = <span class="ruby-constant">Shebang</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">config</span>(<span class="ruby-string">'rubypath'</span>))
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;updating shebang: #{File.basename(path)}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">verbose?</span>
+  <span class="ruby-identifier">open_atomic_writer</span>(<span class="ruby-identifier">path</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">output</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-string">'rb'</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">gets</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">old</span>   <span class="ruby-comment"># discard</span>
+      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">new</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">output</span>.<span class="ruby-identifier">print</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>
+    }
+  }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_shebang_line-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_shebang_line-method -->
+
+    
+      <div id="method-i-verbose-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verbose?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>module <a href="FileOperations.html">FileOperations</a> requires this</p>
+          
+          
+
+          
+          <div class="method-source-code" id="verbose-3F-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1200</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">verbose?</span>
+  <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">verbose?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- verbose-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- verbose-3F-method -->
+
+    
+      <div id="method-i-verbose_off" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">verbose_off</span><span
+            class="method-args">() { || ... }</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="verbose_off-source">
+            <pre><span class="ruby-comment"># File lib/helpers/thirdparty/ruby-nmap-parser/setup.rb, line 1209</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">verbose_off</span>
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">save</span>, <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">verbose</span> = <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">verbose?</span>, <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">yield</span>
+  <span class="ruby-keyword">ensure</span>
+    <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">save</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- verbose_off-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- verbose_off-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

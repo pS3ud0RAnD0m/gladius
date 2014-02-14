@@ -7,7 +7,7 @@ class Hydra < Weapon
     @path = "hydra"
     @name = @path
     @stdn_hosts = Path.get_path("stdn_hosts")
-    @ftp_pwds_long_long = Path.get_path("ftp_pwds_long")
+    @ftp_pwds_long = Path.get_path("ftp_pwds_long")
     @ftp_usrs_long = Path.get_path("ftp_usrs_long")
     @mysql_pwds_long = Path.get_path("mysql_pwds_long")
     @mysql_usrs_long = Path.get_path("mysql_usrs_long")
@@ -60,16 +60,16 @@ class Hydra < Weapon
     when "pcanywhere" then puts
     when "pop3" then puts
     when "postgresql" then puts "1. 72 attempts/host = 8 users * 9 passwords"
-    when "rexec" then puts
-    when "rlogin" then puts
-    when "rsh" then puts
+    when "rexec" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "rlogin" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "rsh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "smb" then puts
     when "smtp" then puts
     when "smtp-enum" then puts
     when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "svn" then puts
     when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "vmauthd" then puts
+    when "vmauthd" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "vnc" then puts
     when "web-form" then puts
     end
@@ -81,18 +81,18 @@ class Hydra < Weapon
     #when "cvs" then cvs
     when "ftp"
       case input_method
-        when 1 then ftp_gladius_long
-        when 2 then ftp_stdn
-        when 3 then ftp_stdn_list
+      when 1 then ftp_gladius_long
+      when 2 then ftp_stdn
+      when 3 then ftp_stdn_list
       end
     #when "http" then http
     #when "imap" then imap
     #when "mssql" then mssql
     when "mysql"
       case input_method
-        when 1 then mysql_gladius_long
-        when 2 then mysql_stdn
-        when 3 then mysql_stdn_list
+      when 1 then mysql_gladius_long
+      when 2 then mysql_stdn
+      when 3 then mysql_stdn_list
       end
     #when "ncp" then ncp
     #when "nntp" then nntp
@@ -100,30 +100,50 @@ class Hydra < Weapon
     #when "pop3" then pop3
     when "postgresql"
       case input_method
-        when 1 then postgresql_gladius_long
-        when 2 then postgresql_stdn
-        when 3 then postgresql_stdn_list
+      when 1 then postgresql_gladius_long
+      when 2 then postgresql_stdn
+      when 3 then postgresql_stdn_list
       end
-    #when "rexec" then rexec
-    #when "rlogin" then rlogin
-    #when "rsh" then rsh
+    when "rexec"
+      case input_method
+      when 1 then rexec_gladius_long
+      when 2 then rexec_stdn
+      when 3 then rexec_stdn_list
+      end
+    when "rlogin"
+      case input_method
+      when 1 then rlogin_gladius_long
+      when 2 then rlogin_stdn
+      when 3 then rlogin_stdn_list
+      end
+    when "rsh"
+      case input_method
+      when 1 then rsh_gladius_long
+      when 2 then rsh_stdn
+      when 3 then rsh_stdn_list
+      end
     #when "smb" then smb
     #when "smtp" then smtp
     #when "smtp-enum" then smtp_enum
     when "ssh"
       case input_method
-        when 1 then ssh_gladius_long
-        when 2 then ssh_stdn
-        when 3 then ssh_stdn_list
+      when 1 then ssh_gladius_long
+      when 2 then ssh_stdn
+      when 3 then ssh_stdn_list
       end
     #when "svn" then svn
     when "telnet"
       case input_method
-        when 1 then telnet_gladius_long
-        when 2 then telnet_stdn
-        when 3 then telnet_stdn_list
+      when 1 then telnet_gladius_long
+      when 2 then telnet_stdn
+      when 3 then telnet_stdn_list
       end
-    #when "vmauthd" then vmauthd
+    when "vmauthd"
+      case input_method
+      when 1 then vmauthd_gladius_long
+      when 2 then vmauthd_stdn
+      when 3 then vmauthd_stdn_list
+      end
     #when "vnc" then vnc
     #when "web-form" then web_form
     end
@@ -155,6 +175,9 @@ class Hydra < Weapon
 ###############################################################################
 # Run methods
 ###############################################################################
+##################################
+# FTP
+##################################
   def ftp_gladius_long
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs_long + " -P " + @ftp_pwds_long + " -M " + @stdn_hosts + " ftp |tee " + @out_file
@@ -203,6 +226,9 @@ class Hydra < Weapon
     clean_exit("ftp")
   end
 
+##################################
+# MySQL
+##################################
   def mysql_gladius_long
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdn_hosts + " mysql |tee " + @out_file
@@ -255,6 +281,9 @@ class Hydra < Weapon
     clean_exit("mysql")
   end
 
+##################################
+# PostgreSQL
+##################################
   def postgresql_gladius_long
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @postgresql_usrs_long + " -P " + @postgresql_pwds_long + " -M " + @stdn_hosts + " postgres |tee " + @out_file
@@ -308,6 +337,159 @@ class Hydra < Weapon
     clean_exit("postgresql")
   end
 
+##################################
+# Rexec
+##################################
+  def rexec_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
+    run(cmd)
+    clean_exit("rexec")
+  end
+
+  def rexec_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "root".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
+    run(cmd)
+    clean_exit("rexec")
+  end
+  
+  def rexec_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
+    run(cmd)
+    clean_exit("rexec")
+  end
+
+##################################
+# Rlogin
+##################################
+  def rlogin_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
+    run(cmd)
+    clean_exit("rlogin")
+  end
+
+  def rlogin_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "root".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
+    run(cmd)
+    clean_exit("rlogin")
+  end
+  
+  def rlogin_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
+    run(cmd)
+    clean_exit("rlogin")
+  end
+
+##################################
+# RSH
+##################################
+  def rsh_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
+    run(cmd)
+    clean_exit("rsh")
+  end
+
+  def rsh_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "root".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
+    run(cmd)
+    clean_exit("rsh")
+  end
+  
+  def rsh_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
+    run(cmd)
+    clean_exit("rsh")
+  end
+
+##################################
+# SSH
+##################################
   def ssh_gladius_long
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
@@ -354,7 +536,10 @@ class Hydra < Weapon
     run(cmd)
     clean_exit("ssh")
   end
-  
+
+##################################
+# Telnet
+##################################
   def telnet_gladius_long
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @telnet_usrs_long + " -P " + @telnet_pwds_long + " -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
@@ -401,5 +586,55 @@ class Hydra < Weapon
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
+  end
+  
+##################################
+# VMAuthd
+##################################
+  def vmauthd_gladius_long
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
+    run(cmd)
+    clean_exit("vmauthd")
+  end
+
+  def vmauthd_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "root".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
+    run(cmd)
+    clean_exit("vmauthd")
+  end
+  
+  def vmauthd_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
+    run(cmd)
+    clean_exit("vmauthd")
   end
 end  
