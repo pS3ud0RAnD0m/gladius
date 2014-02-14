@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class Weapon - Ruby Nmap::Parser</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/weapons/weapon.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-exit_weapon">#exit_weapon</a>
+    
+    <li ><a href="#method-i-get_host">#get_host</a>
+    
+    <li ><a href="#method-i-get_hosts_ports">#get_hosts_ports</a>
+    
+    <li ><a href="#method-i-get_out_file">#get_out_file</a>
+    
+    <li ><a href="#method-i-get_out_file_txt">#get_out_file_txt</a>
+    
+    <li ><a href="#method-i-get_pid_file">#get_pid_file</a>
+    
+    <li ><a href="#method-i-get_port">#get_port</a>
+    
+    <li ><a href="#method-i-header">#header</a>
+    
+    <li ><a href="#method-i-instruct_input_pwds">#instruct_input_pwds</a>
+    
+    <li ><a href="#method-i-instruct_input_pwds_list">#instruct_input_pwds_list</a>
+    
+    <li ><a href="#method-i-instruct_input_targets">#instruct_input_targets</a>
+    
+    <li ><a href="#method-i-instruct_input_usrs">#instruct_input_usrs</a>
+    
+    <li ><a href="#method-i-instruct_input_usrs_list">#instruct_input_usrs_list</a>
+    
+    <li ><a href="#method-i-run">#run</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
+  
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/gladius_conf.html">gladius.conf</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables.html">iptables</a>
+  
+    <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+  
+    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/BUGS.html">BUGS</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/ChangeLog_rdoc.html">ChangeLog</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/INSTALL.html">INSTALL</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/README.html">README</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/TODO.html">TODO</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/nmap-parser_gemspec.html">nmap-parser.gemspec</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/large_xml.html">large.xml</a>
+  
+    <li class="file"><a href="./lib/helpers/thirdparty/ruby-nmap-parser/test/xml/other_xml.html">other.xml</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./ApacheUsers.html">ApacheUsers</a>
+  
+    <li><a href="./Atftpd.html">Atftpd</a>
+  
+    <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./ConfigTable.html">ConfigTable</a>
+  
+    <li><a href="./ConfigTable/BoolItem.html">ConfigTable::BoolItem</a>
+  
+    <li><a href="./ConfigTable/ExecItem.html">ConfigTable::ExecItem</a>
+  
+    <li><a href="./ConfigTable/Item.html">ConfigTable::Item</a>
+  
+    <li><a href="./ConfigTable/MetaConfigEnvironment.html">ConfigTable::MetaConfigEnvironment</a>
+  
+    <li><a href="./ConfigTable/PackageSelectionItem.html">ConfigTable::PackageSelectionItem</a>
+  
+    <li><a href="./ConfigTable/PathItem.html">ConfigTable::PathItem</a>
+  
+    <li><a href="./ConfigTable/ProgramItem.html">ConfigTable::ProgramItem</a>
+  
+    <li><a href="./ConfigTable/SelectItem.html">ConfigTable::SelectItem</a>
+  
+    <li><a href="./Constant.html">Constant</a>
+  
+    <li><a href="./DNS.html">DNS</a>
+  
+    <li><a href="./DNSrecon.html">DNSrecon</a>
+  
+    <li><a href="./DiG.html">DiG</a>
+  
+    <li><a href="./Dictionary.html">Dictionary</a>
+  
+    <li><a href="./DictionaryOnline.html">DictionaryOnline</a>
+  
+    <li><a href="./DirStructure.html">DirStructure</a>
+  
+    <li><a href="./DiscoverServices.html">DiscoverServices</a>
+  
+    <li><a href="./Dsniff.html">Dsniff</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./Errno.html">Errno</a>
+  
+    <li><a href="./Errno/ENOTEMPTY.html">Errno::ENOTEMPTY</a>
+  
+    <li><a href="./FTP.html">FTP</a>
+  
+    <li><a href="./Fierce.html">Fierce</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./FileOperations.html">FileOperations</a>
+  
+    <li><a href="./GExeption.html">GExeption</a>
+  
+    <li><a href="./GNmap.html">GNmap</a>
+  
+    <li><a href="./GatherInfo.html">GatherInfo</a>
+  
+    <li><a href="./Gladius.html">Gladius</a>
+  
+    <li><a href="./Gpty.html">Gpty</a>
+  
+    <li><a href="./HTTP.html">HTTP</a>
+  
+    <li><a href="./Home.html">Home</a>
+  
+    <li><a href="./HookScriptAPI.html">HookScriptAPI</a>
+  
+    <li><a href="./Hydra.html">Hydra</a>
+  
+    <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./Installer.html">Installer</a>
+  
+    <li><a href="./Installer/Shebang.html">Installer::Shebang</a>
+  
+    <li><a href="./KaliSupport.html">KaliSupport</a>
+  
+    <li><a href="./MSF.html">MSF</a>
+  
+    <li><a href="./Medusa.html">Medusa</a>
+  
+    <li><a href="./Menu.html">Menu</a>
+  
+    <li><a href="./Ncrack.html">Ncrack</a>
+  
+    <li><a href="./Nessus.html">Nessus</a>
+  
+    <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
+  
+    <li><a href="./NetworkAttacks.html">NetworkAttacks</a>
+  
+    <li><a href="./Nikto.html">Nikto</a>
+  
+    <li><a href="./Nmap.html">Nmap</a>
+  
+    <li><a href="./Nmap/Parser.html">Nmap::Parser</a>
+  
+    <li><a href="./Nmap/Parser/Host.html">Nmap::Parser::Host</a>
+  
+    <li><a href="./Nmap/Parser/Host/ExtraPorts.html">Nmap::Parser::Host::ExtraPorts</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS.html">Nmap::Parser::Host::OS</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSClass.html">Nmap::Parser::Host::OS::OSClass</a>
+  
+    <li><a href="./Nmap/Parser/Host/OS/OSMatch.html">Nmap::Parser::Host::OS::OSMatch</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port.html">Nmap::Parser::Host::Port</a>
+  
+    <li><a href="./Nmap/Parser/Host/Port/Service.html">Nmap::Parser::Host::Port::Service</a>
+  
+    <li><a href="./Nmap/Parser/Host/Script.html">Nmap::Parser::Host::Script</a>
+  
+    <li><a href="./Nmap/Parser/Host/Times.html">Nmap::Parser::Host::Times</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute.html">Nmap::Parser::Host::Traceroute</a>
+  
+    <li><a href="./Nmap/Parser/Host/Traceroute/Hop.html">Nmap::Parser::Host::Traceroute::Hop</a>
+  
+    <li><a href="./Nmap/Parser/Session.html">Nmap::Parser::Session</a>
+  
+    <li><a href="./Nmap/UnitTest.html">Nmap::UnitTest</a>
+  
+    <li><a href="./Nmap/UnitTest/Host.html">Nmap::UnitTest::Host</a>
+  
+    <li><a href="./Nmap/UnitTest/LargeDotXml.html">Nmap::UnitTest::LargeDotXml</a>
+  
+    <li><a href="./Nmap/UnitTest/Parser.html">Nmap::UnitTest::Parser</a>
+  
+    <li><a href="./NmapParser.html">NmapParser</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Onesixtyone.html">Onesixtyone</a>
+  
+    <li><a href="./Parse.html">Parse</a>
+  
+    <li><a href="./ParseFile.html">ParseFile</a>
+  
+    <li><a href="./Path.html">Path</a>
+  
+    <li><a href="./RspecTest.html">RspecTest</a>
+  
+    <li><a href="./SMTP.html">SMTP</a>
+  
+    <li><a href="./SNMP.html">SNMP</a>
+  
+    <li><a href="./SSLScan.html">SSLScan</a>
+  
+    <li><a href="./Session.html">Session</a>
+  
+    <li><a href="./SetupError.html">SetupError</a>
+  
+    <li><a href="./SniffSpoof.html">SniffSpoof</a>
+  
+    <li><a href="./SnortService.html">SnortService</a>
+  
+    <li><a href="./Splash.html">Splash</a>
+  
+    <li><a href="./String.html">String</a>
+  
+    <li><a href="./SysInfo.html">SysInfo</a>
+  
+    <li><a href="./TFTP.html">TFTP</a>
+  
+    <li><a href="./ToplevelInstaller.html">ToplevelInstaller</a>
+  
+    <li><a href="./ToplevelInstallerMulti.html">ToplevelInstallerMulti</a>
+  
+    <li><a href="./VPNAttacks.html">VPNAttacks</a>
+  
+    <li><a href="./Weapon.html">Weapon</a>
+  
+    <li><a href="./WebAttacks.html">WebAttacks</a>
+  
+    <li><a href="./WirelessAttacks.html">WirelessAttacks</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Weapon</h1>
+
+  <div id="description" class="description">
+    
+<p>Author: p$3ud0R@nD0m</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+  <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">host</span>
+  <span class="ruby-ivar">@hosts</span> = []
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>
+  <span class="ruby-ivar">@ports</span> = []
+  <span class="ruby-ivar">@hosts_ports</span> = []
+  <span class="ruby-ivar">@iopath</span> = <span class="ruby-string">&quot;/usr/share/gladius/&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-exit_weapon" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">exit_weapon</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return to previous menu</p>
+          
+          
+
+          
+          <div class="method-source-code" id="exit_weapon-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DictionaryOnline&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DiscoverServices&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DiscoverServices</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Nmap - Discover Services&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DNS&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - DNS&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;FTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">FTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - FTP&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;GatherInfo&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;HTTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - HTTP(S)&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;KaliSupport&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">KaliSupport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Kali Support&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetbiosSMB&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetbiosSMB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - Netbios-SMB&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetworkAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetworkAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Network Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ParseFile&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">ParseFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Parse Files&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SMTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SMTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SMTP&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SniffSpoof&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SniffSpoof</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sniffing and Spoofing&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SNMP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SNMP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SNMP&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SnortService&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SnortService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Upgrade/Install Snort/Snorby and Start&quot;</span>).<span class="ruby-identifier">install</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;TFTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">TFTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - TFTP&quot;</span>).<span class="ruby-identifier">menu</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;VPNAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- exit_weapon-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- exit_weapon-method -->
+
+    
+      <div id="method-i-get_host" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_host</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_host-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_host</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target port number: [localhost:)]&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@host</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@host</span> = <span class="ruby-string">&quot;localhost&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_host-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_host-method -->
+
+    
+      <div id="method-i-get_hosts_ports" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_hosts_ports</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_hosts_ports-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_hosts_ports</span>
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+    <span class="ruby-ivar">@hosts_ports</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_hosts_ports-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_hosts_ports-method -->
+
+    
+      <div id="method-i-get_out_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_out_file</span><span
+            class="method-args">(weapon)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>ttd_3: “get_out_file…” methods need ported to path</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_out_file-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>)
+  <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">out_file</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;/usr/share/gladius/output/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_out_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_out_file-method -->
+
+    
+      <div id="method-i-get_out_file_txt" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_out_file_txt</span><span
+            class="method-args">(weapon)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_out_file_txt-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-identifier">weapon</span>)
+  <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">out_file</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;/usr/share/gladius/output/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S.txt&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_out_file_txt-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_out_file_txt-method -->
+
+    
+      <div id="method-i-get_pid_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_pid_file</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_pid_file-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_pid_file</span>
+  <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+  <span class="ruby-identifier">tmp_pids</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;tmp_pids&quot;</span>)
+  <span class="ruby-identifier">pid_tstamp</span> = <span class="ruby-string">&quot;%10.10f&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">time</span>.<span class="ruby-identifier">to_f</span>
+  <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-identifier">tmp_pids</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">pid_tstamp</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.pid&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_pid_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_pid_file-method -->
+
+    
+      <div id="method-i-get_port" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_port</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="get_port-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 45</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_port</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target port number: [443]&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@port</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@port</span> = <span class="ruby-string">&quot;443&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_port-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_port-method -->
+
+    
+      <div id="method-i-header" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">header</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="header-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@title</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- header-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- header-method -->
+
+    
+      <div id="method-i-instruct_input_pwds" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruct_input_pwds</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="instruct_input_pwds-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input password(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples:&quot;</span>.<span class="ruby-identifier">yellow</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- instruct_input_pwds-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- instruct_input_pwds-method -->
+
+    
+      <div id="method-i-instruct_input_pwds_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruct_input_pwds_list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="instruct_input_pwds_list-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 134</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds_list</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/root/Desktop/passwords.txt&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- instruct_input_pwds_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- instruct_input_pwds_list-method -->
+
+    
+      <div id="method-i-instruct_input_targets" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruct_input_targets</span><span
+            class="method-args">(*args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Supply examples for weapon input. Call this with: example(“cidr”, “domain”,
+“fqdn”, “fqdnp”, “ip”, “ipp”, “ipr”, “iprl”, “iprf”, “url”) Use any
+combination of the following: cidr =&gt; 10.87.9.0/24 domain =&gt;
+victima.com fqdn =&gt; <a href="http://www.victima.com">www.victima.com</a>
+fqdnp = fqdnPort =&gt; <a
+href="www.victima.com:443">www.victima.com:443</a> ip =&gt; 224.87.9.54 ipp
+= ipPort =&gt; 224.87.9.54:8080 ipr = ipRange =&gt; 192.168.250.0-255 iprl
+= ipRangeLong =&gt; 192.168.10.15-192.168.10.20 iprf = ipRangeFlexible
+=&gt; 192.168.15-250.0-255 url =&gt; <a
+href="https://www.victima.com">www.victima.com</a>/</p>
+          
+          
+
+          
+          <div class="method-source-code" id="instruct_input_targets-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cidr&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.87.9.0/24&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;domain&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdn&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdnp&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com:443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ip&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54:8080&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipr&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.250.0-255&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprl&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.10.15-192.168.10.20&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprf&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.15-250.0-255&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;url&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;https://www.victima.com/&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">puts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- instruct_input_targets-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- instruct_input_targets-method -->
+
+    
+      <div id="method-i-instruct_input_usrs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruct_input_usrs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="instruct_input_usrs-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input user(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples:&quot;</span>.<span class="ruby-identifier">yellow</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- instruct_input_usrs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- instruct_input_usrs-method -->
+
+    
+      <div id="method-i-instruct_input_usrs_list" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">instruct_input_usrs_list</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="instruct_input_usrs_list-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs_list</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/root/Desktop/users.txt&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- instruct_input_usrs_list-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- instruct_input_usrs_list-method -->
+
+    
+      <div id="method-i-run" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">run</span><span
+            class="method-args">(cmd)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="run-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>
+  <span class="ruby-identifier">x</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">x</span>.<span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">pid_file</span>
+  <span class="ruby-identifier">x</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">cmd</span>
+  <span class="ruby-identifier">x</span>.<span class="ruby-identifier">shell</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">pid_file</span>)
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid_file</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Stopped due to interrupt.&quot;</span>.<span class="ruby-identifier">red</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">pid_file</span>)
+    <span class="ruby-identifier">pid</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">pid_file</span>)
+    <span class="ruby-node">%xkill -9 #{pid}`</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid_file</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- run-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- run-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

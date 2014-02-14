@@ -61,7 +61,7 @@ class Nikto < Weapon
   # Discover common vulns without SSL
   def common
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -C all -h " + @stdn_hosts + " -output " + @out_file
+    cmd = @path + " -C all -h " + @stdn_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end
@@ -69,7 +69,7 @@ class Nikto < Weapon
   # Discover common vulns over SSL
   def common_ssl
     @out_file = get_out_file_txt(@name)
-    cmd = @path + " -ssl -C all -h " + @stdn_hosts + " -output " + @out_file
+    cmd = @path + " -ssl -C all -h " + @stdn_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end

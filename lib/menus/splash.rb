@@ -262,4 +262,8 @@ class Splash
     puts "                                  \\/".red
     puts
   end
+  
+  def test
+    puts "testing rspec"
+  end
 end

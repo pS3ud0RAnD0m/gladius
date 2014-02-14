@@ -6,32 +6,33 @@ class DictionaryOnline < Menu
   def menu
     header
     puts "Select a service to attack:".light_yellow
-    puts "1.  CVS (Hydra) (NI)"
+    puts "1.  CVS (Hydra) (NI)".blue
     puts "2.  DNS (Fierce)"
     puts "3.  FTP (Hydra)"
-    puts "4.  HTTP(S) (Hydra) (NI)"
-    puts "5.  IMAP (Hydra) (NI)"
-    puts "6.  MSSQL (Hydra) (NI)"
+    puts "4.  HTTP(S) (Hydra) (NI)".blue
+    puts "5.  IMAP (Hydra) (NI)".blue
+    puts "6.  MSSQL (Hydra) (NI)".blue
     puts "7.  MySQL (Hydra)"
-    puts "8.  NCP (Hydra) (NI)"
-    puts "9.  NNTP (Hydra) (NI)"
-    puts "10. PCAnywhere (Hydra) (NI)"
-    puts "11. POP3 (Hydra) (NI)"
-    puts "12. PostgreSQL (Hydra)"
-    puts "13. RDP (Ncrack) (NI)"
-    puts "14. Rexec (Hydra) (NI)"
-    puts "15. Rlogin (Hydra) (NI)"
-    puts "16. RSH (Hydra) (NI)"
-    puts "17. SMB (Ncrack) (NI)"
-    puts "18. SMTP (Hydra) (NI)"
-    puts "19. SMTP-Enum (Hydra) (NI)"
-    puts "20. SNMP (Nmap)"
-    puts "21. SSH (Hydra)"
-    puts "22. SVN (Hydra) (NI)"
-    puts "23. Telnet (Hydra)"
-    puts "24. VMAuthd (Hydra) (NI)"
-    puts "25. VNC (Hydra) (NI)"
-    puts "26. Web-Form (Hydra) (NI)"
+    puts "8.  NCP (Hydra) (NI)".blue
+    puts "9.  NNTP (Hydra) (NI)" .blue  
+    puts "10. Oracle (Hydra) (NI)".blue
+    puts "11. PCAnywhere (Hydra) (NI)".blue
+    puts "12. POP3 (Hydra) (NI)".blue
+    puts "13. PostgreSQL (Hydra)"
+    puts "14. RDP (Ncrack)"
+    puts "15. Rexec (Hydra)"
+    puts "16. Rlogin (Hydra)"
+    puts "17. RSH (Hydra)"
+    puts "18. SMB (Ncrack)"
+    puts "19. SMTP (Hydra) (NI)".blue
+    puts "20. SMTP-Enum (Hydra) (NI)".blue
+    puts "21. SNMP (Nmap)"
+    puts "22. SSH (Hydra)"
+    puts "23. SVN (Hydra) (NI)".blue
+    puts "24. Telnet (Hydra)"
+    puts "25. VMAuthd (Hydra)"
+    puts "26. VNC (Hydra) (NI)".blue
+    puts "27. Web-Form (Hydra) (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
 
@@ -57,31 +58,28 @@ class DictionaryOnline < Menu
       menu
     when 11 then puts "Not implemented yet.".red
       menu
-    when 12 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").menu("postgresql")
-    when 13 then puts "Not implemented yet.".red
+    when 12 then puts "Not implemented yet.".red
       menu
-    when 14 then puts "Not implemented yet.".red
-      menu
-    when 15 then puts "Not implemented yet.".red
-      menu
-    when 16 then puts "Not implemented yet.".red
-      menu
-    when 17 then puts "Not implemented yet.".red
-      menu
-    when 18 then puts "Not implemented yet.".red
-      menu
+    when 13 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").menu("postgresql")
+    when 14 then Ncrack.new("DictionaryOnline", "Ncrack - RDP Online Dictionary Attack").menu("rdp")
+    when 15 then Hydra.new("DictionaryOnline", "Hydra - Rexec Online Dictionary Attack").menu("rexec")
+    when 16 then Hydra.new("DictionaryOnline", "Hydra - Rlogin Online Dictionary Attack").menu("rlogin")
+    when 17 then Hydra.new("DictionaryOnline", "Hydra - RSH Online Dictionary Attack").menu("rsh")
+    when 18 then Ncrack.new("DictionaryOnline", "Ncrack - SMB Online Dictionary Attack").menu("smb")
     when 19 then puts "Not implemented yet.".red
       menu
-    when 20 then GNmap.new("SNMP", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
-    when 21 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
-    when 22 then puts "Not implemented yet.".red
+    when 20 then puts "Not implemented yet.".red
       menu
-    when 23 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
-    when 24 then puts "Not implemented yet.".red
+    when 21 then GNmap.new("SNMP", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
+    when 22 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
+    when 23 then puts "Not implemented yet.".red
       menu
-    when 25 then puts "Not implemented yet.".red
+    when 24 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
       menu
+    when 25 then Hydra.new("DictionaryOnline", "Hydra - VMAuthd Online Dictionary Attack").menu("vmauthd")
     when 26 then puts "Not implemented yet.".red
+      menu
+    when 27 then puts "Not implemented yet.".red
       menu
     when 88 then Dictionary.new("Dictionary Attacks").menu
     when 99 then GExeption.new.exit_gladius
