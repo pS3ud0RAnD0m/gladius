@@ -63,7 +63,6 @@ class Hydra < Weapon
     when "rexec" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "rlogin" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "rsh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "smb" then puts
     when "smtp" then puts
     when "smtp-enum" then puts
     when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
