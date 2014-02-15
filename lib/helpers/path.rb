@@ -1,23 +1,27 @@
 # Author: p$3ud0R@nD0m
 
 module Path
-  def lib_root
-    root = File.expand_path("..", File.dirname(__FILE__))
+  def root
+    File.expand_path("../..", File.dirname(__FILE__)) + "/"
   end
 
+  def lib_root
+    File.expand_path("..", File.dirname(__FILE__)) + "/"
+  end
+  
   def load
-    $:.push lib_root + "/menus"
-    $:.push lib_root + "/weapons"
-    $:.push lib_root + "/helpers"
-    $:.push lib_root + "/helpers/thirdparty"
+    $:.push lib_root + "menus"
+    $:.push lib_root + "weapons"
+    $:.push lib_root + "helpers"
+    $:.push lib_root + "helpers/thirdparty"
   end
   
   def req
-    require lib_root + "/weapons/weapon"
-    Dir[lib_root + "/menus/*.rb"].each { |a| require a }
-    Dir[lib_root + "/weapons/*.rb"].each { |a| require a }
-    Dir[lib_root + "/helpers/*.rb"].each { |a| require a }
-    Dir[lib_root + "/helpers/thirdparty/*.rb"].each { |a| require a }
+    require lib_root + "weapons/weapon"
+    Dir[lib_root + "menus/*.rb"].each { |a| require a }
+    Dir[lib_root + "weapons/*.rb"].each { |a| require a }
+    Dir[lib_root + "helpers/*.rb"].each { |a| require a }
+    Dir[lib_root + "helpers/thirdparty/*.rb"].each { |a| require a }
     require "fileutils"
     require "pty"
     require "time"
@@ -88,21 +92,22 @@ module Path
     path =
       {
         # Files
-        "gladius_conf"               => lib_root + "/helpers/input/gladius.conf",
-        "gladius_iptables_logrotate" => lib_root + "/helpers/input/iptables_logrotate",
-        "gladius_iptables"           => lib_root + "/helpers/input/iptables",
-        "mysql_pwds_long"            => lib_root + "/helpers/input/mysql_pwds_long.txt",
-        "mysql_usrs_long"            => lib_root + "/helpers/input/mysql_usrs_long.txt",
-        "postgresql_pwds_long"       => lib_root + "/helpers/input/postgresql_pwds_long.txt",
-        "postgresql_usrs_long"       => lib_root + "/helpers/input/postgresql_usrs_long.txt",
-        "ssh_pwds_long"              => lib_root + "/helpers/input/ssh_pwds_long.txt",
-        "ssh_usrs_long"              => lib_root + "/helpers/input/ssh_usrs_long.txt",
-        "telnet_pwds_long"           => lib_root + "/helpers/input/telnet_pwds_long.txt",
-        "telnet_usrs_long"           => lib_root + "/helpers/input/telnet_usrs_long.txt",
-        "tftp_file_list"             => lib_root + "/helpers/input/tftp_file_list.txt",
-        "vpn_group_id_long"          => lib_root + "/helpers/input/vpn_group_id_long.txt",
-        "windows_pwds_long"          => lib_root + "/helpers/input/windows_pwds_long.txt",
-        "windows_usrs_long"          => lib_root + "/helpers/input/windows_usrs_long.txt"
+        "gladius_conf"               => lib_root + "helpers/input/gladius.conf",
+        "gladius_iptables_logrotate" => lib_root + "helpers/input/iptables_logrotate",
+        "gladius_iptables"           => lib_root + "helpers/input/iptables",
+        "mysql_pwds_long"            => lib_root + "helpers/input/mysql_pwds_long.txt",
+        "mysql_usrs_long"            => lib_root + "helpers/input/mysql_usrs_long.txt",
+        "postgresql_pwds_long"       => lib_root + "helpers/input/postgresql_pwds_long.txt",
+        "postgresql_usrs_long"       => lib_root + "helpers/input/postgresql_usrs_long.txt",
+        "read_me"                    => root     + "README.md",
+        "ssh_pwds_long"              => lib_root + "helpers/input/ssh_pwds_long.txt",
+        "ssh_usrs_long"              => lib_root + "helpers/input/ssh_usrs_long.txt",
+        "telnet_pwds_long"           => lib_root + "helpers/input/telnet_pwds_long.txt",
+        "telnet_usrs_long"           => lib_root + "helpers/input/telnet_usrs_long.txt",
+        "tftp_file_list"             => lib_root + "helpers/input/tftp_file_list.txt",
+        "vpn_group_id_long"          => lib_root + "helpers/input/vpn_group_id_long.txt",
+        "windows_pwds_long"          => lib_root + "helpers/input/windows_pwds_long.txt",
+        "windows_usrs_long"          => lib_root + "helpers/input/windows_usrs_long.txt"
       }
     path[g_alias]
   end
@@ -120,7 +125,7 @@ module Path
   end
 
   def source
-    a = lib_root + "/helpers/input/"
+    a = lib_root + "helpers/input/"
   end
 
   def get_out_file(weapon)

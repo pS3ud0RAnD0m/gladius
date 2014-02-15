@@ -2,9 +2,19 @@
 
 class Home
   def header_home
-    puts "------------------------------"
-    puts "Home                  v0.0.2.8"
-    puts "------------------------------"
+    read_me = Path.get_source_path("read_me")
+    File.open(read_me) do |file|
+      file.each_line do |line|
+        if line =~ /# Gladius v/
+          version = line
+          version.slice! "# Gladius "
+          puts "------------------------------"
+          puts "Home                  #{version}"
+          puts "------------------------------"
+        end
+      end
+    end
+
   end
     
   def menu

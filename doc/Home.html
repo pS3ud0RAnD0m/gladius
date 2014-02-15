@@ -214,8 +214,6 @@
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./Onesixtyone.html">Onesixtyone</a>
-  
     <li><a href="./Parse.html">Parse</a>
   
     <li><a href="./ParseFile.html">ParseFile</a>
@@ -302,9 +300,19 @@
           <div class="method-source-code" id="header_home-source">
             <pre><span class="ruby-comment"># File lib/menus/home.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">header_home</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Home                  v0.0.2.8&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+  <span class="ruby-identifier">read_me</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;read_me&quot;</span>)
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">read_me</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/# Gladius v/</span>
+        <span class="ruby-identifier">version</span> = <span class="ruby-identifier">line</span>
+        <span class="ruby-identifier">version</span>.<span class="ruby-identifier">slice!</span> <span class="ruby-node">&quot;# Gladius &quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Home                  #{version}&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
 <span class="ruby-keyword">end</span></pre>
           </div><!-- header_home-source -->
           
@@ -335,7 +343,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 10</span>
+            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 20</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
   <span class="ruby-identifier">header_home</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a category:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
