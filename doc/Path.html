@@ -85,6 +85,8 @@
     
     <li ><a href="#method-i-req">#req</a>
     
+    <li ><a href="#method-i-root">#root</a>
+    
     <li ><a href="#method-i-source">#source</a>
     
     <li ><a href="#method-i-stdn_pwds">#stdn_pwds</a>
@@ -228,8 +230,6 @@
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./Onesixtyone.html">Onesixtyone</a>
-  
     <li><a href="./Parse.html">Parse</a>
   
     <li><a href="./ParseFile.html">ParseFile</a>
@@ -314,7 +314,7 @@
 
           
           <div class="method-source-code" id="get_out_file-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 126</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-identifier">out_file</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;/usr/share/gladius/output/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S&quot;</span>)
@@ -348,7 +348,7 @@
 
           
           <div class="method-source-code" id="get_out_file_txt-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 131</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-identifier">out_file</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;/usr/share/gladius/output/&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S.txt&quot;</span>)
@@ -383,7 +383,7 @@ methods with this. pay attn to trailing slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="get_path-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_path</span>(<span class="ruby-identifier">g_alias</span>)
   <span class="ruby-comment"># Usage: Path.get_path(&quot;usr&quot;)</span>
   <span class="ruby-identifier">path</span> =
@@ -469,7 +469,7 @@ methods with this. pay attn to trailing slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="get_pid_file-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 136</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 141</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_pid_file</span>
   <span class="ruby-identifier">time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
   <span class="ruby-identifier">tmp_pids</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;tmp_pids&quot;</span>)
@@ -506,27 +506,28 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="get_source_path-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 86</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_source_path</span>(<span class="ruby-identifier">g_alias</span>)
   <span class="ruby-comment"># Usage: Path.get_source_path(&quot;gladius_conf_source&quot;)</span>
   <span class="ruby-identifier">path</span> =
     {
       <span class="ruby-comment"># Files</span>
-      <span class="ruby-string">&quot;gladius_conf&quot;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/gladius.conf&quot;</span>,
-      <span class="ruby-string">&quot;gladius_iptables_logrotate&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/iptables_logrotate&quot;</span>,
-      <span class="ruby-string">&quot;gladius_iptables&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/iptables&quot;</span>,
-      <span class="ruby-string">&quot;mysql_pwds_long&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/mysql_pwds_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;mysql_usrs_long&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/mysql_usrs_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;postgresql_pwds_long&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/postgresql_pwds_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;postgresql_usrs_long&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/postgresql_usrs_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;ssh_pwds_long&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/ssh_pwds_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;ssh_usrs_long&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/ssh_usrs_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;telnet_pwds_long&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/telnet_pwds_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;telnet_usrs_long&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/telnet_usrs_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;tftp_file_list&quot;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/tftp_file_list.txt&quot;</span>,
-      <span class="ruby-string">&quot;vpn_group_id_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/vpn_group_id_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;windows_pwds_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/windows_pwds_long.txt&quot;</span>,
-      <span class="ruby-string">&quot;windows_usrs_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/windows_usrs_long.txt&quot;</span>
+      <span class="ruby-string">&quot;gladius_conf&quot;</span>               =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/gladius.conf&quot;</span>,
+      <span class="ruby-string">&quot;gladius_iptables_logrotate&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/iptables_logrotate&quot;</span>,
+      <span class="ruby-string">&quot;gladius_iptables&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/iptables&quot;</span>,
+      <span class="ruby-string">&quot;mysql_pwds_long&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/mysql_pwds_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;mysql_usrs_long&quot;</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/mysql_usrs_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;postgresql_pwds_long&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/postgresql_pwds_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;postgresql_usrs_long&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/postgresql_usrs_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;read_me&quot;</span>                    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">root</span>     <span class="ruby-operator">+</span> <span class="ruby-string">&quot;README.md&quot;</span>,
+      <span class="ruby-string">&quot;ssh_pwds_long&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/ssh_pwds_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;ssh_usrs_long&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/ssh_usrs_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;telnet_pwds_long&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/telnet_pwds_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;telnet_usrs_long&quot;</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/telnet_usrs_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;tftp_file_list&quot;</span>             =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/tftp_file_list.txt&quot;</span>,
+      <span class="ruby-string">&quot;vpn_group_id_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/vpn_group_id_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;windows_pwds_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/windows_pwds_long.txt&quot;</span>,
+      <span class="ruby-string">&quot;windows_usrs_long&quot;</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/windows_usrs_long.txt&quot;</span>
     }
   <span class="ruby-identifier">path</span>[<span class="ruby-identifier">g_alias</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -559,7 +560,7 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="hosts_file-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 118</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">hosts_file</span>
   <span class="ruby-identifier">a</span> = <span class="ruby-string">&quot;/usr/share/gladius/input/stdn_hosts.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -592,9 +593,9 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="lib_root-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 4</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">lib_root</span>
-  <span class="ruby-identifier">root</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;..&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>))
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;..&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>)) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- lib_root-source -->
           
@@ -625,12 +626,12 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="load-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 8</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load</span>
-  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/menus&quot;</span>
-  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/weapons&quot;</span>
-  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers&quot;</span>
-  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/thirdparty&quot;</span>
+  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;menus&quot;</span>
+  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;weapons&quot;</span>
+  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers&quot;</span>
+  <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/thirdparty&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- load-source -->
           
@@ -661,13 +662,13 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="req-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 15</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">req</span>
-  <span class="ruby-identifier">require</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/weapons/weapon&quot;</span>
-  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/menus/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
-  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/weapons/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
-  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
-  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/thirdparty/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
+  <span class="ruby-identifier">require</span> <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;weapons/weapon&quot;</span>
+  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;menus/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
+  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;weapons/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
+  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
+  <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/thirdparty/*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;fileutils&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;pty&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;time&quot;</span>
@@ -680,6 +681,39 @@ slashes when porting to this.</p>
 
         
       </div><!-- req-method -->
+
+    
+      <div id="method-i-root" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">root</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="root-source">
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">root</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-string">&quot;../..&quot;</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>)) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- root-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- root-method -->
 
     
       <div id="method-i-source" class="method-detail ">
@@ -701,9 +735,9 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="source-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 122</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">source</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/helpers/input/&quot;</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-identifier">lib_root</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;helpers/input/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- source-source -->
           
@@ -734,7 +768,7 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="stdn_pwds-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdn_pwds</span>
   <span class="ruby-identifier">a</span> = <span class="ruby-string">&quot;/usr/share/gladius/input/stdn_pwds.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -767,7 +801,7 @@ slashes when porting to this.</p>
 
           
           <div class="method-source-code" id="stdn_usrs-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdn_usrs</span>
   <span class="ruby-identifier">a</span> = <span class="ruby-string">&quot;/usr/share/gladius/input/stdn_usrs.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>

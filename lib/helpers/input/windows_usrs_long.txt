@@ -1,2 +1,11 @@
-Guest
-Administrator
+guest
+administrator
+admin
+backups
+www
+db
+hd
+noc
+support
+test
+temp

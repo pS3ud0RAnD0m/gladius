@@ -1,2 +1,11 @@
-test
-blah
+password
+Password
+password1
+Password1
+password12
+Password12
+password123
+Password123
+P@$$W0rd
+P@$$w0rd
+p@$$w0rd
