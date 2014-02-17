@@ -6,11 +6,11 @@ class IPtables < Weapon
     @title = title
     @path = "iptables"
     @name = @path
-    @gladius_iptables = Path.get_path("gladius_iptables")
-    @gladius_iptables_logrotate = Path.get_path("gladius_iptables_logrotate")
-    @system_iptables = Path.get_path("system_iptables")
-    @system_iptables_log = Path.get_path("system_iptables_log")
-    @system_iptables_logrotate = Path.get_path("system_iptables_logrotate")
+    @gladius_iptables = Path.get("gladius_iptables")
+    @gladius_iptables_logrotate = Path.get("gladius_iptables_logrotate")
+    @system_iptables = Path.get("system_iptables")
+    @system_iptables_log = Path.get("system_iptables_log")
+    @system_iptables_logrotate = Path.get("system_iptables_logrotate")
   end
 
 ###############################################################################

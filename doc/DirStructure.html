@@ -86,6 +86,8 @@
   
     <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
+    <li class="file"><a href="./hydra_2014-02-17_08-50-38_txt.html">hydra_2014-02-17_08-50-38</a>
+  
     <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
   
     <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
@@ -131,6 +133,14 @@
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_csv.html">nmap_2014-02-17_08-49-32.csv</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_gnmap.html">nmap_2014-02-17_08-49-32.gnmap</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_nmap.html">nmap_2014-02-17_08-49-32.nmap</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_xml.html">nmap_2014-02-17_08-49-32.xml</a>
   
   </ul>
 </nav>
@@ -193,8 +203,6 @@
     <li><a href="./Menu.html">Menu</a>
   
     <li><a href="./Ncrack.html">Ncrack</a>
-  
-    <li><a href="./Nessus.html">Nessus</a>
   
     <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
   
@@ -284,168 +292,56 @@
 
         <div class="method-description">
           
-          <p>create structure, if it doesn“t exist</p>
+          <p>Create structure, if it doesn’t exist</p>
           
           
 
           
           <div class="method-source-code" id="check-source">
             <pre><span class="ruby-comment"># File lib/helpers/dirstructure.rb, line 5</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">check</span>
-    <span class="ruby-comment"># Source variables</span>
-    <span class="ruby-identifier">snmp_comm_strings_long</span> = <span class="ruby-identifier">source</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;snmp_comm_strings_long.txt&quot;</span>
-    <span class="ruby-identifier">apache_users_long</span> = <span class="ruby-identifier">source</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;apache_users_long.txt&quot;</span>
-    <span class="ruby-identifier">dns_hosts_long</span> = <span class="ruby-identifier">source</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;dns_hosts_long.txt&quot;</span>
-    <span class="ruby-identifier">ftp_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;ftp_usrs_long&quot;</span>)
-    <span class="ruby-identifier">ftp_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;ftp_pwds_long&quot;</span>)
-    <span class="ruby-identifier">gladius_conf_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;gladius_conf&quot;</span>)
-    <span class="ruby-identifier">gladius_iptables_logrotate_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;gladius_iptables_logrotate&quot;</span>)
-    <span class="ruby-identifier">gladius_iptables_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;gladius_iptables&quot;</span>)
-    <span class="ruby-identifier">mysql_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;mysql_pwds_long&quot;</span>)
-    <span class="ruby-identifier">mysql_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;mysql_usrs_long&quot;</span>)
-    <span class="ruby-identifier">postgresql_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;postgresql_pwds_long&quot;</span>)
-    <span class="ruby-identifier">postgresql_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;postgresql_usrs_long&quot;</span>)
-    <span class="ruby-identifier">ssh_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;ssh_pwds_long&quot;</span>)
-    <span class="ruby-identifier">ssh_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;ssh_usrs_long&quot;</span>)
-    <span class="ruby-identifier">telnet_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;telnet_pwds_long&quot;</span>)
-    <span class="ruby-identifier">telnet_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;telnet_usrs_long&quot;</span>)
-    <span class="ruby-identifier">tftp_file_list_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;tftp_file_list&quot;</span>)
-    <span class="ruby-identifier">vpn_group_id_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;vpn_group_id_long&quot;</span>)
-    <span class="ruby-identifier">windows_pwds_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;windows_pwds_long&quot;</span>)
-    <span class="ruby-identifier">windows_usrs_long_source</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_source_path</span>(<span class="ruby-string">&quot;windows_usrs_long&quot;</span>)
-    
-    <span class="ruby-comment"># Destination variables</span>
-    <span class="ruby-identifier">config</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;config&quot;</span>)
-    <span class="ruby-identifier">config_sess</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;config_sess&quot;</span>)
-    <span class="ruby-identifier">config_sess_named</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;config_sess_named&quot;</span>)
-    <span class="ruby-identifier">config_sess_unnamed</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;config_sess_unnamed&quot;</span>)
-    <span class="ruby-identifier">input</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;input&quot;</span>)
-    <span class="ruby-identifier">output</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;output&quot;</span>)
-    <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;tmp&quot;</span>)
-    <span class="ruby-identifier">tmp_pids</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;tmp_pids&quot;</span>)
-    <span class="ruby-identifier">usr</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;usr&quot;</span>)
-    <span class="ruby-identifier">usr_g</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;usr_g&quot;</span>)
-    <span class="ruby-identifier">ftp_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;ftp_usrs_long&quot;</span>)
-    <span class="ruby-identifier">ftp_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;ftp_pwds_long&quot;</span>)
-    <span class="ruby-identifier">gladius_conf</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;gladius_conf&quot;</span>)
-    <span class="ruby-identifier">gladius_iptables</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;gladius_iptables&quot;</span>)
-    <span class="ruby-identifier">gladius_iptables_logrotate</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;gladius_iptables_logrotate&quot;</span>)
-    <span class="ruby-identifier">mysql_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;mysql_pwds_long&quot;</span>)
-    <span class="ruby-identifier">mysql_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;mysql_usrs_long&quot;</span>)
-    <span class="ruby-identifier">postgresql_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;postgresql_pwds_long&quot;</span>)
-    <span class="ruby-identifier">postgresql_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;postgresql_usrs_long&quot;</span>)
-    <span class="ruby-identifier">ssh_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;ssh_pwds_long&quot;</span>)
-    <span class="ruby-identifier">ssh_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;ssh_usrs_long&quot;</span>)
-    <span class="ruby-identifier">telnet_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;telnet_pwds_long&quot;</span>)
-    <span class="ruby-identifier">telnet_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;telnet_usrs_long&quot;</span>)
-    <span class="ruby-identifier">tftp_file_list</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;tftp_file_list&quot;</span>)
-    <span class="ruby-identifier">vpn_group_id_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;vpn_group_id_long&quot;</span>)
-    <span class="ruby-identifier">windows_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;windows_pwds_long&quot;</span>)
-    <span class="ruby-identifier">windows_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;windows_usrs_long&quot;</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check</span>
+  <span class="ruby-identifier">gladius_conf</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;gladius_conf&quot;</span>)
+  <span class="ruby-identifier">share_gladius_conf</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_gladius_conf&quot;</span>)
 
-    <span class="ruby-comment"># Create dirs</span>
-<span class="ruby-comment"># ttd_3: make these &quot;each do&quot; ..</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">usr_g</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">usr_g</span>)
+  <span class="ruby-comment"># Directories to be created</span>
+  <span class="ruby-identifier">dirs</span> = [ <span class="ruby-string">&quot;share&quot;</span>,
+           <span class="ruby-string">&quot;share_config&quot;</span>,
+           <span class="ruby-string">&quot;share_sess&quot;</span>,
+           <span class="ruby-string">&quot;share_sess_named&quot;</span>,
+           <span class="ruby-string">&quot;share_sess_unnamed&quot;</span>,
+           <span class="ruby-string">&quot;share_input&quot;</span>,
+           <span class="ruby-string">&quot;share_output&quot;</span>,
+           <span class="ruby-string">&quot;share_tmp&quot;</span>,
+           <span class="ruby-string">&quot;share_pids&quot;</span>
+          ]
+  
+  <span class="ruby-comment"># Files to be created</span>
+  <span class="ruby-identifier">files</span> = [ <span class="ruby-string">&quot;share_stdn_hosts&quot;</span>,
+            <span class="ruby-string">&quot;share_stdn_pwds&quot;</span>,
+            <span class="ruby-string">&quot;share_stdn_usrs&quot;</span>
+          ]
+
+  <span class="ruby-comment"># Create directories</span>
+  <span class="ruby-identifier">dirs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">create</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">dir</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">create</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">dir</span>] <span class="ruby-operator">==</span> []
+      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">dir</span>)
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">input</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">input</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Create files</span>
+  <span class="ruby-identifier">files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">create</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">create</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">touch</span>(<span class="ruby-identifier">file</span>)
     <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">output</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">output</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">output</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">config</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">config_sess</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">config_sess</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">config_sess_unnamed</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">config_sess_unnamed</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">config_sess_named</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">config_sess_named</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">tmp</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">tmp</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">tmp_pids</span>] <span class="ruby-operator">==</span> []
-      <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">tmp_pids</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-comment"># Create input files</span>
-    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">input</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;stdn_hosts.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">touch</span>(<span class="ruby-string">&quot;stdn_hosts.txt&quot;</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;stdn_usrs.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">touch</span>(<span class="ruby-string">&quot;stdn_usrs.txt&quot;</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;stdn_pwds.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">touch</span>(<span class="ruby-string">&quot;stdn_pwds.txt&quot;</span>)
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;snmp_comm_strings_long.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">snmp_comm_strings_long</span>, <span class="ruby-string">&quot;snmp_comm_strings_long.txt&quot;</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;apache_users_long.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">apache_users_long</span>, <span class="ruby-string">&quot;apache_users_long.txt&quot;</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-string">&quot;dns_hosts_long.txt&quot;</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">dns_hosts_long</span>, <span class="ruby-string">&quot;dns_hosts_long.txt&quot;</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">ftp_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">ftp_usrs_long_source</span>, <span class="ruby-identifier">ftp_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">ftp_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">ftp_pwds_long_source</span>, <span class="ruby-identifier">ftp_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">gladius_iptables</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">gladius_iptables_source</span>, <span class="ruby-identifier">gladius_iptables</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">gladius_iptables_logrotate</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">gladius_iptables_logrotate_source</span>, <span class="ruby-identifier">gladius_iptables_logrotate</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">mysql_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">mysql_usrs_long_source</span>, <span class="ruby-identifier">mysql_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">mysql_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">mysql_pwds_long_source</span>, <span class="ruby-identifier">mysql_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">postgresql_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">postgresql_usrs_long_source</span>, <span class="ruby-identifier">postgresql_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">postgresql_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">postgresql_pwds_long_source</span>, <span class="ruby-identifier">postgresql_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">ssh_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">ssh_usrs_long_source</span>, <span class="ruby-identifier">ssh_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">ssh_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">ssh_pwds_long_source</span>, <span class="ruby-identifier">ssh_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">telnet_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">telnet_usrs_long_source</span>, <span class="ruby-identifier">telnet_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">telnet_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">telnet_pwds_long_source</span>, <span class="ruby-identifier">telnet_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">tftp_file_list</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">tftp_file_list_source</span>, <span class="ruby-identifier">tftp_file_list</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">vpn_group_id_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">vpn_group_id_long_source</span>, <span class="ruby-identifier">vpn_group_id_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">windows_usrs_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">windows_usrs_long_source</span>, <span class="ruby-identifier">windows_usrs_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">windows_pwds_long</span>)
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">windows_pwds_long_source</span>, <span class="ruby-identifier">windows_pwds_long</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-comment"># Create config file</span>
-    <span class="ruby-identifier">splash_line</span> = <span class="ruby-node">%xgrep previous_splash #{gladius_conf} 2&gt; /dev/null |wc -l`</span>.<span class="ruby-identifier">to_i</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">gladius_conf</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">splash_line</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">gladius_conf_source</span>, <span class="ruby-identifier">gladius_conf</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span></pre>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-comment"># Copy config file</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">share_gladius_conf</span>)
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-identifier">gladius_conf</span>, <span class="ruby-identifier">share_gladius_conf</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- check-source -->
           
         </div>

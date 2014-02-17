@@ -16,24 +16,13 @@ class Weapon
     puts "------------------------------"
   end
 
-# ttd_3: "get_out_file..." methods need ported to path
-  def get_out_file(weapon)
-    time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S")
-  end
-  
-  def get_out_file_txt(weapon)
-    time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S.txt")
-  end
-
   def get_pid_file
     time = Time.now
-    tmp_pids = Path.get_path("tmp_pids")
+    tmp_pids = Path.get("share_pids")
     pid_tstamp = "%10.10f" % time.to_f
-    pid_file = time.strftime(tmp_pids + pid_tstamp + ".pid")
+    time.strftime(tmp_pids + pid_tstamp + ".pid")
   end
-  
+
   def get_host
     puts "Input target port number: [localhost:)]".light_yellow
     @host = gets.chomp

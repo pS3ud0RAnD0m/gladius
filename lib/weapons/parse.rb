@@ -5,7 +5,7 @@ class Parse < Weapon
     @prev_menu = prev_menu
     @title = title
     @name = "Gladius Parser"
-    @stdn_hosts = Path.get_path("stdn_hosts")
+    @stdn_hosts = Path.get("share_stdn_hosts")
     @in_file = ""
   end
 

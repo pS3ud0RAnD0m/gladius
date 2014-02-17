@@ -46,7 +46,7 @@ class Atftpd < Weapon
 ###############################################################################
   # Setup a TFTP server
   def config
-     if Dir["/tmp/tftp"] == []
+    if Dir["/tmp/tftp"] == []
       Dir.mkdir("/tmp/tftp")
       puts "Created the /tmp/tftp directory.".light_yellow
     end

@@ -1,0 +1,17 @@
+Hydra v7.6 (c)2013 by van Hauser/THC & David Maciejak - for legal purposes only
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2014-02-17 08:50:39
+[DATA] 8 tasks, 1 server, 24600 login tries (l:24/p:1025), ~3075 tries per task
+[DATA] attacking service telnet on port 23
+[ATTEMPT] target localhost - login "cisco" - pass "cisco" - 1 of 24600 [child 0]
+[ATTEMPT] target localhost - login "cisco" - pass "" - 2 of 24600 [child 1]
+[ATTEMPT] target localhost - login "cisco" - pass "password" - 3 of 24600 [child 2]
+[ATTEMPT] target localhost - login "cisco" - pass "root" - 4 of 24600 [child 3]
+[ATTEMPT] target localhost - login "cisco" - pass "chain" - 6 of 24600 [child 4]
+[ATTEMPT] target localhost - login "cisco" - pass "service" - 7 of 24600 [child 5]
+[ATTEMPT] target localhost - login "cisco" - pass "123456" - 8 of 24600 [child 6]
+[ATTEMPT] target localhost - login "cisco" - pass "ciscovpn" - 9 of 24600 [child 7]
+[RE-ATTEMPT] target localhost - login "cisco" - pass "123456" - 9 of 24606 [child 6]
+[RE-ATTEMPT] target localhost - login "cisco" - pass "cisco" - 9 of 24606 [child 0]
+0 of 1 target completed, 0 valid passwords found
+Hydra (http://www.thc.org/thc-hydra) finished at 2014-02-17 08:50:45
