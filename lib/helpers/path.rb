@@ -71,7 +71,6 @@ module Path
         "windows_pwds_long"          => @input + "windows_pwds_long.txt",
         "windows_usrs_long"          => @input + "windows_usrs_long.txt",
         
-# ttd_1: Ensure NOTHING was broken with recent refactoring
         # Share directories and files
         "share_sess_named"   => @share_sess_named,
         "share_sess_unnamed" => @share_sess_unnamed,
@@ -96,8 +95,7 @@ module Path
   end
 
   def get_out_file(weapon)
-    share_output = @share_output
-    Time.now.strftime("#{share_output}#{weapon}_%F_%H-%M-%S")
+    Time.now.strftime(@share_output + weapon + "_%F_%H-%M-%S")
   end
   
   def get_out_file_txt(weapon)

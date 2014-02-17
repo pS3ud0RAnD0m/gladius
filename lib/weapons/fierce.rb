@@ -52,7 +52,7 @@ class Fierce < Weapon
 ###############################################################################
   # Attempt a zone transfer and dictionary attack records
   def dictionary
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
     @stdn_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`

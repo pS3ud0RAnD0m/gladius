@@ -94,7 +94,7 @@ class Ncrack < Weapon
 # RDP
 ##################################
   def rdp_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
 # ttd_1: :3389 needs to be appended to hosts, not the input file. Better yet, explicitly call rdp.
     cmd = @path + " -v -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + ":3389 |tee " + @out_file
     run(cmd)
@@ -121,7 +121,7 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
@@ -134,7 +134,7 @@ class Ncrack < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
@@ -144,7 +144,7 @@ class Ncrack < Weapon
 # SMB
 ##################################
   def smb_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -v -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + ":3389 |tee " + @out_file
     run(cmd)
     clean_exit("smb")
@@ -170,7 +170,7 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("smb")
@@ -183,7 +183,7 @@ class Ncrack < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("smb")

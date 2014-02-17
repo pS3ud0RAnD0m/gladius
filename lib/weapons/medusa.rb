@@ -94,7 +94,7 @@ class Hydra < Weapon
 # FTP
 ##################################
   def smb_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
 #      i.cmd = @@path + " -H " + @@hosts + " -U " + @@sshulist + " -P " + @@sshplist + " -M ssh -n 7750 -e ns -O " + @@out_file
 
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @smb_usrs_long + " -P " + @smb_pwds_long + " -M " + @stdn_hosts + " smb |tee " + @out_file
@@ -122,7 +122,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " smb |tee " + @out_file
     run(cmd)
     clean_exit("smb")
@@ -135,7 +135,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " smb |tee " + @out_file
     run(cmd)
     clean_exit("smb")

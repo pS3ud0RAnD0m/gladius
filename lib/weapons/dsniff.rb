@@ -73,11 +73,14 @@ class Dsniff < Weapon
 # Run methods
 ###############################################################################
   # Sniff for plaintext creds against all supported protocols
-# ttd_4: why is /usr/share/gladius/config/dsniff.services being created?
   def all
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -m -n -i any |tee " + @out_file
     run(cmd)
+    services = Dir.pwd + "/dsniff.services"
+    if File.exists?(services)
+      FileUtils.rm(services)
+    end
     clean_exit
   end
 end  

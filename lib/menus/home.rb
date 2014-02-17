@@ -2,21 +2,11 @@
 
 class Home
   def header_home
-    read_me = Path.get("read_me")
-    File.open(read_me) do |file|
-      file.each_line do |line|
-        if line =~ /# Gladius v/
-          version = line
-          version.slice! "# Gladius "
-          puts "------------------------------"
-          puts "Home                 #{version}"
-          puts "------------------------------"
-        end
-      end
-    end
-
+    puts "------------------------------"
+    puts "Home                 v0.0.2.11"
+    puts "------------------------------"
   end
-    
+
   def menu
     header_home
     puts "Select a category:".light_yellow
