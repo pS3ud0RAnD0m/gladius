@@ -6,11 +6,11 @@ class Ncrack < Weapon
     @title = title
     @path = "ncrack"
     @name = @path
-    @stdn_hosts = Path.get_path("stdn_hosts")
-    @stdn_pwds = Path.get_path("stdn_pwds")
-    @stdn_usrs = Path.get_path("stdn_usrs")
-    @windows_pwds_long = Path.get_path("windows_pwds_long")
-    @windows_usrs_long = Path.get_path("windows_usrs_long")
+    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdn_pwds = Path.get("share_stdn_pwds")
+    @stdn_usrs = Path.get("share_stdn_usrs")
+    @windows_pwds_long = Path.get("windows_pwds_long")
+    @windows_usrs_long = Path.get("windows_usrs_long")
   end
 
 ###############################################################################
@@ -95,6 +95,7 @@ class Ncrack < Weapon
 ##################################
   def rdp_gladius_long
     @out_file = get_out_file_txt(@name)
+# ttd_1: :3389 needs to be appended to hosts, not the input file. Better yet, explicitly call rdp.
     cmd = @path + " -v -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + ":3389 |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
@@ -110,7 +111,6 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    stdn_usrs = @stdn_usrs
     puts
     instruct_input_pwds
     puts "Password123".yellow
@@ -121,7 +121,6 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
@@ -161,7 +160,6 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    stdn_usrs = @stdn_usrs
     puts
     instruct_input_pwds
     puts "Password123".yellow
@@ -172,7 +170,6 @@ class Ncrack < Weapon
       a << line
     end
     a.close
-    stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)

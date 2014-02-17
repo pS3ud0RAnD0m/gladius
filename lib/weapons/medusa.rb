@@ -6,19 +6,19 @@ class Hydra < Weapon
     @title = title
     @path = "hydra"
     @name = @path
-    @stdn_hosts = Path.get_path("stdn_hosts")
-    @smb_pwds_long = Path.get_path("smb_pwds_long")
-    @smb_usrs_long = Path.get_path("smb_usrs_long")
-    @mysql_pwds_long = Path.get_path("mysql_pwds_long")
-    @mysql_usrs_long = Path.get_path("mysql_usrs_long")
-    @postgresql_pwds_long = Path.get_path("postgresql_pwds_long")
-    @postgresql_usrs_long = Path.get_path("postgresql_usrs_long")
-    @ssh_pwds_long = Path.get_path("ssh_pwds_long")
-    @ssh_usrs_long = Path.get_path("ssh_usrs_long")
-    @stdn_pwds = Path.get_path("stdn_pwds")
-    @stdn_usrs = Path.get_path("stdn_usrs")
-    @telnet_pwds_long = Path.get_path("telnet_pwds_long")
-    @telnet_usrs_long = Path.get_path("telnet_usrs_long")
+    @stdn_hosts = Path.get("share_stdn_hosts")
+    @smb_pwds_long = Path.get("smb_pwds_long")
+    @smb_usrs_long = Path.get("smb_usrs_long")
+    @mysql_pwds_long = Path.get("mysql_pwds_long")
+    @mysql_usrs_long = Path.get("mysql_usrs_long")
+    @postgresql_pwds_long = Path.get("postgresql_pwds_long")
+    @postgresql_usrs_long = Path.get("postgresql_usrs_long")
+    @ssh_pwds_long = Path.get("ssh_pwds_long")
+    @ssh_usrs_long = Path.get("ssh_usrs_long")
+    @stdn_pwds = Path.get("share_stdn_pwds")
+    @stdn_usrs = Path.get("share_stdn_usrs")
+    @telnet_pwds_long = Path.get("telnet_pwds_long")
+    @telnet_usrs_long = Path.get("telnet_usrs_long")
   end
 
 ###############################################################################
@@ -71,7 +71,6 @@ class Hydra < Weapon
   def clean_exit(search_term)
     puts
     if File.exist?(@out_file)
-      out_file = @out_file
       results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
       if results.count == 0
         puts "Hydra did not find valid credentials.".light_yellow
@@ -113,7 +112,6 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    stdn_usrs = @stdn_usrs
     puts
     instruct_input_pwds
     puts "password".yellow
@@ -124,7 +122,6 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    stdn_pwds = @stdn_pwds
     @out_file = get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " smb |tee " + @out_file
     run(cmd)

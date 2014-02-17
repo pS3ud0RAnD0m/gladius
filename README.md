@@ -1,4 +1,4 @@
-# Gladius v0.0.2.9
+# Gladius v0.0.2.10
 An interactive shell for common Kali Linux tasks
 
 ## Warning

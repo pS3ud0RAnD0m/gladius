@@ -1,0 +1,11 @@
+# Nmap 6.40 scan initiated Mon Feb 17 08:49:32 2014 as: nmap -v -Pn -sSU -T4 --min-hostgroup 128 -iL /usr/share/gladius/input/stdn_hosts.txt -oA nmap_2014-02-17_08-49-32
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000080s latency).
+Other addresses for localhost (not scanned): 127.0.0.1
+Not shown: 1998 closed ports
+PORT     STATE         SERVICE
+8080/tcp open          http-proxy
+68/udp   open|filtered dhcpc
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Mon Feb 17 08:49:34 2014 -- 1 IP address (1 host up) scanned in 1.36 seconds

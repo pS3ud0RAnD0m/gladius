@@ -1,15 +1,12 @@
 # Author: p$3ud0R@nD0m
 
-# ttd_2: figure out why require_relative 'weapon' is needed.
-require_relative 'weapon'
-
 class SSLScan < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
     @title = title
     @path = "sslscan"
     @name = @path
-    @stdn_hosts = Path.get_path("stdn_hosts")
+    @stdn_hosts = Path.get("share_stdn_hosts")
   end
 
 ###############################################################################

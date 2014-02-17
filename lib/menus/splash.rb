@@ -2,7 +2,7 @@
 
 class Splash
   def initialize
-    @gladius_conf = Path.get_path("gladius_conf")
+    @gladius_conf = Path.get("share_gladius_conf")
   end
 
 # ttd_4: Refactor splash iteration.

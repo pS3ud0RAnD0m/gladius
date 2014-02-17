@@ -7,9 +7,9 @@ class GNmap < Weapon
     @path = "nmap"
     @name = @path
     @cmd = ""
-    @stdn_hosts = Path.get_path("stdn_hosts")
-    @snmp_comm_strings_long = Path.get_path("snmp_comm_strings_long")
-    @tftp_file_list = Path.get_path("tftp_file_list")
+    @stdn_hosts = Path.get("share_stdn_hosts")
+    @snmp_comm_strings_long = Path.get("snmp_comm_strings_long")
+    @tftp_file_list = Path.get("tftp_file_list")
   end
 
 ###############################################################################

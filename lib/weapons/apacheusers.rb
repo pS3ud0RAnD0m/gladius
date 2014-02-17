@@ -6,7 +6,7 @@ class ApacheUsers < Weapon
     @title = title
     @path = "apache-users"
     @name = @path
-    @apache_users_long = Path.get_path("apache_users_long")
+    @apache_users_long = Path.get("apache_users_long")
     @stdn_hosts = []
     @port = ""
   end

@@ -2,14 +2,14 @@
 
 class Home
   def header_home
-    read_me = Path.get_source_path("read_me")
+    read_me = Path.get("read_me")
     File.open(read_me) do |file|
       file.each_line do |line|
         if line =~ /# Gladius v/
           version = line
           version.slice! "# Gladius "
           puts "------------------------------"
-          puts "Home                  #{version}"
+          puts "Home                 #{version}"
           puts "------------------------------"
         end
       end

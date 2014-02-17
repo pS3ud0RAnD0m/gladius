@@ -8,7 +8,7 @@ class Nikto < Weapon
     @title = title
     @path = "nikto"
     @name = @path
-    @stdn_hosts = Path.get_path("stdn_hosts")
+    @stdn_hosts = Path.get("share_stdn_hosts")
   end
 
 ###############################################################################

@@ -1,7 +1,7 @@
 # Author: p$3ud0R@nD0m
 
 require 'menu'
-
+# ttd_1: Complete all online dict attacks
 class DictionaryOnline < Menu
   def menu
     header

@@ -1,147 +1,106 @@
 # Author: p$3ud0R@nD0m
 
 module Path
-  def root
-    File.expand_path("../..", File.dirname(__FILE__)) + "/"
-  end
-
-  def lib_root
-    File.expand_path("..", File.dirname(__FILE__)) + "/"
-  end
+  # Source variables
+  @root       = File.expand_path("../..", File.dirname(__FILE__)) + "/"
+  @lib        = @root + "lib/"
+  @helpers    = @lib + "helpers/"
+  @input      = @helpers + "input/"
+  @menus      = @lib + "menus/"
+  @weapons    = @lib + "weapons/"
+  @thirdparty = @helpers + "thirdparty/"
   
+  # Share variables
+  @share              = "/usr/share/gladius/"
+  @share_input        = @share + "input/"
+  @share_output       = @share + "output/"
+  @share_config       = @share + "config/"
+  @share_sess         = @share_config + "sessions/"
+  @share_sess_named   = @share_sess + "named/"
+  @share_sess_unnamed = @share_sess + "unnamed/"
+  @share_tmp          = @share + "tmp/"
+  @share_pids         = @share_tmp + "pids/"
+
   def load
-    $:.push lib_root + "menus"
-    $:.push lib_root + "weapons"
-    $:.push lib_root + "helpers"
-    $:.push lib_root + "helpers/thirdparty"
+    $:.push @menus
+    $:.push @weapons
+    $:.push @helpers
+    $:.push @thirdparty
   end
   
   def req
-    require lib_root + "weapons/weapon"
-    Dir[lib_root + "menus/*.rb"].each { |a| require a }
-    Dir[lib_root + "weapons/*.rb"].each { |a| require a }
-    Dir[lib_root + "helpers/*.rb"].each { |a| require a }
-    Dir[lib_root + "helpers/thirdparty/*.rb"].each { |a| require a }
     require "fileutils"
     require "pty"
     require "time"
+    require @weapons + "weapon"
+    Dir[@menus + "*.rb"].each { |a| require a }
+    Dir[@weapons + "*.rb"].each { |a| require a }
+    Dir[@helpers + "*.rb"].each { |a| require a }
+    Dir[@thirdparty + "*.rb"].each { |a| require a }
   end
 
-# ttd_2: Replace all path methods with this
-# ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
-  def get_path(g_alias)
-    # Usage: Path.get_path("usr")
+  def get(g_alias)
     path =
       {
-        # Directories
-        "config_sess_named"   => "/usr/share/gladius/config/sessions/named/",
-        "config_sess_unnamed" => "/usr/share/gladius/config/sessions/unnamed/",
-        "config_sess"         => "/usr/share/gladius/config/sessions/",
-        "config"              => "/usr/share/gladius/config/",
-        "input"               => "/usr/share/gladius/input/",
-        "output"              => "/usr/share/gladius/output/",
-        "tmp_pids"            => "/usr/share/gladius/tmp/pids/",
-        "tmp"                 => "/usr/share/gladius/tmp/",
-        "usr_g"               => "/usr/share/gladius/",
-        # Files
-        "apache_users_long"          => "/usr/share/gladius/input/apache_users_long.txt",
-        "dns_hosts_long"             => "/usr/share/gladius/input/dns_hosts_long.txt",
-        "ftp_pwds_long"              => "/usr/share/gladius/input/ftp_pwds_long.txt",
-        "ftp_pwds_short"             => "/usr/share/gladius/input/ftp_pwds_short.txt",
-        "ftp_usrs_long"              => "/usr/share/gladius/input/ftp_usrs_long.txt",
-        "ftp_usrs_short"             => "/usr/share/gladius/input/ftp_usrs_short.txt",
-        "gladius_conf"               => "/usr/share/gladius/config/gladius.conf",
-        "gladius_iptables"           => "/usr/share/gladius/input/iptables",
-        "gladius_iptables_logrotate" => "/usr/share/gladius/input/iptables_logrotate",
-        "mysql_pwds_long"            => "/usr/share/gladius/input/mysql_pwds_long.txt",
-        "mysql_pwds_short"           => "/usr/share/gladius/input/mysql_pwds_short.txt",
-        "mysql_usrs_long"            => "/usr/share/gladius/input/mysql_usrs_long.txt",
-        "mysql_usrs_short"           => "/usr/share/gladius/input/mysql_usrs_short.txt",
-        "postgresql_pwds_long"       => "/usr/share/gladius/input/postgresql_pwds_long.txt",
-        "postgresql_pwds_short"      => "/usr/share/gladius/input/postgresql_pwds_short.txt",
-        "postgresql_usrs_long"       => "/usr/share/gladius/input/postgresql_usrs_long.txt",
-        "postgresql_usrs_short"      => "/usr/share/gladius/input/postgresql_usrs_short.txt",
-        "snmp_comm_strings_long"     => "/usr/share/gladius/input/snmp_comm_strings_long.txt",
-        "ssh_pwds_long"              => "/usr/share/gladius/input/ssh_pwds_long.txt",
-        "ssh_pwds_short"             => "/usr/share/gladius/input/ssh_pwds_short.txt",
-        "ssh_usrs_long"              => "/usr/share/gladius/input/ssh_usrs_long.txt",
-        "ssh_usrs_short"             => "/usr/share/gladius/input/ssh_usrs_short.txt",
-        "stdn_hosts"                 => "/usr/share/gladius/input/stdn_hosts.txt",
-        "stdn_pwds"                  => "/usr/share/gladius/input/stdn_pwds.txt",
-        "stdn_usrs"                  => "/usr/share/gladius/input/stdn_usrs.txt",
-        "system_iptables"            => "/etc/init.d/iptables",
-        "system_iptables_log"        => "/var/log/iptables.log",
-        "system_iptables_logrotate"  => "/etc/logrotate.d/iptables",
-        "telnet_pwds_long"           => "/usr/share/gladius/input/telnet_pwds_long.txt",
-        "telnet_pwds_short"          => "/usr/share/gladius/input/telnet_pwds_short.txt",
-        "telnet_usrs_long"           => "/usr/share/gladius/input/telnet_usrs_long.txt",
-        "telnet_usrs_short"          => "/usr/share/gladius/input/telnet_usrs_short.txt",
-        "tftp_file_list"             => "/usr/share/gladius/input/tftp_file_list.txt",
-        "vpn_group_id_long"          => "/usr/share/gladius/input/vpn_group_id_long.txt",
-        "windows_pwds_long"          => "/usr/share/gladius/input/windows_pwds_long.txt",
-        "windows_pwds_short"         => "/usr/share/gladius/input/windows_pwds_short.txt",
-        "windows_usrs_long"          => "/usr/share/gladius/input/windows_usrs_long.txt",
-        "windows_usrs_short"         => "/usr/share/gladius/input/windows_usrs_short.txt"
+        # Source directories and files
+        "root"                       => @root,
+        "lib"                        => @lib,
+        "helpers"                    => @helpers,
+        "menus"                      => @menus,
+        "weapons"                    => @weapons,
+        "thirdparty"                 => @thirdparty,
+        "apache_users_long"          => @input + "apache_users_long.txt",
+        "dns_hosts_long"             => @input + "dns_hosts_long.txt",
+        "ftp_usrs_long"              => @input + "ftp_usrs_long.txt",
+        "ftp_pwds_long"              => @input + "ftp_pwds_long.txt",
+        "gladius_conf"               => @input + "gladius.conf",
+        "iptables"                   => @input + "iptables",
+        "iptables_logrotate"         => @input + "iptables_logrotate",
+        "mysql_pwds_long"            => @input + "mysql_pwds_long.txt",
+        "mysql_usrs_long"            => @input + "mysql_usrs_long.txt",
+        "postgresql_pwds_long"       => @input + "postgresql_pwds_long.txt",
+        "postgresql_usrs_long"       => @input + "postgresql_usrs_long.txt",
+        "read_me"                    => @root + "README.md",
+        "snmp_comm_strings_long"     => @input + "snmp_comm_strings_long.txt",
+        "ssh_pwds_long"              => @input + "ssh_pwds_long.txt",
+        "ssh_usrs_long"              => @input + "ssh_usrs_long.txt",
+        "telnet_pwds_long"           => @input + "telnet_pwds_long.txt",
+        "telnet_usrs_long"           => @input + "telnet_usrs_long.txt",
+        "tftp_file_list"             => @input + "tftp_file_list.txt",
+        "vpn_group_id_long"          => @input + "vpn_group_id_long.txt",
+        "windows_pwds_long"          => @input + "windows_pwds_long.txt",
+        "windows_usrs_long"          => @input + "windows_usrs_long.txt",
+        
+# ttd_1: Ensure NOTHING was broken with recent refactoring
+        # Share directories and files
+        "share_sess_named"   => @share_sess_named,
+        "share_sess_unnamed" => @share_sess_unnamed,
+        "share_sess"         => @share_sess,
+        "share_config"       => @share_config,
+        "share_input"        => @share_input,
+        "share_output"       => @share_output,
+        "share_tmp"          => @share_tmp,
+        "share_pids"         => @share_pids,
+        "share"              => @share,
+        "share_gladius_conf" => @share_config + "gladius.conf",
+        "share_stdn_hosts"   => @share_input + "stdn_hosts.txt",
+        "share_stdn_pwds"    => @share_input + "stdn_pwds.txt",
+        "share_stdn_usrs"    => @share_input + "stdn_usrs.txt",
+
+        # System files
+        "system_iptables"           => "/etc/init.d/iptables",
+        "system_iptables_log"       => "/var/log/iptables.log",
+        "system_iptables_logrotate" => "/etc/logrotate.d/iptables"
       }
     path[g_alias]
-  end
-
-# ttd_2: Replace all dirstruct methods with this. pay attn to trailing slashes when porting to this.
-  def get_source_path(g_alias)
-    # Usage: Path.get_source_path("gladius_conf_source")
-    path =
-      {
-        # Files
-        "gladius_conf"               => lib_root + "helpers/input/gladius.conf",
-        "gladius_iptables_logrotate" => lib_root + "helpers/input/iptables_logrotate",
-        "gladius_iptables"           => lib_root + "helpers/input/iptables",
-        "mysql_pwds_long"            => lib_root + "helpers/input/mysql_pwds_long.txt",
-        "mysql_usrs_long"            => lib_root + "helpers/input/mysql_usrs_long.txt",
-        "postgresql_pwds_long"       => lib_root + "helpers/input/postgresql_pwds_long.txt",
-        "postgresql_usrs_long"       => lib_root + "helpers/input/postgresql_usrs_long.txt",
-        "read_me"                    => root     + "README.md",
-        "ssh_pwds_long"              => lib_root + "helpers/input/ssh_pwds_long.txt",
-        "ssh_usrs_long"              => lib_root + "helpers/input/ssh_usrs_long.txt",
-        "telnet_pwds_long"           => lib_root + "helpers/input/telnet_pwds_long.txt",
-        "telnet_usrs_long"           => lib_root + "helpers/input/telnet_usrs_long.txt",
-        "tftp_file_list"             => lib_root + "helpers/input/tftp_file_list.txt",
-        "vpn_group_id_long"          => lib_root + "helpers/input/vpn_group_id_long.txt",
-        "windows_pwds_long"          => lib_root + "helpers/input/windows_pwds_long.txt",
-        "windows_usrs_long"          => lib_root + "helpers/input/windows_usrs_long.txt"
-      }
-    path[g_alias]
-  end
-  
-  def stdn_pwds
-    a = "/usr/share/gladius/input/stdn_pwds.txt"
-  end
-
-  def stdn_usrs
-    a = "/usr/share/gladius/input/stdn_usrs.txt"
-  end
-
-  def hosts_file
-    a = "/usr/share/gladius/input/stdn_hosts.txt"
-  end
-
-  def source
-    a = lib_root + "helpers/input/"
   end
 
   def get_out_file(weapon)
-    time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S")
+    share_output = @share_output
+    Time.now.strftime("#{share_output}#{weapon}_%F_%H-%M-%S")
   end
   
   def get_out_file_txt(weapon)
-    time = Time.now
-    out_file = time.strftime("/usr/share/gladius/output/" + weapon + "_%F_%H-%M-%S.txt")
-  end
-
-  def get_pid_file
-    time = Time.now
-    tmp_pids = Path.get_path("tmp_pids")
-    pid_tstamp = "%10.10f" % time.to_f
-    pid_file = time.strftime(tmp_pids + pid_tstamp + ".pid")
+    get_out_file(weapon) + ".txt"
   end
 end

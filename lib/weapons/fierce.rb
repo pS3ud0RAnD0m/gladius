@@ -7,7 +7,7 @@ class Fierce < Weapon
     @path = "fierce"
     @name = @path
     @stdn_hosts = []
-    @dns_hosts_long = Path.get_path("dns_hosts_long")
+    @dns_hosts_long = Path.get("dns_hosts_long")
   end
 
 ###############################################################################

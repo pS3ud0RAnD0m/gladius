@@ -98,6 +98,8 @@
   
     <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
+    <li class="file"><a href="./hydra_2014-02-17_08-50-38_txt.html">hydra_2014-02-17_08-50-38</a>
+  
     <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
   
     <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
@@ -143,6 +145,14 @@
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_csv.html">nmap_2014-02-17_08-49-32.csv</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_gnmap.html">nmap_2014-02-17_08-49-32.gnmap</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_nmap.html">nmap_2014-02-17_08-49-32.nmap</a>
+  
+    <li class="file"><a href="./nmap_2014-02-17_08-49-32_xml.html">nmap_2014-02-17_08-49-32.xml</a>
   
   </ul>
 </nav>
@@ -206,8 +216,6 @@
   
     <li><a href="./Ncrack.html">Ncrack</a>
   
-    <li><a href="./Nessus.html">Nessus</a>
-  
     <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
   
     <li><a href="./NetworkAttacks.html">NetworkAttacks</a>
@@ -261,6 +269,8 @@
 
   <div id="description" class="description">
     
+<p>Author: p$3ud0R@nD0m</p>
+
   </div><!-- description -->
 
   
@@ -300,13 +310,13 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 7</span>
+            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;sslscan&quot;</span>
   <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
-  <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_path</span>(<span class="ruby-string">&quot;stdn_hosts&quot;</span>)
+  <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -343,7 +353,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 42</span>
+            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 39</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
     <span class="ruby-identifier">puts</span>
     <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
@@ -389,7 +399,7 @@
 
           
           <div class="method-source-code" id="common-source">
-            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">common</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --no-failed --targets=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -427,7 +437,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 19</span>
+            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">scan_type</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;fqdnp&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>, <span class="ruby-string">&quot;ipp&quot;</span>)

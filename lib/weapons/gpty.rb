@@ -11,7 +11,7 @@ class Gpty
       puts "Running: #{cmd}".light_yellow
       PTY.spawn( b ) do |stdin, stdout, pid|
         begin
-          c = File.open(a, "w") { |file| file.write("#{pid}") }
+          File.open(a, "w") { |file| file.write("#{pid}") }
           stdin.each { |line| print line }
         rescue Errno::EIO
 # ttd_2: Exit needs resolved.
