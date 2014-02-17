@@ -56,7 +56,7 @@ class SSLScan < Weapon
 ###############################################################################
   # Discover supported SSL/TLS certs
   def common
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " --no-failed --targets=" + @stdn_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit

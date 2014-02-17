@@ -92,9 +92,9 @@
   
     <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
   
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+    <li class="file"><a href="./blah.html">blah</a>
   
-    <li class="file"><a href="./hydra_2014-02-17_08-50-38_txt.html">hydra_2014-02-17_08-50-38</a>
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
     <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
   
@@ -141,14 +141,6 @@
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_csv.html">nmap_2014-02-17_08-49-32.csv</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_gnmap.html">nmap_2014-02-17_08-49-32.gnmap</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_nmap.html">nmap_2014-02-17_08-49-32.nmap</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_xml.html">nmap_2014-02-17_08-49-32.xml</a>
   
   </ul>
 </nav>
@@ -308,19 +300,9 @@
           <div class="method-source-code" id="header_home-source">
             <pre><span class="ruby-comment"># File lib/menus/home.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">header_home</span>
-  <span class="ruby-identifier">read_me</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;read_me&quot;</span>)
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">read_me</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">file</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/# Gladius v/</span>
-        <span class="ruby-identifier">version</span> = <span class="ruby-identifier">line</span>
-        <span class="ruby-identifier">version</span>.<span class="ruby-identifier">slice!</span> <span class="ruby-node">&quot;# Gladius &quot;</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Home                 #{version}&quot;</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Home                 v0.0.2.11&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- header_home-source -->
           
@@ -351,7 +333,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 20</span>
+            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
   <span class="ruby-identifier">header_home</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a category:&quot;</span>.<span class="ruby-identifier">light_yellow</span>

@@ -57,7 +57,7 @@ class GNmap < Weapon
 ###############################################################################
 # Execute run methods
   def execute(run_method)
-    @out_file = get_out_file(@name)
+    @out_file = Path.get_out_file(@name)
     prependix = @path + " -v -Pn -s"
     appendix = " -iL " + @stdn_hosts + " -oA " + @out_file
       case run_method

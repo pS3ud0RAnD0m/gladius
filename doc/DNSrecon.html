@@ -102,9 +102,9 @@
   
     <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
   
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
+    <li class="file"><a href="./blah.html">blah</a>
   
-    <li class="file"><a href="./hydra_2014-02-17_08-50-38_txt.html">hydra_2014-02-17_08-50-38</a>
+    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
     <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
   
@@ -151,14 +151,6 @@
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_csv.html">nmap_2014-02-17_08-49-32.csv</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_gnmap.html">nmap_2014-02-17_08-49-32.gnmap</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_nmap.html">nmap_2014-02-17_08-49-32.nmap</a>
-  
-    <li class="file"><a href="./nmap_2014-02-17_08-49-32_xml.html">nmap_2014-02-17_08-49-32.xml</a>
   
   </ul>
 </nav>
@@ -398,7 +390,7 @@
           <div class="method-source-code" id="google-source">
             <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">google</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
   <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
@@ -501,7 +493,7 @@
           <div class="method-source-code" id="reverse-source">
             <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reverse</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
   <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
@@ -543,7 +535,7 @@
           <div class="method-source-code" id="standard-source">
             <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">standard</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
   <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
@@ -587,7 +579,7 @@
           <div class="method-source-code" id="transfer-source">
             <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">transfer</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
   <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>

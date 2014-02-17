@@ -57,7 +57,7 @@ class DNSrecon < Weapon
 ###############################################################################
   # Attempt a zone transfer:
   def transfer
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
     @stdn_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
@@ -71,7 +71,7 @@ class DNSrecon < Weapon
   
   # Attempt a zone transfer, then enum standard records:
   def standard
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
     @stdn_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
@@ -85,7 +85,7 @@ class DNSrecon < Weapon
 
   # Perform Google search for sub-domains and @stdn_hosts:
   def google
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
     @stdn_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
@@ -99,7 +99,7 @@ class DNSrecon < Weapon
   
   # Reverse lookups for given block
   def reverse
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
     @stdn_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`

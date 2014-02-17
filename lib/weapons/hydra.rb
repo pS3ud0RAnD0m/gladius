@@ -178,7 +178,7 @@ class Hydra < Weapon
 # FTP
 ##################################
   def ftp_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs_long + " -P " + @ftp_pwds_long + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
@@ -204,7 +204,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
@@ -217,7 +217,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
@@ -227,7 +227,7 @@ class Hydra < Weapon
 # MySQL
 ##################################
   def mysql_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
@@ -257,7 +257,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
@@ -270,7 +270,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
@@ -280,7 +280,7 @@ class Hydra < Weapon
 # PostgreSQL
 ##################################
   def postgresql_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @postgresql_usrs_long + " -P " + @postgresql_pwds_long + " -M " + @stdn_hosts + " postgres |tee " + @out_file
     run(cmd)
     clean_exit("postgresql")
@@ -311,7 +311,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " postgres |tee " + @out_file
     run(cmd)
     clean_exit("postgresql")
@@ -324,7 +324,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " postgres |tee " + @out_file
     run(cmd)
     clean_exit("postgresql")
@@ -334,7 +334,7 @@ class Hydra < Weapon
 # Rexec
 ##################################
   def rexec_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
     run(cmd)
     clean_exit("rexec")
@@ -359,7 +359,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
     run(cmd)
     clean_exit("rexec")
@@ -372,7 +372,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
     run(cmd)
     clean_exit("rexec")
@@ -382,7 +382,7 @@ class Hydra < Weapon
 # Rlogin
 ##################################
   def rlogin_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
     run(cmd)
     clean_exit("rlogin")
@@ -407,7 +407,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
     run(cmd)
     clean_exit("rlogin")
@@ -420,7 +420,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
     run(cmd)
     clean_exit("rlogin")
@@ -430,7 +430,7 @@ class Hydra < Weapon
 # RSH
 ##################################
   def rsh_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
     run(cmd)
     clean_exit("rsh")
@@ -455,7 +455,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
     run(cmd)
     clean_exit("rsh")
@@ -468,7 +468,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
     run(cmd)
     clean_exit("rsh")
@@ -478,7 +478,7 @@ class Hydra < Weapon
 # SSH
 ##################################
   def ssh_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
@@ -503,7 +503,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
@@ -516,7 +516,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
@@ -526,7 +526,7 @@ class Hydra < Weapon
 # Telnet
 ##################################
   def telnet_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @telnet_usrs_long + " -P " + @telnet_pwds_long + " -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
@@ -552,7 +552,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
@@ -565,7 +565,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
@@ -575,7 +575,7 @@ class Hydra < Weapon
 # VMAuthd
 ##################################
   def vmauthd_gladius_long
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)
     clean_exit("vmauthd")
@@ -600,7 +600,7 @@ class Hydra < Weapon
       a << line
     end
     a.close
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)
     clean_exit("vmauthd")
@@ -613,7 +613,7 @@ class Hydra < Weapon
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
-    @out_file = get_out_file_txt(@name)
+    @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)
     clean_exit("vmauthd")
