@@ -10,8 +10,8 @@ class KaliSupport < Menu
     puts "2.  Firewall - List rules (IPtables)"
     puts "3.  Firewall - Configure (IPtables)"
     puts "4.  Server - Setup a TFTP server (atftpd)"
-    puts "5.  Server - Setup an FTP server (NI)"
-    puts "6.  Server - Setup an HTTP(S) server (NI)"
+    puts "5.  Server - Setup an FTP server (NI)".blue
+    puts "6.  Server - Setup an HTTP(S) server (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

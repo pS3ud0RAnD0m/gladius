@@ -4,9 +4,9 @@ class Dictionary < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Create custom user/password lists (NI)"
+    puts "1.  Create custom user/password lists (NI)".blue
     puts "2.  Online dictionary attacks"
-    puts "3.  Offline dictionary attacks (NI)"
+    puts "3.  Offline dictionary attacks (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

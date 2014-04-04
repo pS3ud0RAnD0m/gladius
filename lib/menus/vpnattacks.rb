@@ -6,7 +6,7 @@ class VPNAttacks < Menu
   def menu
     header
     puts "Select a category:".light_yellow
-    puts "1.  Aggressive IKE - grab and crack hash (NI)"
+    puts "1.  Aggressive IKE - grab and crack hash (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

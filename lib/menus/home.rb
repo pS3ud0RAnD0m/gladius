@@ -3,7 +3,7 @@
 class Home
   def header_home
     puts "------------------------------"
-    puts "Home                 v0.0.2.13"
+    puts "Home                 v0.0.2.14"
     puts "------------------------------"
   end
 
@@ -12,8 +12,8 @@ class Home
     puts "Select a category:".light_yellow
     puts "1.  Gather information"
     puts "2.  Network attacks"
-    puts "3.  Web attacks (NI)"
-    puts "4.  Wireless attacks (NI)"
+    puts "3.  Web attacks (NI)".blue
+    puts "4.  Wireless attacks (NI)".blue
     puts "5.  Dictionary attacks"
     puts "6.  Kali support"
     puts "99. Exit Gladius"

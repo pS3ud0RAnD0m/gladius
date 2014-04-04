@@ -329,7 +329,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;23. SVN (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;24. Telnet (Hydra)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;25. VMAuthd (Hydra)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;26. VNC (Hydra) (NI)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;26. VNC (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;27. Web-Form (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
@@ -375,8 +375,9 @@
   <span class="ruby-keyword">when</span> <span class="ruby-value">24</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - Telnet Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;telnet&quot;</span>)
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">25</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - VMAuthd Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;vmauthd&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">26</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - VNC Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
-    <span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">26</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
+  <span class="ruby-comment">#when 26 then Hydra.new(&quot;DictionaryOnline&quot;, &quot;Hydra - VNC Online Dictionary Attack&quot;).menu(&quot;vnc&quot;)</span>
+    <span class="ruby-comment">#menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">27</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
