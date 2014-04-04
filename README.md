@@ -30,20 +30,17 @@ Change to the gladius directory and pull the newest commit:
 ## Contributors
 ##### Michael Born
 * Provided User Interface recommendations
-* Betatesting
+* Alpha testing
 * Improved Windows dictionary list
 
 ##### Steve Pittinger
 * Improved DiG commands for identifying DCs
 * Recommended TestSSLServer
-
-##### Will Caput
-* Recommended subbrute.py
+* Alpha testing
 
 ##### Steve Seideman
 * Improved Windows dictionary list
+* Alpha testing
 
-
-
-
-
+##### Will Caput
+* Recommended subbrute.py

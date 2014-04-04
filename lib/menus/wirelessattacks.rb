@@ -7,8 +7,8 @@ class WirelessAttacks < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Rogue AP (NI)"
-    puts "2.  RADIUS MiTM (FreeRADIUS) (NI)"
+    puts "1.  Rogue AP (NI)".blue
+    puts "2.  RADIUS MiTM (FreeRADIUS) (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

@@ -7,7 +7,7 @@ class SniffSpoof < Menu
     header
     puts "Select a task:".light_yellow
     puts "1.  Sniff for plaintext creds (Dsniff)"
-    puts "2.  MiTM ARP poisoning (Ettercap) (NI)"
+    puts "2.  MiTM ARP poisoning (Ettercap) (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

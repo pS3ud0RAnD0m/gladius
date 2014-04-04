@@ -7,8 +7,8 @@ class ConfigSnort < Menu
     header
     puts "Select a task:".light_yellow
     puts "1.  Upgrade/Install Snort/Snorby and start (Gladius)"
-    puts "2.  Modify Snort rules (Gladius) (NI)"
-    puts "3.  Start Snort and Snorby (Gladius) (NI)"
+    puts "2.  Modify Snort rules (Gladius) (NI)".blue
+    puts "3.  Start Snort and Snorby (Gladius) (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

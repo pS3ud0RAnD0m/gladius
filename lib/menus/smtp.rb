@@ -7,7 +7,7 @@ class SMTP < Menu
     header
     puts "Select an option:".light_yellow
     puts "1.  Discover open relays (Nmap)"
-    puts "2.  User enum (NI)"
+    puts "2.  User enum (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

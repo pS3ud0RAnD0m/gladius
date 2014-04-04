@@ -31,7 +31,7 @@ class DictionaryOnline < Menu
     puts "23. SVN (Hydra) (NI)".blue
     puts "24. Telnet (Hydra)"
     puts "25. VMAuthd (Hydra)"
-    puts "26. VNC (Hydra) (NI)"
+    puts "26. VNC (Hydra) (NI)".blue
     puts "27. Web-Form (Hydra) (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
@@ -77,8 +77,9 @@ class DictionaryOnline < Menu
     when 24 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
       menu
     when 25 then Hydra.new("DictionaryOnline", "Hydra - VMAuthd Online Dictionary Attack").menu("vmauthd")
-    when 26 then Hydra.new("DictionaryOnline", "Hydra - VNC Online Dictionary Attack").menu("vnc")
-      menu
+    when 26 then puts "Not implemented yet.".red
+    #when 26 then Hydra.new("DictionaryOnline", "Hydra - VNC Online Dictionary Attack").menu("vnc")
+      #menu
     when 27 then puts "Not implemented yet.".red
       menu
     when 88 then Dictionary.new("Dictionary Attacks").menu

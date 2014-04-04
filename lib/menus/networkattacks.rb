@@ -5,7 +5,7 @@ class NetworkAttacks < Menu
     header
     puts "Select a category:".light_yellow
     puts "1.  Sniffing and Spoofing"
-    puts "2.  VPN attacks"
+    puts "2.  VPN attacks (NI)".blue
     puts "88. Back"
     puts "99. Exit Gladius"
     

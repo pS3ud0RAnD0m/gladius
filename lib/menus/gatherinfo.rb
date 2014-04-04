@@ -8,15 +8,15 @@ class GatherInfo < Menu
     puts "2.  DNS"
     puts "3.  FTP"
     puts "4.  HTTP(S)"
-    puts "5.  MSSQL (NI)"
-    puts "6.  MySQL (NI)"
+    puts "5.  MSSQL (NI)".blue
+    puts "6.  MySQL (NI)".blue
     puts "7.  Netbios-SMB"
-    puts "8.  Oracle (NI)"
-    puts "9.  RDP (NI)"
+    puts "8.  Oracle (NI)".blue
+    puts "9.  RDP (NI)".blue
     puts "10. SMTP"
     puts "11. SNMP"
-    puts "12. SSH (NI)"
-    puts "13. Telnet (NI)"
+    puts "12. SSH (NI)".blue
+    puts "13. Telnet (NI)".blue
     puts "14. TFTP"
     puts "88. Back"
     puts "99. Exit Gladius"

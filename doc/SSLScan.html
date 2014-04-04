@@ -354,7 +354,7 @@
     <span class="ruby-identifier">puts</span>
     <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
       <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
-<span class="ruby-comment"># ttd_3: let's just show weak protocols/ciphers here</span>
+<span class="ruby-comment"># ttd_2: Replace sslscan with testsslserver </span>
       <span class="ruby-identifier">parsed</span> = <span class="ruby-node">%xegrep &quot;Testing|Accepted&quot; #{out_file}`</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;The following protocols/ciphers were accepted:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">parsed</span>
