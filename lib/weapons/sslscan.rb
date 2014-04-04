@@ -40,7 +40,7 @@ class SSLScan < Weapon
     puts
     if File.exist?(@out_file)
       out_file = @out_file
-# ttd_3: let's just show weak protocols/ciphers here
+# ttd_2: Replace sslscan with testsslserver 
       parsed = `egrep "Testing|Accepted" #{out_file}`
       puts "The following protocols/ciphers were accepted:".light_yellow
       puts parsed

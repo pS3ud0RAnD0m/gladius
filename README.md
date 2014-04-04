@@ -2,7 +2,7 @@
 An interactive shell for common Kali Linux tasks
 
 ## Warning
-This app is Alpha, so beware. I'll be making significant changes between now and the Beta release, April 2014.
+This app is Alpha, so beware. I'll be making significant changes between now and the Beta release, May 2014.
 
 ## Install
 Change directory and clone:
@@ -26,3 +26,24 @@ Change to the gladius directory and pull the newest commit:
 
 ## Usage
 ![Alt text](doc/images/usage.png "Start Gladius")
+
+## Contributors
+##### Michael Born
+* Provided User Interface recommendations
+* Betatesting
+* Improved Windows dictionary list
+
+##### Steve Pittinger
+* Improved DiG commands for identifying DCs
+* Recommended TestSSLServer
+
+##### Will Caput
+* Recommended subbrute.py
+
+##### Steve Seideman
+* Improved Windows dictionary list
+
+
+
+
+
