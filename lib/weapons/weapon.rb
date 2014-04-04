@@ -31,11 +31,11 @@ class Weapon
     end
   end
   
-  def get_port
-    puts "Input target port number: [443]".light_yellow
+  def get_port(default)
+    puts "Input target port: [#{default}]".light_yellow
     @port = gets.chomp
     if @port.empty?
-      @port = "443"
+      @port = default
     end
   end
   
@@ -172,4 +172,5 @@ class Weapon
   rescue Interrupt
     GExeption.new.exit_gladius
   end
+# ttd_2: Add subbrute.py
 end

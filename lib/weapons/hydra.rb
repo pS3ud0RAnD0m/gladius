@@ -14,12 +14,15 @@ class Hydra < Weapon
     @mysql_usrs_long = Path.get("mysql_usrs_long")
     @postgresql_pwds_long = Path.get("postgresql_pwds_long")
     @postgresql_usrs_long = Path.get("postgresql_usrs_long")
+    @port = ""
     @ssh_pwds_long = Path.get("ssh_pwds_long")
     @ssh_usrs_long = Path.get("ssh_usrs_long")
     @stdn_pwds = Path.get("share_stdn_pwds")
     @stdn_usrs = Path.get("share_stdn_usrs")
     @telnet_pwds_long = Path.get("telnet_pwds_long")
     @telnet_usrs_long = Path.get("telnet_usrs_long")
+    @vnc_pwds_long = Path.get("vnc_pwds_long")
+    @vnc_usrs_long = Path.get("vnc_usrs_long")
   end
 
 ###############################################################################
@@ -28,6 +31,21 @@ class Hydra < Weapon
   # Get target(s) and pass to relevant run method
   def menu(run_method)
     header
+    # Get port
+    case run_method
+    #when "ftp" then get_port(21)
+    #when "http" then get_port(80)
+    #when "mysql" then get_port(3306)
+    #when "rexec" then get_port(512)
+    #when "rlogin" then get_port(513)
+    #when "rsh" then get_port(514)
+    #when "smtp" then get_port(25)
+    #when "ssh" then get_port(22)
+    #when "telnet" then get_port(23)
+    #when "vmauthd" then get_port(1)
+    when "vnc" then get_port(5900)
+    end
+    
     instruct_input_targets("fqdn", "ip")
     a = File.open(@stdn_hosts, "w")
     while line = gets
@@ -48,7 +66,7 @@ class Hydra < Weapon
     else line_count = line_count.to_s
       puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
     end
-    
+
     case run_method
     when "cvs" then puts
     when "ftp" then puts "1. 476 attempts/host = 14 users * 34 passwords"
@@ -61,16 +79,16 @@ class Hydra < Weapon
     when "pcanywhere" then puts
     when "pop3" then puts
     when "postgresql" then puts "1. 72 attempts/host = 8 users * 9 passwords"
-    when "rexec" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "rlogin" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "rsh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "rexec" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
+    when "rlogin" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
+    when "rsh" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
     when "smtp" then puts
     when "smtp-enum" then puts
-    when "ssh" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
+    when "ssh" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
     when "svn" then puts
     when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "vmauthd" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "vnc" then puts
+    when "vnc" then puts "1. 16,192 attempts/host = 16 users * 1,012 passwords"
     when "web-form" then puts
     end
     puts "2. Input your own users and passwords."
@@ -144,7 +162,12 @@ class Hydra < Weapon
       when 2 then vmauthd_stdn
       when 3 then vmauthd_stdn_list
       end
-    #when "vnc" then vnc
+    when "vnc"
+      case input_method
+      when 1 then vnc_gladius_long
+      when 2 then vnc_stdn
+      when 3 then vnc_stdn_list
+      end
     #when "web-form" then web_form
     end
   rescue Interrupt
@@ -569,6 +592,62 @@ class Hydra < Weapon
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
+  end
+
+##################################
+# VNC
+##################################`
+
+  def vnc_gladius_long
+    @out_file = Path.get_out_file_txt(@name)
+    puts @vnc_usrs_long
+    puts @vnc_pwds_long
+    puts @stdn_hosts
+    puts @port
+    puts @out_file
+    
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @vnc_usrs_long + " -P " + @vnc_pwds_long + " -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    run(cmd)
+    clean_exit("vnc")
+  end
+
+  def vnc_stdn
+    instruct_input_usrs
+    puts "root".yellow
+    puts "cisco".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    puts
+    instruct_input_pwds
+    puts "cisco".yellow
+    puts "password".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    @out_file = Path.get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    run(cmd)
+    clean_exit("vnc")
+  end
+  
+  def vnc_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = Path.get_out_file_txt(@name)
+    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    run(cmd)
+    clean_exit("vnc")
   end
   
 ##################################

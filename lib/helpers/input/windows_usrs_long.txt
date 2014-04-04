@@ -1,11 +1,16 @@
-guest
 administrator
+guest
 admin
+backup
 backups
 www
 db
+helpdesk
 hd
 noc
 support
 test
 temp
+vendor
+audit
+auditor

@@ -43,7 +43,7 @@ class Parse < Weapon
 ###############################################################################
   # parse Nmap XML to Excel-ready CSV
   def nmap_xml_to_csv
-    NmapParser.new(@prev_menu, @in_file).open_ports_csv
+    NmapParser.new(@prev_menu, @in_file).all_to_csv
 # ttd_2: parser interrupt gets processed, then this bc GExeption.exit_gladius isn't killing all off.
     clean_exit
   end  
