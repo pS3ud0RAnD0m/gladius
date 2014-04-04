@@ -1,5 +1,5 @@
 
-require_relative '../gladius'
+#require_relative '../gladius'
 
 #describe "Gladius" do
 #  before do

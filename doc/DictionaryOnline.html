@@ -90,8 +90,6 @@
   
     <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
   
-    <li class="file"><a href="./blah.html">blah</a>
-  
     <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
     <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
@@ -134,6 +132,10 @@
   
     <li class="file"><a href="./lib/helpers/input/tftp_file_list_txt.html">tftp_file_list</a>
   
+    <li class="file"><a href="./lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long</a>
+  
     <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
@@ -154,8 +156,6 @@
   
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
   
-    <li><a href="./Constant.html">Constant</a>
-  
     <li><a href="./DNS.html">DNS</a>
   
     <li><a href="./DNSrecon.html">DNSrecon</a>
@@ -171,6 +171,8 @@
     <li><a href="./DiscoverServices.html">DiscoverServices</a>
   
     <li><a href="./Dsniff.html">Dsniff</a>
+  
+    <li><a href="./Enum4linux.html">Enum4linux</a>
   
     <li><a href="./FTP.html">FTP</a>
   
@@ -197,6 +199,8 @@
     <li><a href="./KaliSupport.html">KaliSupport</a>
   
     <li><a href="./MSF.html">MSF</a>
+  
+    <li><a href="./Medusa.html">Medusa</a>
   
     <li><a href="./Menu.html">Menu</a>
   
@@ -317,7 +321,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;15. Rexec (Hydra)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;16. Rlogin (Hydra)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;17. RSH (Hydra)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;18. SMB (Ncrack)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;18. SMB (Medusa)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;19. SMTP (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;20. SMTP-Enum (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;21. SNMP (Nmap)&quot;</span>
@@ -325,7 +329,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;23. SVN (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;24. Telnet (Hydra)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;25. VMAuthd (Hydra)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;26. VNC (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;26. VNC (Hydra) (NI)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;27. Web-Form (Hydra) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
@@ -359,7 +363,7 @@
   <span class="ruby-keyword">when</span> <span class="ruby-value">15</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - Rexec Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;rexec&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">16</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - Rlogin Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;rlogin&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">17</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - RSH Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;rsh&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">18</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Ncrack</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Ncrack - SMB Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;smb&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">18</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Medusa</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Medusa - SMB Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;smb&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">19</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">20</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
@@ -371,7 +375,7 @@
   <span class="ruby-keyword">when</span> <span class="ruby-value">24</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - Telnet Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;telnet&quot;</span>)
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">25</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - VMAuthd Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;vmauthd&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">26</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">26</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;DictionaryOnline&quot;</span>, <span class="ruby-string">&quot;Hydra - VNC Online Dictionary Attack&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">27</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
     <span class="ruby-identifier">menu</span>

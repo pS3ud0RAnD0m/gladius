@@ -75,13 +75,9 @@
     
     <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-open_filtered">#open_filtered</a>
+    <li ><a href="#method-i-all_to_csv">#all_to_csv</a>
     
-    <li ><a href="#method-i-open_ports">#open_ports</a>
-    
-    <li ><a href="#method-i-open_ports_csv">#open_ports_csv</a>
-    
-    <li ><a href="#method-i-xml_check">#xml_check</a>
+    <li ><a href="#method-i-check_xml">#check_xml</a>
     
   </ul>
 </nav>
@@ -97,8 +93,6 @@
     <li class="file"><a href="./README_md.html">README</a>
   
     <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
-  
-    <li class="file"><a href="./blah.html">blah</a>
   
     <li class="file"><a href="./doc/created_rid.html">created.rid</a>
   
@@ -142,6 +136,10 @@
   
     <li class="file"><a href="./lib/helpers/input/tftp_file_list_txt.html">tftp_file_list</a>
   
+    <li class="file"><a href="./lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long</a>
+  
     <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
   
     <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
@@ -162,8 +160,6 @@
   
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
   
-    <li><a href="./Constant.html">Constant</a>
-  
     <li><a href="./DNS.html">DNS</a>
   
     <li><a href="./DNSrecon.html">DNSrecon</a>
@@ -179,6 +175,8 @@
     <li><a href="./DiscoverServices.html">DiscoverServices</a>
   
     <li><a href="./Dsniff.html">Dsniff</a>
+  
+    <li><a href="./Enum4linux.html">Enum4linux</a>
   
     <li><a href="./FTP.html">FTP</a>
   
@@ -205,6 +203,8 @@
     <li><a href="./KaliSupport.html">KaliSupport</a>
   
     <li><a href="./MSF.html">MSF</a>
+  
+    <li><a href="./Medusa.html">Medusa</a>
   
     <li><a href="./Menu.html">Menu</a>
   
@@ -307,7 +307,6 @@
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@nmap_xml_file</span> = <span class="ruby-identifier">nmap_xml_file</span>
   <span class="ruby-ivar">@nmap_base_name</span> = <span class="ruby-ivar">@nmap_xml_file</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/.xml/</span>, <span class="ruby-string">''</span>) 
-  <span class="ruby-ivar">@tmp_file</span> = <span class="ruby-ivar">@nmap_base_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_tmp.xml&quot;</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-ivar">@nmap_base_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.csv&quot;</span>
   <span class="ruby-ivar">@nmap_exit_status</span> = <span class="ruby-value">1</span>
 <span class="ruby-keyword">end</span></pre>
@@ -327,118 +326,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-open_filtered" class="method-detail ">
+      <div id="method-i-all_to_csv" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">open_filtered</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>To ensure “open|filtered” states are not considered “open”, this method
-creates a temp xml file and changes the spelling of “open|f” to “opn|f”
-w/in the temp file. Finally, the temp file is deleted.</p>
-          
-          
-
-          
-          <div class="method-source-code" id="open_filtered-source">
-            <pre><span class="ruby-comment"># File lib/helpers/nmapparser.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">open_filtered</span>
-  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp</span> <span class="ruby-ivar">@nmap_xml_file</span>, <span class="ruby-ivar">@tmp_file</span>
-  <span class="ruby-identifier">text</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-ivar">@tmp_file</span>)
-  <span class="ruby-identifier">output_of_gsub</span> = <span class="ruby-identifier">text</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-string">&quot;open|f&quot;</span>, <span class="ruby-string">&quot;opn|f&quot;</span>)
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@tmp_file</span>, <span class="ruby-string">&quot;w&quot;</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">output_of_gsub</span>}
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- open_filtered-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- open_filtered-method -->
-
-    
-      <div id="method-i-open_ports" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">open_ports</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>ttd_3: add this human friendly output option</p>
-          
-          
-
-          
-          <div class="method-source-code" id="open_ports-source">
-            <pre><span class="ruby-comment"># File lib/helpers/nmapparser.rb, line 81</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">open_ports</span>
-  <span class="ruby-identifier">parser</span> = <span class="ruby-ivar">@parser</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Nmap args: #{parser.session.scan_args}&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Runtime: #{parser.session.scan_time} seconds&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@tmp_file</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">d</span> = <span class="ruby-value">%xprintf &quot;Only showing open ports.\n\n&quot;`</span>
-    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">d</span>
-    
-    <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">hosts</span>(<span class="ruby-string">&quot;up&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">b</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span>
-      <span class="ruby-comment">#a.puts b</span>
-      [<span class="ruby-value">:tcp</span>, <span class="ruby-value">:udp</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">host</span>.<span class="ruby-identifier">getports</span>(<span class="ruby-identifier">type</span>, <span class="ruby-string">&quot;open&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
-          <span class="ruby-comment"># awk |sort |uniq; then blah ...</span>
-          <span class="ruby-identifier">service</span> = <span class="ruby-identifier">port</span>.<span class="ruby-identifier">service</span>
-          <span class="ruby-identifier">c</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto}&quot;</span>
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">name</span>
-            <span class="ruby-identifier">c</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name}&quot;</span>
-          <span class="ruby-keyword">end</span>
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">product</span>
-            <span class="ruby-identifier">c</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product}&quot;</span>
-          <span class="ruby-keyword">end</span>
-          <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">version</span>
-            <span class="ruby-identifier">c</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product} #{service.version}&quot;</span>
-          <span class="ruby-keyword">end</span>
-          <span class="ruby-identifier">a</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">b</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">c</span>
-        <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">a</span>.<span class="ruby-identifier">puts</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">tmp_file</span> = <span class="ruby-ivar">@tmp_file</span>
-  <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-comment">#parsed = `grep -B1 open #{tmp_file} &gt;#{out_file}`</span>
-  <span class="ruby-comment">#d = `printf &quot;Only showing open ports.\n\n&quot;`</span>
-  
-  <span class="ruby-identifier">parsed</span> = <span class="ruby-node">%xcat #{tmp_file} &gt;&gt;#{out_file}`</span>
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-ivar">@tmp_file</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- open_ports-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- open_ports-method -->
-
-    
-      <div id="method-i-open_ports_csv" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">open_ports_csv</span><span
+          <span class="method-name">all_to_csv</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -453,64 +344,61 @@ w/in the temp file. Finally, the temp file is deleted.</p>
           
 
           
-          <div class="method-source-code" id="open_ports_csv-source">
-            <pre><span class="ruby-comment"># File lib/helpers/nmapparser.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">open_ports_csv</span>
-  <span class="ruby-identifier">xml_check</span>
+          <div class="method-source-code" id="all_to_csv-source">
+            <pre><span class="ruby-comment"># File lib/helpers/nmapparser.rb, line 27</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">all_to_csv</span>
+  <span class="ruby-identifier">check_xml</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nmap_exit_status</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Parsing XML ...&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-identifier">open_filtered</span>
-    <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsefile</span>(<span class="ruby-ivar">@tmp_file</span>)
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@out_file</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">a</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Open ports from &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@nmap_xml_file</span>
+    <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nmap</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">parsefile</span>(<span class="ruby-ivar">@nmap_xml_file</span>)
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@out_file</span>, <span class="ruby-string">&quot;w&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">line</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IP,Hostname,Port/Protocol&quot;</span>
       <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">hosts</span>(<span class="ruby-string">&quot;up&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">addr</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">addr</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">host</span>.<span class="ruby-identifier">hostname</span>
-          <span class="ruby-identifier">hostname</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">hostname</span>.<span class="ruby-identifier">to_s</span>
-        <span class="ruby-keyword">else</span>
-          <span class="ruby-identifier">hostname</span> = <span class="ruby-string">&quot;nohostname&quot;</span>
-        <span class="ruby-keyword">end</span>
-        [<span class="ruby-value">:tcp</span>, <span class="ruby-value">:udp</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span>
-          <span class="ruby-identifier">host</span>.<span class="ruby-identifier">getports</span>(<span class="ruby-identifier">type</span>, <span class="ruby-string">&quot;open&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">hostname</span> = <span class="ruby-identifier">host</span>.<span class="ruby-identifier">hostname</span>.<span class="ruby-identifier">to_s</span>
+        [<span class="ruby-value">:any</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span> <span class="ruby-comment"># tcp and udp is causing dup output</span>
+          <span class="ruby-identifier">host</span>.<span class="ruby-identifier">getports</span>(<span class="ruby-string">&quot;any&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
             <span class="ruby-identifier">service</span> = <span class="ruby-identifier">port</span>.<span class="ruby-identifier">service</span>
-            <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto}&quot;</span>
+            <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{port.state}&quot;</span>
             <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">name</span>
-              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name}&quot;</span>
+              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{port.state}&quot;</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{port.state}&quot;</span>
             <span class="ruby-keyword">end</span>
             <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">product</span>
-              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product}&quot;</span>
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">version</span>
+                <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product},#{service.version},#{port.state}&quot;</span>
+              <span class="ruby-keyword">else</span>
+                <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product},,#{port.state}&quot;</span>
+              <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{port.state}&quot;</span>
             <span class="ruby-keyword">end</span>
-            <span class="ruby-keyword">if</span> <span class="ruby-identifier">service</span>.<span class="ruby-identifier">version</span>
-              <span class="ruby-identifier">service_info</span> = <span class="ruby-node">&quot;,#{port.num}/#{port.proto},#{service.name},#{service.product} #{service.version}&quot;</span>
-            <span class="ruby-keyword">end</span>
-            <span class="ruby-identifier">a</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">addr</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;,&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hostname</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">service_info</span>
+            <span class="ruby-identifier">line</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">addr</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;,&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">hostname</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">service_info</span>
           <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;An Excel-ready file showing only open ports has been parsed and put here:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;An Excel-ready file has been parsed and put here:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@tmp_file</span>)
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-ivar">@tmp_file</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">rescue</span>
   <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Parser&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- open_ports_csv-source -->
+          </div><!-- all_to_csv-source -->
           
         </div>
 
         
 
         
-      </div><!-- open_ports_csv-method -->
+      </div><!-- all_to_csv-method -->
 
     
-      <div id="method-i-xml_check" class="method-detail ">
+      <div id="method-i-check_xml" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">xml_check</span><span
+          <span class="method-name">check_xml</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -520,28 +408,28 @@ w/in the temp file. Finally, the temp file is deleted.</p>
 
         <div class="method-description">
           
-          
+          <p>Check for complete XML file</p>
           
           
 
           
-          <div class="method-source-code" id="xml_check-source">
+          <div class="method-source-code" id="check_xml-source">
             <pre><span class="ruby-comment"># File lib/helpers/nmapparser.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">xml_check</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_xml</span>
   <span class="ruby-identifier">nmap_xml_file</span> = <span class="ruby-ivar">@nmap_xml_file</span>
   <span class="ruby-ivar">@nmap_exit_status</span> = <span class="ruby-node">%xgrep &quot;Nmap done&quot; #{nmap_xml_file} |wc -l`</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nmap_exit_status</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Incomplete Nmap XML file detected. Gladius will not parse it.&quot;</span>.<span class="ruby-identifier">red</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- xml_check-source -->
+          </div><!-- check_xml-source -->
           
         </div>
 
         
 
         
-      </div><!-- xml_check-method -->
+      </div><!-- check_xml-method -->
 
     
     </section><!-- public-instance-method-details -->

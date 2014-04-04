@@ -10,7 +10,7 @@ class GatherInfo < Menu
     puts "4.  HTTP(S)"
     puts "5.  MSSQL (NI)"
     puts "6.  MySQL (NI)"
-    puts "7.  Netbios-SMB (NI)"
+    puts "7.  Netbios-SMB"
     puts "8.  Oracle (NI)"
     puts "9.  RDP (NI)"
     puts "10. SMTP"

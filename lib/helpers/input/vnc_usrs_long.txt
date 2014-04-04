@@ -1,0 +1,16 @@
+root
+vnc
+vncuser
+realvnc
+ultravnc
+tightvnc
+www
+backup
+ftp
+mysql
+guest
+admin
+postgres
+nobody
+oracle
+webmaster
