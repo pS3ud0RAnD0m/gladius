@@ -1,6 +1,5 @@
 # Author: p$3ud0R@nD0m
 
-# ttd_1: Post telnet+ run, cntl+c is not exiting gladius on first try.
 class Hydra < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
@@ -32,7 +31,7 @@ class Hydra < Weapon
   def menu(run_method)
     header
     # Get port
-    case run_method
+    #case run_method
     #when "ftp" then get_port(21)
     #when "http" then get_port(80)
     #when "mysql" then get_port(3306)
@@ -43,8 +42,9 @@ class Hydra < Weapon
     #when "ssh" then get_port(22)
     #when "telnet" then get_port(23)
     #when "vmauthd" then get_port(1)
-    when "vnc" then get_port(5900)
-    end
+# ttd_1: ask for port
+    #when "vnc" then get_port(5900)
+    #end
     
     instruct_input_targets("fqdn", "ip")
     a = File.open(@stdn_hosts, "w")
@@ -88,7 +88,7 @@ class Hydra < Weapon
     when "svn" then puts
     when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
     when "vmauthd" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "vnc" then puts "1. 16,192 attempts/host = 16 users * 1,012 passwords"
+    when "vnc" then puts "1. 1,012 attempts/host"
     when "web-form" then puts
     end
     puts "2. Input your own users and passwords."
@@ -600,30 +600,20 @@ class Hydra < Weapon
 
   def vnc_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    puts @vnc_usrs_long
-    puts @vnc_pwds_long
-    puts @stdn_hosts
-    puts @port
-    puts @out_file
+    #puts @vnc_usrs_long
+    #puts @vnc_pwds_long
+    #puts @stdn_hosts
+    #puts @port
+    #puts @out_file
     
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @vnc_usrs_long + " -P " + @vnc_pwds_long + " -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -e ns -P " + @vnc_pwds_long + " -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
     clean_exit("vnc")
   end
 
   def vnc_stdn
-    instruct_input_usrs
-    puts "root".yellow
-    puts "cisco".yellow
-    puts
-    a = File.open(@stdn_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    puts
     instruct_input_pwds
-    puts "cisco".yellow
+    puts "vncpass".yellow
     puts "password".yellow
     puts
     a = File.open(@stdn_pwds, "w")
@@ -632,20 +622,17 @@ class Hydra < Weapon
     end
     a.close
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -P " + @stdn_pwds + " -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
     clean_exit("vnc")
   end
   
   def vnc_stdn_list
-    instruct_input_usrs_list
-    stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
     puts
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " vnc -s " + @port + " |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -P #{stdn_pwds} -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
     clean_exit("vnc")
   end

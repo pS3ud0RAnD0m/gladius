@@ -77,6 +77,8 @@ CP7912010301SIP050608A.sbin
 cvt01_2_3.bin
 cvt02_2_3.bin
 cvt02sw_2_3.bin
+C:/Windows/win.ini
+C:/WINNT/win.ini
 debian.cfg
 def06r1_8_3.bin
 def24r1_8_3.bin
@@ -223,4 +225,6 @@ v2210c.bin
 /var/opt/ignite/server/preferences
 vip-confg
 voip-confg
+/Windows/win.ini
+/WINNT/win.ini
 XMLDefault.cnf.xml

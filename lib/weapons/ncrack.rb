@@ -95,8 +95,7 @@ class Ncrack < Weapon
 ##################################
   def rdp_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-# ttd_1: :3389 needs to be appended to hosts, not the input file. Better yet, explicitly call rdp.
-    cmd = @path + " -v -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + ":3389 |tee " + @out_file
+    cmd = @path + " -v -p3389 -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
   end
