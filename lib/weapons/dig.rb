@@ -50,18 +50,18 @@ class DiG < Weapon
 # ttd_1: Mature this to id DCs only.
     unless stdn_dns_server.empty?
       unless stdn_domain.empty?
-        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp." + stdn_domain
+        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdn_domain
         run(cmd)
       else
-        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp." + domain
+        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp.dc._msdcs." + domain
         run(cmd)
       end
     else
       unless stdn_domain.empty?
-        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp." + stdn_domain
+        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdn_domain
         run(cmd)
       else
-        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp." + domain
+        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp.dc._msdcs." + domain
         run(cmd)
       end
     end
