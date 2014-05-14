@@ -323,7 +323,7 @@
 
   <div id="description" class="description">
     
-<p>ttd_1: Post telnet+ run, cntl+c is not exiting gladius on first try.</p>
+<p>Author: p$3ud0R@nD0m</p>
 
   </div><!-- description -->
 
@@ -364,7 +364,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 5</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
@@ -607,151 +607,152 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-comment"># Get port</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-  <span class="ruby-comment">#when &quot;ftp&quot; then get_port(21)</span>
-  <span class="ruby-comment">#when &quot;http&quot; then get_port(80)</span>
-  <span class="ruby-comment">#when &quot;mysql&quot; then get_port(3306)</span>
-  <span class="ruby-comment">#when &quot;rexec&quot; then get_port(512)</span>
-  <span class="ruby-comment">#when &quot;rlogin&quot; then get_port(513)</span>
-  <span class="ruby-comment">#when &quot;rsh&quot; then get_port(514)</span>
-  <span class="ruby-comment">#when &quot;smtp&quot; then get_port(25)</span>
-  <span class="ruby-comment">#when &quot;ssh&quot; then get_port(22)</span>
-  <span class="ruby-comment">#when &quot;telnet&quot; then get_port(23)</span>
-  <span class="ruby-comment">#when &quot;vmauthd&quot; then get_port(1)</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">get_port</span>(<span class="ruby-value">5900</span>)
-  <span class="ruby-keyword">end</span>
-  
-  <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
-  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">line_count</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No hosts were input.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Since only 1 host was input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since only #{line_count} hosts were input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">else</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since #{line_count} hosts were input, we recommend option 2 or 3.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">end</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 31</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+    <span class="ruby-identifier">header</span>
+    <span class="ruby-comment"># Get port</span>
+    <span class="ruby-comment">#case run_method</span>
+    <span class="ruby-comment">#when &quot;ftp&quot; then get_port(21)</span>
+    <span class="ruby-comment">#when &quot;http&quot; then get_port(80)</span>
+    <span class="ruby-comment">#when &quot;mysql&quot; then get_port(3306)</span>
+    <span class="ruby-comment">#when &quot;rexec&quot; then get_port(512)</span>
+    <span class="ruby-comment">#when &quot;rlogin&quot; then get_port(513)</span>
+    <span class="ruby-comment">#when &quot;rsh&quot; then get_port(514)</span>
+    <span class="ruby-comment">#when &quot;smtp&quot; then get_port(25)</span>
+    <span class="ruby-comment">#when &quot;ssh&quot; then get_port(22)</span>
+    <span class="ruby-comment">#when &quot;telnet&quot; then get_port(23)</span>
+    <span class="ruby-comment">#when &quot;vmauthd&quot; then get_port(1)</span>
+<span class="ruby-comment"># ttd_1: ask for port</span>
+    <span class="ruby-comment">#when &quot;vnc&quot; then get_port(5900)</span>
+    <span class="ruby-comment">#end</span>
+    
+    <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+      <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
+    <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">line_count</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No hosts were input.&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Since only 1 host was input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since only #{line_count} hosts were input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since #{line_count} hosts were input, we recommend option 2 or 3.&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
 
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;cvs&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ftp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 476 attempts/host = 14 users * 34 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;http&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;imap&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mssql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 21 attempts/host = 3 users * 7 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ncp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;nntp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;pcanywhere&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;pop3&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;postgresql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 72 attempts/host = 8 users * 9 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smtp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smtp-enum&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ssh&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;svn&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 10,000 attempts/host = 10 users * 1,000 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 10,000 attempts/host = 10 users * 1,000 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 16,192 attempts/host = 16 users * 1,012 passwords&quot;</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;web-form&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files.&quot;</span>
-  
-  <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-  <span class="ruby-comment">#when &quot;cvs&quot; then cvs</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ftp&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_stdn_list</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;cvs&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ftp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 476 attempts/host = 14 users * 34 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;http&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;imap&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mssql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 21 attempts/host = 3 users * 7 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ncp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;nntp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;pcanywhere&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;pop3&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;postgresql&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 72 attempts/host = 8 users * 9 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smtp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smtp-enum&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ssh&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 11,132 attempts/host = 11 users * 1,012 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;svn&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 10,000 attempts/host = 10 users * 1,000 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 10,000 attempts/host = 10 users * 1,000 passwords&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. 1,012 attempts/host&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;web-form&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-comment">#when &quot;http&quot; then http</span>
-  <span class="ruby-comment">#when &quot;imap&quot; then imap</span>
-  <span class="ruby-comment">#when &quot;mssql&quot; then mssql</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_stdn_list</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files.&quot;</span>
+    
+    <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-comment">#when &quot;cvs&quot; then cvs</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ftp&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ftp_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#when &quot;http&quot; then http</span>
+    <span class="ruby-comment">#when &quot;imap&quot; then imap</span>
+    <span class="ruby-comment">#when &quot;mssql&quot; then mssql</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">mysql_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#when &quot;ncp&quot; then ncp</span>
+    <span class="ruby-comment">#when &quot;nntp&quot; then nntp</span>
+    <span class="ruby-comment">#when &quot;pcanywhere&quot; then pcanywhere</span>
+    <span class="ruby-comment">#when &quot;pop3&quot; then pop3</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;postgresql&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#when &quot;smb&quot; then smb</span>
+    <span class="ruby-comment">#when &quot;smtp&quot; then smtp</span>
+    <span class="ruby-comment">#when &quot;smtp-enum&quot; then smtp_enum</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ssh&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#when &quot;svn&quot; then svn</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-comment">#when &quot;web-form&quot; then web_form</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-comment">#when &quot;ncp&quot; then ncp</span>
-  <span class="ruby-comment">#when &quot;nntp&quot; then nntp</span>
-  <span class="ruby-comment">#when &quot;pcanywhere&quot; then pcanywhere</span>
-  <span class="ruby-comment">#when &quot;pop3&quot; then pop3</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;postgresql&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">postgresql_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rexec_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rlogin_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rsh_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-comment">#when &quot;smb&quot; then smb</span>
-  <span class="ruby-comment">#when &quot;smtp&quot; then smtp</span>
-  <span class="ruby-comment">#when &quot;smtp-enum&quot; then smtp_enum</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ssh&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">ssh_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-comment">#when &quot;svn&quot; then svn</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">telnet_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vmauthd_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">vnc_stdn_list</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-comment">#when &quot;web-form&quot; then web_form</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
-  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Hydra&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
-<span class="ruby-keyword">end</span></pre>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+    <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Hydra&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
+  <span class="ruby-keyword">end</span></pre>
           </div><!-- menu-source -->
           
         </div>
@@ -1717,7 +1718,7 @@
 
           
           <div class="method-source-code" id="vmauthd_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 656</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 643</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1753,7 +1754,7 @@
 
           
           <div class="method-source-code" id="vmauthd_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 663</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 650</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1807,7 +1808,7 @@
 
           
           <div class="method-source-code" id="vmauthd_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 688</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 675</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1854,13 +1855,13 @@
             <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 601</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@vnc_usrs_long</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@vnc_pwds_long</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@stdn_hosts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@port</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-comment">#puts @vnc_usrs_long</span>
+  <span class="ruby-comment">#puts @vnc_pwds_long</span>
+  <span class="ruby-comment">#puts @stdn_hosts</span>
+  <span class="ruby-comment">#puts @port</span>
+  <span class="ruby-comment">#puts @out_file</span>
   
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@vnc_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@vnc_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@vnc_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1895,18 +1896,8 @@
           <div class="method-source-code" id="vnc_stdn-source">
             <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 614</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;cisco&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;cisco&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;vncpass&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
@@ -1915,7 +1906,7 @@
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -1948,16 +1939,13 @@
 
           
           <div class="method-source-code" id="vnc_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 640</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 630</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">instruct_input_pwds_list</span>
   <span class="ruby-identifier">stdn_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 4 -w 64 -P #{stdn_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
 <span class="ruby-keyword">end</span></pre>

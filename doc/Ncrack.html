@@ -495,13 +495,12 @@
           
           <div class="method-source-code" id="rdp_gladius_long-source">
             <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 96</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_gladius_long</span>
-    <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-<span class="ruby-comment"># ttd_1: :3389 needs to be appended to hosts, not the input file. Better yet, explicitly call rdp.</span>
-    <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:3389 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-    <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-    <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rdp&quot;</span>)
-  <span class="ruby-keyword">end</span></pre>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_gladius_long</span>
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -p3389 -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rdp&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
           </div><!-- rdp_gladius_long-source -->
           
         </div>
@@ -531,7 +530,7 @@
 
           
           <div class="method-source-code" id="rdp_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 104</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -586,7 +585,7 @@
 
           
           <div class="method-source-code" id="rdp_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 130</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -628,7 +627,7 @@
 
           
           <div class="method-source-code" id="smb_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 146</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:3389 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -664,7 +663,7 @@
 
           
           <div class="method-source-code" id="smb_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 153</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -719,7 +718,7 @@
 
           
           <div class="method-source-code" id="smb_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 179</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 178</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
