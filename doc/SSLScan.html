@@ -246,6 +246,8 @@
   
     <li><a href="./TFTP.html">TFTP</a>
   
+    <li><a href="./TestSSLServer.html">TestSSLServer</a>
+  
     <li><a href="./VPNAttacks.html">VPNAttacks</a>
   
     <li><a href="./Weapon.html">Weapon</a>
@@ -350,20 +352,19 @@
           
           <div class="method-source-code" id="clean_exit-source">
             <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 39</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
+    <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-identifier">parsed</span> = <span class="ruby-node">%xegrep &quot;Testing|Accepted&quot; #{out_file}`</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;The following protocols/ciphers were accepted:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">parsed</span>
     <span class="ruby-identifier">puts</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
-      <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
-<span class="ruby-comment"># ttd_2: Replace sslscan with testsslserver </span>
-      <span class="ruby-identifier">parsed</span> = <span class="ruby-node">%xegrep &quot;Testing|Accepted&quot; #{out_file}`</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;The following protocols/ciphers were accepted:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">parsed</span>
-      <span class="ruby-identifier">puts</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">exit_weapon</span>
-  <span class="ruby-keyword">end</span></pre>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">exit_weapon</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- clean_exit-source -->
           
         </div>
@@ -395,7 +396,7 @@
 
           
           <div class="method-source-code" id="common-source">
-            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 58</span>
+            <pre><span class="ruby-comment"># File lib/weapons/sslscan.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">common</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --no-failed --targets=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>

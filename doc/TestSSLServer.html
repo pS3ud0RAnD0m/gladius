@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class HTTP - RDoc Documentation</title>
+<title>class TestSSLServer - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/menus/http.rb
+    <li>lib/weapons/testsslserver.rb
   </ul>
 </nav>
 
@@ -61,7 +61,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Menu.html">Menu</a>
+  <p class="link"><a href="Weapon.html">Weapon</a>
   
 </nav>
 
@@ -72,6 +72,12 @@
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-clean_exit">#clean_exit</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
     
     <li ><a href="#method-i-menu">#menu</a>
     
@@ -257,10 +263,12 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class HTTP</h1>
+  <h1 class="class">class TestSSLServer</h1>
 
   <div id="description" class="description">
     
+<p>Author: p$3ud0R@nD0m</p>
+
   </div><!-- description -->
 
   
@@ -277,15 +285,15 @@
 
     <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-i-menu" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">menu</span><span
-            class="method-args">()</span>
+          <span class="method-name">new</span><span
+            class="method-args">(prev_menu, title)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -299,31 +307,158 @@
           
 
           
-          <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/http.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select an option:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  ID supported SSL/TLS protcols, ciphers, etc. (TestSSLServer)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  ID supported SSL/TLS protcols and ciphers (SSLScan)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  ID supported HTTP methods (Nmap)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;4.  ID common vulns (Nikto)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;5.  Apache - Enum users (Apache-users)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/weapons/testsslserver.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;thirdparty&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;TestSSLServer.jar&quot;</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-string">&quot;testsslserver&quot;</span>
+  <span class="ruby-ivar">@cmd</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@stdn_hosts</span> = []
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
   
-  <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">TestSSLServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;HTTP&quot;</span>, <span class="ruby-string">&quot;TestSSLServer - ID Protcols and Ciphers&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;basic&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SSLScan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;HTTP&quot;</span>, <span class="ruby-string">&quot;SSLScan - ID Protcols and Ciphers&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;common&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GNmap</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;HTTP&quot;</span>, <span class="ruby-string">&quot;Nmap - ID Supported HTTP Methods&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;script_http_methods&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Nikto</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;HTTP&quot;</span>, <span class="ruby-string">&quot;Nikto - ID Common Web Vulns&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">ApacheUsers</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;HTTP&quot;</span>, <span class="ruby-string">&quot;Apache-users - Enum Users&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;enum&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Information Gathering&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
-  <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-clean_exit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_exit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>ttd_1: Post run, option 88 bounces out to <a href="Home.html">Home</a>
+menu, not Gather Information menu. Clean exit</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clean_exit-source">
+            <pre><span class="ruby-comment"># File lib/weapons/testsslserver.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">exit_weapon</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clean_exit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clean_exit-method -->
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">(run_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Execution methods</p>
+
+<p>Execute run method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/weapons/testsslserver.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+    <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
+    <span class="ruby-node">%xecho &quot;#{host}&quot; &gt;&gt;#{out_file}`</span>
+    <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-string">&quot;java -jar &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; #{host} |tee -a #{out_file}&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- execute-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- execute-method -->
+
+    
+      <div id="method-i-menu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">menu</span><span
+            class="method-args">(run_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>User interaction methods</p>
+
+<p>Get target(s) and pass to execute method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="menu-source">
+            <pre><span class="ruby-comment"># File lib/weapons/testsslserver.rb, line 17</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;ip&quot;</span>)
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+    <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No hosts were input.&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Targeting &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ...&quot;</span>
+    <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-keyword">else</span> 
+    <span class="ruby-identifier">hosts_count</span> = <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Targeting #{hosts_count} hosts ...&quot;</span>
+    <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;TestSSLServer&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- menu-source -->
           
