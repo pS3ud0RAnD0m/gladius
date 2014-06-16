@@ -374,7 +374,7 @@
 
           
           <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 151</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 157</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
@@ -608,7 +608,7 @@
 
           
           <div class="method-source-code" id="instruct_input_pwds-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input password(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -643,7 +643,7 @@
 
           
           <div class="method-source-code" id="instruct_input_pwds_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 123</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds_list</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -708,13 +708,19 @@ href="https://www.victima.com">www.victima.com</a>/</p>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdnp&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com:443&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdnp_spaced&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ip&quot;</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54:8080&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp_spaced&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipr&quot;</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.250.0-255&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -760,7 +766,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="instruct_input_usrs-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 104</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input user(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -795,7 +801,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="instruct_input_usrs_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 116</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -831,7 +837,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 130</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>

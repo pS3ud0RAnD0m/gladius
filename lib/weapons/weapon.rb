@@ -77,13 +77,19 @@ class Weapon
         puts "www.victima.com".yellow
       end
       if a == "fqdnp"
-        puts "www.victima.com:443".yellow
+        puts "www.victima.com:8443".yellow
+      end
+      if a == "fqdnp_spaced"
+        puts "www.victima.com 8443".yellow
       end
       if a == "ip"
         puts "224.87.9.54".yellow
       end
       if a == "ipp"
-        puts "224.87.9.54:8080".yellow
+        puts "224.87.9.54:8443".yellow
+      end
+      if a == "ipp_spaced"
+        puts "224.87.9.54 8443".yellow
       end
       if a == "ipr"
         puts "192.168.250.0-255".yellow
