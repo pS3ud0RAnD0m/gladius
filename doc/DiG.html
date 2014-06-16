@@ -112,6 +112,10 @@
   
     <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
   
+    <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
+  
     <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
@@ -386,43 +390,42 @@
           
           <div class="method-source-code" id="idcontrollers-source">
             <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 33</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">idcontrollers</span>
-    <span class="ruby-comment"># Get dns server</span>
-    <span class="ruby-identifier">dns_server</span> = <span class="ruby-value">%xnslookup server |grep Server |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gladius identified the following DNS server for Kerberos enumeration: #{dns_server}&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hit &lt;Enter&gt; to continue or input another DNS server IP:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">stdn_dns_server</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-    <span class="ruby-comment"># Get domain</span>
-    <span class="ruby-identifier">domain</span> = <span class="ruby-value">%xcat /etc/resolv.conf |grep domain |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">domain</span>.<span class="ruby-identifier">empty?</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gladius identified the following domain for Kerberos enumeration: #{domain}&quot;</span>.<span class="ruby-identifier">yellow</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hit &lt;Enter&gt; to continue or input another domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-      <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">idcontrollers</span>
+  <span class="ruby-comment"># Get dns server</span>
+  <span class="ruby-identifier">dns_server</span> = <span class="ruby-value">%xnslookup server |grep Server |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gladius identified the following DNS server for Kerberos enumeration: #{dns_server}&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hit &lt;Enter&gt; to continue or input another DNS server IP:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">stdn_dns_server</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-comment"># Get domain</span>
+  <span class="ruby-identifier">domain</span> = <span class="ruby-value">%xcat /etc/resolv.conf |grep domain |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">domain</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Gladius identified the following domain for Kerberos enumeration: #{domain}&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hit &lt;Enter&gt; to continue or input another domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+    <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Gladius was not able to identify your current domain. Input target domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+    <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-comment"># Identify kerb services via dig against DNS server</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_dns_server</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_domain</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_domain</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Gladius was not able to identify your current domain. Input target domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-      <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">domain</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
     <span class="ruby-keyword">end</span>
-    <span class="ruby-comment"># Identify kerb services via dig against DNS server</span>
-<span class="ruby-comment"># ttd_1: Mature this to id DCs only.</span>
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_dns_server</span>.<span class="ruby-identifier">empty?</span>
-      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_domain</span>.<span class="ruby-identifier">empty?</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_domain</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-      <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">domain</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-      <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_domain</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_domain</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
     <span class="ruby-keyword">else</span>
-      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_domain</span>.<span class="ruby-identifier">empty?</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">stdn_domain</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-      <span class="ruby-keyword">else</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">domain</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; @&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">dns_server</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; SRV _kerberos._tcp.dc._msdcs.&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">domain</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">clean_exit</span>
-  <span class="ruby-keyword">end</span></pre>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- idcontrollers-source -->
           
         </div>

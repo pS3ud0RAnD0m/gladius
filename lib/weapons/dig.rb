@@ -47,7 +47,6 @@ class DiG < Weapon
       stdn_domain = gets.chomp
     end
     # Identify kerb services via dig against DNS server
-# ttd_1: Mature this to id DCs only.
     unless stdn_dns_server.empty?
       unless stdn_domain.empty?
         cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdn_domain

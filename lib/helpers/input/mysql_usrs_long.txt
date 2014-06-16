@@ -1,2 +1,17 @@
 root
 mysql
+admin
+dbadmin
+test
+temp
+administrator
+Toor
+Password
+Root
+Temp
+Test
+Admin
+DBadmin
+DBAdmin
+Mysql
+Administrator
