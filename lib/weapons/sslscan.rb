@@ -14,6 +14,7 @@ class SSLScan < Weapon
 ###############################################################################
   # Get target(s) and pass to relevant scan method
   def menu(scan_type)
+    puts "Note: SSLScan uses OpenSSL. OpenSSL recently disabled SSLv2, by default.".light_yellow
     header
     instruct_input_targets("fqdn", "fqdnp", "ip", "ipp")
     a = File.open(@stdn_hosts, "w")

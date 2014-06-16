@@ -118,6 +118,10 @@
   
     <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
   
+    <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
+  
     <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
@@ -273,7 +277,7 @@
 
   <div id="description" class="description">
     
-<p>Author: p$3ud0R@nD0m</p>
+<p>ttd_2: Port this gnmap class to medusa</p>
 
   </div><!-- description -->
 
@@ -314,7 +318,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 4</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
@@ -362,7 +366,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 64</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
@@ -410,36 +414,35 @@
 
           
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 136</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
-    <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>)
-    <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -Pn -s&quot;</span>
-    <span class="ruby-identifier">appendix</span> = <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-      <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;custom&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">custom</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@cmd</span>
-<span class="ruby-comment"># ttd_2: arp/icmp ping: parse up hosts</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ping_discovery&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span>             <span class="ruby-string">&quot; -v -T4 -sn --min-hostgroup 256 -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_smb_anon&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>        <span class="ruby-string">&quot;S -p21 --script smb-anon&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_http_methods&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>    <span class="ruby-string">&quot;S -p80,443 --script http-methods&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_smtp_open_relay&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;S -p25,465,587 --script smtp-open-relay&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_snmp_dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;U -p161 --script snmp-brute --script-args snmp-brute.communitiesdb=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@snmp_comm_strings_long</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_tsmb_files&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;U -p69 --script tsmb-enum&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>               <span class="ruby-string">&quot;S -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;SV -T4 --script all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>              <span class="ruby-string">&quot;S -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>           <span class="ruby-string">&quot;SU -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>  <span class="ruby-string">&quot;SUV -Pn --script=all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>          <span class="ruby-string">&quot;SU -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_lan&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>     <span class="ruby-string">&quot;S -T5 --top-ports 25 --min-hostgroup 256&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_wan&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>     <span class="ruby-string">&quot;S -T4 --top-ports 25 --min-hostgroup 256&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>               <span class="ruby-string">&quot;U -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;UV -T4 --script=all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>              <span class="ruby-string">&quot;U -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-      <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-    <span class="ruby-identifier">clean_exit</span>
-  <span class="ruby-keyword">end</span></pre>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>)
+  <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -Pn -s&quot;</span>
+  <span class="ruby-identifier">appendix</span> = <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;custom&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">custom</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@cmd</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ping_discovery&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span>             <span class="ruby-string">&quot; -v -T4 -sn --min-hostgroup 256 -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_smb_anon&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>        <span class="ruby-string">&quot;S -p21 --script smb-anon&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_http_methods&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>    <span class="ruby-string">&quot;S -p80,443 --script http-methods&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_smtp_open_relay&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;S -p25,465,587 --script smtp-open-relay&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_snmp_dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;U -p161 --script snmp-brute --script-args snmp-brute.communitiesdb=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@snmp_comm_strings_long</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_tsmb_files&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;U -p69 --script tsmb-enum&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>               <span class="ruby-string">&quot;S -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;SV -T4 --script all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>              <span class="ruby-string">&quot;S -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>           <span class="ruby-string">&quot;SU -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>  <span class="ruby-string">&quot;SUV -Pn --script=all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>          <span class="ruby-string">&quot;SU -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_lan&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>     <span class="ruby-string">&quot;S -T5 --top-ports 25 --min-hostgroup 256&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_wan&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>     <span class="ruby-string">&quot;S -T4 --top-ports 25 --min-hostgroup 256&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_full&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>               <span class="ruby-string">&quot;U -T4 --min-hostgroup 128 -p1-65535&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick_scripts&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>      <span class="ruby-string">&quot;UV -T4 --script=all --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>              <span class="ruby-string">&quot;U -T4 --min-hostgroup 128&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- execute-source -->
           
         </div>
@@ -469,7 +472,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
@@ -541,7 +544,7 @@
 
           
           <div class="method-source-code" id="smb_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 89</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -577,7 +580,7 @@
 
           
           <div class="method-source-code" id="smb_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 96</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -632,7 +635,7 @@
 
           
           <div class="method-source-code" id="smb_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 122</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

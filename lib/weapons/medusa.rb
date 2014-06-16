@@ -1,5 +1,7 @@
 # Author: p$3ud0R@nD0m
 
+# ttd_2: Port this gnmap class to medusa
+
 class Medusa < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
@@ -140,7 +142,6 @@ class Medusa < Weapon
       case run_method
       when "custom" then custom
         cmd = @cmd
-# ttd_2: arp/icmp ping: parse up hosts
       when "ping_discovery" then cmd = @path +             " -v -T4 -sn --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
       when "script_smb_anon" then cmd = prependix +        "S -p21 --script smb-anon" + appendix
       when "script_http_methods" then cmd = prependix +    "S -p80,443 --script http-methods" + appendix

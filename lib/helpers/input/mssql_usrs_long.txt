@@ -1,0 +1,8 @@
+root
+mysql
+admin
+dbadmin
+test
+temp
+administrator
+toor
