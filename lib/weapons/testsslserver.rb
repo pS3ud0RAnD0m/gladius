@@ -16,7 +16,7 @@ class TestSSLServer < Weapon
   # Get target(s) and pass to execute method
   def menu(run_method)
     header
-    instruct_input_targets("ip")
+    instruct_input_targets("fqdn", "fqdnp_spaced", "ip", "ipp_spaced")
     while line = gets
       @stdn_hosts << line.chomp
     end
