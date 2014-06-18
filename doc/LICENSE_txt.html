@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class SMTP - RDoc Documentation</title>
+<title>LICENSE - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body id="top" class="class">
+<body class="file">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -44,41 +44,6 @@
 
 
   
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/menus/smtp.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link"><a href="Menu.html">Menu</a>
-  
-</nav>
-
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li ><a href="#method-i-menu">#menu</a>
-    
-  </ul>
-</nav>
-
-  </div>
 
   <div id="project-metadata">
     <nav id="fileindex-section" class="section project-section">
@@ -266,85 +231,27 @@
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="class">class SMTP</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
+<div id="documentation" class="description">
   
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
+<p><a href="Gladius.html">Gladius</a></p>
 
-    
+<p>Copyright (C) 2013-2014 Josh Hyde</p>
 
-    
+<p>This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation; Applies version 2 of the License.</p>
 
-    
+<p>This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.</p>
 
-    <!-- Methods -->
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+<p>You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 51
+Franklin St, Fifth Floor, Boston, MA 02110-1301 USA</p>
 
-    
-      <div id="method-i-menu" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">menu</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
+</div>
 
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/smtp.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select an option:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Discover open relays (Nmap)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  User enum (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
-  
-  <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GNmap</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;SMTP&quot;</span>, <span class="ruby-string">&quot;Nmap - Discover Open Relays&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;script_smtp_open_relay&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Information Gathering&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
-  <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- menu-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- menu-method -->
-
-    
-    </section><!-- public-instance-method-details -->
-  
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
 
 
 <footer id="validator-badges">

@@ -75,6 +75,8 @@
     
     <li ><a href="#method-c-new">::new</a>
     
+    <li ><a href="#method-i-count">#count</a>
+    
     <li ><a href="#method-i-exit_weapon">#exit_weapon</a>
     
     <li ><a href="#method-i-get_host">#get_host</a>
@@ -110,6 +112,8 @@
 
   <ul>
   
+    <li class="file"><a href="./LICENSE_txt.html">LICENSE</a>
+  
     <li class="file"><a href="./README_md.html">README</a>
   
     <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
@@ -137,6 +141,10 @@
     <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long</a>
+  
+    <li class="file"><a href="./lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long</a>
   
     <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
   
@@ -355,6 +363,42 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
+      <div id="method-i-count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count</span><span
+            class="method-args">(usrs_file, pwds_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get wordlist counts</p>
+          
+          
+
+          
+          <div class="method-source-code" id="count-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">count</span>(<span class="ruby-identifier">usrs_file</span>, <span class="ruby-identifier">pwds_file</span>)
+  <span class="ruby-identifier">usrs_count</span> = <span class="ruby-node">%xwc -l #{usrs_file}`</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">pwds_count</span> = <span class="ruby-node">%xwc -l #{pwds_file}`</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">total_count</span> = <span class="ruby-identifier">usrs_count</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">pwds_count</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- count-method -->
+
+    
       <div id="method-i-exit_weapon" class="method-detail ">
         
         <div class="method-heading">
@@ -374,7 +418,7 @@
 
           
           <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 157</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 165</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
@@ -837,7 +881,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 136</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>
