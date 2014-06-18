@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: p$3ud0R@nD0m
+# See License.txt for copyright information
 
 unless ARGV.empty?
   ARGV.clear

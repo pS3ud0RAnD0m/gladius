@@ -133,6 +133,14 @@ class Weapon
     puts
   end
 
+  # Get wordlist counts
+  def count(usrs_file, pwds_file)
+    usrs_count = `wc -l #{usrs_file}`.to_i
+    pwds_count = `wc -l #{pwds_file}`.to_i + 2
+    total_count = usrs_count * pwds_count
+    puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
+  end
+
   def run(cmd)
     puts
     pid_file = get_pid_file
