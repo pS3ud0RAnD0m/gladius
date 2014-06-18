@@ -2,7 +2,7 @@
 An interactive shell for common Kali Linux tasks
 
 ## Warning
-This app is Alpha, so beware. I'll be making significant changes between now and the Beta release, May 2014.
+This app is Alpha, so beware. I will be making significant changes between now and the Beta release, v0.1.
 
 ## Install
 Change directory and clone:

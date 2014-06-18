@@ -9,8 +9,12 @@ class Hydra < Weapon
     @stdn_hosts = Path.get("share_stdn_hosts")
     @ftp_pwds_long = Path.get("ftp_pwds_long")
     @ftp_usrs_long = Path.get("ftp_usrs_long")
+    @mssql_pwds_long = Path.get("mssql_pwds_long")
+    @mssql_usrs_long = Path.get("mssql_usrs_long")
     @mysql_pwds_long = Path.get("mysql_pwds_long")
     @mysql_usrs_long = Path.get("mysql_usrs_long")
+    @oracle_pwds_long = Path.get("oracle_pwds_long")
+    @oracle_usrs_long = Path.get("oracle_usrs_long")
     @postgresql_pwds_long = Path.get("postgresql_pwds_long")
     @postgresql_usrs_long = Path.get("postgresql_usrs_long")
     @port = ""
@@ -68,28 +72,28 @@ class Hydra < Weapon
     end
 
     case run_method
-    when "cvs" then puts
-    when "ftp" then puts "1. 476 attempts/host = 14 users * 34 passwords"
-    when "http" then puts
-    when "imap" then puts
-    when "mssql" then puts
-    when "mysql" then puts "1. 21 attempts/host = 3 users * 7 passwords"
-    when "ncp" then puts
-    when "nntp" then puts
-    when "pcanywhere" then puts
-    when "pop3" then puts
-    when "postgresql" then puts "1. 72 attempts/host = 8 users * 9 passwords"
-    when "rexec" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
-    when "rlogin" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
-    when "rsh" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
-    when "smtp" then puts
-    when "smtp-enum" then puts
-    when "ssh" then puts "1. 11,132 attempts/host = 11 users * 1,012 passwords"
-    when "svn" then puts
-    when "telnet" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "vmauthd" then puts "1. 10,000 attempts/host = 10 users * 1,000 passwords"
-    when "vnc" then puts "1. 1,012 attempts/host"
-    when "web-form" then puts
+    when "cvs" then
+    when "ftp" then count(@ftp_usrs_long, @ftp_pwds_long)
+    when "http" then
+    when "imap" then
+    when "mssql" then count(@mssql_usrs_long, @mssql_pwds_long)
+    when "mysql" then count(@mysql_usrs_long, @mysql_pwds_long)
+    when "ncp" then
+    when "nntp" then
+    when "pcanywhere" then
+    when "pop3" then
+    when "postgresql" then count(@postgresql_usrs_long, @postgresql_pwds_long)
+    when "rexec" then count(@ssh_usrs_long, @ssh_pwds_long)
+    when "rlogin" then count(@ssh_usrs_long, @ssh_pwds_long)
+    when "rsh" then count(@ssh_usrs_long, @ssh_pwds_long)
+    when "smtp" then
+    when "smtp-enum" then
+    when "ssh" then count(@ssh_usrs_long, @ssh_pwds_long)
+    when "svn" then
+    when "telnet" then count(@telnet_usrs_long, @telnet_pwds_long)
+    when "vmauthd" then count(@ssh_usrs_long, @ssh_pwds_long)
+    when "vnc" then count(@vnc_usrs_long, @vnc_pwds_long)
+    when "web-form" then
     end
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password files."
@@ -105,7 +109,12 @@ class Hydra < Weapon
       end
     #when "http" then http
     #when "imap" then imap
-    #when "mssql" then mssql
+    when "mssql"
+      case input_method
+      when 1 then mssql_gladius_long
+      when 2 then mssql_stdn
+      when 3 then mssql_stdn_list
+      end
     when "mysql"
       case input_method
       when 1 then mysql_gladius_long
@@ -173,7 +182,7 @@ class Hydra < Weapon
   rescue Interrupt
     GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
-  
+
   # Parse and exit
   def clean_exit(search_term)
     puts
@@ -244,6 +253,55 @@ class Hydra < Weapon
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
+  end
+
+##################################
+# MSSQL
+##################################
+  def mssql_gladius_long
+    @out_file = Path.get_out_file_txt(@name)
+    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mssql_usrs_long + " -P " + @mssql_pwds_long + " -M " + @stdn_hosts + " mssql |tee " + @out_file
+    run(cmd)
+    clean_exit("mssql")
+  end
+  
+  def mssql_stdn
+    instruct_input_usrs
+    puts "sa".yellow
+    puts "dbadmin".yellow
+    puts
+    a = File.open(@stdn_usrs, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    puts
+    instruct_input_pwds
+    puts "password".yellow
+    puts "temp".yellow
+    puts
+    a = File.open(@stdn_pwds, "w")
+    while line = gets
+      a << line
+    end
+    a.close
+    @out_file = Path.get_out_file_txt(@name)
+    cmd = @path + " -V -t 4 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " mssql |tee " + @out_file
+    run(cmd)
+    clean_exit("mssql")
+  end
+  
+  def mssql_stdn_list
+    instruct_input_usrs_list
+    stdn_usrs = gets.chomp
+    puts
+    instruct_input_pwds_list
+    stdn_pwds = gets.chomp
+    puts
+    @out_file = Path.get_out_file_txt(@name)
+    cmd = @path + " -V -t 4 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mssql |tee " + @out_file
+    run(cmd)
+    clean_exit("mssql")
   end
 
 ##################################

@@ -11,7 +11,7 @@ class DictionaryOnline < Menu
     puts "3.  FTP (Hydra)"
     puts "4.  HTTP(S) (Hydra) (NI)".blue
     puts "5.  IMAP (Hydra) (NI)".blue
-    puts "6.  MSSQL (Hydra) (NI)".blue
+    puts "6.  MSSQL (Hydra)"
     puts "7.  MySQL (Hydra)"
     puts "8.  NCP (Hydra) (NI)".blue
     puts "9.  NNTP (Hydra) (NI)" .blue  
@@ -47,8 +47,7 @@ class DictionaryOnline < Menu
       menu
     when 5 then puts "Not implemented yet.".red
       menu
-    when 6 then puts "Not implemented yet.".red
-      menu
+    when 6 then Hydra.new("DictionaryOnline", "Hydra - MSSQL Online Dictionary Attack").menu("mssql")
     when 7 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").menu("mysql")
     when 8 then puts "Not implemented yet.".red
       menu
