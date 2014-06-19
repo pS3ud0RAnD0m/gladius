@@ -45,6 +45,7 @@ class Medusa < Weapon
     end
 
     case run_method
+# ttd_1: autocount all non-hydra dictionary attacks
     when "smb" then puts "1. 178 attempts/host = 16 users * 13 passwords"
     end
     puts "2. Input your own users and passwords."
