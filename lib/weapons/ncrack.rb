@@ -41,8 +41,8 @@ class Ncrack < Weapon
     end
 
     case run_method
-    when "rdp" then puts "1. 36,720 attempts/host = 36 users * 1020 passwords"
-    when "smb" then puts "1. 36,720 attempts/host = 36 users * 1020 passwords"
+    when "rdp" then count(@windows_usrs_long, @windows_pwds_long)
+    when "smb" then count(@windows_usrs_long, @windows_pwds_long)
     end
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password files."
@@ -65,7 +65,8 @@ class Ncrack < Weapon
   rescue Interrupt
     GExeption.new.exit_weapon("Ncrack", @prev_menu)
   end
-  
+
+# ttd_2: Parse Ncrack output
   # Parse and exit
   def clean_exit(search_term)
     puts

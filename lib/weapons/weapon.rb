@@ -127,7 +127,7 @@ class Weapon
   end
 
   def instruct_input_pwds_list
-    puts "Input your user file and press 'Enter'.".light_yellow
+    puts "Input your password file and press 'Enter'.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/passwords.txt".yellow
     puts
