@@ -195,7 +195,6 @@ class Hydra < Weapon
         puts results
       end
     end
-    puts
     if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file

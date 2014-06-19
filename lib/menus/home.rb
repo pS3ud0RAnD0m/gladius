@@ -3,7 +3,7 @@
 class Home
   def header_home
     puts "------------------------------"
-    puts "Home                 v0.0.2.24"
+    puts "Home                 v0.0.2.25"
     puts "------------------------------"
   end
 

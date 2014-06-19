@@ -41,7 +41,7 @@ class DictionaryOnline < Menu
     case selection
     when 1 then puts "Not implemented yet.".red
       menu
-    when 2 then Fierce.new("DNS", "Fierce - DNS Transfer or Online Dictionary Attack").menu("dictionary")
+    when 2 then Fierce.new("DictionaryOnline", "Fierce - DNS Transfer or Online Dictionary Attack").menu("dictionary")
     when 3 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").menu("ftp")
     when 4 then puts "Not implemented yet.".red
       menu
@@ -69,7 +69,7 @@ class DictionaryOnline < Menu
       menu
     when 20 then puts "Not implemented yet.".red
       menu
-    when 21 then GNmap.new("SNMP", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
+    when 21 then GNmap.new("DictionaryOnline", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
     when 22 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
     when 23 then puts "Not implemented yet.".red
       menu
