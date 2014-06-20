@@ -44,3 +44,12 @@ Change to the gladius directory and pull the newest commit:
 
 ##### Will Caput
 * Recommended subbrute.py
+
+## Issues
+
+Please submit to:
+https://github.com/pS3ud0RAnD0m/gladius/issues
+
+## Comments and Questions
+
+Feel free to email me at ps3ud0.rand0m@gmail.com
