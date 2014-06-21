@@ -35,10 +35,10 @@ class Enum4linux < Weapon
     GExeption.new.exit_weapon("Enum4linux", @prev_menu)
   end
 
-# ttd_1: Post run, option 88 bounces out to Home menu, not Gather Information menu.
   # Clean exit
   def clean_exit
     puts
+    puts "prev_menu is: " + @prev_menu
     if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file
