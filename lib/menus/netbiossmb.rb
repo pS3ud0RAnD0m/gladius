@@ -13,7 +13,7 @@ class NetbiosSMB < Menu
     selection = gets.to_i
     case selection
     when 1 then Enum4linux.new("NetbiosSMB", "Enum4linux - Enum SMB/Samba Info").menu("all")
-    when 88 then Home.new.menu
+    when 88 then GatherInfo.new("Information Gathering").menu
     when 99 then GExeption.new.exit_gladius
     else puts "Invalid selection.".red
       menu

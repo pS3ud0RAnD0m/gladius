@@ -35,7 +35,6 @@ class TestSSLServer < Weapon
     GExeption.new.exit_weapon("TestSSLServer", @prev_menu)
   end
 
-# ttd_1: Post run, option 88 bounces out to Home menu, not Gather Information menu.
   # Clean exit
   def clean_exit
     puts
