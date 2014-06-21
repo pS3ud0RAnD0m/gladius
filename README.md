@@ -1,8 +1,11 @@
 # Gladius
 An interactive shell for common Kali Linux tasks
 
-## Warning
+## Advisory
 This app is Alpha, so beware. I will be making significant changes between now and the Beta release, v0.1.
+
+## Features
+Please see the wiki: https://github.com/pS3ud0RAnD0m/gladius/wiki
 
 ## Install
 Change directory and clone:
