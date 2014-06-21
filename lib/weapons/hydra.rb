@@ -1,5 +1,7 @@
 # Author: p$3ud0R@nD0m
 
+# ttd_1: Ensure Hydra restore files are put in correct place.
+
 class Hydra < Weapon
   def initialize(prev_menu, title)
     @prev_menu = prev_menu
@@ -654,8 +656,6 @@ class Hydra < Weapon
 ##################################
 # VNC
 ##################################`
-
-# ttd_1: fix vnc u/pass
   def vnc_gladius_long
     @out_file = Path.get_out_file_txt(@name)    
     cmd = @path + " -V -t 4 -w 64 -e ns -P " + @vnc_pwds_long + " -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
