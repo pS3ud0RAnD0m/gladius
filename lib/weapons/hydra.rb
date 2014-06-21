@@ -92,7 +92,7 @@ class Hydra < Weapon
     when "svn" then
     when "telnet" then count(@telnet_usrs_long, @telnet_pwds_long)
     when "vmauthd" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "vnc" then count(@vnc_usrs_long, @vnc_pwds_long)
+    when "vnc" then count_pwds_file(@vnc_pwds_long)
     when "web-form" then
     end
     puts "2. Input your own users and passwords."
@@ -655,14 +655,9 @@ class Hydra < Weapon
 # VNC
 ##################################`
 
+# ttd_1: fix vnc u/pass
   def vnc_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    #puts @vnc_usrs_long
-    #puts @vnc_pwds_long
-    #puts @stdn_hosts
-    #puts @port
-    #puts @out_file
-    
+    @out_file = Path.get_out_file_txt(@name)    
     cmd = @path + " -V -t 4 -w 64 -e ns -P " + @vnc_pwds_long + " -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
     clean_exit("vnc")

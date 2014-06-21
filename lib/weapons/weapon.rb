@@ -135,10 +135,15 @@ class Weapon
 
   # Get wordlist counts
   def count(usrs_file, pwds_file)
-    usrs_count = `wc -l #{usrs_file}`.to_i
-    pwds_count = `wc -l #{pwds_file}`.to_i + 2
+    usrs_count = File.foreach(usrs_file).count.to_i
+    pwds_count = File.foreach(pwds_file).count.to_i + 2
     total_count = usrs_count * pwds_count
     puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
+  end
+  
+  def count_pwds_file(pwds_file)
+    pwds_count = File.foreach(pwds_file).count.to_i + 2
+    puts "1. #{pwds_count} attempts/host = #{pwds_count} passwords"
   end
 
   def run(cmd)
