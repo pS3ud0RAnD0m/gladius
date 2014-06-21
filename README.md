@@ -1,5 +1,5 @@
 # Gladius
-An interactive shell for common Kali Linux tasks
+An interactive shell for common Kali Linux penetration testing tasks
 
 ## Advisory
 This app is Alpha, so beware. I will be making significant changes between now and the Beta release, v0.1.
