@@ -689,7 +689,7 @@
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;svn&quot;</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@telnet_usrs_long</span>, <span class="ruby-ivar">@telnet_pwds_long</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@ssh_usrs_long</span>, <span class="ruby-ivar">@ssh_pwds_long</span>)
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@vnc_usrs_long</span>, <span class="ruby-ivar">@vnc_pwds_long</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count_pwds_file</span>(<span class="ruby-ivar">@vnc_pwds_long</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;web-form&quot;</span> <span class="ruby-keyword">then</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
@@ -1877,7 +1877,7 @@
 
           
           <div class="method-source-code" id="vmauthd_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 700</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 695</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1913,7 +1913,7 @@
 
           
           <div class="method-source-code" id="vmauthd_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 707</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 702</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1967,7 +1967,7 @@
 
           
           <div class="method-source-code" id="vmauthd_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 732</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 727</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -2003,23 +2003,15 @@
 
         <div class="method-description">
           
-          <p>VNC</p>
-
-<pre>`</pre>
+          <p>ttd_1: fix vnc u/pass</p>
           
           
 
           
           <div class="method-source-code" id="vnc_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 658</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 659</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-comment">#puts @vnc_usrs_long</span>
-  <span class="ruby-comment">#puts @vnc_pwds_long</span>
-  <span class="ruby-comment">#puts @stdn_hosts</span>
-  <span class="ruby-comment">#puts @port</span>
-  <span class="ruby-comment">#puts @out_file</span>
-  
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)    
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@vnc_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
@@ -2053,7 +2045,7 @@
 
           
           <div class="method-source-code" id="vnc_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 671</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 666</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn</span>
   <span class="ruby-identifier">instruct_input_pwds</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;vncpass&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -2098,7 +2090,7 @@
 
           
           <div class="method-source-code" id="vnc_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 687</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 682</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn_list</span>
   <span class="ruby-identifier">instruct_input_pwds_list</span>
   <span class="ruby-identifier">stdn_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

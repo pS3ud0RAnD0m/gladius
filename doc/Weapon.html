@@ -77,6 +77,8 @@
     
     <li ><a href="#method-i-count">#count</a>
     
+    <li ><a href="#method-i-count_pwds_file">#count_pwds_file</a>
+    
     <li ><a href="#method-i-exit_weapon">#exit_weapon</a>
     
     <li ><a href="#method-i-get_host">#get_host</a>
@@ -384,8 +386,8 @@
           <div class="method-source-code" id="count-source">
             <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">count</span>(<span class="ruby-identifier">usrs_file</span>, <span class="ruby-identifier">pwds_file</span>)
-  <span class="ruby-identifier">usrs_count</span> = <span class="ruby-node">%xwc -l #{usrs_file}`</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-identifier">pwds_count</span> = <span class="ruby-node">%xwc -l #{pwds_file}`</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">usrs_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">usrs_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">pwds_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">pwds_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
   <span class="ruby-identifier">total_count</span> = <span class="ruby-identifier">usrs_count</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">pwds_count</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -397,6 +399,40 @@
 
         
       </div><!-- count-method -->
+
+    
+      <div id="method-i-count_pwds_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">count_pwds_file</span><span
+            class="method-args">(pwds_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="count_pwds_file-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 144</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">count_pwds_file</span>(<span class="ruby-identifier">pwds_file</span>)
+  <span class="ruby-identifier">pwds_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">pwds_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{pwds_count} attempts/host = #{pwds_count} passwords&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- count_pwds_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- count_pwds_file-method -->
 
     
       <div id="method-i-exit_weapon" class="method-detail ">
@@ -418,7 +454,7 @@
 
           
           <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 165</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 170</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
@@ -881,7 +917,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 144</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>

@@ -57,7 +57,6 @@ class IPtables < Weapon
     clean_exit
   end
 
-
   # Confirm iptables overwrite
   def config_existance
     if File.exist?(@system_iptables)
