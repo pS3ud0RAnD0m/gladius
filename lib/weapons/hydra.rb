@@ -1,14 +1,18 @@
 # Author: p$3ud0R@nD0m
 
-# ttd_1: Ensure Hydra restore files are put in correct place.
-
 class Hydra < Weapon
   def initialize(prev_menu, title)
+    # Common
     @prev_menu = prev_menu
     @title = title
     @path = "hydra"
     @name = @path
     @stdn_hosts = Path.get("share_stdn_hosts")
+    # Weapon specific
+    @init_dir = Dir.pwd
+    @port = ""
+    @share_output = Path.get("share_output")
+    # Weapon specific lists
     @ftp_pwds_long = Path.get("ftp_pwds_long")
     @ftp_usrs_long = Path.get("ftp_usrs_long")
     @mssql_pwds_long = Path.get("mssql_pwds_long")
@@ -19,7 +23,6 @@ class Hydra < Weapon
     @oracle_usrs_long = Path.get("oracle_usrs_long")
     @postgresql_pwds_long = Path.get("postgresql_pwds_long")
     @postgresql_usrs_long = Path.get("postgresql_usrs_long")
-    @port = ""
     @ssh_pwds_long = Path.get("ssh_pwds_long")
     @ssh_usrs_long = Path.get("ssh_usrs_long")
     @stdn_pwds = Path.get("share_stdn_pwds")
@@ -51,7 +54,7 @@ class Hydra < Weapon
 # ttd_1: ask for port
     #when "vnc" then get_port(5900)
     #end
-    
+    Dir.chdir(@share_output)
     instruct_input_targets("fqdn", "ip")
     a = File.open(@stdn_hosts, "w")
     while line = gets
@@ -100,6 +103,7 @@ class Hydra < Weapon
     puts "2. Input your own users and passwords."
     puts "3. Input your own user and password files."
     
+    Dir.chdir(@share_output)
     input_method = gets.to_i
     case run_method
     #when "cvs" then cvs
@@ -187,6 +191,7 @@ class Hydra < Weapon
 
   # Parse and exit
   def clean_exit(search_term)
+    Dir.chdir(@init_dir)
     puts
     if File.exist?(@out_file)
       results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
