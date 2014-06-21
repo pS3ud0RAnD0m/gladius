@@ -341,8 +341,7 @@
 
   <div id="description" class="description">
     
-<p>ttd_1: Ensure <a href="Hydra.html">Hydra</a> restore files are put in
-correct place.</p>
+<p>Author: p$3ud0R@nD0m</p>
 
   </div><!-- description -->
 
@@ -383,13 +382,19 @@ correct place.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 6</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;hydra&quot;</span>
   <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
   <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
+  <span class="ruby-comment"># Weapon specific</span>
+  <span class="ruby-ivar">@init_dir</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@share_output</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_output&quot;</span>)
+  <span class="ruby-comment"># Weapon specific lists</span>
   <span class="ruby-ivar">@ftp_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;ftp_pwds_long&quot;</span>)
   <span class="ruby-ivar">@ftp_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;ftp_usrs_long&quot;</span>)
   <span class="ruby-ivar">@mssql_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;mssql_pwds_long&quot;</span>)
@@ -400,7 +405,6 @@ correct place.</p>
   <span class="ruby-ivar">@oracle_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;oracle_usrs_long&quot;</span>)
   <span class="ruby-ivar">@postgresql_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;postgresql_pwds_long&quot;</span>)
   <span class="ruby-ivar">@postgresql_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;postgresql_usrs_long&quot;</span>)
-  <span class="ruby-ivar">@port</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-ivar">@ssh_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;ssh_pwds_long&quot;</span>)
   <span class="ruby-ivar">@ssh_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;ssh_usrs_long&quot;</span>)
   <span class="ruby-ivar">@stdn_pwds</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_pwds&quot;</span>)
@@ -445,8 +449,9 @@ correct place.</p>
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 189</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 193</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>(<span class="ruby-identifier">search_term</span>)
+  <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@init_dir</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">results</span> = <span class="ruby-identifier">open</span>(<span class="ruby-ivar">@out_file</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-node">/\[#{search_term}\]/</span>) }
@@ -494,7 +499,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ftp_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 213</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 218</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ftp_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ftp_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ftp |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -530,7 +535,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ftp_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 220</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 225</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -585,7 +590,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ftp_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 246</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 251</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -629,7 +634,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 37</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 40</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
     <span class="ruby-identifier">header</span>
     <span class="ruby-comment"># Get port</span>
@@ -647,7 +652,7 @@ correct place.</p>
 <span class="ruby-comment"># ttd_1: ask for port</span>
     <span class="ruby-comment">#when &quot;vnc&quot; then get_port(5900)</span>
     <span class="ruby-comment">#end</span>
-    
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@share_output</span>)
     <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
     <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
@@ -696,6 +701,7 @@ correct place.</p>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files.&quot;</span>
     
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@share_output</span>)
     <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
     <span class="ruby-comment">#when &quot;cvs&quot; then cvs</span>
@@ -809,7 +815,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mssql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 262</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 267</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@mssql_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@mssql_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mssql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -845,7 +851,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mssql_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 269</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 274</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;sa&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -900,7 +906,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mssql_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 295</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 300</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -942,7 +948,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mysql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 311</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 316</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@mysql_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@mysql_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mysql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -978,7 +984,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mysql_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 318</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 323</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1037,7 +1043,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="mysql_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 348</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 353</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1079,7 +1085,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="postgresql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 364</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 369</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@postgresql_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@postgresql_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; postgres |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1115,7 +1121,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="postgresql_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 371</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 376</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1175,7 +1181,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="postgresql_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 402</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 407</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1217,7 +1223,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rexec_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 418</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 423</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rexec -s 512 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1253,7 +1259,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rexec_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 425</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 430</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1307,7 +1313,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rexec_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 450</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 455</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1349,7 +1355,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rlogin_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 466</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 471</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rlogin -s 513 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1385,7 +1391,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rlogin_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 473</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 478</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1439,7 +1445,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rlogin_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 498</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 503</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1481,7 +1487,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rsh_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 514</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 519</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rsh -s 514 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1517,7 +1523,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rsh_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 521</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 526</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1571,7 +1577,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="rsh_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 546</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 551</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1613,7 +1619,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ssh_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 562</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 567</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ssh -s 22 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1649,7 +1655,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ssh_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 569</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 574</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1703,7 +1709,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="ssh_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 594</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 599</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1745,7 +1751,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="telnet_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 610</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 615</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@telnet_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@telnet_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; telnet -s 23 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1781,7 +1787,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="telnet_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 617</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 622</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1836,7 +1842,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="telnet_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 643</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 648</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -1878,7 +1884,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vmauthd_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 695</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 700</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@ssh_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -1914,7 +1920,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vmauthd_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 702</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 707</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1968,7 +1974,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vmauthd_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 727</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 732</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -2012,7 +2018,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vnc_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 659</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 664</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)    
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@vnc_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -2048,7 +2054,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vnc_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 666</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 671</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn</span>
   <span class="ruby-identifier">instruct_input_pwds</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;vncpass&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -2093,7 +2099,7 @@ correct place.</p>
 
           
           <div class="method-source-code" id="vnc_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 682</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 687</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdn_list</span>
   <span class="ruby-identifier">instruct_input_pwds_list</span>
   <span class="ruby-identifier">stdn_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

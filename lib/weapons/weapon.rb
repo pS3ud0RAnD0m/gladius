@@ -7,7 +7,6 @@ class Weapon
     @port = port
     @ports = []
     @hosts_ports = []
-    @iopath = "/usr/share/gladius/"
   end
 
   def header
@@ -135,6 +134,7 @@ class Weapon
 
   # Get wordlist counts
   def count(usrs_file, pwds_file)
+# ttd_3: Replace all "wc -l" with this foreach.
     usrs_count = File.foreach(usrs_file).count.to_i
     pwds_count = File.foreach(pwds_file).count.to_i + 2
     total_count = usrs_count * pwds_count
