@@ -2,11 +2,11 @@
 
 class Parse < Weapon
   def initialize(prev_menu, title)
-    @prev_menu = prev_menu
-    @title = title
-    @name = "Gladius Parser"
-    @stdn_hosts = Path.get("share_stdn_hosts")
     @in_file = ""
+    @name = "Gladius Parser"
+    @prev_menu = prev_menu
+    @stdn_hosts = Path.get("share_stdn_hosts")
+    @title = title
   end
 
 ###############################################################################

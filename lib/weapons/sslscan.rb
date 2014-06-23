@@ -2,11 +2,12 @@
 
 class SSLScan < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
-    @title = title
-    @path = "sslscan"
-    @name = @path
     @stdn_hosts = Path.get("share_stdn_hosts")
+    @title = title
   end
 
 ###############################################################################

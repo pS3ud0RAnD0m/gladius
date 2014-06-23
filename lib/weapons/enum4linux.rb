@@ -2,11 +2,12 @@
 
 class Enum4linux < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
     @title = title
-    @path = "enum4linux"
-    @name = @path
-    @cmd = ""
+    # Weapon specific
     @stdn_hosts = []
   end
 

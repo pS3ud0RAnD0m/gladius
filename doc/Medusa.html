@@ -174,7 +174,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -324,12 +328,13 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;medusa&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
-  <span class="ruby-ivar">@cmd</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-comment"># Weapon specific lists</span>
   <span class="ruby-ivar">@stdn_pwds</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_pwds&quot;</span>)
   <span class="ruby-ivar">@stdn_usrs</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_usrs&quot;</span>)
   <span class="ruby-ivar">@windows_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;windows_pwds_long&quot;</span>)
@@ -370,7 +375,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 64</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
@@ -419,7 +424,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
@@ -491,7 +496,7 @@
 
           
           <div class="method-source-code" id="smb_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 90</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -527,7 +532,7 @@
 
           
           <div class="method-source-code" id="smb_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 97</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -582,7 +587,7 @@
 
           
           <div class="method-source-code" id="smb_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 123</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

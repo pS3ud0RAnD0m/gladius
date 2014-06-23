@@ -192,7 +192,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -383,7 +387,7 @@
 
           
           <div class="method-source-code" id="count-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 136</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 124</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">count</span>(<span class="ruby-identifier">usrs_file</span>, <span class="ruby-identifier">pwds_file</span>)
 <span class="ruby-comment"># ttd_3: Replace all &quot;wc -l&quot; with this foreach.</span>
     <span class="ruby-identifier">usrs_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">usrs_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span>
@@ -420,7 +424,7 @@
 
           
           <div class="method-source-code" id="count_pwds_file-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 144</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">count_pwds_file</span>(<span class="ruby-identifier">pwds_file</span>)
   <span class="ruby-identifier">pwds_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">pwds_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{pwds_count} attempts/host = #{pwds_count} passwords&quot;</span>
@@ -454,27 +458,28 @@
 
           
           <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 170</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 158</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DictionaryOnline&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DiscoverServices&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DiscoverServices</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Nmap - Discover Services&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DNS&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - DNS&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;FTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">FTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - FTP&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;GatherInfo&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;HTTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - HTTP(S)&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;KaliSupport&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">KaliSupport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Kali Support&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetbiosSMB&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetbiosSMB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - Netbios-SMB&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetworkAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetworkAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Network Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ParseFile&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">ParseFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Parse Files&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SMTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SMTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SMTP&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SniffSpoof&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SniffSpoof</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sniffing and Spoofing&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SNMP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SNMP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SNMP&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SnortService&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SnortService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Upgrade/Install Snort/Snorby and Start&quot;</span>).<span class="ruby-identifier">install</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;TFTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">TFTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - TFTP&quot;</span>).<span class="ruby-identifier">menu</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;VPNAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;CustomDictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">CustomDictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Create Custom Dictionaries&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DictionaryOnline&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DiscoverServices&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DiscoverServices</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Nmap - Discover Services&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DNS&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - DNS&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;FTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">FTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - FTP&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;GatherInfo&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;HTTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - HTTP(S)&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;KaliSupport&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">KaliSupport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Kali Support&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetbiosSMB&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetbiosSMB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - Netbios-SMB&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetworkAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetworkAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Network Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ParseFile&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">ParseFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Parse Files&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SMTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SMTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SMTP&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SniffSpoof&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SniffSpoof</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sniffing and Spoofing&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SNMP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SNMP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SNMP&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SnortService&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SnortService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Upgrade/Install Snort/Snorby and Start&quot;</span>).<span class="ruby-identifier">install</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;TFTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">TFTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - TFTP&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;VPNAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
   <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
@@ -655,9 +660,9 @@
           <div class="method-source-code" id="header-source">
             <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------------&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@title</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;------------------------------&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------------&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- header-source -->
           
@@ -688,7 +693,7 @@
 
           
           <div class="method-source-code" id="instruct_input_pwds-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 115</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input password(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -723,9 +728,9 @@
 
           
           <div class="method-source-code" id="instruct_input_pwds_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 128</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your password file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your password file and hit &lt;Enter&gt;.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/root/Desktop/passwords.txt&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
@@ -753,22 +758,13 @@
 
         <div class="method-description">
           
-          <p>Supply examples for weapon input. Call this with: example(“cidr”, “domain”,
-“fqdn”, “fqdnp”, “ip”, “ipp”, “ipr”, “iprl”, “iprf”, “url”) Use any
-combination of the following: cidr =&gt; 10.87.9.0/24 domain =&gt;
-victima.com fqdn =&gt; <a href="http://www.victima.com">www.victima.com</a>
-fqdnp = fqdnPort =&gt; <a
-href="www.victima.com:443">www.victima.com:443</a> ip =&gt; 224.87.9.54 ipp
-= ipPort =&gt; 224.87.9.54:8080 ipr = ipRange =&gt; 192.168.250.0-255 iprl
-= ipRangeLong =&gt; 192.168.10.15-192.168.10.20 iprf = ipRangeFlexible
-=&gt; 192.168.15-250.0-255 url =&gt; <a
-href="https://www.victima.com">www.victima.com</a>/</p>
+          <p>Supply examples for weapon input.</p>
           
           
 
           
           <div class="method-source-code" id="instruct_input_targets-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -779,7 +775,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cidr&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.87.9.0/24&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0/24&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;domain&quot;</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -794,22 +790,22 @@ href="https://www.victima.com">www.victima.com</a>/</p>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ip&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp_spaced&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;224.87.9.54 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipr&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.250.0-255&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprl&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.10.15-192.168.10.20&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-10.0.0.100&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprf&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;192.168.15-250.0-255&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0-2.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;url&quot;</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;https://www.victima.com/&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -846,7 +842,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="instruct_input_usrs-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 109</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input user(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press &lt;Ctrl+d&gt;.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -881,9 +877,9 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="instruct_input_usrs_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 121</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press 'Enter'.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and hit &lt;Enter&gt;.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/root/Desktop/users.txt&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
@@ -917,7 +913,7 @@ href="https://www.victima.com">www.victima.com</a>/</p>
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 149</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 137</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>

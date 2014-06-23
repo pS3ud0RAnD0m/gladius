@@ -2,12 +2,15 @@
 
 class GNmap < Weapon
   def initialize(prev_menu, title)
+    # Common
     @prev_menu = prev_menu
     @title = title
-    @path = "nmap"
-    @name = @path
-    @cmd = ""
     @stdn_hosts = Path.get("share_stdn_hosts")
+    # Weapon specific
+    @cmd = ""
+    @name = "nmap"
+    @path = @name
+    # Weapon specific lists
     @snmp_comm_strings_long = Path.get("snmp_comm_strings_long")
     @tftp_file_list = Path.get("tftp_file_list")
   end

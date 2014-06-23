@@ -2,13 +2,16 @@
 
 class ApacheUsers < Weapon
   def initialize(prev_menu, title)
+    # Common
     @prev_menu = prev_menu
     @title = title
-    @path = "apache-users"
-    @name = @path
-    @apache_users_long = Path.get("apache_users_long")
-    @stdn_hosts = []
+    # Weapon specific
+    @name = "apache-users"
+    @path = @name
     @port = ""
+    @stdn_hosts = []
+    # Weapon specific lists
+    @apache_users_long = Path.get("apache_users_long")
   end
 
 ###############################################################################

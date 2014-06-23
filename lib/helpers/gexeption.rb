@@ -23,12 +23,13 @@ class GExeption
   end
 
   # Rescue to previous menu
-  def exit_weapon(weapon, back)
+  def exit_weapon(weapon, prev_menu)
     puts
     puts "Exiting #{weapon}.".red
-    case back
-    when "Dictionary" then Dictionary.new("Dictionary Attacks").menu
+    case prev_menu
+    when "CustomDictionary" then CustomDictionary.new("Create Custom Dictionaries").menu
     when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+    when "Dictionary" then Dictionary.new("Dictionary Attacks").menu
     when "DiscoverServices" then DiscoverServices.new("Nmap - Discover Services").menu
     when "DNS" then DNS.new("Gather Information - DNS").menu
     when "FTP" then FTP.new("Gather Information - FTP").menu

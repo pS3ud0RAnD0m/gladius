@@ -2,11 +2,12 @@
 
 class TestSSLServer < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
     @title = title
-    @path = Path.get("thirdparty") + "TestSSLServer.jar"
-    @name = "testsslserver"
-    @cmd = ""
+    # Weapon specific
     @stdn_hosts = []
   end
 

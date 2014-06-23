@@ -164,7 +164,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -316,7 +320,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a task:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Create custom user/password lists (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Create custom dictionaries&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Online dictionary attacks&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  Offline dictionary attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
@@ -324,8 +328,7 @@
   
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">CustomDictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Create Custom Dictionaries&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
     <span class="ruby-identifier">menu</span>

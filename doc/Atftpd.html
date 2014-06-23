@@ -170,7 +170,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -320,10 +324,11 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;atftpd&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -360,7 +365,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 40</span>
+            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">exit_weapon</span>
 <span class="ruby-keyword">end</span></pre>
@@ -395,7 +400,7 @@
 
           
           <div class="method-source-code" id="config-source">
-            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">config</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-string">&quot;/tmp/tftp&quot;</span>] <span class="ruby-operator">==</span> []
     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-string">&quot;/tmp/tftp&quot;</span>)
@@ -449,7 +454,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 15</span>
+            <pre><span class="ruby-comment"># File lib/weapons/atftpd.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-comment"># ID if IPtables is configed to drop anything</span>

@@ -2,10 +2,11 @@
 
 class Dsniff < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
     @title = title
-    @path = "dsniff"
-    @name = @path
   end
 
 ###############################################################################
