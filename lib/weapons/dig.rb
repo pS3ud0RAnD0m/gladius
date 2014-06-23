@@ -2,10 +2,12 @@
 
 class DiG < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
+    @stdn_hosts = Path.get("share_stdn_hosts")
     @title = title
-    @path = "dig"
-    @name = @path
   end
 
 ###############################################################################
@@ -43,8 +45,10 @@ class DiG < Weapon
       puts "Hit <Enter> to continue or input another domain:".light_yellow
       stdn_domain = gets.chomp
     else
-      puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow
-      stdn_domain = gets.chomp
+      until !domain.empty? do
+         puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow
+         stdn_domain = gets.chomp
+      end
     end
     # Identify kerb services via dig against DNS server
     unless stdn_dns_server.empty?

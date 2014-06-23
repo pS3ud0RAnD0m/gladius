@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class Home - RDoc Documentation</title>
+<title>class CustomDictionary - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/menus/home.rb
+    <li>lib/menus/customdictionary.rb
   </ul>
 </nav>
 
@@ -61,7 +61,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link"><a href="Menu.html">Menu</a>
   
 </nav>
 
@@ -72,8 +72,6 @@
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
-    
-    <li ><a href="#method-i-header_home">#header_home</a>
     
     <li ><a href="#method-i-menu">#menu</a>
     
@@ -273,7 +271,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class Home</h1>
+  <h1 class="class">class CustomDictionary</h1>
 
   <div id="description" class="description">
     
@@ -299,41 +297,6 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-header_home" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">header_home</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="header_home-source">
-            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">header_home</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------------&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Home                           v0.0.2.33&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;----------------------------------------&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- header_home-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- header_home-method -->
-
-    
       <div id="method-i-menu" class="method-detail ">
         
         <div class="method-heading">
@@ -353,31 +316,24 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/home.rb, line 10</span>
+            <pre><span class="ruby-comment"># File lib/menus/customdictionary.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
-  <span class="ruby-identifier">header_home</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a category:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Gather information&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Network attacks&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  Web attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;4.  Wireless attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;5.  Dictionary attacks&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;6.  Kali support&quot;</span>
+  <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a task:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Scrape words from a website (CeWL)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Scrape words and email addresses from a website (CeWL)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
-  
+
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetworkAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Network Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">6</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">KaliSupport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Kali Support&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;words&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words and Email Addresses&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;emails&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
   <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
+  <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- menu-source -->

@@ -176,7 +176,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -326,10 +330,12 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;dnsrecon&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
+  <span class="ruby-comment"># Weapon specific</span>
   <span class="ruby-ivar">@stdn_hosts</span> = []
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -367,7 +373,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -404,7 +410,7 @@
 
           
           <div class="method-source-code" id="google-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 87</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">google</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
@@ -448,7 +454,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 16</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
@@ -507,7 +513,7 @@
 
           
           <div class="method-source-code" id="reverse-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 101</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reverse</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
@@ -549,7 +555,7 @@
 
           
           <div class="method-source-code" id="standard-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 73</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">standard</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
@@ -593,7 +599,7 @@
 
           
           <div class="method-source-code" id="transfer-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dnsrecon.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">transfer</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>

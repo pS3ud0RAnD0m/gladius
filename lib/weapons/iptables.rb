@@ -2,10 +2,12 @@
 
 class IPtables < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
     @title = title
-    @path = "iptables"
-    @name = @path
+    # Weapon specific
     @gladius_iptables = Path.get("gladius_iptables")
     @gladius_iptables_logrotate = Path.get("gladius_iptables_logrotate")
     @system_iptables = Path.get("system_iptables")

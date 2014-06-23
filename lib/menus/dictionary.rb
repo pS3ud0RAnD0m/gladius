@@ -4,7 +4,7 @@ class Dictionary < Menu
   def menu
     header
     puts "Select a task:".light_yellow
-    puts "1.  Create custom user/password lists (NI)".blue
+    puts "1.  Create custom dictionaries"
     puts "2.  Online dictionary attacks"
     puts "3.  Offline dictionary attacks (NI)".blue
     puts "88. Back"
@@ -12,8 +12,7 @@ class Dictionary < Menu
     
     selection = gets.to_i
     case selection
-    when 1 then puts "Not implemented yet.".red
-      menu
+    when 1 then CustomDictionary.new("Create Custom Dictionaries").menu
     when 2 then DictionaryOnline.new("Online Dictionary Attacks").menu
     when 3 then puts "Not implemented yet.".red
       menu

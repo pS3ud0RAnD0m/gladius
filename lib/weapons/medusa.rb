@@ -2,12 +2,13 @@
 
 class Medusa < Weapon
   def initialize(prev_menu, title)
+    # Common
+    @name = self.class.to_s.downcase
+    @path = @name
     @prev_menu = prev_menu
-    @title = title
-    @path = "medusa"
-    @name = @path
-    @cmd = ""
     @stdn_hosts = Path.get("share_stdn_hosts")
+    @title = title
+    # Weapon specific lists
     @stdn_pwds = Path.get("share_stdn_pwds")
     @stdn_usrs = Path.get("share_stdn_usrs")
     @windows_pwds_long = Path.get("windows_pwds_long")

@@ -10,9 +10,9 @@ class Weapon
   end
 
   def header
-    puts "------------------------------"
+    puts "----------------------------------------"
     puts @title
-    puts "------------------------------"
+    puts "----------------------------------------"
   end
 
   def get_pid_file
@@ -45,18 +45,6 @@ class Weapon
   end
 
   # Supply examples for weapon input.
-  # Call this with: example("cidr", "domain", "fqdn", "fqdnp", "ip", "ipp", "ipr", "iprl", "iprf", "url")
-  # Use any combination of the following:
-    # cidr => 10.87.9.0/24
-    # domain => victima.com
-    # fqdn => www.victima.com
-    # fqdnp = fqdnPort => www.victima.com:443
-    # ip => 224.87.9.54
-    # ipp = ipPort => 224.87.9.54:8080
-    # ipr = ipRange => 192.168.250.0-255
-    # iprl = ipRangeLong => 192.168.10.15-192.168.10.20
-    # iprf = ipRangeFlexible => 192.168.15-250.0-255
-    # url => https://www.victima.com/
   def instruct_input_targets(*args)
     puts "Input target(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
@@ -67,7 +55,7 @@ class Weapon
     end
     args.each do |a|
       if a == "cidr"
-        puts "10.87.9.0/24".yellow
+        puts "10.0.0.0/24".yellow
       end
       if a == "domain"
         puts "victima.com".yellow
@@ -82,22 +70,22 @@ class Weapon
         puts "www.victima.com 8443".yellow
       end
       if a == "ip"
-        puts "224.87.9.54".yellow
+        puts "10.0.0.1".yellow
       end
       if a == "ipp"
-        puts "224.87.9.54:8443".yellow
+        puts "10.0.0.1:8443".yellow
       end
       if a == "ipp_spaced"
-        puts "224.87.9.54 8443".yellow
+        puts "10.0.0.1 8443".yellow
       end
       if a == "ipr"
-        puts "192.168.250.0-255".yellow
+        puts "10.0.0.0-100".yellow
       end
       if a == "iprl"
-        puts "192.168.10.15-192.168.10.20".yellow
+        puts "10.0.0.0-10.0.0.100".yellow
       end
       if a == "iprf"
-        puts "192.168.15-250.0-255".yellow
+        puts "10.0.0-2.0-100".yellow
       end
       if a == "url"
         puts "https://www.victima.com/".yellow
@@ -119,14 +107,14 @@ class Weapon
   end
 
   def instruct_input_usrs_list
-    puts "Input your user file and press 'Enter'.".light_yellow
+    puts "Input your user file and hit <Enter>.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
     puts
   end
 
   def instruct_input_pwds_list
-    puts "Input your password file and press 'Enter'.".light_yellow
+    puts "Input your password file and hit <Enter>.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/passwords.txt".yellow
     puts
@@ -170,23 +158,24 @@ class Weapon
   def exit_weapon
     puts
     case @prev_menu
-      when "Dictionary" then Dictionary.new("Dictionary Attacks").menu
-      when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
-      when "DiscoverServices" then DiscoverServices.new("Nmap - Discover Services").menu
-      when "DNS" then DNS.new("Gather Information - DNS").menu
-      when "FTP" then FTP.new("Gather Information - FTP").menu
-      when "GatherInfo" then GatherInfo.new("Gather Information").menu
-      when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
-      when "KaliSupport" then KaliSupport.new("Kali Support").menu
-      when "NetbiosSMB" then NetbiosSMB.new("Gather Information - Netbios-SMB").menu
-      when "NetworkAttacks" then NetworkAttacks.new("Network Attacks").menu
-      when "ParseFile" then ParseFile.new("Parse Files").menu
-      when "SMTP" then SMTP.new("Gather Information - SMTP").menu
-      when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
-      when "SNMP" then SNMP.new("Gather Information - SNMP").menu
-      when "SnortService" then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
-      when "TFTP" then TFTP.new("Gather Information - TFTP").menu
-      when "VPNAttacks" then VPNAttacks.new("VPN Attacks").menu
+    when "CustomDictionary" then CustomDictionary.new("Create Custom Dictionaries").menu
+    when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu
+    when "Dictionary" then Dictionary.new("Dictionary Attacks").menu
+    when "DiscoverServices" then DiscoverServices.new("Nmap - Discover Services").menu
+    when "DNS" then DNS.new("Gather Information - DNS").menu
+    when "FTP" then FTP.new("Gather Information - FTP").menu
+    when "GatherInfo" then GatherInfo.new("Gather Information").menu
+    when "HTTP" then HTTP.new("Gather Information - HTTP(S)").menu
+    when "KaliSupport" then KaliSupport.new("Kali Support").menu
+    when "NetbiosSMB" then NetbiosSMB.new("Gather Information - Netbios-SMB").menu
+    when "NetworkAttacks" then NetworkAttacks.new("Network Attacks").menu
+    when "ParseFile" then ParseFile.new("Parse Files").menu
+    when "SMTP" then SMTP.new("Gather Information - SMTP").menu
+    when "SniffSpoof" then SniffSpoof.new("Sniffing and Spoofing").menu
+    when "SNMP" then SNMP.new("Gather Information - SNMP").menu
+    when "SnortService" then SnortService.new("Upgrade/Install Snort/Snorby and Start").install
+    when "TFTP" then TFTP.new("Gather Information - TFTP").menu
+    when "VPNAttacks" then VPNAttacks.new("VPN Attacks").menu
     end
   rescue Interrupt
     GExeption.new.exit_gladius

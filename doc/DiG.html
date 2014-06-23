@@ -170,7 +170,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -320,10 +324,12 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
+  <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;dig&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -360,7 +366,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 25</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">exit_weapon</span>
 <span class="ruby-keyword">end</span></pre>
@@ -395,7 +401,7 @@
 
           
           <div class="method-source-code" id="idcontrollers-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">idcontrollers</span>
   <span class="ruby-comment"># Get dns server</span>
   <span class="ruby-identifier">dns_server</span> = <span class="ruby-value">%xnslookup server |grep Server |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
@@ -409,8 +415,10 @@
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Hit &lt;Enter&gt; to continue or input another domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
     <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Gladius was not able to identify your current domain. Input target domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-operator">!</span><span class="ruby-identifier">domain</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">do</span>
+       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Gladius was not able to identify your current domain. Input target domain:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+       <span class="ruby-identifier">stdn_domain</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-comment"># Identify kerb services via dig against DNS server</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">stdn_dns_server</span>.<span class="ruby-identifier">empty?</span>
@@ -463,7 +471,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 15</span>
+            <pre><span class="ruby-comment"># File lib/weapons/dig.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>

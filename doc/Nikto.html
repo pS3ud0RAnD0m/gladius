@@ -172,7 +172,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -322,11 +326,12 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 6</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;nikto&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
   <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -363,7 +368,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 50</span>
+            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -402,7 +407,7 @@
 
           
           <div class="method-source-code" id="common-source">
-            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">common</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -C all -h &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -438,7 +443,7 @@
 
           
           <div class="method-source-code" id="common_ssl-source">
-            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">common_ssl</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -ssl -C all -h &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -476,7 +481,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/weapons/nikto.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Will your targets be using SSL? [Y/n]&quot;</span>.<span class="ruby-identifier">light_yellow</span>

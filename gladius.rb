@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # Author: p$3ud0R@nD0m
+# Copyright (C) 2013-2014 Josh Hyde
 # See ./licenses/COPYING file for copyright information
 
 unless ARGV.empty?

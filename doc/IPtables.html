@@ -174,7 +174,11 @@
   
     <li><a href="./Atftpd.html">Atftpd</a>
   
+    <li><a href="./Cewl.html">Cewl</a>
+  
     <li><a href="./ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="./CustomDictionary.html">CustomDictionary</a>
   
     <li><a href="./DNS.html">DNS</a>
   
@@ -324,10 +328,12 @@
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-string">&quot;iptables&quot;</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-ivar">@path</span>
+  <span class="ruby-comment"># Weapon specific</span>
   <span class="ruby-ivar">@gladius_iptables</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;gladius_iptables&quot;</span>)
   <span class="ruby-ivar">@gladius_iptables_logrotate</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;gladius_iptables_logrotate&quot;</span>)
   <span class="ruby-ivar">@system_iptables</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;system_iptables&quot;</span>)
@@ -369,7 +375,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 46</span>
+            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">exit_weapon</span>
 <span class="ruby-keyword">end</span></pre>
@@ -402,7 +408,7 @@
 
           
           <div class="method-source-code" id="config-source">
-            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 80</span>
+            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 82</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">config</span>
     <span class="ruby-identifier">system_iptables</span> = <span class="ruby-ivar">@system_iptables</span>
     <span class="ruby-identifier">system_iptables_log</span> = <span class="ruby-ivar">@system_iptables_log</span>
@@ -472,7 +478,7 @@
 
           
           <div class="method-source-code" id="config_existance-source">
-            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 61</span>
+            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">config_existance</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@system_iptables</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/etc/init.d/iptables already exists. Do you want to overwrite it? [Y/n]&quot;</span>.<span class="ruby-identifier">light_yellow</span>
@@ -521,7 +527,7 @@
 
           
           <div class="method-source-code" id="list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 54</span>
+            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">list</span>
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -L -nv&quot;</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
@@ -558,7 +564,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 20</span>
+            <pre><span class="ruby-comment"># File lib/weapons/iptables.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>

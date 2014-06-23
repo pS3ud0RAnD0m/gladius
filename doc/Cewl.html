@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class GExeption - RDoc Documentation</title>
+<title>class Cewl - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/helpers/gexeption.rb
+    <li>lib/weapons/cewl.rb
   </ul>
 </nav>
 
@@ -61,7 +61,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link"><a href="Weapon.html">Weapon</a>
   
 </nav>
 
@@ -73,13 +73,13 @@
 
   <ul class="link-list">
     
-    <li ><a href="#method-i-exit_gladius">#exit_gladius</a>
+    <li ><a href="#method-c-new">::new</a>
     
-    <li ><a href="#method-i-exit_weapon">#exit_weapon</a>
+    <li ><a href="#method-i-clean_exit">#clean_exit</a>
     
-    <li ><a href="#method-i-home">#home</a>
+    <li ><a href="#method-i-execute">#execute</a>
     
-    <li ><a href="#method-i-log">#log</a>
+    <li ><a href="#method-i-menu">#menu</a>
     
   </ul>
 </nav>
@@ -277,11 +277,11 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class GExeption</h1>
+  <h1 class="class">class Cewl</h1>
 
   <div id="description" class="description">
     
-<p>ttd_2: Ensure all interrupts are using this class.</p>
+<p>Author: p$3ud0R@nD0m</p>
 
   </div><!-- description -->
 
@@ -299,14 +299,59 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(prev_menu, title)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/weapons/cewl.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
+  <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-comment"># Weapon specific</span>
+  <span class="ruby-ivar">@site</span> = <span class="ruby-string">&quot;&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-exit_gladius" class="method-detail ">
+      <div id="method-i-clean_exit" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">exit_gladius</span><span
+          <span class="method-name">clean_exit</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -316,37 +361,35 @@
 
         <div class="method-description">
           
-          <p>Cleanly exit gladius</p>
+          <p>Exit</p>
           
           
 
           
-          <div class="method-source-code" id="exit_gladius-source">
-            <pre><span class="ruby-comment"># File lib/helpers/gexeption.rb, line 15</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_gladius</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Exiting Gladius. Have a bloody day!&quot;</span>.<span class="ruby-identifier">red</span>
-  <span class="ruby-keyword">begin</span>
-    <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">exit</span>
-  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
-    <span class="ruby-identifier">puts</span>
+          <div class="method-source-code" id="clean_exit-source">
+            <pre><span class="ruby-comment"># File lib/weapons/cewl.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">exit_weapon</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- exit_gladius-source -->
+          </div><!-- clean_exit-source -->
           
         </div>
 
         
 
         
-      </div><!-- exit_gladius-method -->
+      </div><!-- clean_exit-method -->
 
     
-      <div id="method-i-exit_weapon" class="method-detail ">
+      <div id="method-i-execute" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">exit_weapon</span><span
-            class="method-args">(weapon, prev_menu)</span>
+          <span class="method-name">execute</span><span
+            class="method-args">(run_method)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -355,112 +398,83 @@
 
         <div class="method-description">
           
-          <p>Rescue to previous menu</p>
+          <p>Execution methods</p>
+
+<p>Execute run method</p>
           
           
 
           
-          <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/helpers/gexeption.rb, line 26</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>(<span class="ruby-identifier">weapon</span>, <span class="ruby-identifier">prev_menu</span>)
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Exiting #{weapon}.&quot;</span>.<span class="ruby-identifier">red</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;CustomDictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">CustomDictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Create Custom Dictionaries&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DictionaryOnline&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;Dictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DiscoverServices&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DiscoverServices</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Nmap - Discover Services&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;DNS&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DNS</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - DNS&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;FTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">FTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - FTP&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;GatherInfo&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GatherInfo</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;HTTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - HTTP(S)&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;KaliSupport&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">KaliSupport</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Kali Support&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetbiosSMB&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetbiosSMB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - Netbios-SMB&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;NetworkAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">NetworkAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Network Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ParseFile&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">ParseFile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Parse Files&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SMTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SMTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SMTP&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SniffSpoof&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SniffSpoof</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sniffing and Spoofing&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SNMP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SNMP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - SNMP&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;SnortService&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SnortService</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Upgrade/Install Snort/Snorby and Start&quot;</span>).<span class="ruby-identifier">install</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;TFTP&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">TFTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Gather Information - TFTP&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;VPNAttacks&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/weapons/cewl.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@site</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.txt&quot;</span>
+  <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@site</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span>
+  <span class="ruby-identifier">appendix</span> = <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;words&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;-m 8 -w&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;emails&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;-e -m 8 -w&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- execute-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- execute-method -->
+
+    
+      <div id="method-i-menu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">menu</span><span
+            class="method-args">(run_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>User interaction methods</p>
+
+<p>Get target and pass to execute method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="menu-source">
+            <pre><span class="ruby-comment"># File lib/weapons/cewl.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target site:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-ivar">@site</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@site</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">until</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@site</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">do</span>
+       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No site. Say again!&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+       <span class="ruby-ivar">@site</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">downcase</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
-  <span class="ruby-identifier">exit_gladius</span>
+  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Cewl&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- exit_weapon-source -->
+          </div><!-- menu-source -->
           
         </div>
 
         
 
         
-      </div><!-- exit_weapon-method -->
-
-    
-      <div id="method-i-home" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">home</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Rescue to home</p>
-          
-          
-
-          
-          <div class="method-source-code" id="home-source">
-            <pre><span class="ruby-comment"># File lib/helpers/gexeption.rb, line 10</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">home</span>
-  <span class="ruby-constant">Home</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">menu</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- home-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- home-method -->
-
-    
-      <div id="method-i-log" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">log</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>log exception</p>
-          
-          
-
-          
-          <div class="method-source-code" id="log-source">
-            <pre><span class="ruby-comment"># File lib/helpers/gexeption.rb, line 6</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- log-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- log-method -->
+      </div><!-- menu-method -->
 
     
     </section><!-- public-instance-method-details -->
