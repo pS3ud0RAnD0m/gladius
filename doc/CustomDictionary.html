@@ -106,6 +106,8 @@
   
     <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
   
+    <li class="file"><a href="./lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
+  
     <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
@@ -209,6 +211,8 @@
     <li><a href="./Hydra.html">Hydra</a>
   
     <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./John.html">John</a>
   
     <li><a href="./KaliSupport.html">KaliSupport</a>
   
@@ -319,17 +323,27 @@
             <pre><span class="ruby-comment"># File lib/menus/customdictionary.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
   <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a task:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Scrape words from a website (CeWL)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Scrape words and email addresses from a website (CeWL)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Scrape a website:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Output words (CeWL)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Output words and email addresses (CeWL)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mangle a list:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  Output basic (John)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;4.  Output l33t (John)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;5.  Output basic + l33t (John)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Modify a list:&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;6.  Remove short and long words (Gladius)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Other:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
 
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;words&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words and Email Addresses&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;emails&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - Basic Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;basic&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - L33t Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;l33t&quot;</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - Basic + L33t Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;basic_l33t&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
   <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>

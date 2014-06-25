@@ -122,6 +122,8 @@
   
     <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
   
+    <li class="file"><a href="./lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
+  
     <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
@@ -225,6 +227,8 @@
     <li><a href="./Hydra.html">Hydra</a>
   
     <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./John.html">John</a>
   
     <li><a href="./KaliSupport.html">KaliSupport</a>
   
@@ -382,7 +386,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 73</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 74</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>(<span class="ruby-identifier">search_term</span>)
   <span class="ruby-identifier">puts</span>
   <span class="ruby-comment">#if File.exist?(@out_file)</span>
@@ -434,54 +438,55 @@ output <a href="Parse.html">Parse</a> and exit</p>
           
           <div class="method-source-code" id="menu-source">
             <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 22</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>, <span class="ruby-string">&quot;ipr&quot;</span>, <span class="ruby-string">&quot;iprl&quot;</span>, <span class="ruby-string">&quot;iprf&quot;</span>, <span class="ruby-string">&quot;cidr&quot;</span>)
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
-  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">line_count</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No hosts were input.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Since only 1 host was input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since only #{line_count} hosts were input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">else</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since #{line_count} hosts were input, we recommend option 2 or 3.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rdp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@windows_usrs_long</span>, <span class="ruby-ivar">@windows_pwds_long</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smb&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@windows_usrs_long</span>, <span class="ruby-ivar">@windows_pwds_long</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files.&quot;</span>
-
-  <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rdp&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_stdn_list</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+    <span class="ruby-identifier">header</span>
+    <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>, <span class="ruby-string">&quot;ipr&quot;</span>, <span class="ruby-string">&quot;iprl&quot;</span>, <span class="ruby-string">&quot;iprf&quot;</span>, <span class="ruby-string">&quot;cidr&quot;</span>)
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+      <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smb&quot;</span>
-    <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn_list</span>
+    <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
+    <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
+    <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">line_count</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">no_input</span>
+      <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+<span class="ruby-comment"># ttd_2: Improper exit: no input &gt; cntl+c &gt; cntl + c &gt; ? (affecting other weapons?)</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Since only 1 host was input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since only #{line_count} hosts were input, we recommend option 1.&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">else</span> <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">line_count</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Since #{line_count} hosts were input, we recommend option 2 or 3.&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
-  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Ncrack&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
-<span class="ruby-keyword">end</span></pre>
+
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rdp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@windows_usrs_long</span>, <span class="ruby-ivar">@windows_pwds_long</span>)
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smb&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">count</span>(<span class="ruby-ivar">@windows_usrs_long</span>, <span class="ruby-ivar">@windows_pwds_long</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords.&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files.&quot;</span>
+
+    <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rdp&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">rdp_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smb&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_gladius_long</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn_list</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+    <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Ncrack&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
+  <span class="ruby-keyword">end</span></pre>
           </div><!-- menu-source -->
           
         </div>
@@ -513,7 +518,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="rdp_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 99</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -p3389 -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -549,7 +554,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="rdp_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 106</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -604,7 +609,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="rdp_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 132</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -646,7 +651,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 148</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 149</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:3389 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -682,7 +687,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_stdn-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 155</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -737,7 +742,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_stdn_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 181</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

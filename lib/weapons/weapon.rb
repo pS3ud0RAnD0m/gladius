@@ -47,7 +47,7 @@ class Weapon
   # Supply examples for weapon input.
   def instruct_input_targets(*args)
     puts "Input target(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+    puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
     if args.count == 1
       puts "Example:".yellow
     else
@@ -91,42 +91,98 @@ class Weapon
         puts "https://www.victima.com/".yellow
       end
     end
-    puts
-  end
-  
-  def instruct_input_usrs
-    puts "Input user(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
-    puts "Examples:".yellow
   end
   
   def instruct_input_pwds
     puts "Input password(s), one per line:".light_yellow
-    puts "When done, ensure the last line is blank and press <Ctrl+d>.".yellow
+    puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
+    puts "Examples:".yellow
+  end
+
+  def instruct_input_pwds_list
+    puts "Input your password file and press Enter.".light_yellow
+    puts "Example:".yellow
+    puts "/root/Desktop/passwords.txt".yellow
+  end
+  
+  def instruct_input_usrs
+    puts "Input user(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
     puts "Examples:".yellow
   end
 
   def instruct_input_usrs_list
-    puts "Input your user file and hit <Enter>.".light_yellow
+    puts "Input your user file and press Enter.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
-    puts
+  end
+  
+  def instruct_input_words
+    puts "Input word(s), one per line:".light_yellow
+    puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
+    puts "Examples:".yellow
+    puts "acme".yellow
+    puts "acmeadmin".yellow
   end
 
-  def instruct_input_pwds_list
-    puts "Input your password file and hit <Enter>.".light_yellow
+  def instruct_input_words_list
+    puts "Input your word list and press Enter.".light_yellow
     puts "Example:".yellow
-    puts "/root/Desktop/passwords.txt".yellow
-    puts
+    puts "/root/Desktop/words.txt".yellow
+  end
+
+  # Get input and validate not empty
+  def get_input(type, instruct_type, destination)
+    case type
+    when "stdin_to_file" then
+      instruct_input = "instruct_input_" + instruct_type
+      send(instruct_input)
+      a = File.open(destination, "w")
+      while line = gets
+        a << line
+      end
+      a.close
+      line_count = count_lines_file(destination)
+      while line_count == 0
+        no_input
+        send(instruct_input)
+        a = File.open(destination, "w")
+        while line = gets
+          a << line
+        end
+        a.close
+        line_count = count_lines_file(destination)
+      end
+# ttd_1: gets_to_var input validation needs flushed out further
+    when "gets_to_var" then
+      instruct_input = "instruct_input_" + instruct_type
+      send(instruct_input)
+      destination = gets
+      line_count = count_lines_file(destination)
+      while line_count == 0
+        puts "#{destination} is empty.".red
+        send(instruct_input)
+        destination = gets
+        line_count = count_lines_file(destination)
+      end
+    end
+  end
+  def no_input
+    puts "No input detected.".red
   end
 
   # Get wordlist counts
+# ttd_1: convert count usage to count_lines
   def count(usrs_file, pwds_file)
-# ttd_3: Replace all "wc -l" with this foreach.
     usrs_count = File.foreach(usrs_file).count.to_i
     pwds_count = File.foreach(pwds_file).count.to_i + 2
     total_count = usrs_count * pwds_count
     puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
+  end
+
+# ttd_2: Replace all "wc -l" with this to handle final newlines.
+  def count_lines_file(file_name)
+    count = %x{sed -n '=' #{file_name} | wc -l}.to_i
   end
   
   def count_pwds_file(pwds_file)
@@ -135,7 +191,6 @@ class Weapon
   end
 
   def run(cmd)
-    puts
     pid_file = get_pid_file
     x = Gpty.new
     x.pid_file = pid_file
@@ -156,7 +211,6 @@ class Weapon
 
   # Return to previous menu
   def exit_weapon
-    puts
     case @prev_menu
     when "CustomDictionary" then CustomDictionary.new("Create Custom Dictionaries").menu
     when "DictionaryOnline" then DictionaryOnline.new("Online Dictionary Attacks").menu

@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class Dictionary - RDoc Documentation</title>
+<title>class John - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -49,7 +49,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/menus/dictionary.rb
+    <li>lib/weapons/john.rb
   </ul>
 </nav>
 
@@ -61,7 +61,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Menu.html">Menu</a>
+  <p class="link"><a href="Weapon.html">Weapon</a>
   
 </nav>
 
@@ -72,6 +72,12 @@
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-clean_exit">#clean_exit</a>
+    
+    <li ><a href="#method-i-execute">#execute</a>
     
     <li ><a href="#method-i-menu">#menu</a>
     
@@ -275,7 +281,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class Dictionary</h1>
+  <h1 class="class">class John</h1>
 
   <div id="description" class="description">
     
@@ -297,15 +303,15 @@
 
     <!-- Methods -->
     
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
     
-      <div id="method-i-menu" class="method-detail ">
+      <div id="method-c-new" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">menu</span><span
-            class="method-args">()</span>
+          <span class="method-name">new</span><span
+            class="method-args">(prev_menu, title)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -319,28 +325,154 @@
           
 
           
-          <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/menus/dictionary.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a task:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Create custom dictionaries&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Online dictionary attacks&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  Offline dictionary attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+  <span class="ruby-comment"># Common</span>
+  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
+  <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
+  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-comment"># Weapon specific</span>
+  <span class="ruby-ivar">@share_seed</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_seed&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
   
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-clean_exit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_exit</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Exit</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clean_exit-source">
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">exit_weapon</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clean_exit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clean_exit-method -->
+
+    
+      <div id="method-i-execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">execute</span><span
+            class="method-args">(run_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Execution methods</p>
+
+<p>Execute method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot;_#{run_method}.txt&quot;</span>
+  <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -w=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@share_seed</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -rules -stdout &gt;&quot;</span>
+  <span class="ruby-identifier">appendix</span> = <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;l33t&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;-e -m 8 -w&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_l33t&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;-e -m 8 -w&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+  <span class="ruby-identifier">clean_exit</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- execute-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- execute-method -->
+
+    
+      <div id="method-i-menu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">menu</span><span
+            class="method-args">(run_method)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>User interaction methods</p>
+
+<p>Get list and pass to execute method</p>
+          
+          
+
+          
+          <div class="method-source-code" id="menu-source">
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-identifier">header</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your input method:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1. STDIN&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. File path&quot;</span>
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">CustomDictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Create Custom Dictionaries&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">DictionaryOnline</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Online Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Home</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;stdin_to_file&quot;</span>, <span class="ruby-string">&quot;words&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
+    <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;gets_to_var&quot;</span>, <span class="ruby-string">&quot;words_list&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
+    <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
-    <span class="ruby-identifier">menu</span>
+  <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;John&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- menu-source -->
           

@@ -1,6 +1,6 @@
 # Author: p$3ud0R@nD0m
 
-class Cewl < Weapon
+class John < Weapon
   def initialize(prev_menu, title)
     # Common
     @name = self.class.to_s.downcase
@@ -8,29 +8,31 @@ class Cewl < Weapon
     @prev_menu = prev_menu
     @title = title
     # Weapon specific
-    @site = ""
+    @share_seed = Path.get("share_seed")
   end
 
 ###############################################################################
 # User interaction methods
 ###############################################################################
-  # Get target and pass to execute method
+  # Get list and pass to execute method
   def menu(run_method)
     header
-    puts "Input target site:".light_yellow
-    puts "Example:".yellow
-    puts "www.victima.com".yellow
-    @site = gets.chomp.downcase
-    unless @site.empty?
+    puts "Select your input method:".light_yellow
+    puts "1. STDIN"
+    puts "2. File path"
+    selection = gets.to_i
+    case selection
+    when 1 then
+      get_input("stdin_to_file", "words", @share_seed)
       execute(run_method)
-    else
-      until !@site.empty? do
-         no_input
-         @site = gets.chomp.downcase
-      end
+    when 2 then
+      get_input("gets_to_var", "words_list", @share_seed)
+      execute(run_method)
+    else puts "Invalid selection.".red
+    menu(run_method)
     end
   rescue Interrupt
-    GExeption.new.exit_weapon("Cewl", @prev_menu)
+    GExeption.new.exit_weapon("John", @prev_menu)
   end
 
   # Exit
@@ -47,12 +49,13 @@ class Cewl < Weapon
 ###############################################################################
   # Execute method
   def execute(run_method)
-    @out_file = Path.get_out_file(@name) + "_" + @site + ".txt"
-    prependix = @path + " " + @site + " "
-    appendix = " " + @out_file
+    @out_file = Path.get_out_file(@name) + "_#{run_method}.txt"
+    prependix = @path + " -w=" + @share_seed + " -rules -stdout >"
+    appendix = @out_file
       case run_method
-      when "words" then cmd = prependix + "-m 8 -w" + appendix
-      when "emails" then cmd = prependix + "-e -m 8 -w" + appendix
+      when "basic" then cmd = prependix + appendix
+      when "l33t" then cmd = prependix + "-e -m 8 -w" + appendix
+      when "basic_l33t" then cmd = prependix + "-e -m 8 -w" + appendix
       end
     run(cmd)
     clean_exit

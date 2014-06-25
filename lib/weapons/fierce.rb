@@ -26,7 +26,7 @@ class Fierce < Weapon
       @stdn_hosts << line.chomp
     end
     if @stdn_hosts.count == 0
-      puts "No hosts were input.".red
+      no_input
       menu(run_method)
     elsif @stdn_hosts.count == 1
       puts "Targeting " + @stdn_hosts[0] + " ..."
