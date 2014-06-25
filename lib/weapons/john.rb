@@ -54,8 +54,8 @@ class John < Weapon
     appendix = @out_file
       case run_method
       when "basic" then cmd = prependix + appendix
-      when "l33t" then cmd = prependix + "-e -m 8 -w" + appendix
-      when "basic_l33t" then cmd = prependix + "-e -m 8 -w" + appendix
+      when "l33t" then cmd = prependix + appendix
+      when "basic_l33t" then cmd = prependix + appendix
       end
     run(cmd)
     clean_exit
