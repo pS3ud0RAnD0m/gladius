@@ -37,7 +37,6 @@ class DictionaryOnline < Menu
     puts "99. Exit Gladius"
 
     selection = gets.to_i
-    puts
     case selection
     when 1 then puts "Not implemented yet.".red
       menu

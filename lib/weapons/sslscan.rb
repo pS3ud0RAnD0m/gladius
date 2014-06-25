@@ -26,7 +26,7 @@ class SSLScan < Weapon
     hosts = @stdn_hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
-      puts "No hosts were input.".red
+      no_input
       menu(scan_type)
     else
       case scan_type

@@ -55,7 +55,7 @@ class Dsniff < Weapon
     puts "YPServ        100004/rpc".yellow
     puts
     puts "Note: This weapon isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.".yellow
-    puts "When done sniffing, press <Ctrl+c>.".light_yellow
+    puts "When done sniffing, press Ctrl+C.".light_yellow
     case scan_type
     when "all" then all
     end

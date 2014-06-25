@@ -32,7 +32,7 @@ class Medusa < Weapon
     line_count = `wc -l #{stdn_hosts}`.to_i
     puts
     case line_count
-    when 0 then puts "No hosts were input.".red
+    when 0 then no_input
       menu(run_method)
     when 1 then puts "Select your tactic:".light_yellow
       puts "Since only 1 host was input, we recommend option 1.".yellow

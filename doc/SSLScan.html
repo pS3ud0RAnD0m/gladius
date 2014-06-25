@@ -112,6 +112,8 @@
   
     <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
   
+    <li class="file"><a href="./lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
+  
     <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
   
     <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
@@ -215,6 +217,8 @@
     <li><a href="./Hydra.html">Hydra</a>
   
     <li><a href="./IPtables.html">IPtables</a>
+  
+    <li><a href="./John.html">John</a>
   
     <li><a href="./KaliSupport.html">KaliSupport</a>
   
@@ -462,7 +466,7 @@
   <span class="ruby-identifier">hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
   <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{hosts}`</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">line_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No hosts were input.&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">no_input</span>
     <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">scan_type</span>)
   <span class="ruby-keyword">else</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">scan_type</span>

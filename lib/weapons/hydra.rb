@@ -63,9 +63,8 @@ class Hydra < Weapon
     a.close
     stdn_hosts = @stdn_hosts
     line_count = `wc -l #{stdn_hosts}`.to_i
-    puts
     case line_count
-    when 0 then puts "No hosts were input.".red
+    when 0 then no_input
       menu(run_method)
     when 1 then puts "Select your tactic:".light_yellow
       puts "Since only 1 host was input, we recommend option 1.".yellow
@@ -100,9 +99,10 @@ class Hydra < Weapon
     when "vnc" then count_pwds_file(@vnc_pwds_long)
     when "web-form" then
     end
-    puts "2. Input your own users and passwords."
-    puts "3. Input your own user and password files."
+    puts "2. Input your own users and passwords"
+    puts "3. Input your own user and password files"
     
+# ttd_2: Why are we changing dir twice?
     Dir.chdir(@share_output)
     input_method = gets.to_i
     case run_method
@@ -192,7 +192,6 @@ class Hydra < Weapon
   # Parse and exit
   def clean_exit(search_term)
     Dir.chdir(@init_dir)
-    puts
     if File.exist?(@out_file)
       results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
       if results.count == 0
@@ -215,6 +214,7 @@ class Hydra < Weapon
 ##################################
 # FTP
 ##################################
+# ttd_2: Run methods need significant refactoring.
   def ftp_gladius_long
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs_long + " -P " + @ftp_pwds_long + " -M " + @stdn_hosts + " ftp |tee " + @out_file
@@ -226,17 +226,14 @@ class Hydra < Weapon
     instruct_input_usrs
     puts "root".yellow
     puts "ftp".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "password".yellow
     puts "abc123".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -251,10 +248,9 @@ class Hydra < Weapon
   def ftp_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
+# ttd_3: Does not check for empty input.
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
     run(cmd)
@@ -275,17 +271,14 @@ class Hydra < Weapon
     instruct_input_usrs
     puts "sa".yellow
     puts "dbadmin".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "password".yellow
     puts "temp".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -300,10 +293,8 @@ class Hydra < Weapon
   def mssql_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mssql |tee " + @out_file
     run(cmd)
@@ -324,13 +315,11 @@ class Hydra < Weapon
     instruct_input_usrs
     puts "root".yellow
     puts "mysql".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
@@ -338,7 +327,6 @@ class Hydra < Weapon
     puts "admin".yellow
     puts "toor".yellow
     puts "temp".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -353,10 +341,8 @@ class Hydra < Weapon
   def mysql_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " mysql |tee " + @out_file
     run(cmd)
@@ -379,20 +365,17 @@ class Hydra < Weapon
     puts "postgres".yellow
     puts "admin".yellow
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "password".yellow
     puts "postgres".yellow
     puts "admin".yellow
     puts "toor".yellow
     puts "temp".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -407,10 +390,8 @@ class Hydra < Weapon
   def postgresql_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " postgres |tee " + @out_file
     run(cmd)
@@ -430,17 +411,14 @@ class Hydra < Weapon
   def rexec_stdn
     instruct_input_usrs
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -455,10 +433,8 @@ class Hydra < Weapon
   def rexec_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rexec -s 512 |tee " + @out_file
     run(cmd)
@@ -478,17 +454,14 @@ class Hydra < Weapon
   def rlogin_stdn
     instruct_input_usrs
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -503,10 +476,8 @@ class Hydra < Weapon
   def rlogin_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rlogin -s 513 |tee " + @out_file
     run(cmd)
@@ -526,17 +497,14 @@ class Hydra < Weapon
   def rsh_stdn
     instruct_input_usrs
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -551,10 +519,8 @@ class Hydra < Weapon
   def rsh_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " rsh -s 514 |tee " + @out_file
     run(cmd)
@@ -574,17 +540,14 @@ class Hydra < Weapon
   def ssh_stdn
     instruct_input_usrs
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -599,10 +562,8 @@ class Hydra < Weapon
   def ssh_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
@@ -623,17 +584,14 @@ class Hydra < Weapon
     instruct_input_usrs
     puts "root".yellow
     puts "cisco".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "cisco".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -648,10 +606,8 @@ class Hydra < Weapon
   def telnet_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
@@ -672,7 +628,6 @@ class Hydra < Weapon
     instruct_input_pwds
     puts "vncpass".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -687,7 +642,6 @@ class Hydra < Weapon
   def vnc_stdn_list
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 4 -w 64 -P #{stdn_pwds} -M " + @stdn_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
@@ -707,17 +661,14 @@ class Hydra < Weapon
   def vmauthd_stdn
     instruct_input_usrs
     puts "root".yellow
-    puts
     a = File.open(@stdn_usrs, "w")
     while line = gets
       a << line
     end
     a.close
-    puts
     instruct_input_pwds
     puts "root".yellow
     puts "password".yellow
-    puts
     a = File.open(@stdn_pwds, "w")
     while line = gets
       a << line
@@ -732,10 +683,8 @@ class Hydra < Weapon
   def vmauthd_stdn_list
     instruct_input_usrs_list
     stdn_usrs = gets.chomp
-    puts
     instruct_input_pwds_list
     stdn_pwds = gets.chomp
-    puts
     @out_file = Path.get_out_file_txt(@name)
     cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)

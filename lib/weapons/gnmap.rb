@@ -30,7 +30,7 @@ class GNmap < Weapon
     stdn_hosts = @stdn_hosts
     line_count = `wc -l #{stdn_hosts}`.to_i
     if line_count == 0
-      puts "No hosts were input.".red
+      no_input
       menu(run_method)
     else
       execute(run_method)
@@ -58,7 +58,7 @@ class GNmap < Weapon
 ###############################################################################
 # Execution methods
 ###############################################################################
-# Execute run methods
+# Execute method
   def execute(run_method)
     @out_file = Path.get_out_file(@name)
     prependix = @path + " -v -Pn -s"

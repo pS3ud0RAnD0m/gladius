@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>korelogic_rules - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/darkfish.js"></script>
+
+
+<body class="file">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../../../index.html">Home</a>
+    <a href="../../../table_of_contents.html#classes">Classes</a>
+    <a href="../../../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../../../README_md.html">README</a>
+  
+    <li class="file"><a href="../../../bin/mysql_sh.html">mysql.sh</a>
+  
+    <li class="file"><a href="../../../doc/created_rid.html">created.rid</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/gladius_conf.html">gladius.conf</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/iptables.html">iptables</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/tftp_file_list_txt.html">tftp_file_list</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
+  
+    <li class="file"><a href="../../../lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
+  
+    <li class="file"><a href="../../../licenses/COPYING.html">COPYING</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../../../ApacheUsers.html">ApacheUsers</a>
+  
+    <li><a href="../../../Atftpd.html">Atftpd</a>
+  
+    <li><a href="../../../Cewl.html">Cewl</a>
+  
+    <li><a href="../../../ConfigSnort.html">ConfigSnort</a>
+  
+    <li><a href="../../../CustomDictionary.html">CustomDictionary</a>
+  
+    <li><a href="../../../DNS.html">DNS</a>
+  
+    <li><a href="../../../DNSrecon.html">DNSrecon</a>
+  
+    <li><a href="../../../DiG.html">DiG</a>
+  
+    <li><a href="../../../Dictionary.html">Dictionary</a>
+  
+    <li><a href="../../../DictionaryOnline.html">DictionaryOnline</a>
+  
+    <li><a href="../../../DirStructure.html">DirStructure</a>
+  
+    <li><a href="../../../DiscoverServices.html">DiscoverServices</a>
+  
+    <li><a href="../../../Dsniff.html">Dsniff</a>
+  
+    <li><a href="../../../Enum4linux.html">Enum4linux</a>
+  
+    <li><a href="../../../FTP.html">FTP</a>
+  
+    <li><a href="../../../Fierce.html">Fierce</a>
+  
+    <li><a href="../../../GExeption.html">GExeption</a>
+  
+    <li><a href="../../../GNmap.html">GNmap</a>
+  
+    <li><a href="../../../GatherInfo.html">GatherInfo</a>
+  
+    <li><a href="../../../Gladius.html">Gladius</a>
+  
+    <li><a href="../../../Gpty.html">Gpty</a>
+  
+    <li><a href="../../../HTTP.html">HTTP</a>
+  
+    <li><a href="../../../Home.html">Home</a>
+  
+    <li><a href="../../../Hydra.html">Hydra</a>
+  
+    <li><a href="../../../IPtables.html">IPtables</a>
+  
+    <li><a href="../../../John.html">John</a>
+  
+    <li><a href="../../../KaliSupport.html">KaliSupport</a>
+  
+    <li><a href="../../../MSF.html">MSF</a>
+  
+    <li><a href="../../../Medusa.html">Medusa</a>
+  
+    <li><a href="../../../Menu.html">Menu</a>
+  
+    <li><a href="../../../Ncrack.html">Ncrack</a>
+  
+    <li><a href="../../../NetbiosSMB.html">NetbiosSMB</a>
+  
+    <li><a href="../../../NetworkAttacks.html">NetworkAttacks</a>
+  
+    <li><a href="../../../Nikto.html">Nikto</a>
+  
+    <li><a href="../../../NmapParser.html">NmapParser</a>
+  
+    <li><a href="../../../Object.html">Object</a>
+  
+    <li><a href="../../../Parse.html">Parse</a>
+  
+    <li><a href="../../../ParseFile.html">ParseFile</a>
+  
+    <li><a href="../../../Path.html">Path</a>
+  
+    <li><a href="../../../SMTP.html">SMTP</a>
+  
+    <li><a href="../../../SNMP.html">SNMP</a>
+  
+    <li><a href="../../../SSLScan.html">SSLScan</a>
+  
+    <li><a href="../../../Session.html">Session</a>
+  
+    <li><a href="../../../SniffSpoof.html">SniffSpoof</a>
+  
+    <li><a href="../../../SnortService.html">SnortService</a>
+  
+    <li><a href="../../../Splash.html">Splash</a>
+  
+    <li><a href="../../../SysInfo.html">SysInfo</a>
+  
+    <li><a href="../../../TFTP.html">TFTP</a>
+  
+    <li><a href="../../../TestSSLServer.html">TestSSLServer</a>
+  
+    <li><a href="../../../VPNAttacks.html">VPNAttacks</a>
+  
+    <li><a href="../../../Weapon.html">Weapon</a>
+  
+    <li><a href="../../../WebAttacks.html">WebAttacks</a>
+  
+    <li><a href="../../../WirelessAttacks.html">WirelessAttacks</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation" class="description">
+  
+<p>#################################################################### #
+KoreLogic Custom <a href="../../../John.html">John</a> the Ripper Rules: #
+Obtained from: <a
+href="http://openwall.info/wiki/_media/john/korelogic-rules-20100801-reworked-all-3k.txt">openwall.info/wiki/_media/john/korelogic-rules-20100801-reworked-all-3k.txt</a>
+####################################################################</p>
+
+<p># Use this rule with 2EVERYTHING.dic or 3EVERYTHING.dic</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependSeason
+<dd>
+<p><a href="http://Ss$">A0"</a>[<a href="http://mM">uU]</a>[<a
+href="http://eE3">mM]</a>[rR]" <a href="http://Ww">A0"</a>[<a
+href="http://nN">iI|]</a>[<a href="http://eE3">tT+]</a>[rR]" <a
+href="http://Ff">A0"</a>[<a href="http://lL">aA]</a>[lL]" <a
+href="http://Ss">A0"</a>[<a href="http://rR">pP]</a>[<a
+href="http://nN">iI]</a>[gG]" <a href="http://Aa">A0"</a>[<a
+href="http://tT">uU]</a>[<a href="http://mM">uU]</a>[nN]"</p>
+
+<p># Use this rule with 2EVERYTHING.dic or 3EVERYTHING.dic</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSeason
+<dd>
+<p>&lt;* <a href="http://Ss$">Az“</a>[<a href="http://mM">uU]</a>[<a
+href="http://eE3">mM]</a>[rR]” &lt;* <a href="http://Ww">Az“</a>[<a
+href="http://nN">iI|]</a>[<a href="http://eE3">tT+]</a>[rR]” &lt;* <a
+href="http://Ff">Az“</a>[<a href="http://lL">aA]</a>[lL]” &lt;* <a
+href="http://Ss">Az“</a>[<a href="http://rR">pP]</a>[<a
+href="http://nN">iI]</a>[gG]” &lt;* <a href="http://Aa">Az“</a>[<a
+href="http://tT">uU]</a>[<a href="http://mM">uU]</a>[nN]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependHello
+<dd>
+<p><a href="http://hH">A0"</a>[<a href="http://lL">eE]</a>[<a
+href="http://oO0">lL]</a>"</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependYears
+<dd>
+<p><a href="http://0-1">A0"20</a>[0-9]" <a href="http://3-9">A0"19</a>[0-9]"</p>
+
+<p># Notice: Your wordlist should likely be all lowercase - or you are wasting
+work</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendYears
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“19</a>[0-9]” &lt;+ -[c:] p[c:] <a
+href="http://01">Az“20</a>[0-9]” &lt;+</p>
+
+<p># Notice how we # 1) do caps first b/c they are more common in ‘complex’
+environments # 2) Do !$@#%. first b/c they are the most common special
+chars</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendCurrentYearSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“201</a>[!$@#%.]” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Azq201</a>[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend4Num
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend5Num
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://0-9">0-9]</a>” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend6Num
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSpecial3num
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">Az“</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;+ -[c:] p[c:] <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[0-9]q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSpecial4num
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">Az“</a>[<a
+href="http://0-9">0-9]</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:]
+<a href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[<a href="http://0-9">0-9]</a>q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependCAPCAPAppendSpecial
+<dd>
+<p><a href="http://A-Z">A0"</a>[A-Z]" &lt;* $[!$@#%.] <a
+href="http://A-Z">A0"</a>[A-Z]" &lt;*
+$[^&amp;()_+-={}|[]\;'":,/&lt;&gt;?`~*]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNumAppendSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[0-9]” &lt;* $[!$@#%.] -[c:] p[c:]
+<a href="http://0-9">A0“</a>[0-9]” &lt;*
+$[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNum
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[0-9]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNumNum
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[<a href="http://0-9">0-9]</a>”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNumNumNum
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[<a
+href="http://0-9">0-9]</a>[0-9]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNumSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[<a href="http://!$@#%.">0-9]</a>”
+-[c:] p[c:] <a href="http://0-9">A0q</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrepend2NumbersAppend2Numbers
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[0-9]” &lt;- <a
+href="http://0-9">Az“</a>[0-9]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependSpecialSpecial
+<dd>
+<p>-[c:] p[c:] <a
+href="http://\">A0q[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSpecialNumberNumber
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">Az“</a>[<a href="http://0-9">0-9]</a>”
+&lt;+ -[c:] p[c:] <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSpecialNumberNumberNumber
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">Az“</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;+ -[c:] p[c:] <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[0-9]q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumber
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">A0“</a>[!$@#%.]” &lt;* $[0-9] -[c:]
+p[c:] <a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;* $[0-9]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumbersNumber
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">A0“</a>[!$@#%.]” &lt;- <a
+href="http://0-9">Az“</a>[0-9]” -[c:] p[c:] <a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;- <a href="http://0-9">Az“</a>[0-9]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumbersNumberNumber
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">A0“</a>[!$@#%.]” <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:]
+<a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+<a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend2Letters
+<dd>
+<p>&lt;- <a href="http://a-z">Az“</a>[a-z]” -c &lt;- <a
+href="http://A-Z">Az“</a>[A-Z]” -c &lt;- <a href="http://a-z">Az“</a>[A-Z]”
+-c &lt;- <a href="http://A-Z">Az“</a>[a-z]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrepend4NumAppendSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;- $[!$@#%.] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;- <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend4NumSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://!$@#%.">0-9]</a>” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Azq</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend3NumSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a
+href="http://0-9">0-9]</a>[!$@#%.]” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Azq</a>[<a
+href="http://0-9">0-9]</a>[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend2NumSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">Az“</a>[<a href="http://!$@#%.">0-9]</a>”
+&lt;+ -[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+
+<p># Append numbers - but limit the total length.</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAddJustNumbers
+<dd>
+<p>-[c:] &lt;* &gt;1 p[c:] $[0-9] -[c:] &lt;* &gt;1 p[c:] ^[0-9] -[c:] &lt;-
+&gt;1 p[c:] <a href="http://0-9">Az“</a>[0-9]” -[c:] &lt;- &gt;1 p[c:] <a
+href="http://0-9">A0“</a>[0-9]” -[c:] &gt;1 p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:] &gt;1
+p[c:] <a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]”
+&lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesDevProdTestUAT
+<dd>
+<p>-<a href=“http://::cc”>r</a> &lt;* <a href="http://0l0l">Apr</a>“dev”
+pr[::TT]<a href=“http://::0l”>pr</a> -<a href=“http://::cc”>r</a> &lt;* <a
+href="http://0l0l">Apr</a>“uat” pr[::TT]<a href=“http://::0l”>pr</a> -<a
+href=“http://::cc”>r</a> &lt;* <a href="http://0l0l">Apr</a>“prod”
+pr[::TT]<a href=“http://::0l”>pr</a> -<a href=“http://::cc”>r</a> &lt;* <a
+href="http://0l0l">Apr</a>“test” pr[::TT]<a href=“http://::0l”>pr</a></p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependAndAppendSpecial
+<dd>
+<p>-[c:] &lt;- p[c:] ^[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]
+$[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendJustNumbers
+<dd>
+<p>-[c:] &lt;* p[c:] $[0-9] -[c:] &lt;- p[c:] <a
+href="http://0-9">Az“</a>[0-9]” -[c:] p[c:] <a href="http://0-9">Az“</a>[<a
+href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendNumbers_and_Specials_Simple
+<dd>
+<p># cap first letter then add a 0  2 6 9 ! *  to the end -[c:] &lt;* p[c:]
+$[0-9!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] # cap first letter then
+add a special char - THEN a number  !0 %9 !9 etc -[c:] &lt;- p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][0-9]q # Cap
+the first letter - then add 0? 0! 5_ .. 9! ## add NUMBER then SPECIAL    1!
+.. 9? -[c:] &lt;- p[c:] <a
+href="http://0-9">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q ##
+Add Number Number Special -[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://\">0-9][!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*]q &lt;+ ##
+Add Special Number Number -[c:] p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>q &lt;+ # Add 100! … 999! to the end -[c:] p[c:]
+<a href="http://0-9">Azq</a>[<a
+href="http://0-9">0-9]</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendJustSpecials
+<dd>
+<p>-[c:] &lt;* p[c:] $[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] -[c:] &lt;-
+p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesMonthsFullPreface
+<dd>
+<p>-[:c] <a href="http://jJ">A0“p</a>anuary” -[:c] <a
+href="http://fF">A0“p</a>ebruary” -[:c] <a href="http://mM">A0“p</a>arch”
+-[:c] <a href="http://aA">A0“p</a>pril” -[:c] <a
+href="http://mM">A0“p</a>ay” -[:c] <a href="http://jJ">A0“p</a>uner” -[:c]
+<a href="http://jJ">A0“p</a>uly” -[:c] <a href="http://aA">A0“p</a>ugust”
+-[:c] <a href="http://sS">A0“p</a>eptember” -[:c] <a
+href="http://oO">A0“p</a>ctober” -[:c] <a href="http://nN">A0“p</a>ovember”
+-[:c] <a href="http://dD">A0“p</a>ecember”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAddShortMonthsEverywhere
+<dd>
+<p>&lt;* &gt;<a href=“http://00123456789”>r</a> <a
+href="http://z0-9">Ap</a>“[<a href="http://aA">jJ]</a>[nN]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://eE">fF]</a>[bB]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://aA">mM]</a>[rRyY]” &lt;*
+&gt;<a href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://pP">aA]</a>[rR]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://uU">jJ]</a>[nNlL]” &lt;*
+&gt;<a href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://uU">aA]</a>[gG]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://eE">sS]</a>[pP]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://cC">oO]</a>[tT]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://oO">nN]</a>[vV]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://eE">dD]</a>[cC]”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrepend4LetterMonths
+<dd>
+<p>## Preface each dictionary with Janu janu Febr febr -[:c] <a
+href="http://jJ">A0“p</a>anu” -[:c] <a href="http://fF">A0“p</a>ebr” -[:c]
+<a href="http://mM">A0“p</a>arc” -[:c] <a href="http://aA">A0“p</a>pr”
+-[:c] <a href="http://mM">A0“p</a>ay” -[:c] <a
+href="http://jJ">A0“p</a>une” -[:c] <a href="http://jJ">A0“p</a>uly” -[:c]
+<a href="http://Aa">A0“p</a>ugu” -[:c] <a href="http://sS">A0“p</a>ept”
+-[:c] <a href="http://oO">A0“p</a>cto” -[:c] <a
+href="http://nN">A0“p</a>ove” -[:c] <a href="http://Dd">A0“p</a>ece”</p>
+
+<p># this will add the string ‘2010’ at all places in the word: # USE this
+with a 4 or 5 char dictionary file with ALL characters # soo abcde will
+become # 2010abcde  a2010bcde  ab2010cde  acd2010de  abcd2010e  abcde2010</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAdd2010Everywhere
+<dd>
+<p>&lt;* &gt;<a href=“http://00123456789”>r</a> <a
+href="http://z0-9">Ap</a>“<a href="http://0-9">201</a>”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependDaysWeek
+<dd>
+<p><a href="http://Mm">A0"</a>[<a href="http://nN">oO0]</a>[<a
+href="http://aA4@">dD]</a>[yY]" <a href="http://Tt">A0"</a>[<a
+href="http://eE3">uU]</a>[<a href="http://dD">sS$]</a>[<a
+href="http://yY">aA4@]</a>" <a href="http://Ww">A0"</a>[<a
+href="http://dD">eE3]</a>[<a href="http://eE3">nN]</a>[<a
+href="http://dD">sS$]</a>[<a href="http://yY">aA4@]</a>" <a
+href="http://Tt">A0"</a>[<a href="http://uU">hH]</a>[<a
+href="http://sS$">rR]</a>[<a href="http://aA4@">dD]</a>[yY]" <a
+href="http://Ff">A0"</a>[<a href="http://iI1!">rR]</a>[<a
+href="http://aA4@">dD]</a>[yY]" <a href="http://Ss">A0"</a>[<a
+href="http://tT+">aA4@]</a>[<a href="http://rR">uU]</a>[<a
+href="http://aA4@">dD]</a>[yY]" <a href="http://Ss">A0"</a>[<a
+href="http://nN">uU]</a>[<a href="http://aA4@">dD]</a>[yY]"</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAdd1234_Everywhere
+<dd>
+<p>&lt;* &gt;<a href=“http://00123456789”>r</a> <a
+href="http://z0-9">Ap</a>“1234”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendMonthDay
+<dd>
+<p>-[:c] &lt;* <a href="http://jJ">Az“p</a>anuary” -[:c] <a
+href="http://0-9">Az“p[jJ]anuary</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[jJ]anuary</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://fF">Az“p</a>ebruary” -[:c] <a
+href="http://0-9">Az“p[fF]ebruary</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[fF]ebruary</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://mM">Az“p</a>arch” -[:c] <a href="http://0-9">Az“p[mM]arch</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[mM]arch</a>[0-9]” &lt;+ -[:c] &lt;*
+<a href="http://aA">Az“p</a>pril” -[:c] <a
+href="http://0-9">Az“p[aA]pril</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[aA]pril</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://mM">Az“p</a>ay” -[:c] <a href="http://0-9">Az“p[mM]ay</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[mM]ay</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://jJ">Az“p</a>une” -[:c] <a href="http://0-9">Az“p[jJ]une</a>”
+&lt;+ # There was a typo in Kore’s original revision of this rule -[:c] <a
+href="http://0-9">Az“p[jJ]une</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://jJ">Az“p</a>uly” -[:c] <a href="http://0-9">Az“p[jJ]uly</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[jJ]uly</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://aA">Az“p</a>ugust” -[:c] <a
+href="http://0-9">Az“p[aA]ugust</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[aA]ugust</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://sS">Az“p</a>eptember” -[:c] <a
+href="http://0-9">Az“p[sS]eptember</a>” &lt;+ # There was a typo in Kore’s
+original revision of this rule -[:c] <a
+href="http://0-9">Az“p[sS]eptember</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://oO">Az“p</a>ctober” -[:c] <a
+href="http://0-9">Az“p[oO]ctober</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[oO]ctober</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://nN">Az“p</a>ovember” -[:c] <a
+href="http://0-9">Az“p[nN]ovember</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[nN]ovember</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://dD">Az“p</a>ecember” -[:c] <a
+href="http://0-9">Az“p[dD]ecember</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[dD]ecember</a>[0-9]” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendMonthCurrentYear
+<dd>
+<p>-[:c] &lt;* <a href="http://0-9">Az“p[jJ]an201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[fF]eb201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[mM]ar201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[aA]pr201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[mM]ay201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[jJ]un201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[jJ]ul201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[Aa]ug201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[sS]ep201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[oO]ct201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[nN]ov201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[Dd]ec201</a>”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesReplaceNumbers2Special
+<dd>
+<p>/[1-90] <a href="http://!@#$%^&*()">s0p</a> /1 /[2-90] s1! <a
+href="http://@#$%^&*()">s0p</a> /2 /[3-90] s2@ <a href="#$%^&*()">s0p</a>
+/3 /[4-90] s3# <a href="http://$%^&*()">s0p</a> /4 /[5-90] s4$ <a
+href="http://%^&*()">s0p</a> /5 /[6-90] s5% <a href="http://^&*()">s0p</a>
+/6 /[7-90] s6^ <a href="http://&*()">s0p</a> /7 /[890] s7&amp; <a
+href="http://*()">s0p</a> /8 /[90] s8* <a href="http://()">s0p</a> /9 /0
+s9( s0)</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesReplaceNumbers
+<dd>
+<p>/0 <a href="http://1-9">s0</a> /1 <a href="http://02-9">s1</a> /2 <a
+href="http://013-9">s2</a> /3 <a href="http://0-24-9">s3</a> /4 <a
+href="http://0-35-9">s4</a> /5 <a href="http://0-46-9">s5</a> /6 <a
+href="http://0-57-9">s6</a> /7 <a href="http://0-68-9">s7</a> /8 <a
+href="http://0-79">s8</a> /9 <a href="http://0-8">s9</a> # 10 lines above
+can be replaced with just one: # /[0-9] <a href="http://0-9">s0</a> Q # but
+it’s slower (generates, then rejects some duplicates).</p>
+
+<p># This is a lamer/faster version of –rules:nt</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesReplaceLettersCaps
+<dd>
+<p>-c /[a-z] <a href="http://A-Z">s0p</a></p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAddDotCom
+<dd>
+<p>-[c:] &lt;- p[c:] Az“.com” -[c:] &lt;- p[c:] Az“.net” -[c:] &lt;- p[c:]
+Az“.org”</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendCap-Num_or_Special-Twice
+<dd>
+<p>-[c:] p[c:] <a href="http://A-Z">Az“</a>[<a href="http://0-9">0-9]</a>”
+&lt;+ -[c:] p[c:] <a
+href="http://A-Z">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*][0-9]q
+&lt;+ -[c:] p[c:] <a href="http://A-Z">Azq</a>[<a
+href="http://\">0-9][!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*]q &lt;+ -[c:]
+p[c:] <a
+href="http://A-Z">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendSpecialLowerLower
+<dd>
+<p>-[c:] p[c:] <a
+href="http://\">AzQ[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://a-z">a-z]</a>Q &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendJustSpecials3Times
+<dd>
+<p>-[c:] p[c:] <a href="http://!$@#%.">Az“</a>[!$@#%.][!$@#%.]” &lt;+ -[c:]
+p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q
+&lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependJustSpecials
+<dd>
+<p>-[c:] p[c:] ^[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] -[c:] p[c:] <a
+href="http://\">A0q[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppend1_AddSpecialEverywhere
+<dd>
+<p>-[c:] &gt;4 &lt;- p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] $1
+-[c:] &gt;[5-8] &lt;- p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] $1</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesPrependNumNum_AppendNumSpecial
+<dd>
+<p>-[c:] p[c:] <a href="http://0-9">A0“</a>[0-9]” <a
+href="http://0-9">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q
+&lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendNum_AddSpecialEverywhere
+<dd>
+<p># This should probably use $[02-9] since we try $1 in #
+KoreLogicRulesAppend1_AddSpecialEverywhere -[c:] &gt;4 &lt;- p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] $[0-9]
+-[c:] &gt;[5-8] &lt;- p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]
+$[0-9]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendNumNum_AddSpecialEverywhere
+<dd>
+<p>-[c:] &gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az”</a>[0-9]“ &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az“</a>[0-9]” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendNumNumNum_AddSpecialEverywhere
+<dd>
+<p>-[c:] &gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az”</a>[<a href="http://0-9">0-9]</a>“ &lt;+ -[c:]
+&gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesAppendYears_AddSpecialEverywhere
+<dd>
+<p>-[c:] &gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://4-9">Az”19</a>[0-9]“ &lt;+ -[c:] &gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-1">Az“20</a>[0-9]” &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://4-9">Az”19</a>[0-9]“ &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-1">Az“20</a>[0-9]” &lt;+</p>
+
+<p># This rule needs work actually — you have to ‘sort -u’ its output    rick
+# /a = reject if it doesnt have an ‘a’ # the [:c] does waste some effort -
+and generate dupes. This is wasteful, # but I want to keep it in b/c the
+original crack/JtR rules use it.</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesL33t
+<dd>
+<p>-[:c] /<a href=“http://aaAAbBeEiiiIIIllll”>r</a> <a
+href="http://@44@88331!|1!|17|!">s0rp</a> p1[:M] p1[:c] p1[:Q] # The
+following line differs from Kore’s erroneous 4 lines: -[:c] /<a
+href=“http://LLLL”>r</a> <a href="http://17|!">s0rp</a> p1[:M] p1[:c]
+p1[:Q] #/<a href="http://:c">Lsl1</a> #/<a href="http://:c">Lsl7</a> #/<a
+href="http://:c">Lsl|</a> #/<a href="http://:c">Lsl!</a> -[:c] /<a
+href=“http://oOssSStT1111003344557788”>r</a> <a
+href="http://00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M] p1[:c] p1[:Q] # Full
+set (same as above, but on one line): #-[:c] /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a>
+p1[:M] p1[:c] p1[:Q] # Double substitutions start here. # Compared to
+Kore’s, we check for both chars first, then replace both. # This produces
+different results from Kore’s, which would replace all # instances of the
+first char before checking for the second. # Kore’s behavior may be
+restored by moving “<a href="http://@4">sa</a>” to be right after “/a” # on
+the line below, and ditto for further lines. -[:c] /a /<a
+href=“http://AAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@4">sa</a> <a
+href="http://4@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # Kore had these (probably unintentionally, so we don’t
+duplicate them): #/<a href="http://:c">asa4/4s4a</a> #/<a
+href="http://:c">asa4/4s4A</a> -[:c] /A /<a
+href=“http://aabBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sA4 <a
+href="http://@488331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] # Kore also had these, but (intentionally?) missed sb8 on
+this set (after sA4) #/<a href="http://:c">AsA4/4s4a</a> #/<a
+href="http://:c">AsA4/4s4A</a> -[:c] /b /<a
+href=“http://aaAABeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sb8 <a
+href="http://@44@8331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /B /<a
+href=“http://aaAAbeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sB8 <a
+href="http://@44@8331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /e /<a
+href=“http://aaAAbBEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> se3 <a
+href="http://@44@8831!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /E /<a
+href=“http://aaAAbBeiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sE3 <a
+href="http://@44@8831!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /i /<a
+href=“http://aaAAbBeEIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://1!|">si</a> <a
+href="http://@44@88331!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /I /<a
+href=“http://aaAAbBeEiiillllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://1!|">sI</a> <a
+href="http://@44@88331!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # Kore’s rules only included <a href="http://17|">sl</a>, but
+not sl! -[:c] /l /<a
+href=“http://aaAAbBeEiiiIIILLLLoOssSStT1111003344557788”>r</a> <a
+href="http://17|!">sl</a> <a
+href="http://@44@88331|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # All “/L” rules (171 lines) were buggy -[:c] /L /<a
+href=“http://aaAAbBeEiiiIIIlllloOssSStT1111003344557788”>r</a> <a
+href="http://17|!">sl</a> <a
+href="http://@44@88331|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /o /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLOssSStT1111003344557788”>r</a> so0 <a
+href="http://@44@88331!|1!|17|!17|!0$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /O /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLossSStT1111003344557788”>r</a> sO0 <a
+href="http://@44@88331!|1!|17|!17|!0$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /s /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOSStT1111003344557788”>r</a> <a
+href="http://$5">ss</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /S /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOsstT1111003344557788”>r</a> <a
+href="http://$5">sS</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /t /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSST1111003344557788”>r</a> st+ <a
+href="http://@44@88331!|1!|17|!17|!00$5$5+!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /T /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSSt1111003344557788”>r</a> sT+ <a
+href="http://@44@88331!|1!|17|!17|!00$5$5+!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /1 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT003344557788”>r</a> <a
+href="http://!iI|">s1</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /0 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11113344557788”>r</a> <a
+href="http://oO">s0</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|eEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /3 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110044557788”>r</a> <a
+href="http://eE">s3</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] #-[:c] /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a>
+p1[:M] p1[:c] p1[:Q] -[:c] /4 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033557788”>r</a> <a
+href="http://aA">s4</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /5 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033447788”>r</a> <a
+href="http://sS">s5</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /7 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033445588”>r</a> <a
+href="http://lL">s7</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /8 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033445577”>r</a> <a
+href="http://bB">s8</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlL">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # These are some popular triple/quad l33t rules -[:c] /a /e
+/[los] sa4 se3 <a href="http://10$">s0p</a> p1[:M] p1[:c] p1[:Q] -[:c]
+/[ae] /l /[os] <a href="http://43">s2p2</a> sl1 <a
+href="http://0$">s3p3</a> p1[:M] p1[:c] p1[:Q] -[:c] /[ae] /o /s <a
+href="http://43">s2p2</a> so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /l /o /s sl1
+so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /a /e /l /[os] sa4 se3 sl1 <a
+href="http://0$">s0p</a> p1[:M] p1[:c] p1[:Q] -[:c] /a /[el] /o /s sa4 <a
+href="http://31">s0p</a> so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /e /l /o /s se3
+sl1 so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /a /e /l /o /s sa4 se3 sl1 so0 ss$
+p1[:M] p1[:c] p1[:Q]</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesReplaceSpecial2Special
+<dd>
+<p># Kore’s rules were missing “*” /! <a
+href="http://@#$%^&*()\-=_+\\|;:'",./?><">s!</a> /@ <a
+href="http://!#$%^&*()\-=_+\\|;:'",./?><">s@</a> /# <a
+href="http://!@$%^&*()\-=_+\\|;:'",./?><">s#</a> /$ <a
+href="http://!@#%^&*()\-=_+\\|;:'",./?><">s$</a> /% <a
+href="http://!@#$^&*()\-=_+\\|;:'",./?><">s%</a> /^ <a
+href="http://!@#$%&*()\-=_+\\|;:'",./?><">s^</a> /&amp; <a
+href="http://!@#$%^*()\-=_+\\|;:'",./?><">s&</a> /( <a
+href="http://!@#$%^&*)\-=_+\\|;:'",./?><">s(</a> /) <a
+href="http://!@#$%^&*(\-=_+\\|;:'",./?><">s(</a> # Kore’s ruleset
+erroneously had: #/-s– /- <a
+href="http://!@#$%^&*()=_+\\|;:'",./?><">s-</a> /= <a
+href="http://!@#$%^&*()\-_+\\|;:'",./?><">s=</a> /_ <a
+href="http://!@#$%^&*()\-=+\\|;:'",./?><">s_</a> /+ <a
+href="http://!@#$%^&*()\-=_\\|;:'",./?><">s+</a> # Kore’s rules did not
+replace backslash /\ <a href="http://!@#$%^&*()\-=_+|;:'",./?><">s\</a> /|
+<a href="http://!@#$%^&*()\-=_+\\;:'",./?><">s|</a> /; <a
+href="http://!@#$%^&*()\-=_+\\|:'",./?><">s;</a> /: <a
+href="http://!@#$%^&*()\-=_+\\|;'",./?><">s:</a> /‘ <a
+href="http://!@#$%^&*()\-=_+\\|;:",./?><">s’</a> /“ <a
+href="http://!@#$%^&*()\-=_+\\|;:',./?><">s”</a> /, <a
+href="http://!@#$%^&*()\-=_+\\|;:'"./?><">s,</a> /. <a
+href="http://!@#$%^&*()\-=_+\\|;:'",/?><">s.</a> // <a
+href="http://!@#$%^&*()\-=_+\\|;:'",.?><">s/</a> /&gt; <a
+href="http://!@#$%^&*()\-=_+\\|;:'",./?<">s></a> /&lt; <a
+href="http://!@#$%^&*()\-=_+\\|;:'",./?>“>s<</a></p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRulesReplaceLetters
+<dd>
+<p>/a <a href="http://b-z">sa</a> /b <a href="http://ac-z">sb</a> /c <a
+href="http://abd-z">sc</a> /d <a href="http://a-ce-z">sd</a> /e <a
+href="http://a-df-z">se</a> /f <a href="http://a-eg-z">sf</a> /g <a
+href="http://a-fh-z">sg</a> /h <a href="http://a-gi-z">sh</a> /i <a
+href="http://a-hj-z">si</a> /j <a href="http://a-ik-z">sj</a> /k <a
+href="http://a-jl-z">sk</a> /l <a href="http://a-km-z">sl</a> /m <a
+href="http://a-ln-z">sm</a> /n <a href="http://a-mo-z">sn</a> /o <a
+href="http://a-np-z">so</a> /p <a href="http://a-oq-z">sp</a> /q <a
+href="http://a-pr-z">sq</a> /r <a href="http://a-qs-z">sr</a> /s <a
+href="http://a-rt-z">ss</a> /t <a href="http://a-su-z">st</a> /u <a
+href="http://a-tv-z">su</a> /v <a href="http://a-uw-z">sv</a> /w <a
+href="http://a-vx-z">sw</a> /x <a href="http://a-wyz">sx</a> /y <a
+href="http://a-xz">sy</a> # Kore’s ruleset was truncated after “/zszr” /z
+<a href="http://a-y">sz</a> -c /[a-z] <a href="http://A-Z">s0</a></p>
+
+<p>####################################################################</p>
+<dl class="rdoc-list label-list"><dt>List.Rules:KoreLogicRules
+<dd>
+<p>;[List.Rules:KoreLogicRulesPrependNumNum] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[0-9]”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependYears] <a
+href="http://0-1">A0“20</a>[0-9]” <a href="http://3-9">A0“19</a>[0-9]”</p>
+
+<p># Notice: Your wordlist should likely be all lowercase - or you are wasting
+work ;[List.Rules:KoreLogicRulesAppendYears] -[c:] p[c:] <a
+href="http://0-9">Az“19</a>[0-9]” &lt;+ -[c:] p[c:] <a
+href="http://01">Az“20</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependNumNumNum] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[<a href="http://0-9">0-9]</a>”</p>
+
+<p>;[List.Rules:KoreLogicRulesMonthsFullPreface] -[:c] <a
+href="http://jJ">A0“p</a>anuary” -[:c] <a href="http://fF">A0“p</a>ebruary”
+-[:c] <a href="http://mM">A0“p</a>arch” -[:c] <a
+href="http://aA">A0“p</a>pril” -[:c] <a href="http://mM">A0“p</a>ay” -[:c]
+<a href="http://jJ">A0“p</a>uner” -[:c] <a href="http://jJ">A0“p</a>uly”
+-[:c] <a href="http://aA">A0“p</a>ugust” -[:c] <a
+href="http://sS">A0“p</a>eptember” -[:c] <a
+href="http://oO">A0“p</a>ctober” -[:c] <a href="http://nN">A0“p</a>ovember”
+-[:c] <a href="http://dD">A0“p</a>ecember”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrepend4LetterMonths] ## Preface each dictionary
+with Janu janu Febr febr -[:c] <a href="http://jJ">A0“p</a>anu” -[:c] <a
+href="http://fF">A0“p</a>ebr” -[:c] <a href="http://mM">A0“p</a>arc” -[:c]
+<a href="http://aA">A0“p</a>pr” -[:c] <a href="http://mM">A0“p</a>ay” -[:c]
+<a href="http://jJ">A0“p</a>une” -[:c] <a href="http://jJ">A0“p</a>uly”
+-[:c] <a href="http://Aa">A0“p</a>ugu” -[:c] <a
+href="http://sS">A0“p</a>ept” -[:c] <a href="http://oO">A0“p</a>cto” -[:c]
+<a href="http://nN">A0“p</a>ove” -[:c] <a href="http://Dd">A0“p</a>ece”</p>
+
+<p># Use this rule with 2EVERYTHING.dic or 3EVERYTHING.dic
+;[List.Rules:KoreLogicRulesPrependSeason] <a href="http://Ss$">A0“</a>[<a
+href="http://mM">uU]</a>[<a href="http://eE3">mM]</a>[rR]” <a
+href="http://Ww">A0“</a>[<a href="http://nN">iI|]</a>[<a
+href="http://eE3">tT+]</a>[rR]” <a href="http://Ff">A0“</a>[<a
+href="http://lL">aA]</a>[lL]” <a href="http://Ss">A0“</a>[<a
+href="http://rR">pP]</a>[<a href="http://nN">iI]</a>[gG]” <a
+href="http://Aa">A0“</a>[<a href="http://tT">uU]</a>[<a
+href="http://mM">uU]</a>[nN]”</p>
+
+<p># Use this rule with 2EVERYTHING.dic or 3EVERYTHING.dic
+;[List.Rules:KoreLogicRulesAppendSeason] &lt;* <a
+href="http://Ss$">Az“</a>[<a href="http://mM">uU]</a>[<a
+href="http://eE3">mM]</a>[rR]” &lt;* <a href="http://Ww">Az“</a>[<a
+href="http://nN">iI|]</a>[<a href="http://eE3">tT+]</a>[rR]” &lt;* <a
+href="http://Ff">Az“</a>[<a href="http://lL">aA]</a>[lL]” &lt;* <a
+href="http://Ss">Az“</a>[<a href="http://rR">pP]</a>[<a
+href="http://nN">iI]</a>[gG]” &lt;* <a href="http://Aa">Az“</a>[<a
+href="http://tT">uU]</a>[<a href="http://mM">uU]</a>[nN]”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependHello] <a href="http://hH">A0“</a>[<a
+href="http://lL">eE]</a>[<a href="http://oO0">lL]</a>”</p>
+
+<p># Notice how we # 1) do caps first b/c they are more common in ‘complex’
+environments # 2) Do !$@#%. first b/c they are the most common special
+chars ;[List.Rules:KoreLogicRulesAppendCurrentYearSpecial] -[c:] p[c:] <a
+href="http://0-9">Az“201</a>[!$@#%.]” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Azq201</a>[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependSpecialSpecial] -[c:] p[c:] <a
+href="http://\">A0q[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend2Letters] &lt;- <a
+href="http://a-z">Az“</a>[a-z]” -c &lt;- <a href="http://A-Z">Az“</a>[A-Z]”
+-c &lt;- <a href="http://a-z">Az“</a>[A-Z]” -c &lt;- <a
+href="http://A-Z">Az“</a>[a-z]”</p>
+
+<p># Append numbers - but limit the total length.
+;[List.Rules:KoreLogicRulesAddJustNumbers] -[c:] &lt;* &gt;1 p[c:] $[0-9]
+-[c:] &lt;* &gt;1 p[c:] ^[0-9] -[c:] &lt;- &gt;1 p[c:] <a
+href="http://0-9">Az“</a>[0-9]” -[c:] &lt;- &gt;1 p[c:] <a
+href="http://0-9">A0“</a>[0-9]” -[c:] &gt;1 p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ # Redundant
+with KoreLogicRulesAppend4Num ;-[c:] &gt;1 p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesDevProdTestUAT] -<a href=“http://::cc”>r</a>
+&lt;* <a href="http://0l0l">Apr</a>“dev” pr[::TT]<a
+href=“http://::0l”>pr</a> -<a href=“http://::cc”>r</a> &lt;* <a
+href="http://0l0l">Apr</a>“uat” pr[::TT]<a href=“http://::0l”>pr</a> -<a
+href=“http://::cc”>r</a> &lt;* <a href="http://0l0l">Apr</a>“prod”
+pr[::TT]<a href=“http://::0l”>pr</a> -<a href=“http://::cc”>r</a> &lt;* <a
+href="http://0l0l">Apr</a>“test” pr[::TT]<a href=“http://::0l”>pr</a></p>
+
+<p>;[List.Rules:KoreLogicRulesPrependAndAppendSpecial] -[c:] &lt;- p[c:]
+^[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]
+$[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]</p>
+
+<p># Redundant with KoreLogicRulesAddJustNumbers and KoreLogicRulesAppend4Num
+;[List.Rules:KoreLogicRulesAppendJustNumbers] ;-[c:] &lt;* p[c:] $[0-9]
+;-[c:] &lt;- p[c:] <a href="http://0-9">Az“</a>[0-9]” ;-[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ ;-[c:] p[c:]
+<a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendNumbers_and_Specials_Simple] # cap first
+letter then add a 0  2 6 9 ! *  to the end -[c:] &lt;* p[c:]
+$[0-9!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] # cap first letter then
+add a special char - THEN a number  !0 %9 !9 etc -[c:] &lt;- p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][0-9]q # Cap
+the first letter - then add 0? 0! 5_ .. 9! ## add NUMBER then SPECIAL    1!
+.. 9? -[c:] &lt;- p[c:] <a
+href="http://0-9">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q ##
+Add Number Number Special ;-[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://\">0-9][!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*]q &lt;+ ##
+Add Special Number Number ;-[c:] p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>q &lt;+ # Add 100! … 999! to the end ;-[c:] p[c:]
+<a href="http://0-9">Azq</a>[<a
+href="http://0-9">0-9]</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendJustSpecials] -[c:] &lt;* p[c:]
+$[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] -[c:] &lt;- p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q</p>
+
+<p>;[List.Rules:KoreLogicRulesAddShortMonthsEverywhere] &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://aA">jJ]</a>[nN]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://eE">fF]</a>[bB]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://aA">mM]</a>[rRyY]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://pP">aA]</a>[rR]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://uU">jJ]</a>[nNlL]” &lt;*
+&gt;<a href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://uU">aA]</a>[gG]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://eE">sS]</a>[pP]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://cC">oO]</a>[tT]” &lt;* &gt;<a href=“http://00123456789”>r</a>
+<a href="http://z0-9">Ap</a>“[<a href="http://oO">nN]</a>[vV]” &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“[<a
+href="http://eE">dD]</a>[cC]”</p>
+
+<p># this will add the string ‘2010’ at all places in the word: # USE this
+with a 4 or 5 char dictionary file with ALL characters # soo abcde will
+become # 2010abcde  a2010bcde  ab2010cde  acd2010de  abcd2010e  abcde2010
+;[List.Rules:KoreLogicRulesAdd2010Everywhere] &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“<a
+href="http://0-9">201</a>”</p>
+
+<p>;[List.Rules:KoreLogicRulesAdd1234_Everywhere] &lt;* &gt;<a
+href=“http://00123456789”>r</a> <a href="http://z0-9">Ap</a>“1234”</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendMonthDay] -[:c] &lt;* <a
+href="http://jJ">Az“p</a>anuary” -[:c] <a
+href="http://0-9">Az“p[jJ]anuary</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[jJ]anuary</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://fF">Az“p</a>ebruary” -[:c] <a
+href="http://0-9">Az“p[fF]ebruary</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[fF]ebruary</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://mM">Az“p</a>arch” -[:c] <a href="http://0-9">Az“p[mM]arch</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[mM]arch</a>[0-9]” &lt;+ -[:c] &lt;*
+<a href="http://aA">Az“p</a>pril” -[:c] <a
+href="http://0-9">Az“p[aA]pril</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[aA]pril</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://mM">Az“p</a>ay” -[:c] <a href="http://0-9">Az“p[mM]ay</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[mM]ay</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://jJ">Az“p</a>une” -[:c] <a href="http://0-9">Az“p[jJ]une</a>”
+&lt;+ # There was a typo in Kore’s original revision of this rule -[:c] <a
+href="http://0-9">Az“p[jJ]une</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://jJ">Az“p</a>uly” -[:c] <a href="http://0-9">Az“p[jJ]uly</a>”
+&lt;+ -[:c] <a href="http://0-9">Az“p[jJ]uly</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://aA">Az“p</a>ugust” -[:c] <a
+href="http://0-9">Az“p[aA]ugust</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[aA]ugust</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://sS">Az“p</a>eptember” -[:c] <a
+href="http://0-9">Az“p[sS]eptember</a>” &lt;+ # There was a typo in Kore’s
+original revision of this rule -[:c] <a
+href="http://0-9">Az“p[sS]eptember</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://oO">Az“p</a>ctober” -[:c] <a
+href="http://0-9">Az“p[oO]ctober</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[oO]ctober</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://nN">Az“p</a>ovember” -[:c] <a
+href="http://0-9">Az“p[nN]ovember</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[nN]ovember</a>[0-9]” &lt;+ -[:c] &lt;* <a
+href="http://dD">Az“p</a>ecember” -[:c] <a
+href="http://0-9">Az“p[dD]ecember</a>” &lt;+ -[:c] <a
+href="http://0-9">Az“p[dD]ecember</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendMonthCurrentYear] -[:c] &lt;* <a
+href="http://0-9">Az“p[jJ]an201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[fF]eb201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[mM]ar201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[aA]pr201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[mM]ay201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[jJ]un201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[jJ]ul201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[Aa]ug201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[sS]ep201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[oO]ct201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[nN]ov201</a>” -[:c] &lt;* <a
+href="http://0-9">Az“p[Dd]ec201</a>”</p>
+
+<p>;[List.Rules:KoreLogicRulesReplaceNumbers2Special] /[1-90] <a
+href="http://!@#$%^&*()">s0p</a> /1 /[2-90] s1! <a
+href="http://@#$%^&*()">s0p</a> /2 /[3-90] s2@ <a href="#$%^&*()">s0p</a>
+/3 /[4-90] s3# <a href="http://$%^&*()">s0p</a> /4 /[5-90] s4$ <a
+href="http://%^&*()">s0p</a> /5 /[6-90] s5% <a href="http://^&*()">s0p</a>
+/6 /[7-90] s6^ <a href="http://&*()">s0p</a> /7 /[890] s7&amp; <a
+href="http://*()">s0p</a> /8 /[90] s8* <a href="http://()">s0p</a> /9 /0
+s9( s0)</p>
+
+<p>;[List.Rules:KoreLogicRulesReplaceNumbers] /0 <a href="http://1-9">s0</a>
+/1 <a href="http://02-9">s1</a> /2 <a href="http://013-9">s2</a> /3 <a
+href="http://0-24-9">s3</a> /4 <a href="http://0-35-9">s4</a> /5 <a
+href="http://0-46-9">s5</a> /6 <a href="http://0-57-9">s6</a> /7 <a
+href="http://0-68-9">s7</a> /8 <a href="http://0-79">s8</a> /9 <a
+href="http://0-8">s9</a> # 10 lines above can be replaced with just one: #
+/[0-9] <a href="http://0-9">s0</a> Q # but it’s slower (generates, then
+rejects some duplicates).</p>
+
+<p># This is a lamer/faster version of –rules:nt
+;[List.Rules:KoreLogicRulesReplaceLettersCaps] -c /[a-z] <a
+href="http://A-Z">s0p</a></p>
+
+<p>;[List.Rules:KoreLogicRulesAddDotCom] -[c:] &lt;- p[c:] Az“.com” -[c:]
+&lt;- p[c:] Az“.net” -[c:] &lt;- p[c:] Az“.org”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependJustSpecials] -[c:] p[c:]
+^[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] -[c:] p[c:] <a
+href="http://\">A0q[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend1_AddSpecialEverywhere] -[c:] &gt;4 &lt;-
+p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] $1
+-[c:] &gt;[5-8] &lt;- p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] $1</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendNum_AddSpecialEverywhere] # This should
+probably use $[02-9] since we try $1 in #
+KoreLogicRulesAppend1_AddSpecialEverywhere -[c:] &gt;4 &lt;- p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] $[0-9]
+-[c:] &gt;[5-8] &lt;- p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]
+$[0-9]</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendNumNum_AddSpecialEverywhere] -[c:] &gt;4
+p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az”</a>[0-9]“ &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az“</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendNumNumNum_AddSpecialEverywhere] -[c:]
+&gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az”</a>[<a href="http://0-9">0-9]</a>“ &lt;+ -[c:]
+&gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendYears_AddSpecialEverywhere] -[c:] &gt;4
+p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://4-9">Az”19</a>[0-9]“ &lt;+ -[c:] &gt;4 p[c:] <a
+href="http://0-5">i</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-1">Az“20</a>[0-9]” &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*] <a
+href="http://4-9">Az”19</a>[0-9]“ &lt;+ -[c:] &gt;[5-8] p1[c:] <a
+href="http://6-9">ip2</a>[!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*] <a
+href="http://0-1">Az“20</a>[0-9]” &lt;+</p>
+
+<p># This rule needs work actually — you have to ‘sort -u’ its output    rick
+# /a = reject if it doesnt have an ‘a’ # the [:c] does waste some effort -
+and generate dupes. This is wasteful, # but I want to keep it in b/c the
+original crack/JtR rules use it. ;[List.Rules:KoreLogicRulesL33t] -[:c] /<a
+href=“http://aaAAbBeEiiiIIIllll”>r</a> <a
+href="http://@44@88331!|1!|17|!">s0rp</a> p1[:M] p1[:c] p1[:Q] # The
+following line differs from Kore’s erroneous 4 lines: -[:c] /<a
+href=“http://LLLL”>r</a> <a href="http://17|!">s0rp</a> p1[:M] p1[:c]
+p1[:Q] #/<a href="http://:c">Lsl1</a> #/<a href="http://:c">Lsl7</a> #/<a
+href="http://:c">Lsl|</a> #/<a href="http://:c">Lsl!</a> -[:c] /<a
+href=“http://oOssSStT1111003344557788”>r</a> <a
+href="http://00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M] p1[:c] p1[:Q] # Full
+set (same as above, but on one line): #-[:c] /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a>
+p1[:M] p1[:c] p1[:Q] # Double substitutions start here. # Compared to
+Kore’s, we check for both chars first, then replace both. # This produces
+different results from Kore’s, which would replace all # instances of the
+first char before checking for the second. # Kore’s behavior may be
+restored by moving “<a href="http://@4">sa</a>” to be right after “/a” # on
+the line below, and ditto for further lines. -[:c] /a /<a
+href=“http://AAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@4">sa</a> <a
+href="http://4@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # Kore had these (probably unintentionally, so we don’t
+duplicate them): #/<a href="http://:c">asa4/4s4a</a> #/<a
+href="http://:c">asa4/4s4A</a> -[:c] /A /<a
+href=“http://aabBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sA4 <a
+href="http://@488331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] # Kore also had these, but (intentionally?) missed sb8 on
+this set (after sA4) #/<a href="http://:c">AsA4/4s4a</a> #/<a
+href="http://:c">AsA4/4s4A</a> -[:c] /b /<a
+href=“http://aaAABeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sb8 <a
+href="http://@44@8331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /B /<a
+href=“http://aaAAbeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sB8 <a
+href="http://@44@8331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /e /<a
+href=“http://aaAAbBEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> se3 <a
+href="http://@44@8831!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /E /<a
+href=“http://aaAAbBeiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> sE3 <a
+href="http://@44@8831!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /i /<a
+href=“http://aaAAbBeEIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://1!|">si</a> <a
+href="http://@44@88331!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /I /<a
+href=“http://aaAAbBeEiiillllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://1!|">sI</a> <a
+href="http://@44@88331!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # Kore’s rules only included <a href="http://17|">sl</a>, but
+not sl! -[:c] /l /<a
+href=“http://aaAAbBeEiiiIIILLLLoOssSStT1111003344557788”>r</a> <a
+href="http://17|!">sl</a> <a
+href="http://@44@88331|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # All “/L” rules (171 lines) were buggy -[:c] /L /<a
+href=“http://aaAAbBeEiiiIIIlllloOssSStT1111003344557788”>r</a> <a
+href="http://17|!">sl</a> <a
+href="http://@44@88331|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /o /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLOssSStT1111003344557788”>r</a> so0 <a
+href="http://@44@88331!|1!|17|!17|!0$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /O /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLossSStT1111003344557788”>r</a> sO0 <a
+href="http://@44@88331!|1!|17|!17|!0$5$5++!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /s /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOSStT1111003344557788”>r</a> <a
+href="http://$5">ss</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /S /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOsstT1111003344557788”>r</a> <a
+href="http://$5">sS</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5++!iI|oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /t /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSST1111003344557788”>r</a> st+ <a
+href="http://@44@88331!|1!|17|!17|!00$5$5+!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /T /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSSt1111003344557788”>r</a> sT+ <a
+href="http://@44@88331!|1!|17|!17|!00$5$5+!iI|oOeEaAsSlLbB">s0rp</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /1 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT003344557788”>r</a> <a
+href="http://!iI|">s1</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++oOeEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /0 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11113344557788”>r</a> <a
+href="http://oO">s0</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|eEaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /3 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110044557788”>r</a> <a
+href="http://eE">s3</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOaAsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] #-[:c] /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT1111003344557788”>r</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlLbB">s0rp</a>
+p1[:M] p1[:c] p1[:Q] -[:c] /4 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033557788”>r</a> <a
+href="http://aA">s4</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEsSlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /5 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033447788”>r</a> <a
+href="http://sS">s5</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAlLbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /7 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033445588”>r</a> <a
+href="http://lL">s7</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSbB">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] -[:c] /8 /<a
+href=“http://aaAAbBeEiiiIIIllllLLLLoOssSStT11110033445577”>r</a> <a
+href="http://bB">s8</a> <a
+href="http://@44@88331!|1!|17|!17|!00$5$5++!iI|oOeEaAsSlL">s2rp2</a> p1[:M]
+p1[:c] p1[:Q] # These are some popular triple/quad l33t rules -[:c] /a /e
+/[los] sa4 se3 <a href="http://10$">s0p</a> p1[:M] p1[:c] p1[:Q] -[:c]
+/[ae] /l /[os] <a href="http://43">s2p2</a> sl1 <a
+href="http://0$">s3p3</a> p1[:M] p1[:c] p1[:Q] -[:c] /[ae] /o /s <a
+href="http://43">s2p2</a> so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /l /o /s sl1
+so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /a /e /l /[os] sa4 se3 sl1 <a
+href="http://0$">s0p</a> p1[:M] p1[:c] p1[:Q] -[:c] /a /[el] /o /s sa4 <a
+href="http://31">s0p</a> so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /e /l /o /s se3
+sl1 so0 ss$ p1[:M] p1[:c] p1[:Q] -[:c] /a /e /l /o /s sa4 se3 sl1 so0 ss$
+p1[:M] p1[:c] p1[:Q]</p>
+
+<p>;[List.Rules:KoreLogicRulesReplaceSpecial2Special] # Kore’s rules were
+missing “*” /! <a href="http://@#$%^&*()\-=_+\\|;:'",./?><">s!</a> /@ <a
+href="http://!#$%^&*()\-=_+\\|;:'",./?><">s@</a> /# <a
+href="http://!@$%^&*()\-=_+\\|;:'",./?><">s#</a> /$ <a
+href="http://!@#%^&*()\-=_+\\|;:'",./?><">s$</a> /% <a
+href="http://!@#$^&*()\-=_+\\|;:'",./?><">s%</a> /^ <a
+href="http://!@#$%&*()\-=_+\\|;:'",./?><">s^</a> /&amp; <a
+href="http://!@#$%^*()\-=_+\\|;:'",./?><">s&</a> /( <a
+href="http://!@#$%^&*)\-=_+\\|;:'",./?><">s(</a> /) <a
+href="http://!@#$%^&*(\-=_+\\|;:'",./?><">s(</a> # Kore’s ruleset
+erroneously had: #/-s– /- <a
+href="http://!@#$%^&*()=_+\\|;:'",./?><">s-</a> /= <a
+href="http://!@#$%^&*()\-_+\\|;:'",./?><">s=</a> /_ <a
+href="http://!@#$%^&*()\-=+\\|;:'",./?><">s_</a> /+ <a
+href="http://!@#$%^&*()\-=_\\|;:'",./?><">s+</a> # Kore’s rules did not
+replace backslash /\ <a href="http://!@#$%^&*()\-=_+|;:'",./?><">s\</a> /|
+<a href="http://!@#$%^&*()\-=_+\\;:'",./?><">s|</a> /; <a
+href="http://!@#$%^&*()\-=_+\\|:'",./?><">s;</a> /: <a
+href="http://!@#$%^&*()\-=_+\\|;'",./?><">s:</a> /‘ <a
+href="http://!@#$%^&*()\-=_+\\|;:",./?><">s’</a> /“ <a
+href="http://!@#$%^&*()\-=_+\\|;:',./?><">s”</a> /, <a
+href="http://!@#$%^&*()\-=_+\\|;:'"./?><">s,</a> /. <a
+href="http://!@#$%^&*()\-=_+\\|;:'",/?><">s.</a> // <a
+href="http://!@#$%^&*()\-=_+\\|;:'",.?><">s/</a> /&gt; <a
+href="http://!@#$%^&*()\-=_+\\|;:'",./?<">s></a> /&lt; <a
+href="http://!@#$%^&*()\-=_+\\|;:'",./?>“>s<</a></p>
+
+<p>;[List.Rules:KoreLogicRulesReplaceLetters] /a <a href="http://b-z">sa</a>
+/b <a href="http://ac-z">sb</a> /c <a href="http://abd-z">sc</a> /d <a
+href="http://a-ce-z">sd</a> /e <a href="http://a-df-z">se</a> /f <a
+href="http://a-eg-z">sf</a> /g <a href="http://a-fh-z">sg</a> /h <a
+href="http://a-gi-z">sh</a> /i <a href="http://a-hj-z">si</a> /j <a
+href="http://a-ik-z">sj</a> /k <a href="http://a-jl-z">sk</a> /l <a
+href="http://a-km-z">sl</a> /m <a href="http://a-ln-z">sm</a> /n <a
+href="http://a-mo-z">sn</a> /o <a href="http://a-np-z">so</a> /p <a
+href="http://a-oq-z">sp</a> /q <a href="http://a-pr-z">sq</a> /r <a
+href="http://a-qs-z">sr</a> /s <a href="http://a-rt-z">ss</a> /t <a
+href="http://a-su-z">st</a> /u <a href="http://a-tv-z">su</a> /v <a
+href="http://a-uw-z">sv</a> /w <a href="http://a-vx-z">sw</a> /x <a
+href="http://a-wyz">sx</a> /y <a href="http://a-xz">sy</a> # Kore’s ruleset
+was truncated after “/zszr” /z <a href="http://a-y">sz</a> -c /[a-z] <a
+href="http://A-Z">s0</a></p>
+
+<p>;[List.Rules:KoreLogicRulesAppendSpecialNumberNumber] -[c:] p[c:] <a
+href="http://!$@#%.">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:]
+p[c:] <a href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependNumNumAppendSpecial] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[0-9]” &lt;* $[!$@#%.] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[0-9]” &lt;*
+$[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependNumNumSpecial] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[<a href="http://!$@#%.">0-9]</a>” -[c:] p[c:] <a
+href="http://0-9">A0q</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend2NumSpecial] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://!$@#%.">0-9]</a>” &lt;+ -[c:]
+p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependDaysWeek] <a href="http://Mm">A0“</a>[<a
+href="http://nN">oO0]</a>[<a href="http://aA4@">dD]</a>[yY]” <a
+href="http://Tt">A0“</a>[<a href="http://eE3">uU]</a>[<a
+href="http://dD">sS$]</a>[<a href="http://yY">aA4@]</a>” <a
+href="http://Ww">A0“</a>[<a href="http://dD">eE3]</a>[<a
+href="http://eE3">nN]</a>[<a href="http://dD">sS$]</a>[<a
+href="http://yY">aA4@]</a>” <a href="http://Tt">A0“</a>[<a
+href="http://uU">hH]</a>[<a href="http://sS$">rR]</a>[<a
+href="http://aA4@">dD]</a>[yY]” <a href="http://Ff">A0“</a>[<a
+href="http://iI1!">rR]</a>[<a href="http://aA4@">dD]</a>[yY]” <a
+href="http://Ss">A0“</a>[<a href="http://tT+">aA4@]</a>[<a
+href="http://rR">uU]</a>[<a href="http://aA4@">dD]</a>[yY]” <a
+href="http://Ss">A0“</a>[<a href="http://nN">uU]</a>[<a
+href="http://aA4@">dD]</a>[yY]”</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendNumbers_and_Specials_Simple-3] ## Add
+Number Number Special -[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://\">0-9][!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q &lt;+ ##
+Add Special Number Number -[c:] p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumber] -[c:] p[c:]
+<a href="http://!$@#%.">A0“</a>[!$@#%.]” &lt;* $[0-9] -[c:] p[c:] <a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;* $[0-9]</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend4Num] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependNumNumNumNum] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[<a href="http://0-9">0-9]</a>[0-9]”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrepend2NumbersAppend2Numbers] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[0-9]” &lt;- <a href="http://0-9">Az“</a>[0-9]”</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependCAPCAPAppendSpecial] <a
+href="http://A-Z">A0“</a>[A-Z]” &lt;* $[!$@#%.] <a
+href="http://A-Z">A0“</a>[A-Z]” &lt;*
+$[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendSpecialLowerLower] -[c:] p[c:] <a
+href="http://\">AzQ[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://a-z">a-z]</a>Q &lt;+</p>
+
+<p># The last line of KoreLogicRulesAppendNumbers_and_Specials_Simple
+;[List.Rules:KoreLogicRulesAppendNumbers_and_Specials_Simple-4] # Add 100!
+… 999! to the end -[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://0-9">0-9]</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q
+&lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendSpecial3num] -[c:] p[c:] <a
+href="http://!$@#%.">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+
+-[c:] p[c:] <a href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[0-9]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendSpecialNumberNumberNumber] -[c:] p[c:] <a
+href="http://!$@#%.">Az“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;+
+-[c:] p[c:] <a href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[0-9]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend3NumSpecial] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[!$@#%.]” &lt;+
+-[c:] p[c:] <a href="http://0-9">Azq</a>[<a
+href="http://0-9">0-9]</a>[^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependNumNum_AppendNumSpecial] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[0-9]” <a
+href="http://0-9">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q
+&lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendJustSpecials3Times] -[c:] p[c:] <a
+href="http://!$@#%.">Az“</a>[!$@#%.][!$@#%.]” &lt;+ -[c:] p[c:] <a
+href="http://\">Azq[!$@#%.^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*]q
+&lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendCap-Num_or_Special-Twice] -[c:] p[c:] <a
+href="http://A-Z">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:]
+<a
+href="http://A-Z">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*][0-9]q
+&lt;+ -[c:] p[c:] <a href="http://A-Z">Azq</a>[<a
+href="http://\">0-9][!$@#%.^&()_+-={}|</a>\;’”:,/&lt;&gt;?`~*]q &lt;+ -[c:]
+p[c:] <a
+href="http://A-Z">Azq</a>[!$@#%.^&amp;()_+-={}|[]\;‘“:,/&lt;&gt;?`~*][!$@#%.^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumbersNumber] -[c:]
+p[c:] <a href="http://!$@#%.">A0“</a>[!$@#%.]” &lt;- <a
+href="http://0-9">Az“</a>[0-9]” -[c:] p[c:] <a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+&lt;- <a href="http://0-9">Az“</a>[0-9]”</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend5Num] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://0-9">0-9]</a>” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppendSpecial4num] -[c:] p[c:] <a
+href="http://!$@#%.">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:] <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][<a
+href="http://0-9">0-9]</a>[<a href="http://0-9">0-9]</a>q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrepend4NumAppendSpecial] -[c:] p[c:] <a
+href="http://0-9">A0“</a>[<a href="http://0-9">0-9]</a>[0-9]” &lt;-
+$[!$@#%.] -[c:] p[c:] <a href="http://0-9">A0“</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;- <a
+href="http://\">Azq[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend4NumSpecial] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://!$@#%.">0-9]</a>” &lt;+ -[c:] p[c:] <a
+href="http://0-9">Azq</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://\">0-9][^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*]q &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesPrependSpecialSpecialAppendNumbersNumberNumber]
+-[c:] p[c:] <a href="http://!$@#%.">A0“</a>[!$@#%.]” <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+ -[c:] p[c:]
+<a
+href="http://\">A0q[^&()_+-={}|</a>\;‘“:,/&lt;&gt;?`~*][^&amp;()_+-={}|[]\;’”:,/&lt;&gt;?`~*]q
+<a href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>” &lt;+</p>
+
+<p>;[List.Rules:KoreLogicRulesAppend6Num] -[c:] p[c:] <a
+href="http://0-9">Az“</a>[<a href="http://0-9">0-9]</a>[<a
+href="http://0-9">0-9]</a>[0-9]” &lt;+</p>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+</dd></dl>
+
+</div>
+
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
