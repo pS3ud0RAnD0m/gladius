@@ -329,10 +329,10 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Output words and email addresses (CeWL)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mangle a list:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  Output basic (John)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;4.  Output l33t (John)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;5.  Output basic + l33t (John)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;4.  Output l33t (John) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;5.  Output basic + l33t (John) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Modify a list:&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;6.  Remove short and long words (Gladius)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;6.  Remove short and long words (Gladius) (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Other:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
@@ -342,9 +342,12 @@
   <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;words&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Cewl</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;CeWL - Scrape Words and Email Addresses&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;emails&quot;</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - Basic Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;basic&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - L33t Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;l33t&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">John</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;CustomDictionary&quot;</span>, <span class="ruby-string">&quot;John - Basic + L33t Mangle&quot;</span>).<span class="ruby-identifier">menu</span>(<span class="ruby-string">&quot;basic_l33t&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Dictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Dictionary Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">5</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
+    <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">99</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_gladius</span>
   <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
   <span class="ruby-identifier">menu</span>
