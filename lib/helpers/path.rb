@@ -90,6 +90,7 @@ module Path
         "share"              => @share,
         "share_gladius_conf" => @share_config + "gladius.conf",
         "share_seed"         => @share_input + "seed.txt",
+        "share_sprout"       => @share_input + "sprout.txt",
 # ttd_1: Did i really misspell stdin?
         "share_stdn_hosts"   => @share_input + "stdn_hosts.txt",
         "share_stdn_pwds"    => @share_input + "stdn_pwds.txt",

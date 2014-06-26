@@ -374,6 +374,7 @@
         <span class="ruby-string">&quot;share&quot;</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share</span>,
         <span class="ruby-string">&quot;share_gladius_conf&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share_config</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;gladius.conf&quot;</span>,
         <span class="ruby-string">&quot;share_seed&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share_input</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;seed.txt&quot;</span>,
+        <span class="ruby-string">&quot;share_sprout&quot;</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share_input</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;sprout.txt&quot;</span>,
 <span class="ruby-comment"># ttd_1: Did i really misspell stdin?</span>
         <span class="ruby-string">&quot;share_stdn_hosts&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share_input</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;stdn_hosts.txt&quot;</span>,
         <span class="ruby-string">&quot;share_stdn_pwds&quot;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@share_input</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;stdn_pwds.txt&quot;</span>,
@@ -415,7 +416,7 @@
 
           
           <div class="method-source-code" id="get_out_file-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 106</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-ivar">@share_output</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -448,7 +449,7 @@
 
           
           <div class="method-source-code" id="get_out_file_txt-source">
-            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/helpers/path.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>
