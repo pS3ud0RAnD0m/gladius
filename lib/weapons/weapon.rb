@@ -15,11 +15,19 @@ class Weapon
     puts "----------------------------------------"
   end
 
+# ttd_3: move this pid method to path.rb and refactor
   def get_pid_file
     time = Time.now
     tmp_pids = Path.get("share_pids")
     pid_tstamp = "%10.10f" % time.to_f
     time.strftime(tmp_pids + pid_tstamp + ".pid")
+  end
+
+  def get_tmp_file
+    time = Time.now
+    tmp_file = Path.get("share_tmp")
+    file_tstamp = "%10.10f" % time.to_f
+    time.strftime(tmp_file + file_tstamp + ".tmp")
   end
 
   def get_host
@@ -172,7 +180,7 @@ class Weapon
   end
 
   # Get wordlist counts
-# ttd_1: convert count usage to count_lines
+# ttd_1: convert count usage to count_lines_file
   def count(usrs_file, pwds_file)
     usrs_count = File.foreach(usrs_file).count.to_i
     pwds_count = File.foreach(pwds_file).count.to_i + 2
@@ -180,9 +188,10 @@ class Weapon
     puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
   end
 
+# ttd_2: ID filename cause of "sh: 2: Syntax error: "|" unexpected"
 # ttd_2: Replace all "wc -l" with this to handle final newlines.
   def count_lines_file(file_name)
-    count = %x{sed -n '=' #{file_name} | wc -l}.to_i
+    count = `sed -n '=' #{file_name} |wc -l`.to_i
   end
   
   def count_pwds_file(pwds_file)
@@ -199,6 +208,7 @@ class Weapon
     if File.exists?(pid_file)
       File.delete(pid_file)
     end
+    puts
   rescue Interrupt
     puts
     puts "Stopped due to interrupt.".red
