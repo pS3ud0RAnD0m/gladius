@@ -166,6 +166,8 @@ class Weapon
       instruct_input = "instruct_input_" + instruct_type
       send(instruct_input)
       destination = gets
+      puts "....................1"
+      puts destination
       line_count = count_lines_file(destination)
       while line_count == 0
         puts "#{destination} is empty.".red
@@ -175,6 +177,7 @@ class Weapon
       end
     end
   end
+  
   def no_input
     puts "No input detected.".red
   end

@@ -29,7 +29,9 @@ class John < Weapon
       get_input("stdin_to_file", "words", @share_seed)
       execute(run_method)
     when 2 then
-      get_input("gets_to_var", "words_list", @share_seed)
+      # cp to share_seed
+      
+      get_input("gets_to_var", "words_list", "")
       execute(run_method)
     else puts "Invalid selection.".red
     menu(run_method)
@@ -83,7 +85,6 @@ class John < Weapon
         `cat #{@tmp_file} >>#{@out_file}`
         `rm #{@tmp_file}`
         clean_exit
-
       end
   end
 end  
