@@ -31,7 +31,7 @@ class John < Weapon
     when 2 then
       # cp to share_seed
       
-      get_input("gets_to_var", "words_list", "")
+      get_input("gets_to_var", "words_list", @share_seed)
       execute(run_method)
     else puts "Invalid selection.".red
     menu(run_method)
@@ -67,7 +67,7 @@ class John < Weapon
         cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} #{appendix}"
         run(cmd)
         clean_exit
-      when "basic_and_l33t" then
+      when "basic_plus_l33t" then
         cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout >#{@share_sprout}"
         run(cmd)
         cmd = prependix + appendix

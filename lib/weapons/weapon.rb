@@ -134,7 +134,7 @@ class Weapon
   end
 
   def instruct_input_words_list
-    puts "Input your word list and press Enter.".light_yellow
+    puts "Input the path to your wordlist and press Enter.".light_yellow
     puts "Example:".yellow
     puts "/root/Desktop/words.txt".yellow
   end
@@ -161,20 +161,18 @@ class Weapon
         a.close
         line_count = count_lines_file(destination)
       end
-# ttd_1: gets_to_var input validation needs flushed out further
     when "gets_to_var" then
       instruct_input = "instruct_input_" + instruct_type
       send(instruct_input)
-      destination = gets
-      puts "....................1"
-      puts destination
+      destination = gets.chomp
       line_count = count_lines_file(destination)
       while line_count == 0
-        puts "#{destination} is empty.".red
+        puts "File is empty or does not exist.".red
         send(instruct_input)
-        destination = gets
+        destination = gets.chomp
         line_count = count_lines_file(destination)
       end
+      @share_seed = destination
     end
   end
   
@@ -191,10 +189,15 @@ class Weapon
     puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
   end
 
-# ttd_2: ID filename cause of "sh: 2: Syntax error: "|" unexpected"
 # ttd_2: Replace all "wc -l" with this to handle final newlines.
   def count_lines_file(file_name)
-    count = `sed -n '=' #{file_name} |wc -l`.to_i
+    if File.exist?(file_name)
+      count = `sed -n '=' #{file_name} |wc -l`.to_i
+    else
+      count = 0
+    end
+    
+    
   end
   
   def count_pwds_file(pwds_file)
