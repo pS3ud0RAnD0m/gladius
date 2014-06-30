@@ -54,6 +54,7 @@ class John < Weapon
 # Execution methods
 ###############################################################################
   # Execute method
+# ttd_1: Improve efficiency of post-john file manipulation.
   def execute(run_method)
     @out_file = Path.get_out_file(@name) + "_#{run_method}.txt"
     prependix = "#{@path} -w=#{@share_seed} -rules"
