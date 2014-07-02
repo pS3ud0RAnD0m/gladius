@@ -54,7 +54,6 @@ class John < Weapon
 # Execution methods
 ###############################################################################
   # Execute method
-# ttd_1: Improve efficiency of post-john file manipulation.
   def execute(run_method)
     @out_file = Path.get_out_file(@name) + "_#{run_method}.txt"
     prependix = "#{@path} -w=#{@share_seed} -rules"
@@ -69,22 +68,16 @@ class John < Weapon
         run(cmd)
         clean_exit
       when "basic_plus_l33t" then
-        cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout >#{@share_sprout}"
-        run(cmd)
         cmd = prependix + appendix
         run(cmd)
-        `cat #{@share_sprout} >>#{@out_file}`
+        cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout >>#{@out_file}"
+        run(cmd)
         clean_exit
       when "basic_thru_l33t" then
-        cmd = "#{prependix} -stdout >#{@share_sprout}"
+        cmd = "#{prependix} -stdout |tee #{@share_sprout} #{@out_file} >/dev/null"
         run(cmd)
         cmd = "#{@path} -w=#{@share_sprout} -rules=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout >>#{@out_file}"
         run(cmd)
-# ttd_3: rubify these bash commands.
-        `cat #{@out_file} >#{@tmp_file}`
-        `cat #{@share_sprout} >#{@out_file}`
-        `cat #{@tmp_file} >>#{@out_file}`
-        `rm #{@tmp_file}`
         clean_exit
       end
   end
