@@ -8,7 +8,7 @@ class Nikto < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
   end
 
@@ -26,12 +26,12 @@ class Nikto < Weapon
     end
     puts
     instruct_input_targets("fqdn", "ip", "fqdnp", "ipp", "url")
-    a = File.open(@stdn_hosts, "w")
+    a = File.open(@stdin_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @stdn_hosts
+    hosts = @stdin_hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       no_input
@@ -62,7 +62,7 @@ class Nikto < Weapon
   # Discover common vulns without SSL
   def common
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -C all -h " + @stdn_hosts + " |tee " + @out_file
+    cmd = @path + " -C all -h " + @stdin_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end
@@ -70,7 +70,7 @@ class Nikto < Weapon
   # Discover common vulns over SSL
   def common_ssl
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -ssl -C all -h " + @stdn_hosts + " |tee " + @out_file
+    cmd = @path + " -ssl -C all -h " + @stdin_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end

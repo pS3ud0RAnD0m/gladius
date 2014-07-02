@@ -8,7 +8,7 @@ class Fierce < Weapon
     @prev_menu = prev_menu
     @title = title
     # Weapon specific
-    @stdn_hosts = []
+    @stdin_hosts = []
     # Weapon specific lists
     @dns_hosts_long = Path.get("dns_hosts_long")
   end
@@ -23,15 +23,15 @@ class Fierce < Weapon
     when "dictionary" then instruct_input_targets("domain")
     end
     while line = gets
-      @stdn_hosts << line.chomp
+      @stdin_hosts << line.chomp
     end
-    if @stdn_hosts.count == 0
+    if @stdin_hosts.count == 0
       no_input
       menu(run_method)
-    elsif @stdn_hosts.count == 1
-      puts "Targeting " + @stdn_hosts[0] + " ..."
+    elsif @stdin_hosts.count == 1
+      puts "Targeting " + @stdin_hosts[0] + " ..."
     else 
-      hosts_count = @stdn_hosts.count
+      hosts_count = @stdin_hosts.count
       puts "Targeting #{hosts_count} domains ..."
     end
     case run_method
@@ -57,7 +57,7 @@ class Fierce < Weapon
   def dictionary
     @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
-    @stdn_hosts.each do |host|
+    @stdin_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
       `echo "#{host}" >>#{out_file}`
       `echo "------------------------------" >>#{out_file}`

@@ -5,7 +5,7 @@ class GNmap < Weapon
     # Common
     @prev_menu = prev_menu
     @title = title
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     # Weapon specific
     @cmd = ""
     @name = "nmap"
@@ -22,13 +22,13 @@ class GNmap < Weapon
   def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
-    a = File.open(@stdn_hosts, "w")
+    a = File.open(@stdin_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    stdn_hosts = @stdn_hosts
-    line_count = `wc -l #{stdn_hosts}`.to_i
+    stdin_hosts = @stdin_hosts
+    line_count = `wc -l #{stdin_hosts}`.to_i
     if line_count == 0
       no_input
       menu(run_method)
@@ -62,12 +62,12 @@ class GNmap < Weapon
   def execute(run_method)
     @out_file = Path.get_out_file(@name)
     prependix = @path + " -v -Pn -s"
-    appendix = " -iL " + @stdn_hosts + " -oA " + @out_file
+    appendix = " -iL " + @stdin_hosts + " -oA " + @out_file
       case run_method
       when "custom" then custom
         cmd = @cmd
 # ttd_2: arp/icmp ping: parse up hosts
-      when "ping_discovery" then cmd = @path +             " -v -T4 -sn --min-hostgroup 256 -iL " + @stdn_hosts + " -oA " + @out_file
+      when "ping_discovery" then cmd = @path +             " -v -T4 -sn --min-hostgroup 256 -iL " + @stdin_hosts + " -oA " + @out_file
       when "script_ftp_anon" then cmd = prependix +        "S -p21 --script ftp-anon" + appendix
       when "script_http_methods" then cmd = prependix +    "S -p80,443 --script http-methods" + appendix
       when "script_smtp_open_relay" then cmd = prependix + "S -p25,465,587 --script smtp-open-relay" + appendix
@@ -98,6 +98,6 @@ class GNmap < Weapon
     puts "-A -T4 -sSV -Pn -p22,2222".yellow
     puts
     args = gets.chomp
-    @cmd = @path + " -v #{args} -iL " + @stdn_hosts + " -oA " + @out_file
+    @cmd = @path + " -v #{args} -iL " + @stdin_hosts + " -oA " + @out_file
   end
 end  

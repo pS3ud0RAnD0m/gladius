@@ -6,7 +6,7 @@ class SSLScan < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
   end
 
@@ -18,12 +18,12 @@ class SSLScan < Weapon
     puts "Note: SSLScan uses OpenSSL. OpenSSL recently disabled SSLv2, by default.".light_yellow
     header
     instruct_input_targets("fqdn", "fqdnp", "ip", "ipp")
-    a = File.open(@stdn_hosts, "w")
+    a = File.open(@stdin_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    hosts = @stdn_hosts
+    hosts = @stdin_hosts
     line_count = `wc -l #{hosts}`.to_i
     if line_count == 0
       no_input
@@ -58,7 +58,7 @@ class SSLScan < Weapon
   # Discover supported SSL/TLS certs
   def common
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " --no-failed --targets=" + @stdn_hosts + " |tee " + @out_file
+    cmd = @path + " --no-failed --targets=" + @stdin_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit
   end

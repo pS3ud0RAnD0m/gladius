@@ -9,7 +9,7 @@ class ApacheUsers < Weapon
     @name = "apache-users"
     @path = @name
     @port = ""
-    @stdn_hosts = []
+    @stdin_hosts = []
     # Weapon specific lists
     @apache_users_long = Path.get("apache_users_long")
   end
@@ -22,9 +22,9 @@ class ApacheUsers < Weapon
     header
     instruct_input_targets("fqdn", "ip")
     while line = gets
-      @stdn_hosts << line.chomp
+      @stdin_hosts << line.chomp
     end
-    if @stdn_hosts.count == 0
+    if @stdin_hosts.count == 0
       no_input
       menu(run_method)
     end
@@ -58,7 +58,7 @@ class ApacheUsers < Weapon
   def enum
     @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
-    @stdn_hosts.each do |host|
+    @stdin_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
       `echo "#{host}" >>#{out_file}`
       `echo "------------------------------" >>#{out_file}`

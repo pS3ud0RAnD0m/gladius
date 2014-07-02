@@ -81,9 +81,9 @@
     
     <li ><a href="#method-i-smb_gladius_long">#smb_gladius_long</a>
     
-    <li ><a href="#method-i-smb_stdn">#smb_stdn</a>
+    <li ><a href="#method-i-smb_stdin">#smb_stdin</a>
     
-    <li ><a href="#method-i-smb_stdn_list">#smb_stdn_list</a>
+    <li ><a href="#method-i-smb_stdin_list">#smb_stdin_list</a>
     
   </ul>
 </nav>
@@ -140,11 +140,11 @@
   
     <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_hosts_txt.html">stdin_hosts</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_pwds_txt.html">stdin_pwds</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_usrs_txt.html">stdin_usrs</a>
   
     <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
   
@@ -336,11 +336,11 @@
   <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
+  <span class="ruby-ivar">@stdin_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_hosts&quot;</span>)
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-comment"># Weapon specific lists</span>
-  <span class="ruby-ivar">@stdn_pwds</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_pwds&quot;</span>)
-  <span class="ruby-ivar">@stdn_usrs</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_usrs&quot;</span>)
+  <span class="ruby-ivar">@stdin_pwds</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_pwds&quot;</span>)
+  <span class="ruby-ivar">@stdin_usrs</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_usrs&quot;</span>)
   <span class="ruby-ivar">@windows_pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;windows_pwds_long&quot;</span>)
   <span class="ruby-ivar">@windows_usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;windows_usrs_long&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -432,13 +432,13 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
-  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">stdin_hosts</span> = <span class="ruby-ivar">@stdin_hosts</span>
+  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdin_hosts}`</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">line_count</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">0</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">no_input</span>
@@ -462,8 +462,8 @@
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;smb&quot;</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
     <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_gladius_long</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdn_list</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdin</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">smb_stdin_list</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
@@ -503,7 +503,7 @@
             <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@windows_pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>
 <span class="ruby-keyword">end</span></pre>
@@ -517,10 +517,10 @@
       </div><!-- smb_gladius_long-method -->
 
     
-      <div id="method-i-smb_stdn" class="method-detail ">
+      <div id="method-i-smb_stdin" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">smb_stdn</span><span
+          <span class="method-name">smb_stdin</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -535,14 +535,14 @@
           
 
           
-          <div class="method-source-code" id="smb_stdn-source">
+          <div class="method-source-code" id="smb_stdin-source">
             <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 98</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin</span>
   <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;backup&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
@@ -552,30 +552,30 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password1&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -e ns -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- smb_stdn-source -->
+          </div><!-- smb_stdin-source -->
           
         </div>
 
         
 
         
-      </div><!-- smb_stdn-method -->
+      </div><!-- smb_stdin-method -->
 
     
-      <div id="method-i-smb_stdn_list" class="method-detail ">
+      <div id="method-i-smb_stdin_list" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">smb_stdn_list</span><span
+          <span class="method-name">smb_stdin_list</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -590,28 +590,28 @@
           
 
           
-          <div class="method-source-code" id="smb_stdn_list-source">
+          <div class="method-source-code" id="smb_stdin_list-source">
             <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 124</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdn_list</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdn_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdn_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -e ns -U #{stdn_usrs} -P #{stdn_pwds} -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -e ns -U #{stdin_usrs} -P #{stdin_pwds} -H &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M smbnt |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">clean_exit</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- smb_stdn_list-source -->
+          </div><!-- smb_stdin_list-source -->
           
         </div>
 
         
 
         
-      </div><!-- smb_stdn_list-method -->
+      </div><!-- smb_stdin_list-method -->
 
     
     </section><!-- public-instance-method-details -->
