@@ -19,9 +19,9 @@ module DirStructure
             ]
     
     # Files to be created
-    files = [ "share_stdn_hosts",
-              "share_stdn_pwds",
-              "share_stdn_usrs"
+    files = [ "share_stdin_hosts",
+              "share_stdin_pwds",
+              "share_stdin_usrs"
             ]
 
     # Create directories

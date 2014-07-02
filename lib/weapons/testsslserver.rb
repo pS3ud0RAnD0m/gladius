@@ -8,7 +8,7 @@ class TestSSLServer < Weapon
     @title = title
     # Weapon specific
     @path = Path.get("thirdparty") + "TestSSLServer.jar"
-    @stdn_hosts = []
+    @stdin_hosts = []
   end
 
 ###############################################################################
@@ -19,16 +19,16 @@ class TestSSLServer < Weapon
     header
     instruct_input_targets("fqdn", "fqdnp_spaced", "ip", "ipp_spaced")
     while line = gets
-      @stdn_hosts << line.chomp
+      @stdin_hosts << line.chomp
     end
-    if @stdn_hosts.count == 0
+    if @stdin_hosts.count == 0
       no_input
       menu(run_method)
-    elsif @stdn_hosts.count == 1
-      puts "Targeting " + @stdn_hosts[0] + " ..."
+    elsif @stdin_hosts.count == 1
+      puts "Targeting " + @stdin_hosts[0] + " ..."
       execute(run_method)
     else 
-      hosts_count = @stdn_hosts.count
+      hosts_count = @stdin_hosts.count
       puts "Targeting #{hosts_count} hosts ..."
       execute(run_method)
     end
@@ -53,7 +53,7 @@ class TestSSLServer < Weapon
   def execute(run_method)
     @out_file = Path.get_out_file_txt(@name)
     out_file = @out_file
-    @stdn_hosts.each do |host|
+    @stdin_hosts.each do |host|
       `echo "------------------------------" >>#{out_file}`
       `echo "#{host}" >>#{out_file}`
       `echo "------------------------------" >>#{out_file}`

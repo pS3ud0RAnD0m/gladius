@@ -91,10 +91,9 @@ module Path
         "share_gladius_conf" => @share_config + "gladius.conf",
         "share_seed"         => @share_input + "seed.txt",
         "share_sprout"       => @share_input + "sprout.txt",
-# ttd_1: Did i really misspell stdin?
-        "share_stdn_hosts"   => @share_input + "stdn_hosts.txt",
-        "share_stdn_pwds"    => @share_input + "stdn_pwds.txt",
-        "share_stdn_usrs"    => @share_input + "stdn_usrs.txt",
+        "share_stdin_hosts"   => @share_input + "stdin_hosts.txt",
+        "share_stdin_pwds"    => @share_input + "stdin_pwds.txt",
+        "share_stdin_usrs"    => @share_input + "stdin_usrs.txt",
 
         # System files
         "system_iptables"           => "/etc/init.d/iptables",

@@ -6,7 +6,7 @@ class DiG < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
   end
 
@@ -37,31 +37,31 @@ class DiG < Weapon
     dns_server = `nslookup server |grep Server |awk '{print $2}'`.chomp
     puts "Gladius identified the following DNS server for Kerberos enumeration: #{dns_server}".yellow
     puts "Hit <Enter> to continue or input another DNS server IP:".light_yellow
-    stdn_dns_server = gets.chomp
+    stdin_dns_server = gets.chomp
     # Get domain
     domain = `cat /etc/resolv.conf |grep domain |awk '{print $2}'`.chomp
     unless domain.empty?
       puts "Gladius identified the following domain for Kerberos enumeration: #{domain}".yellow
       puts "Hit <Enter> to continue or input another domain:".light_yellow
-      stdn_domain = gets.chomp
+      stdin_domain = gets.chomp
     else
       until !domain.empty? do
          puts "Gladius was not able to identify your current domain. Input target domain:".light_yellow
-         stdn_domain = gets.chomp
+         stdin_domain = gets.chomp
       end
     end
     # Identify kerb services via dig against DNS server
-    unless stdn_dns_server.empty?
-      unless stdn_domain.empty?
-        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdn_domain
+    unless stdin_dns_server.empty?
+      unless stdin_domain.empty?
+        cmd = @path + " @" + stdin_dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdin_domain
         run(cmd)
       else
-        cmd = @path + " @" + stdn_dns_server + " SRV _kerberos._tcp.dc._msdcs." + domain
+        cmd = @path + " @" + stdin_dns_server + " SRV _kerberos._tcp.dc._msdcs." + domain
         run(cmd)
       end
     else
-      unless stdn_domain.empty?
-        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdn_domain
+      unless stdin_domain.empty?
+        cmd = @path + " @" + dns_server + " SRV _kerberos._tcp.dc._msdcs." + stdin_domain
         run(cmd)
       else
         cmd = @path + " @" + dns_server + " SRV _kerberos._tcp.dc._msdcs." + domain

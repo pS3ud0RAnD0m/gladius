@@ -136,11 +136,11 @@
   
     <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_hosts_txt.html">stdin_hosts</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_pwds_txt.html">stdin_pwds</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_usrs_txt.html">stdin_usrs</a>
   
     <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
   
@@ -334,7 +334,7 @@
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-comment"># Weapon specific</span>
-  <span class="ruby-ivar">@stdn_hosts</span> = []
+  <span class="ruby-ivar">@stdin_hosts</span> = []
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -416,7 +416,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+  <span class="ruby-ivar">@stdin_hosts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
     <span class="ruby-node">%xecho &quot;#{host}&quot; &gt;&gt;#{out_file}`</span>
     <span class="ruby-node">%xecho &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
@@ -463,16 +463,16 @@
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;ip&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
+    <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@stdin_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">no_input</span>
     <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
-  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Targeting &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ...&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@stdin_hosts</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Targeting &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ...&quot;</span>
     <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">else</span> 
-    <span class="ruby-identifier">hosts_count</span> = <span class="ruby-ivar">@stdn_hosts</span>.<span class="ruby-identifier">count</span>
+    <span class="ruby-identifier">hosts_count</span> = <span class="ruby-ivar">@stdin_hosts</span>.<span class="ruby-identifier">count</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Targeting #{hosts_count} hosts ...&quot;</span>
     <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">end</span>

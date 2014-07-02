@@ -138,11 +138,11 @@
   
     <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_hosts_txt.html">stdn_hosts</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_hosts_txt.html">stdin_hosts</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_pwds_txt.html">stdn_pwds</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_pwds_txt.html">stdin_pwds</a>
   
-    <li class="file"><a href="./lib/helpers/input/stdn_usrs_txt.html">stdn_usrs</a>
+    <li class="file"><a href="./lib/helpers/input/stdin_usrs_txt.html">stdin_usrs</a>
   
     <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
   
@@ -333,7 +333,7 @@
   <span class="ruby-comment"># Common</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-ivar">@stdn_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdn_hosts&quot;</span>)
+  <span class="ruby-ivar">@stdin_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_hosts&quot;</span>)
   <span class="ruby-comment"># Weapon specific</span>
   <span class="ruby-ivar">@cmd</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-ivar">@name</span> = <span class="ruby-string">&quot;nmap&quot;</span>
@@ -430,7 +430,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-A -T4 -sSV -Pn -p22,2222&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">args</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -v #{args} -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-ivar">@cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -v #{args} -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- custom-source -->
           
@@ -467,12 +467,12 @@
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
     <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>)
     <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -Pn -s&quot;</span>
-    <span class="ruby-identifier">appendix</span> = <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+    <span class="ruby-identifier">appendix</span> = <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
       <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
       <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;custom&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">custom</span>
         <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@cmd</span>
 <span class="ruby-comment"># ttd_2: arp/icmp ping: parse up hosts</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ping_discovery&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span>             <span class="ruby-string">&quot; -v -T4 -sn --min-hostgroup 256 -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdn_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ping_discovery&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span>             <span class="ruby-string">&quot; -v -T4 -sn --min-hostgroup 256 -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -oA &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
       <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_ftp_anon&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>        <span class="ruby-string">&quot;S -p21 --script ftp-anon&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
       <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_http_methods&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span>    <span class="ruby-string">&quot;S -p80,443 --script http-methods&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
       <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;script_smtp_open_relay&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;S -p25,465,587 --script smtp-open-relay&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
@@ -528,13 +528,13 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>, <span class="ruby-string">&quot;ipr&quot;</span>, <span class="ruby-string">&quot;iprl&quot;</span>, <span class="ruby-string">&quot;iprf&quot;</span>, <span class="ruby-string">&quot;cidr&quot;</span>)
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdn_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">stdn_hosts</span> = <span class="ruby-ivar">@stdn_hosts</span>
-  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdn_hosts}`</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">stdin_hosts</span> = <span class="ruby-ivar">@stdin_hosts</span>
+  <span class="ruby-identifier">line_count</span> = <span class="ruby-node">%xwc -l #{stdin_hosts}`</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">line_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">no_input</span>
     <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)

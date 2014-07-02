@@ -6,11 +6,11 @@ class Ncrack < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
     # Weapon specific lists
-    @stdn_pwds = Path.get("share_stdn_pwds")
-    @stdn_usrs = Path.get("share_stdn_usrs")
+    @stdin_pwds = Path.get("share_stdin_pwds")
+    @stdin_usrs = Path.get("share_stdin_usrs")
     @windows_pwds_long = Path.get("windows_pwds_long")
     @windows_usrs_long = Path.get("windows_usrs_long")
   end
@@ -22,13 +22,13 @@ class Ncrack < Weapon
   def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip", "ipr", "iprl", "iprf", "cidr")
-    a = File.open(@stdn_hosts, "w")
+    a = File.open(@stdin_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    stdn_hosts = @stdn_hosts
-    line_count = `wc -l #{stdn_hosts}`.to_i
+    stdin_hosts = @stdin_hosts
+    line_count = `wc -l #{stdin_hosts}`.to_i
     puts
     case line_count
     when 0 then no_input
@@ -55,14 +55,14 @@ class Ncrack < Weapon
     when "rdp"
       case input_method
       when 1 then rdp_gladius_long
-      when 2 then rdp_stdn
-      when 3 then rdp_stdn_list
+      when 2 then rdp_stdin
+      when 3 then rdp_stdin_list
       end
     when "smb"
       case input_method
       when 1 then smb_gladius_long
-      when 2 then smb_stdn
-      when 3 then smb_stdn_list
+      when 2 then smb_stdin
+      when 3 then smb_stdin_list
       end
     end
   rescue Interrupt
@@ -99,17 +99,17 @@ class Ncrack < Weapon
 ##################################
   def rdp_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -v -p3389 -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + " |tee " + @out_file
+    cmd = @path + " -v -p3389 -U " + @stdin_usrs + " -P " + @stdin_pwds + " -iL " + @stdin_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
   end
 
-  def rdp_stdn
+  def rdp_stdin
     instruct_input_usrs
     puts "Administrator".yellow
     puts "Guest".yellow
     puts
-    a = File.open(@stdn_usrs, "w")
+    a = File.open(@stdin_usrs, "w")
     while line = gets
       a << line
     end
@@ -119,26 +119,26 @@ class Ncrack < Weapon
     puts "Password123".yellow
     puts "ABcd12!@".yellow
     puts
-    a = File.open(@stdn_pwds, "w")
+    a = File.open(@stdin_pwds, "w")
     while line = gets
       a << line
     end
     a.close
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
   end
   
-  def rdp_stdn_list
+  def rdp_stdin_list
     instruct_input_usrs_list
-    stdn_usrs = gets.chomp
+    stdin_usrs = gets.chomp
     puts
     instruct_input_pwds_list
-    stdn_pwds = gets.chomp
+    stdin_pwds = gets.chomp
     puts
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
   end
@@ -148,17 +148,17 @@ class Ncrack < Weapon
 ##################################
   def smb_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -v -U " + @stdn_usrs + " -P " + @stdn_pwds + " -iL " + @stdn_hosts + ":3389 |tee " + @out_file
+    cmd = @path + " -v -U " + @stdin_usrs + " -P " + @stdin_pwds + " -iL " + @stdin_hosts + ":3389 |tee " + @out_file
     run(cmd)
     clean_exit("smb")
   end
 
-  def smb_stdn
+  def smb_stdin
     instruct_input_usrs
     puts "Administrator".yellow
     puts "Guest".yellow
     puts
-    a = File.open(@stdn_usrs, "w")
+    a = File.open(@stdin_usrs, "w")
     while line = gets
       a << line
     end
@@ -168,26 +168,26 @@ class Ncrack < Weapon
     puts "Password123".yellow
     puts "ABcd12!@".yellow
     puts
-    a = File.open(@stdn_pwds, "w")
+    a = File.open(@stdin_pwds, "w")
     while line = gets
       a << line
     end
     a.close
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdn_usrs + " -P " + @stdn_pwds + " -M " + @stdn_hosts + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("smb")
   end
   
-  def smb_stdn_list
+  def smb_stdin_list
     instruct_input_usrs_list
-    stdn_usrs = gets.chomp
+    stdin_usrs = gets.chomp
     puts
     instruct_input_pwds_list
-    stdn_pwds = gets.chomp
+    stdin_pwds = gets.chomp
     puts
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdn_usrs} -P #{stdn_pwds} -M " + @stdn_hosts + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("smb")
   end

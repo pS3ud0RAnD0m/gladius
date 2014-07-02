@@ -6,11 +6,11 @@ class Medusa < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdn_hosts = Path.get("share_stdn_hosts")
+    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
     # Weapon specific lists
-    @stdn_pwds = Path.get("share_stdn_pwds")
-    @stdn_usrs = Path.get("share_stdn_usrs")
+    @stdin_pwds = Path.get("share_stdin_pwds")
+    @stdin_usrs = Path.get("share_stdin_usrs")
     @windows_pwds_long = Path.get("windows_pwds_long")
     @windows_usrs_long = Path.get("windows_usrs_long")
   end
@@ -23,13 +23,13 @@ class Medusa < Weapon
   def menu(run_method)
     header
     instruct_input_targets("fqdn", "ip")
-    a = File.open(@stdn_hosts, "w")
+    a = File.open(@stdin_hosts, "w")
     while line = gets
       a << line
     end
     a.close
-    stdn_hosts = @stdn_hosts
-    line_count = `wc -l #{stdn_hosts}`.to_i
+    stdin_hosts = @stdin_hosts
+    line_count = `wc -l #{stdin_hosts}`.to_i
     puts
     case line_count
     when 0 then no_input
@@ -53,8 +53,8 @@ class Medusa < Weapon
     when "smb"
       case input_method
       when 1 then smb_gladius_long
-      when 2 then smb_stdn
-      when 3 then smb_stdn_list
+      when 2 then smb_stdin
+      when 3 then smb_stdin_list
       end
     end
   rescue Interrupt
@@ -90,17 +90,17 @@ class Medusa < Weapon
 ##################################
   def smb_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -e ns -U " + @windows_usrs_long + " -P " + @windows_pwds_long + " -H " + @stdn_hosts + " -M smbnt |tee " + @out_file
+    cmd = @path + " -e ns -U " + @windows_usrs_long + " -P " + @windows_pwds_long + " -H " + @stdin_hosts + " -M smbnt |tee " + @out_file
     run(cmd)
     clean_exit
   end
 
-  def smb_stdn
+  def smb_stdin
     instruct_input_usrs
     puts "administrator".yellow
     puts "backup".yellow
     puts
-    a = File.open(@stdn_usrs, "w")
+    a = File.open(@stdin_usrs, "w")
     while line = gets
       a << line
     end
@@ -110,26 +110,26 @@ class Medusa < Weapon
     puts "password".yellow
     puts "password1".yellow
     puts
-    a = File.open(@stdn_pwds, "w")
+    a = File.open(@stdin_pwds, "w")
     while line = gets
       a << line
     end
     a.close
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -e ns -U " + @stdn_usrs + " -P " + @stdn_pwds + " -H " + @stdn_hosts + " -M smbnt |tee " + @out_file
+    cmd = @path + " -e ns -U " + @stdin_usrs + " -P " + @stdin_pwds + " -H " + @stdin_hosts + " -M smbnt |tee " + @out_file
     run(cmd)
     clean_exit
   end
 
-  def smb_stdn_list
+  def smb_stdin_list
     instruct_input_usrs_list
-    stdn_usrs = gets.chomp
+    stdin_usrs = gets.chomp
     puts
     instruct_input_pwds_list
-    stdn_pwds = gets.chomp
+    stdin_pwds = gets.chomp
     puts
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -e ns -U #{stdn_usrs} -P #{stdn_pwds} -H " + @stdn_hosts + " -M smbnt |tee " + @out_file
+    cmd = @path + " -e ns -U #{stdin_usrs} -P #{stdin_pwds} -H " + @stdin_hosts + " -M smbnt |tee " + @out_file
     run(cmd)
     clean_exit
   end
