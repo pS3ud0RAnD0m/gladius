@@ -330,10 +330,10 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
   <span class="ruby-comment"># Common</span>
   <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-comment"># Weapon specific</span>
+  <span class="ruby-ivar">@path</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;thirdparty&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;TestSSLServer.jar&quot;</span>
   <span class="ruby-ivar">@stdn_hosts</span> = []
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->

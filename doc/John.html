@@ -415,39 +415,33 @@
           
           <div class="method-source-code" id="execute-source">
             <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 57</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
-    <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot;_#{run_method}.txt&quot;</span>
-    <span class="ruby-identifier">prependix</span> = <span class="ruby-node">&quot;#{@path} -w=#{@share_seed} -rules&quot;</span>
-    <span class="ruby-identifier">appendix</span> = <span class="ruby-node">&quot; -stdout &gt;#{@out_file}&quot;</span>
-      <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic&quot;</span> <span class="ruby-keyword">then</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-        <span class="ruby-identifier">clean_exit</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;l33t&quot;</span> <span class="ruby-keyword">then</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} #{appendix}&quot;</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-        <span class="ruby-identifier">clean_exit</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_plus_l33t&quot;</span> <span class="ruby-keyword">then</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout &gt;#{@share_sprout}&quot;</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-        <span class="ruby-node">%xcat #{@share_sprout} &gt;&gt;#{@out_file}`</span>
-        <span class="ruby-identifier">clean_exit</span>
-      <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_thru_l33t&quot;</span> <span class="ruby-keyword">then</span>
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix} -stdout &gt;#{@share_sprout}&quot;</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-        <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{@path} -w=#{@share_sprout} -rules=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout &gt;&gt;#{@out_file}&quot;</span>
-        <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-<span class="ruby-comment"># ttd_3: rubify these bash commands.</span>
-        <span class="ruby-node">%xcat #{@out_file} &gt;#{@tmp_file}`</span>
-        <span class="ruby-node">%xcat #{@share_sprout} &gt;#{@out_file}`</span>
-        <span class="ruby-node">%xcat #{@tmp_file} &gt;&gt;#{@out_file}`</span>
-        <span class="ruby-node">%xrm #{@tmp_file}`</span>
-        <span class="ruby-identifier">clean_exit</span>
-      <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span></pre>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
+  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot;_#{run_method}.txt&quot;</span>
+  <span class="ruby-identifier">prependix</span> = <span class="ruby-node">&quot;#{@path} -w=#{@share_seed} -rules&quot;</span>
+  <span class="ruby-identifier">appendix</span> = <span class="ruby-node">&quot; -stdout &gt;#{@out_file}&quot;</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic&quot;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">clean_exit</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;l33t&quot;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} #{appendix}&quot;</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">clean_exit</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_plus_l33t&quot;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-identifier">prependix</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">appendix</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout &gt;&gt;#{@out_file}&quot;</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">clean_exit</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_thru_l33t&quot;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix} -stdout |tee #{@share_sprout} #{@out_file} &gt;/dev/null&quot;</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{@path} -w=#{@share_sprout} -rules=KoreLogicRulesL33t -config=#{@korelogic_rules} -stdout &gt;&gt;#{@out_file}&quot;</span>
+      <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">clean_exit</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- execute-source -->
           
         </div>
