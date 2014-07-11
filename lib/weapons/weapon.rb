@@ -61,42 +61,20 @@ class Weapon
     else
       puts "Examples:".yellow
     end
-    args.each do |a|
-      if a == "cidr"
-        puts "10.0.0.0/24".yellow
-      end
-      if a == "domain"
-        puts "victima.com".yellow
-      end
-      if a == "fqdn"
-        puts "www.victima.com".yellow
-      end
-      if a == "fqdnp"
-        puts "www.victima.com:8443".yellow
-      end
-      if a == "fqdnp_spaced"
-        puts "www.victima.com 8443".yellow
-      end
-      if a == "ip"
-        puts "10.0.0.1".yellow
-      end
-      if a == "ipp"
-        puts "10.0.0.1:8443".yellow
-      end
-      if a == "ipp_spaced"
-        puts "10.0.0.1 8443".yellow
-      end
-      if a == "ipr"
-        puts "10.0.0.0-100".yellow
-      end
-      if a == "iprl"
-        puts "10.0.0.0-10.0.0.100".yellow
-      end
-      if a == "iprf"
-        puts "10.0.0-2.0-100".yellow
-      end
-      if a == "url"
-        puts "https://www.victima.com/".yellow
+    args.each do |target_type|
+      case target_type
+      when "cidr" then puts "10.0.0.0/24".yellow
+      when "domain" then puts "victima.com".yellow
+      when "fqdn" then puts "www.victima.com".yellow
+      when "fqdnp" then puts "www.victima.com:8443".yellow
+      when "fqdnp_spaced" then puts "www.victima.com 8443".yellow
+      when "ip" then puts "10.0.0.1".yellow
+      when "ipp" then puts "10.0.0.1:8443".yellow
+      when "ipp_spaced" then puts "10.0.0.1 8443".yellow
+      when "ipr" then puts "10.0.0.0-100".yellow
+      when "iprl" then puts "10.0.0.0-10.0.0.100".yellow
+      when "iprf" then puts "10.0.0-2.0-100".yellow
+      when "url" then puts "https://www.victima.com/".yellow
       end
     end
   end
@@ -143,8 +121,7 @@ class Weapon
   def get_input(type, instruct_type, destination)
     case type
     when "stdin_to_file" then
-      instruct_input = "instruct_input_" + instruct_type
-      send(instruct_input)
+      send("instruct_input_#{instruct_type}")
       a = File.open(destination, "w")
       while line = gets
         a << line
@@ -153,7 +130,7 @@ class Weapon
       line_count = count_lines_file(destination)
       while line_count == 0
         no_input
-        send(instruct_input)
+        send("instruct_input_#{instruct_type}")
         a = File.open(destination, "w")
         while line = gets
           a << line
@@ -162,20 +139,43 @@ class Weapon
         line_count = count_lines_file(destination)
       end
     when "gets_to_var" then
-      instruct_input = "instruct_input_" + instruct_type
-      send(instruct_input)
+      send("instruct_input_#{instruct_type}")
       destination = gets.chomp
       line_count = count_lines_file(destination)
       while line_count == 0
         puts "File is empty or does not exist.".red
-        send(instruct_input)
+        send("instruct_input_#{instruct_type}")
         destination = gets.chomp
         line_count = count_lines_file(destination)
       end
       @share_seed = destination
     end
   end
-  
+
+# Get STDIN users
+  def get_stdin_usrs
+    instruct_input_usrs
+    puts "root".yellow
+    puts "admin".yellow
+    a = File.open(@stdin_usrs, "w")
+    while line = gets
+      a << line
+    end
+  end
+
+# Get STDIN pwds
+  def get_stdin_pwds
+    instruct_input_pwds
+    puts "password".yellow
+    puts "abc123".yellow
+    a = File.open(@stdin_pwds, "w")
+    while line = gets
+      a << line
+    end
+  end
+
+
+
   def no_input
     puts "No input detected.".red
   end
@@ -189,20 +189,14 @@ class Weapon
     puts "1. #{total_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
   end
 
-# ttd_2: Replace all "wc -l" with this to handle final newlines.
+# ttd_1: Replace all "wc -l" with this to handle final newlines.
   def count_lines_file(file_name)
     if File.exist?(file_name)
       count = `sed -n '=' #{file_name} |wc -l`.to_i
     else
       count = 0
+      puts "No input detected.".red
     end
-    
-    
-  end
-  
-  def count_pwds_file(pwds_file)
-    pwds_count = File.foreach(pwds_file).count.to_i + 2
-    puts "1. #{pwds_count} attempts/host = #{pwds_count} passwords"
   end
 
   def run(cmd)

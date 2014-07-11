@@ -327,17 +327,18 @@
           
           <div class="method-source-code" id="new-source">
             <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
-  <span class="ruby-comment"># Common</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
-  <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
-  <span class="ruby-comment"># Weapon specific</span>
-  <span class="ruby-ivar">@stdin_hosts</span> = []
-  <span class="ruby-comment"># Weapon specific lists</span>
-  <span class="ruby-ivar">@dns_hosts_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;dns_hosts_long&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
+    <span class="ruby-comment"># Common</span>
+    <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+    <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
+    <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
+    <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+    <span class="ruby-comment"># Weapon specific</span>
+    <span class="ruby-ivar">@stdin_hosts</span> = []
+    <span class="ruby-comment"># Weapon specific lists</span>
+<span class="ruby-comment"># ttd_2: rename @dns_hosts_long and others of same ilk</span>
+    <span class="ruby-ivar">@dns_hosts_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;dns_hosts_long&quot;</span>)
+  <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
         </div>
@@ -373,7 +374,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 45</span>
+            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -412,7 +413,7 @@
 
           
           <div class="method-source-code" id="dictionary-source">
-            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">dictionary</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">out_file</span> = <span class="ruby-ivar">@out_file</span>
@@ -456,7 +457,7 @@
 
           
           <div class="method-source-code" id="menu-source">
-            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 20</span>
+            <pre><span class="ruby-comment"># File lib/weapons/fierce.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>

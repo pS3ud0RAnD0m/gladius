@@ -11,36 +11,25 @@ class Hydra < Weapon
     # Weapon specific
     @init_dir = Dir.pwd
     @port = ""
+    @run_method = ""
     @share_output = Path.get("share_output")
     # Weapon specific lists
-    @ftp_pwds_long = Path.get("ftp_pwds_long")
-    @ftp_usrs_long = Path.get("ftp_usrs_long")
-    @mssql_pwds_long = Path.get("mssql_pwds_long")
-    @mssql_usrs_long = Path.get("mssql_usrs_long")
-    @mysql_pwds_long = Path.get("mysql_pwds_long")
-    @mysql_usrs_long = Path.get("mysql_usrs_long")
-    @oracle_pwds_long = Path.get("oracle_pwds_long")
-    @oracle_usrs_long = Path.get("oracle_usrs_long")
-    @postgresql_pwds_long = Path.get("postgresql_pwds_long")
-    @postgresql_usrs_long = Path.get("postgresql_usrs_long")
-    @ssh_pwds_long = Path.get("ssh_pwds_long")
-    @ssh_usrs_long = Path.get("ssh_usrs_long")
     @stdin_pwds = Path.get("share_stdin_pwds")
-    @stdin_usrs = Path.get("share_stdin_usrs")
-    @telnet_pwds_long = Path.get("telnet_pwds_long")
-    @telnet_usrs_long = Path.get("telnet_usrs_long")
-    @vnc_pwds_long = Path.get("vnc_pwds_long")
-    @vnc_usrs_long = Path.get("vnc_usrs_long")
+    @stdin_usrs = Path.get("share_stdin_usrs")    
+    @pwds_long = ""
+    @usrs_long = ""
   end
 
 ###############################################################################
-# DRY methods
+# Menu methods
 ###############################################################################
-  # Get target(s) and pass to relevant run method
-  def menu(run_method)
+  # Get target(s)
+  def get_targets(run_method)
+    @run_method = run_method
     header
+# ttd_1: ask for port
     # Get port
-    #case run_method
+    #case @run_method
     #when "ftp" then get_port(21)
     #when "http" then get_port(80)
     #when "mysql" then get_port(3306)
@@ -51,7 +40,6 @@ class Hydra < Weapon
     #when "ssh" then get_port(22)
     #when "telnet" then get_port(23)
     #when "vmauthd" then get_port(1)
-# ttd_1: ask for port
     #when "vnc" then get_port(5900)
     #end
     Dir.chdir(@share_output)
@@ -62,150 +50,49 @@ class Hydra < Weapon
     end
     a.close
     stdin_hosts = @stdin_hosts
-    line_count = `wc -l #{stdin_hosts}`.to_i
-    case line_count
-    when 0 then no_input
-      menu(run_method)
-    when 1 then puts "Select your tactic:".light_yellow
-      puts "Since only 1 host was input, we recommend option 1.".yellow
-    when 2..5 then line_count = line_count.to_s
+    line_count = count_lines_file(stdin_hosts)
+    if line_count == 0
+      get_targets(@run_method)
+    else
       puts "Select your tactic:".light_yellow
-      puts "Since only #{line_count} hosts were input, we recommend option 1.".yellow
-    else line_count = line_count.to_s
-      puts "Since #{line_count} hosts were input, we recommend option 2 or 3.".yellow
     end
-
-    case run_method
-    when "cvs" then
-    when "ftp" then count(@ftp_usrs_long, @ftp_pwds_long)
-    when "http" then
-    when "imap" then
-    when "mssql" then count(@mssql_usrs_long, @mssql_pwds_long)
-    when "mysql" then count(@mysql_usrs_long, @mysql_pwds_long)
-    when "ncp" then
-    when "nntp" then
-    when "pcanywhere" then
-    when "pop3" then
-    when "postgresql" then count(@postgresql_usrs_long, @postgresql_pwds_long)
-    when "rexec" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "rlogin" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "rsh" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "smtp" then
-    when "smtp-enum" then
-    when "ssh" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "svn" then
-    when "telnet" then count(@telnet_usrs_long, @telnet_pwds_long)
-    when "vmauthd" then count(@ssh_usrs_long, @ssh_pwds_long)
-    when "vnc" then count_pwds_file(@vnc_pwds_long)
-    when "web-form" then
-    end
-    puts "2. Input your own users and passwords"
-    puts "3. Input your own user and password files"
-    
-# ttd_2: Why are we changing dir twice?
-    Dir.chdir(@share_output)
-    input_method = gets.to_i
-    case run_method
-    #when "cvs" then cvs
-    when "ftp"
-      case input_method
-      when 1 then ftp_gladius_long
-      when 2 then ftp_stdin
-      when 3 then ftp_stdin_list
-      end
-    #when "http" then http
-    #when "imap" then imap
-    when "mssql"
-      case input_method
-      when 1 then mssql_gladius_long
-      when 2 then mssql_stdin
-      when 3 then mssql_stdin_list
-      end
-    when "mysql"
-      case input_method
-      when 1 then mysql_gladius_long
-      when 2 then mysql_stdin
-      when 3 then mysql_stdin_list
-      end
-    #when "ncp" then ncp
-    #when "nntp" then nntp
-    #when "pcanywhere" then pcanywhere
-    #when "pop3" then pop3
-    when "postgresql"
-      case input_method
-      when 1 then postgresql_gladius_long
-      when 2 then postgresql_stdin
-      when 3 then postgresql_stdin_list
-      end
-    when "rexec"
-      case input_method
-      when 1 then rexec_gladius_long
-      when 2 then rexec_stdin
-      when 3 then rexec_stdin_list
-      end
-    when "rlogin"
-      case input_method
-      when 1 then rlogin_gladius_long
-      when 2 then rlogin_stdin
-      when 3 then rlogin_stdin_list
-      end
-    when "rsh"
-      case input_method
-      when 1 then rsh_gladius_long
-      when 2 then rsh_stdin
-      when 3 then rsh_stdin_list
-      end
-    #when "smb" then smb
-    #when "smtp" then smtp
-    #when "smtp-enum" then smtp_enum
-    when "ssh"
-      case input_method
-      when 1 then ssh_gladius_long
-      when 2 then ssh_stdin
-      when 3 then ssh_stdin_list
-      end
-    #when "svn" then svn
-    when "telnet"
-      case input_method
-      when 1 then telnet_gladius_long
-      when 2 then telnet_stdin
-      when 3 then telnet_stdin_list
-      end
-    when "vmauthd"
-      case input_method
-      when 1 then vmauthd_gladius_long
-      when 2 then vmauthd_stdin
-      when 3 then vmauthd_stdin_list
-      end
-    when "vnc"
-      case input_method
-      when 1 then vnc_gladius_long
-      when 2 then vnc_stdin
-      when 3 then vnc_stdin_list
-      end
-    #when "web-form" then web_form
+    case @run_method
+    when "rexec" then get_input_type("ssh")
+    when "rlogin" then get_input_type("ssh")
+    when "rsh" then get_input_type("ssh")
+    when "vmauthd" then get_input_type("ssh")
+    else
+      get_input_type(@run_method)
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
 
-  # Parse and exit
-  def clean_exit(search_term)
-    Dir.chdir(@init_dir)
-    if File.exist?(@out_file)
-      results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
-      if results.count == 0
-        puts "Hydra did not find valid credentials.".light_yellow
-      else
-        puts "Hydra found the following credentials:".light_yellow
-        puts results
-      end
+  # Get input type
+  def get_input_type(dictionary)
+    case dictionary
+    when "vnc" then
+      @pwds_long = Path.get("#{dictionary}_pwds_long")
+      pwds_count = count_lines_file(@pwds_long)
+      puts "1. #{pwds_count} attempts/host = #{pwds_count} passwords"
+    else
+      @pwds_long = Path.get("#{dictionary}_pwds_long")
+      @usrs_long = Path.get("#{dictionary}_usrs_long")
+      pwds_count = count_lines_file(@pwds_long) + 2
+      usrs_count = count_lines_file(@usrs_long)
+      mult_count = usrs_count * pwds_count
+      puts "1. #{mult_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
     end
-    if File.exist?(@out_file)
-      puts "Raw output can be found here:".yellow
-      puts @out_file
+    puts "2. Input your own users and passwords"
+    puts "3. Input your own user and password files"
+    input_method = gets.to_i
+    case input_method
+    when 1 then send("#{@run_method}_gladius_long")
+    when 2 then send("#{@run_method}_stdin")
+    when 3 then send("#{@run_method}_stdin_list")
     end
-  exit_weapon
+  rescue Interrupt
+    GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
 
 ###############################################################################
@@ -217,7 +104,7 @@ class Hydra < Weapon
 # ttd_2: Run methods need significant refactoring.
   def ftp_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ftp_usrs_long + " -P " + @ftp_pwds_long + " -M " + @stdin_hosts + " ftp |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " ftp |tee " + @out_file
     run(cmd)
     clean_exit("ftp")
   end
@@ -262,7 +149,7 @@ class Hydra < Weapon
 ##################################
   def mssql_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mssql_usrs_long + " -P " + @mssql_pwds_long + " -M " + @stdin_hosts + " mssql |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " mssql |tee " + @out_file
     run(cmd)
     clean_exit("mssql")
   end
@@ -306,7 +193,7 @@ class Hydra < Weapon
 ##################################
   def mysql_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @mysql_usrs_long + " -P " + @mysql_pwds_long + " -M " + @stdin_hosts + " mysql |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " mysql |tee " + @out_file
     run(cmd)
     clean_exit("mysql")
   end
@@ -354,7 +241,7 @@ class Hydra < Weapon
 ##################################
   def postgresql_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @postgresql_usrs_long + " -P " + @postgresql_pwds_long + " -M " + @stdin_hosts + " postgres |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " postgres |tee " + @out_file
     run(cmd)
     clean_exit("postgresql")
   end
@@ -403,7 +290,7 @@ class Hydra < Weapon
 ##################################
   def rexec_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdin_hosts + " rexec -s 512 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rexec -s 512 |tee " + @out_file
     run(cmd)
     clean_exit("rexec")
   end
@@ -446,7 +333,7 @@ class Hydra < Weapon
 ##################################
   def rlogin_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdin_hosts + " rlogin -s 513 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rlogin -s 513 |tee " + @out_file
     run(cmd)
     clean_exit("rlogin")
   end
@@ -489,7 +376,7 @@ class Hydra < Weapon
 ##################################
   def rsh_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdin_hosts + " rsh -s 514 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rsh -s 514 |tee " + @out_file
     run(cmd)
     clean_exit("rsh")
   end
@@ -532,7 +419,7 @@ class Hydra < Weapon
 ##################################
   def ssh_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdin_hosts + " ssh -s 22 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " ssh -s 22 |tee " + @out_file
     run(cmd)
     clean_exit("ssh")
   end
@@ -575,7 +462,7 @@ class Hydra < Weapon
 ##################################
   def telnet_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @telnet_usrs_long + " -P " + @telnet_pwds_long + " -M " + @stdin_hosts + " telnet -s 23 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " telnet -s 23 |tee " + @out_file
     run(cmd)
     clean_exit("telnet")
   end
@@ -619,7 +506,7 @@ class Hydra < Weapon
 ##################################`
   def vnc_gladius_long
     @out_file = Path.get_out_file_txt(@name)    
-    cmd = @path + " -V -t 4 -w 64 -e ns -P " + @vnc_pwds_long + " -M " + @stdin_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
+    cmd = @path + " -V -t 4 -w 64 -e ns -P " + @pwds_long + " -M " + @stdin_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
     run(cmd)
     clean_exit("vnc")
   end
@@ -653,7 +540,7 @@ class Hydra < Weapon
 ##################################
   def vmauthd_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @ssh_usrs_long + " -P " + @ssh_pwds_long + " -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
+    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)
     clean_exit("vmauthd")
   end
@@ -689,5 +576,27 @@ class Hydra < Weapon
     cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
     run(cmd)
     clean_exit("vmauthd")
+  end
+
+###############################################################################
+# Exit method
+###############################################################################
+  # Parse and exit
+  def clean_exit(search_term)
+    Dir.chdir(@init_dir)
+    if File.exist?(@out_file)
+      results = open(@out_file) { |a| a.grep(/\[#{search_term}\]/) }
+      if results.count == 0
+        puts "Hydra did not find valid credentials.".light_yellow
+      else
+        puts "Hydra found the following credentials:".light_yellow
+        puts results
+      end
+    end
+    if File.exist?(@out_file)
+      puts "Raw output can be found here:".yellow
+      puts @out_file
+    end
+  exit_weapon
   end
 end  

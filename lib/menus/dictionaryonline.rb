@@ -41,13 +41,13 @@ class DictionaryOnline < Menu
     when 1 then puts "Not implemented yet.".red
       menu
     when 2 then Fierce.new("DictionaryOnline", "Fierce - DNS Transfer or Online Dictionary Attack").menu("dictionary")
-    when 3 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").menu("ftp")
+    when 3 then Hydra.new("DictionaryOnline", "Hydra - FTP Online Dictionary Attack").get_targets("ftp")
     when 4 then puts "Not implemented yet.".red
       menu
     when 5 then puts "Not implemented yet.".red
       menu
-    when 6 then Hydra.new("DictionaryOnline", "Hydra - MSSQL Online Dictionary Attack").menu("mssql")
-    when 7 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").menu("mysql")
+    when 6 then Hydra.new("DictionaryOnline", "Hydra - MSSQL Online Dictionary Attack").get_targets("mssql")
+    when 7 then Hydra.new("DictionaryOnline", "Hydra - MySQL Online Dictionary Attack").get_targets("mysql")
     when 8 then puts "Not implemented yet.".red
       menu
     when 9 then puts "Not implemented yet.".red
@@ -58,23 +58,23 @@ class DictionaryOnline < Menu
       menu
     when 12 then puts "Not implemented yet.".red
       menu
-    when 13 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").menu("postgresql")
+    when 13 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").get_targets("postgresql")
     when 14 then Ncrack.new("DictionaryOnline", "Ncrack - RDP Online Dictionary Attack").menu("rdp")
-    when 15 then Hydra.new("DictionaryOnline", "Hydra - Rexec Online Dictionary Attack").menu("rexec")
-    when 16 then Hydra.new("DictionaryOnline", "Hydra - Rlogin Online Dictionary Attack").menu("rlogin")
-    when 17 then Hydra.new("DictionaryOnline", "Hydra - RSH Online Dictionary Attack").menu("rsh")
+    when 15 then Hydra.new("DictionaryOnline", "Hydra - Rexec Online Dictionary Attack").get_targets("rexec")
+    when 16 then Hydra.new("DictionaryOnline", "Hydra - Rlogin Online Dictionary Attack").get_targets("rlogin")
+    when 17 then Hydra.new("DictionaryOnline", "Hydra - RSH Online Dictionary Attack").get_targets("rsh")
     when 18 then Medusa.new("DictionaryOnline", "Medusa - SMB Online Dictionary Attack").menu("smb")
     when 19 then puts "Not implemented yet.".red
       menu
     when 20 then puts "Not implemented yet.".red
       menu
     when 21 then GNmap.new("DictionaryOnline", "Nmap - SNMP Online Dictionary Attack").menu("script_snmp_dictionary")
-    when 22 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").menu("ssh")
+    when 22 then Hydra.new("DictionaryOnline", "Hydra - SSH Online Dictionary Attack").get_targets("ssh")
     when 23 then puts "Not implemented yet.".red
       menu
-    when 24 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").menu("telnet")
-    when 25 then Hydra.new("DictionaryOnline", "Hydra - VMAuthd Online Dictionary Attack").menu("vmauthd")
-    when 26 then Hydra.new("DictionaryOnline", "Hydra - VNC Online Dictionary Attack").menu("vnc")
+    when 24 then Hydra.new("DictionaryOnline", "Hydra - Telnet Online Dictionary Attack").get_targets("telnet")
+    when 25 then Hydra.new("DictionaryOnline", "Hydra - VMAuthd Online Dictionary Attack").get_targets("vmauthd")
+    when 26 then Hydra.new("DictionaryOnline", "Hydra - VNC Online Dictionary Attack").get_targets("vnc")
     when 27 then puts "Not implemented yet.".red
       menu
     when 88 then Dictionary.new("Dictionary Attacks").menu
