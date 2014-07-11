@@ -10,6 +10,7 @@ class Fierce < Weapon
     # Weapon specific
     @stdin_hosts = []
     # Weapon specific lists
+# ttd_2: rename @dns_hosts_long and others of same ilk
     @dns_hosts_long = Path.get("dns_hosts_long")
   end
 

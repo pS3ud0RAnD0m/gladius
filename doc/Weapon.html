@@ -79,8 +79,6 @@
     
     <li ><a href="#method-i-count_lines_file">#count_lines_file</a>
     
-    <li ><a href="#method-i-count_pwds_file">#count_pwds_file</a>
-    
     <li ><a href="#method-i-exit_weapon">#exit_weapon</a>
     
     <li ><a href="#method-i-get_host">#get_host</a>
@@ -92,6 +90,10 @@
     <li ><a href="#method-i-get_pid_file">#get_pid_file</a>
     
     <li ><a href="#method-i-get_port">#get_port</a>
+    
+    <li ><a href="#method-i-get_stdin_pwds">#get_stdin_pwds</a>
+    
+    <li ><a href="#method-i-get_stdin_usrs">#get_stdin_usrs</a>
     
     <li ><a href="#method-i-get_tmp_file">#get_tmp_file</a>
     
@@ -434,7 +436,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
         <div class="method-description">
           
-          <p>ttd_2: Replace all “wc -l” with this to handle final newlines.</p>
+          <p>ttd_1: Replace all “wc -l” with this to handle final newlines.</p>
           
           
 
@@ -446,9 +448,8 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
     <span class="ruby-identifier">count</span> = <span class="ruby-node">%xsed -n '=' #{file_name} |wc -l`</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;No input detected.&quot;</span>.<span class="ruby-identifier">red</span>
   <span class="ruby-keyword">end</span>
-  
-  
 <span class="ruby-keyword">end</span></pre>
           </div><!-- count_lines_file-source -->
           
@@ -458,40 +459,6 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
         
       </div><!-- count_lines_file-method -->
-
-    
-      <div id="method-i-count_pwds_file" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">count_pwds_file</span><span
-            class="method-args">(pwds_file)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="count_pwds_file-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 203</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">count_pwds_file</span>(<span class="ruby-identifier">pwds_file</span>)
-  <span class="ruby-identifier">pwds_count</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">foreach</span>(<span class="ruby-identifier">pwds_file</span>).<span class="ruby-identifier">count</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{pwds_count} attempts/host = #{pwds_count} passwords&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- count_pwds_file-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- count_pwds_file-method -->
 
     
       <div id="method-i-exit_weapon" class="method-detail ">
@@ -513,7 +480,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="exit_weapon-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 229</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 223</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">exit_weapon</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@prev_menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;CustomDictionary&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">CustomDictionary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Create Custom Dictionaries&quot;</span>).<span class="ruby-identifier">menu</span>
@@ -639,12 +606,11 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="get_input-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 143</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_input</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">instruct_type</span>, <span class="ruby-identifier">destination</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;stdin_to_file&quot;</span> <span class="ruby-keyword">then</span>
-    <span class="ruby-identifier">instruct_input</span> = <span class="ruby-string">&quot;instruct_input_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">instruct_type</span>
-    <span class="ruby-identifier">send</span>(<span class="ruby-identifier">instruct_input</span>)
+    <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;instruct_input_#{instruct_type}&quot;</span>)
     <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">destination</span>, <span class="ruby-string">&quot;w&quot;</span>)
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
       <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
@@ -653,7 +619,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
     <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">destination</span>)
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">line_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
       <span class="ruby-identifier">no_input</span>
-      <span class="ruby-identifier">send</span>(<span class="ruby-identifier">instruct_input</span>)
+      <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;instruct_input_#{instruct_type}&quot;</span>)
       <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">destination</span>, <span class="ruby-string">&quot;w&quot;</span>)
       <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
         <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
@@ -662,13 +628,12 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
       <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">destination</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;gets_to_var&quot;</span> <span class="ruby-keyword">then</span>
-    <span class="ruby-identifier">instruct_input</span> = <span class="ruby-string">&quot;instruct_input_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">instruct_type</span>
-    <span class="ruby-identifier">send</span>(<span class="ruby-identifier">instruct_input</span>)
+    <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;instruct_input_#{instruct_type}&quot;</span>)
     <span class="ruby-identifier">destination</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
     <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">destination</span>)
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">line_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;File is empty or does not exist.&quot;</span>.<span class="ruby-identifier">red</span>
-      <span class="ruby-identifier">send</span>(<span class="ruby-identifier">instruct_input</span>)
+      <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;instruct_input_#{instruct_type}&quot;</span>)
       <span class="ruby-identifier">destination</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
       <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">destination</span>)
     <span class="ruby-keyword">end</span>
@@ -756,6 +721,84 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
         
       </div><!-- get_port-method -->
+
+    
+      <div id="method-i-get_stdin_pwds" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_stdin_pwds</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get STDIN pwds</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_stdin_pwds-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 167</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_stdin_pwds</span>
+  <span class="ruby-identifier">instruct_input_pwds</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;abc123&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_stdin_pwds-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_stdin_pwds-method -->
+
+    
+      <div id="method-i-get_stdin_usrs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_stdin_usrs</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Get STDIN users</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_stdin_usrs-source">
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 156</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_stdin_usrs</span>
+  <span class="ruby-identifier">instruct_input_usrs</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;admin&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
+  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
+    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_stdin_usrs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_stdin_usrs-method -->
 
     
       <div id="method-i-get_tmp_file" class="method-detail ">
@@ -848,7 +891,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_pwds-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 104</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input password(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press Ctrl+D.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -883,7 +926,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_pwds_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_pwds_list</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your password file and press Enter.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -927,42 +970,20 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples:&quot;</span>.<span class="ruby-identifier">yellow</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;cidr&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0/24&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;domain&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdn&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdnp&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;fqdnp_spaced&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ip&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipp_spaced&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;ipr&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprl&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-10.0.0.100&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;iprf&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0-2.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-keyword">end</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">a</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;url&quot;</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;https://www.victima.com/&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target_type</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">target_type</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;cidr&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0/24&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;domain&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;fqdn&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;fqdnp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;fqdnp_spaced&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ip&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ipp&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1:8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ipp_spaced&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.1 8443&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ipr&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;iprl&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0.0-10.0.0.100&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;iprf&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;10.0.0-2.0-100&quot;</span>.<span class="ruby-identifier">yellow</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;url&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;https://www.victima.com/&quot;</span>.<span class="ruby-identifier">yellow</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -995,7 +1016,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_usrs-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 116</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input user(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press Ctrl+D.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1030,7 +1051,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_usrs_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 122</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your user file and press Enter.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1065,7 +1086,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_words-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 128</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_words</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input word(s), one per line:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done, ensure the last line is blank and press Ctrl+D.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1102,7 +1123,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="instruct_input_words_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 136</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">instruct_input_words_list</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input the path to your wordlist and press Enter.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -1170,7 +1191,7 @@ href="Weapon.html#method-i-count_lines_file">#count_lines_file</a></p>
 
           
           <div class="method-source-code" id="run-source">
-            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 208</span>
+            <pre><span class="ruby-comment"># File lib/weapons/weapon.rb, line 202</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-identifier">pid_file</span> = <span class="ruby-identifier">get_pid_file</span>
   <span class="ruby-identifier">x</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
