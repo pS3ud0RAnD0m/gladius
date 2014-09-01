@@ -58,7 +58,7 @@ class DictionaryOnline < Menu
       menu
     when 12 then puts "Not implemented yet.".red
       menu
-    when 13 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").get_targets("postgresql")
+    when 13 then Hydra.new("DictionaryOnline", "Hydra - PostgreSQL Online Dictionary Attack").get_targets("postgres")
     when 14 then Ncrack.new("DictionaryOnline", "Ncrack - RDP Online Dictionary Attack").menu("rdp")
     when 15 then Hydra.new("DictionaryOnline", "Hydra - Rexec Online Dictionary Attack").get_targets("rexec")
     when 16 then Hydra.new("DictionaryOnline", "Hydra - Rlogin Online Dictionary Attack").get_targets("rlogin")
@@ -80,7 +80,7 @@ class DictionaryOnline < Menu
     when 88 then Dictionary.new("Dictionary Attacks").menu
     when 99 then GExeption.new.exit_gladius
     else puts "Invalid selection.".red
-    menu
+      menu
     end
   end
 end

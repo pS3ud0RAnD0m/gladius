@@ -556,20 +556,14 @@ output <a href="Parse.html">Parse</a> and exit</p>
           <div class="method-source-code" id="rdp_stdin-source">
             <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Guest&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_usrs</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Password123&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ABcd12!@&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_pwds</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
@@ -609,7 +603,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="rdp_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 133</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rdp_stdin_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
@@ -651,7 +645,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 149</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_gladius_long</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
   <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -v -U &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -iL &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:3389 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
@@ -687,22 +681,16 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 156</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 150</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Guest&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_usrs</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Password123&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ABcd12!@&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_pwds</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
@@ -742,7 +730,7 @@ output <a href="Parse.html">Parse</a> and exit</p>
 
           
           <div class="method-source-code" id="smb_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 182</span>
+            <pre><span class="ruby-comment"># File lib/weapons/ncrack.rb, line 170</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>

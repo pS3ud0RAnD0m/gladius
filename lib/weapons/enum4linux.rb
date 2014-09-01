@@ -38,8 +38,6 @@ class Enum4linux < Weapon
 
   # Clean exit
   def clean_exit
-    puts
-    puts "prev_menu is: " + @prev_menu
     if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file

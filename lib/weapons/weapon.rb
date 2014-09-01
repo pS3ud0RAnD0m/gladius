@@ -78,11 +78,34 @@ class Weapon
       end
     end
   end
-  
-  def instruct_input_pwds
+
+  def instruct_input_pwds(service)
     puts "Input password(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
     puts "Examples:".yellow
+    case service
+    when "ftp" then
+      puts "password".yellow
+      puts "FTPPassword".yellow    
+    when "mssql" then
+      puts "password".yellow
+      puts "mssqlpass".yellow
+    when "mysql" then
+      puts "password".yellow
+      puts "mysqlpass".yellow
+    when "postgres" then
+      puts "password".yellow
+      puts "postgrespass".yellow
+    when "ssh" then
+      puts "password".yellow
+      puts "toor".yellow
+    when "telnet" then
+      puts "password".yellow
+      puts "cisco".yellow
+    when "windows" then
+      puts "Password!".yellow
+      puts "$3cret".yellow
+    end
   end
 
   def instruct_input_pwds_list
@@ -91,10 +114,34 @@ class Weapon
     puts "/root/Desktop/passwords.txt".yellow
   end
   
-  def instruct_input_usrs
+  def instruct_input_usrs(service)
     puts "Input user(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
     puts "Examples:".yellow
+    case service
+    when "ftp" then
+      puts "root".yellow
+      puts "ftp".yellow    
+    when "mssql" then
+      puts "sa".yellow
+      puts "dbadmin".yellow
+    when "mysql" then
+      puts "root".yellow
+      puts "mysql".yellow
+    when "postgres" then
+      puts "postgres".yellow
+      puts "admin".yellow
+      puts "root".yellow
+    when "ssh" then
+      puts "root".yellow
+      puts "www".yellow
+    when "telnet" then
+      puts "root".yellow
+      puts "cisco".yellow
+    when "windows" then
+      puts "administrator".yellow
+      puts "backups".yellow
+    end
   end
 
   def instruct_input_usrs_list
@@ -102,7 +149,7 @@ class Weapon
     puts "Example:".yellow
     puts "/root/Desktop/users.txt".yellow
   end
-  
+
   def instruct_input_words
     puts "Input word(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
@@ -118,10 +165,9 @@ class Weapon
   end
 
   # Get input and validate not empty
-  def get_input(type, instruct_type, destination)
+  def get_input(type, destination)
     case type
     when "stdin_to_file" then
-      send("instruct_input_#{instruct_type}")
       a = File.open(destination, "w")
       while line = gets
         a << line
@@ -130,7 +176,6 @@ class Weapon
       line_count = count_lines_file(destination)
       while line_count == 0
         no_input
-        send("instruct_input_#{instruct_type}")
         a = File.open(destination, "w")
         while line = gets
           a << line
@@ -139,42 +184,16 @@ class Weapon
         line_count = count_lines_file(destination)
       end
     when "gets_to_var" then
-      send("instruct_input_#{instruct_type}")
       destination = gets.chomp
       line_count = count_lines_file(destination)
       while line_count == 0
         puts "File is empty or does not exist.".red
-        send("instruct_input_#{instruct_type}")
         destination = gets.chomp
         line_count = count_lines_file(destination)
       end
       @share_seed = destination
     end
   end
-
-# Get STDIN users
-  def get_stdin_usrs
-    instruct_input_usrs
-    puts "root".yellow
-    puts "admin".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-  end
-
-# Get STDIN pwds
-  def get_stdin_pwds
-    instruct_input_pwds
-    puts "password".yellow
-    puts "abc123".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-  end
-
-
 
   def no_input
     puts "No input detected.".red

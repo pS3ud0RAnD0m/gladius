@@ -105,20 +105,14 @@ class Ncrack < Weapon
   end
 
   def rdp_stdin
-    instruct_input_usrs
-    puts "Administrator".yellow
-    puts "Guest".yellow
-    puts
+    instruct_input_usrs("windows")
     a = File.open(@stdin_usrs, "w")
     while line = gets
       a << line
     end
     a.close
     puts
-    instruct_input_pwds
-    puts "Password123".yellow
-    puts "ABcd12!@".yellow
-    puts
+    instruct_input_pwds("windows")
     a = File.open(@stdin_pwds, "w")
     while line = gets
       a << line
@@ -154,20 +148,14 @@ class Ncrack < Weapon
   end
 
   def smb_stdin
-    instruct_input_usrs
-    puts "Administrator".yellow
-    puts "Guest".yellow
-    puts
+    instruct_input_usrs("windows")
     a = File.open(@stdin_usrs, "w")
     while line = gets
       a << line
     end
     a.close
     puts
-    instruct_input_pwds
-    puts "Password123".yellow
-    puts "ABcd12!@".yellow
-    puts
+    instruct_input_pwds("windows")
     a = File.open(@stdin_pwds, "w")
     while line = gets
       a << line

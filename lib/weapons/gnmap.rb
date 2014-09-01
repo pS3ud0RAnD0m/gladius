@@ -61,30 +61,29 @@ class GNmap < Weapon
 # Execute method
   def execute(run_method)
     @out_file = Path.get_out_file(@name)
-    prependix = @path + " -v -Pn -s"
-    appendix = " -iL " + @stdin_hosts + " -oA " + @out_file
-      case run_method
-      when "custom" then custom
-        cmd = @cmd
-# ttd_2: arp/icmp ping: parse up hosts
-      when "ping_discovery" then cmd = @path +             " -v -T4 -sn --min-hostgroup 256 -iL " + @stdin_hosts + " -oA " + @out_file
-      when "script_ftp_anon" then cmd = prependix +        "S -p21 --script ftp-anon" + appendix
-      when "script_http_methods" then cmd = prependix +    "S -p80,443 --script http-methods" + appendix
-      when "script_smtp_open_relay" then cmd = prependix + "S -p25,465,587 --script smtp-open-relay" + appendix
-      when "script_snmp_dictionary" then cmd = prependix + "U -p161 --script snmp-brute --script-args snmp-brute.communitiesdb=" + @snmp_comm_strings_long + appendix
-      when "script_tftp_files" then cmd = prependix +      "U -p69 --script tftp-enum" + appendix
-      when "tcp_full" then cmd = prependix +               "S -T4 --min-hostgroup 128 -p1-65535" + appendix
-      when "tcp_quick_scripts" then cmd = prependix +      "SV -T4 --script all --min-hostgroup 128" + appendix
-      when "tcp_quick" then cmd = prependix +              "S -T4 --min-hostgroup 128" + appendix
-      when "tcp_udp_full" then cmd = prependix +           "SU -T4 --min-hostgroup 128 -p1-65535" + appendix
-      when "tcp_udp_quick_scripts" then cmd = prependix +  "SUV -Pn --script=all --min-hostgroup 128" + appendix
-      when "tcp_udp_quick" then cmd = prependix +          "SU -T4 --min-hostgroup 128" + appendix
-      when "tcp_very_quick_lan" then cmd = prependix +     "S -T5 --top-ports 25 --min-hostgroup 256" + appendix
-      when "tcp_very_quick_wan" then cmd = prependix +     "S -T4 --top-ports 25 --min-hostgroup 256" + appendix
-      when "udp_full" then cmd = prependix +               "U -T4 --min-hostgroup 128 -p1-65535" + appendix
-      when "udp_quick_scripts" then cmd = prependix +      "UV -T4 --script=all --min-hostgroup 128" + appendix
-      when "udp_quick" then cmd = prependix +              "U -T4 --min-hostgroup 128" + appendix
-      end
+    cmd_prefix = "#{@path} -v"
+    cmd_suffix = "-iL #{@stdin_hosts} -oA #{@out_file}"
+    case run_method
+    when "custom" then custom
+      cmd = @cmd
+    when "script_ftp_anon"        then cmd_infix = "-Pn -sS -p21 --script ftp-anon"
+    when "script_http_methods"    then cmd_infix = "-Pn -sS -p80,443 --script http-methods"
+    when "script_smtp_open_relay" then cmd_infix = "-Pn -sS -p25,465,587 --script smtp-open-relay"
+    when "script_snmp_dictionary" then cmd_infix = "-Pn -sU -p161 --script snmp-brute --script-args snmp-brute.communitiesdb=#{@snmp_comm_strings_long}"
+    when "script_tftp_files"      then cmd_infix = "-Pn -sU -p69 --script tftp-enum"
+    when "tcp_full"               then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128 -p1-65535"
+    when "tcp_quick_scripts"      then cmd_infix = "-Pn -sSV -T4 --script all --min-hostgroup 128"
+    when "tcp_quick"              then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128"
+    when "tcp_udp_full"           then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128 -p1-65535"
+    when "tcp_udp_quick_scripts"  then cmd_infix = "-Pn -sSUV -Pn --script=all --min-hostgroup 128"
+    when "tcp_udp_quick"          then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128"
+    when "tcp_very_quick_lan"     then cmd_infix = "-Pn -sS -T5 --top-ports 25 --min-hostgroup 256"
+    when "tcp_very_quick_wan"     then cmd_infix = "-Pn -sS -T4 --top-ports 25 --min-hostgroup 256"
+    when "udp_full"               then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128 -p1-65535"
+    when "udp_quick_scripts"      then cmd_infix = "-Pn -sUV -T4 --script=all --min-hostgroup 128"
+    when "udp_quick"              then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128"
+    end
+    cmd = "#{cmd_prefix} #{cmd_infix} #{cmd_suffix}"
     run(cmd)
     clean_exit(run_method)
   end
@@ -98,6 +97,6 @@ class GNmap < Weapon
     puts "-A -T4 -sSV -Pn -p22,2222".yellow
     puts
     args = gets.chomp
-    @cmd = @path + " -v #{args} -iL " + @stdin_hosts + " -oA " + @out_file
+    @cmd = "#{args}"
   end
 end  

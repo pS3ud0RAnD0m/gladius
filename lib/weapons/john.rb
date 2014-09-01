@@ -26,12 +26,13 @@ class John < Weapon
     selection = gets.to_i
     case selection
     when 1 then
-      get_input("stdin_to_file", "words", @share_seed)
+      instruct_input_words
+      get_input("stdin_to_file", @share_seed)
       execute(run_method)
     when 2 then
+      instruct_input_words_list
       # cp to share_seed
-      
-      get_input("gets_to_var", "words_list", @share_seed)
+      get_input("gets_to_var", @share_seed)
       execute(run_method)
     else puts "Invalid selection.".red
     menu(run_method)
@@ -64,7 +65,7 @@ class John < Weapon
         run(cmd)
         clean_exit
       when "l33t" then
-        cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} #{appendix}"
+        cmd = "#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules}#{appendix}"
         run(cmd)
         clean_exit
       when "basic_plus_l33t" then

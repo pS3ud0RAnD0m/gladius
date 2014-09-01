@@ -538,20 +538,14 @@
           <div class="method-source-code" id="smb_stdin-source">
             <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;administrator&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;backup&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_usrs</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password1&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">instruct_input_pwds</span>(<span class="ruby-string">&quot;windows&quot;</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
   <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
     <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
@@ -591,7 +585,7 @@
 
           
           <div class="method-source-code" id="smb_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 124</span>
+            <pre><span class="ruby-comment"># File lib/weapons/medusa.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">smb_stdin_list</span>
   <span class="ruby-identifier">instruct_input_usrs_list</span>
   <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
