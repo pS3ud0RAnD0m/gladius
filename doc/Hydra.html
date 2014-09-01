@@ -77,75 +77,11 @@
     
     <li ><a href="#method-i-clean_exit">#clean_exit</a>
     
-    <li ><a href="#method-i-ftp_gladius_long">#ftp_gladius_long</a>
-    
-    <li ><a href="#method-i-ftp_stdin">#ftp_stdin</a>
-    
-    <li ><a href="#method-i-ftp_stdin_list">#ftp_stdin_list</a>
+    <li ><a href="#method-i-execute">#execute</a>
     
     <li ><a href="#method-i-get_input_type">#get_input_type</a>
     
     <li ><a href="#method-i-get_targets">#get_targets</a>
-    
-    <li ><a href="#method-i-mssql_gladius_long">#mssql_gladius_long</a>
-    
-    <li ><a href="#method-i-mssql_stdin">#mssql_stdin</a>
-    
-    <li ><a href="#method-i-mssql_stdin_list">#mssql_stdin_list</a>
-    
-    <li ><a href="#method-i-mysql_gladius_long">#mysql_gladius_long</a>
-    
-    <li ><a href="#method-i-mysql_stdin">#mysql_stdin</a>
-    
-    <li ><a href="#method-i-mysql_stdin_list">#mysql_stdin_list</a>
-    
-    <li ><a href="#method-i-postgresql_gladius_long">#postgresql_gladius_long</a>
-    
-    <li ><a href="#method-i-postgresql_stdin">#postgresql_stdin</a>
-    
-    <li ><a href="#method-i-postgresql_stdin_list">#postgresql_stdin_list</a>
-    
-    <li ><a href="#method-i-rexec_gladius_long">#rexec_gladius_long</a>
-    
-    <li ><a href="#method-i-rexec_stdin">#rexec_stdin</a>
-    
-    <li ><a href="#method-i-rexec_stdin_list">#rexec_stdin_list</a>
-    
-    <li ><a href="#method-i-rlogin_gladius_long">#rlogin_gladius_long</a>
-    
-    <li ><a href="#method-i-rlogin_stdin">#rlogin_stdin</a>
-    
-    <li ><a href="#method-i-rlogin_stdin_list">#rlogin_stdin_list</a>
-    
-    <li ><a href="#method-i-rsh_gladius_long">#rsh_gladius_long</a>
-    
-    <li ><a href="#method-i-rsh_stdin">#rsh_stdin</a>
-    
-    <li ><a href="#method-i-rsh_stdin_list">#rsh_stdin_list</a>
-    
-    <li ><a href="#method-i-ssh_gladius_long">#ssh_gladius_long</a>
-    
-    <li ><a href="#method-i-ssh_stdin">#ssh_stdin</a>
-    
-    <li ><a href="#method-i-ssh_stdin_list">#ssh_stdin_list</a>
-    
-    <li ><a href="#method-i-telnet_gladius_long">#telnet_gladius_long</a>
-    
-    <li ><a href="#method-i-telnet_stdin">#telnet_stdin</a>
-    
-    <li ><a href="#method-i-telnet_stdin_list">#telnet_stdin_list</a>
-    
-    <li ><a href="#method-i-vmauthd_gladius_long">#vmauthd_gladius_long</a>
-    
-    <li ><a href="#method-i-vmauthd_stdin">#vmauthd_stdin</a>
-    
-    <li ><a href="#method-i-vmauthd_stdin_list">#vmauthd_stdin_list</a>
-    
-    <li ><a href="#method-i-vnc_gladius_long">#vnc_gladius_long</a>
-    
-    <li ><a href="#method-i-vnc_stdin">#vnc_stdin</a>
-    
-    <li ><a href="#method-i-vnc_stdin_list">#vnc_stdin_list</a>
     
   </ul>
 </nav>
@@ -398,18 +334,23 @@
   <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
-  <span class="ruby-ivar">@stdin_hosts</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_hosts&quot;</span>)
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
   <span class="ruby-comment"># Weapon specific</span>
   <span class="ruby-ivar">@init_dir</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>
+  <span class="ruby-ivar">@input_type</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-ivar">@port</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-ivar">@run_method</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@run_type</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-ivar">@share_output</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_output&quot;</span>)
   <span class="ruby-comment"># Weapon specific lists</span>
+
   <span class="ruby-ivar">@stdin_pwds</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_pwds&quot;</span>)
-  <span class="ruby-ivar">@stdin_usrs</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_usrs&quot;</span>)    
-  <span class="ruby-ivar">@pwds_long</span> = <span class="ruby-string">&quot;&quot;</span>
-  <span class="ruby-ivar">@usrs_long</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@stdin_usrs</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_usrs&quot;</span>)
+  
+  <span class="ruby-ivar">@usrs_file</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@pwds_file</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@hosts_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_hosts&quot;</span>)
+  <span class="ruby-ivar">@gladius_usrs_file_long</span> = <span class="ruby-string">&quot;&quot;</span>
+  <span class="ruby-ivar">@gladius_pwds_file_long</span> = <span class="ruby-string">&quot;&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -448,7 +389,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 587</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>(<span class="ruby-identifier">search_term</span>)
   <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@init_dir</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
@@ -476,10 +417,10 @@
       </div><!-- clean_exit-method -->
 
     
-      <div id="method-i-ftp_gladius_long" class="method-detail ">
+      <div id="method-i-execute" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">ftp_gladius_long</span><span
+          <span class="method-name">execute</span><span
             class="method-args">()</span>
           
           <span class="method-click-advice">click to toggle source</span>
@@ -489,124 +430,44 @@
 
         <div class="method-description">
           
-          <p>Run methods</p>
+          <p>Execution method</p>
 
-<p><a href="FTP.html">FTP</a></p>
-
-<p>ttd_2: Run methods need significant refactoring.</p>
+<p>Execute method</p>
           
           
 
           
-          <div class="method-source-code" id="ftp_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 107</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_gladius_long</span>
+          <div class="method-source-code" id="execute-source">
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ftp |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ftp&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ftp_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ftp_gladius_long-method -->
-
-    
-      <div id="method-i-ftp_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ftp_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ftp_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 114</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ftp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-identifier">cmd_prefix</span> = <span class="ruby-node">&quot;#{@path} -V -w 64 -e ns -t&quot;</span>
+  <span class="ruby-identifier">cmd_suffix</span> = <span class="ruby-node">&quot;|tee #{@out_file}&quot;</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@run_type</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ftp&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} ftp&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mssql&quot;</span>    <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;4 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} mssql&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;mysql&quot;</span>    <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;4 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} mysql&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;postgres&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} postgres&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span>    <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rexec -s 512&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span>   <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rlogin -s 513&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rsh -s 514&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;ssh&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} ssh -s 22&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;telnet&quot;</span>   <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} telnet -s 23&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span>  <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} vmauthd -s 902&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-node">&quot;4 -P #{@pwds_file} -M #{@hosts_file} vnc -s 5900&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;abc123&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ftp |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
+  <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{cmd_prefix} #{cmd_infix} #{cmd_suffix}&quot;</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ftp&quot;</span>)
+  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-ivar">@run_type</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- ftp_stdin-source -->
+          </div><!-- execute-source -->
           
         </div>
 
         
 
         
-      </div><!-- ftp_stdin-method -->
-
-    
-      <div id="method-i-ftp_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ftp_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ftp_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 137</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">ftp_stdin_list</span>
-    <span class="ruby-identifier">instruct_input_usrs_list</span>
-    <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-    <span class="ruby-identifier">instruct_input_pwds_list</span>
-<span class="ruby-comment"># ttd_3: Does not check for empty input.</span>
-    <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-    <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-    <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ftp |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-    <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-    <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ftp&quot;</span>)
-  <span class="ruby-keyword">end</span></pre>
-          </div><!-- ftp_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ftp_stdin_list-method -->
+      </div><!-- execute-method -->
 
     
       <div id="method-i-get_input_type" class="method-detail ">
@@ -628,33 +489,50 @@
 
           
           <div class="method-source-code" id="get_input_type-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 73</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-identifier">dictionary</span>)
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">dictionary</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span>
-    <span class="ruby-ivar">@pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_pwds_long&quot;</span>)
-    <span class="ruby-identifier">pwds_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@pwds_long</span>)
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{pwds_count} attempts/host = #{pwds_count} passwords&quot;</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-ivar">@pwds_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_pwds_long&quot;</span>)
-    <span class="ruby-ivar">@usrs_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_usrs_long&quot;</span>)
-    <span class="ruby-identifier">pwds_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@pwds_long</span>) <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
-    <span class="ruby-identifier">usrs_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@usrs_long</span>)
-    <span class="ruby-identifier">mult_count</span> = <span class="ruby-identifier">usrs_count</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">pwds_count</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{mult_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords&quot;</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files&quot;</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 79</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-identifier">dictionary</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">dictionary</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vnc&quot;</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-ivar">@gladius_pwds_file_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_pwds_long&quot;</span>)
+      <span class="ruby-identifier">pwds_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@gladius_pwds_file_long</span>)
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{pwds_count} attempts/host = #{pwds_count} passwords&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@gladius_pwds_file_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_pwds_long&quot;</span>)
+      <span class="ruby-ivar">@gladius_usrs_file_long</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-node">&quot;#{dictionary}_usrs_long&quot;</span>)
+      <span class="ruby-identifier">pwds_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@gladius_pwds_file_long</span>) <span class="ruby-operator">+</span> <span class="ruby-value">2</span>
+      <span class="ruby-identifier">usrs_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-ivar">@gladius_usrs_file_long</span>)
+      <span class="ruby-identifier">mult_count</span> = <span class="ruby-identifier">usrs_count</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">pwds_count</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;1. #{mult_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords&quot;</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2. Input your own users and passwords&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3. Input your own user and password files&quot;</span>
+    <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
 
-  <span class="ruby-identifier">input_method</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">input_method</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{@run_method}_gladius_long&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{@run_method}_stdin&quot;</span>)
-  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{@run_method}_stdin_list&quot;</span>)
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
-  <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Hydra&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
-<span class="ruby-keyword">end</span></pre>
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-ivar">@usrs_file</span> = <span class="ruby-ivar">@gladius_usrs_file_long</span>
+      <span class="ruby-ivar">@pwds_file</span> = <span class="ruby-ivar">@gladius_pwds_file_long</span>
+      <span class="ruby-identifier">execute</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">instruct_input_usrs</span>(<span class="ruby-identifier">dictionary</span>)
+      <span class="ruby-ivar">@usrs_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_usrs&quot;</span>)
+      <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;stdin_to_file&quot;</span>, <span class="ruby-ivar">@usrs_file</span>)
+      <span class="ruby-identifier">instruct_input_pwds</span>(<span class="ruby-identifier">dictionary</span>)
+      <span class="ruby-ivar">@pwds_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get</span>(<span class="ruby-string">&quot;share_stdin_pwds&quot;</span>)
+      <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;stdin_to_file&quot;</span>, <span class="ruby-ivar">@pwds_file</span>)
+      <span class="ruby-identifier">execute</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span>
+<span class="ruby-comment"># ttd_1: vnc does not have a user</span>
+      <span class="ruby-identifier">instruct_input_usrs_list</span>
+      <span class="ruby-ivar">@usrs_file</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-identifier">instruct_input_pwds_list</span>
+<span class="ruby-comment"># ttd_3: Does not check for empty input.</span>
+      <span class="ruby-ivar">@pwds_file</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-identifier">execute</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
+    <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Hydra&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
+  <span class="ruby-keyword">end</span></pre>
           </div><!-- get_input_type-source -->
           
         </div>
@@ -669,7 +547,7 @@
         
         <div class="method-heading">
           <span class="method-name">get_targets</span><span
-            class="method-args">(run_method)</span>
+            class="method-args">(run_type)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -686,13 +564,13 @@
 
           
           <div class="method-source-code" id="get_targets-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 27</span>
-  <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_targets</span>(<span class="ruby-identifier">run_method</span>)
-    <span class="ruby-ivar">@run_method</span> = <span class="ruby-identifier">run_method</span>
+            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 32</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_targets</span>(<span class="ruby-identifier">run_type</span>)
+    <span class="ruby-ivar">@run_type</span> = <span class="ruby-identifier">run_type</span>
     <span class="ruby-identifier">header</span>
 <span class="ruby-comment"># ttd_1: ask for port</span>
     <span class="ruby-comment"># Get port</span>
-    <span class="ruby-comment">#case @run_method</span>
+    <span class="ruby-comment">#case @run_type</span>
     <span class="ruby-comment">#when &quot;ftp&quot; then get_port(21)</span>
     <span class="ruby-comment">#when &quot;http&quot; then get_port(80)</span>
     <span class="ruby-comment">#when &quot;mysql&quot; then get_port(3306)</span>
@@ -707,26 +585,27 @@
     <span class="ruby-comment">#end</span>
     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@share_output</span>)
     <span class="ruby-identifier">instruct_input_targets</span>(<span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;ip&quot;</span>)
-    <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_hosts</span>, <span class="ruby-string">&quot;w&quot;</span>)
+    <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@hosts_file</span>, <span class="ruby-string">&quot;w&quot;</span>)
     <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
       <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-    <span class="ruby-identifier">stdin_hosts</span> = <span class="ruby-ivar">@stdin_hosts</span>
-    <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">stdin_hosts</span>)
+    <span class="ruby-identifier">hosts_file</span> = <span class="ruby-ivar">@hosts_file</span>
+    <span class="ruby-identifier">line_count</span> = <span class="ruby-identifier">count_lines_file</span>(<span class="ruby-identifier">hosts_file</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">line_count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-      <span class="ruby-identifier">get_targets</span>(<span class="ruby-ivar">@run_method</span>)
+      <span class="ruby-identifier">get_targets</span>(<span class="ruby-ivar">@run_type</span>)
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select your tactic:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
     <span class="ruby-keyword">end</span>
-
-    <span class="ruby-keyword">case</span> <span class="ruby-ivar">@run_method</span>
+    
+    <span class="ruby-comment"># Pass proper dictionary to get_input_type</span>
+    <span class="ruby-keyword">case</span> <span class="ruby-ivar">@run_type</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rexec&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rlogin&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;rsh&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;vmauthd&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">get_input_type</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">get_input_type</span>(<span class="ruby-ivar">@run_method</span>)
+      <span class="ruby-identifier">get_input_type</span>(<span class="ruby-ivar">@run_type</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Interrupt</span>
     <span class="ruby-constant">GExeption</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">exit_weapon</span>(<span class="ruby-string">&quot;Hydra&quot;</span>, <span class="ruby-ivar">@prev_menu</span>)
@@ -739,1282 +618,6 @@
 
         
       </div><!-- get_targets-method -->
-
-    
-      <div id="method-i-mssql_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mssql_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>MSSQL</p>
-          
-          
-
-          
-          <div class="method-source-code" id="mssql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 152</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mssql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mssql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mssql_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mssql_gladius_long-method -->
-
-    
-      <div id="method-i-mssql_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mssql_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mssql_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 159</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;sa&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;dbadmin&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;temp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mssql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mssql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mssql_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mssql_stdin-method -->
-
-    
-      <div id="method-i-mssql_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mssql_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mssql_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 182</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mssql_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 4 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mssql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mssql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mssql_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mssql_stdin_list-method -->
-
-    
-      <div id="method-i-mysql_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mysql_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>MySQL</p>
-          
-          
-
-          
-          <div class="method-source-code" id="mysql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 196</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mysql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mysql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mysql_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mysql_gladius_long-method -->
-
-    
-      <div id="method-i-mysql_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mysql_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mysql_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 203</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;mysql&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;mysql&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;admin&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;toor&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;temp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mysql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mysql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mysql_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mysql_stdin-method -->
-
-    
-      <div id="method-i-mysql_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">mysql_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="mysql_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 230</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">mysql_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 4 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; mysql |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;mysql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- mysql_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- mysql_stdin_list-method -->
-
-    
-      <div id="method-i-postgresql_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">postgresql_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>PostgreSQL</p>
-          
-          
-
-          
-          <div class="method-source-code" id="postgresql_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 244</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; postgres |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;postgresql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- postgresql_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- postgresql_gladius_long-method -->
-
-    
-      <div id="method-i-postgresql_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">postgresql_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="postgresql_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 251</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;postgres&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;admin&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;postgres&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;admin&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;toor&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;temp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; postgres |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;postgresql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- postgresql_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- postgresql_stdin-method -->
-
-    
-      <div id="method-i-postgresql_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">postgresql_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="postgresql_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 279</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">postgresql_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; postgres |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;postgresql&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- postgresql_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- postgresql_stdin_list-method -->
-
-    
-      <div id="method-i-rexec_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rexec_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Rexec</p>
-          
-          
-
-          
-          <div class="method-source-code" id="rexec_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 293</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rexec -s 512 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rexec&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rexec_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rexec_gladius_long-method -->
-
-    
-      <div id="method-i-rexec_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rexec_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rexec_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 300</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rexec -s 512 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rexec&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rexec_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rexec_stdin-method -->
-
-    
-      <div id="method-i-rexec_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rexec_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rexec_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 322</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rexec_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rexec -s 512 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rexec&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rexec_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rexec_stdin_list-method -->
-
-    
-      <div id="method-i-rlogin_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rlogin_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Rlogin</p>
-          
-          
-
-          
-          <div class="method-source-code" id="rlogin_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 336</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rlogin -s 513 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rlogin&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rlogin_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rlogin_gladius_long-method -->
-
-    
-      <div id="method-i-rlogin_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rlogin_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rlogin_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 343</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rlogin -s 513 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rlogin&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rlogin_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rlogin_stdin-method -->
-
-    
-      <div id="method-i-rlogin_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rlogin_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rlogin_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 365</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rlogin_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rlogin -s 513 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rlogin&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rlogin_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rlogin_stdin_list-method -->
-
-    
-      <div id="method-i-rsh_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rsh_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>RSH</p>
-          
-          
-
-          
-          <div class="method-source-code" id="rsh_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 379</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rsh -s 514 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rsh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rsh_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rsh_gladius_long-method -->
-
-    
-      <div id="method-i-rsh_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rsh_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rsh_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 386</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rsh -s 514 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rsh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rsh_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rsh_stdin-method -->
-
-    
-      <div id="method-i-rsh_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rsh_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="rsh_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 408</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">rsh_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; rsh -s 514 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;rsh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- rsh_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- rsh_stdin_list-method -->
-
-    
-      <div id="method-i-ssh_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ssh_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>SSH</p>
-          
-          
-
-          
-          <div class="method-source-code" id="ssh_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 422</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ssh -s 22 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ssh_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ssh_gladius_long-method -->
-
-    
-      <div id="method-i-ssh_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ssh_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ssh_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 429</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ssh -s 22 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ssh_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ssh_stdin-method -->
-
-    
-      <div id="method-i-ssh_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">ssh_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="ssh_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 451</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">ssh_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; ssh -s 22 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;ssh&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- ssh_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- ssh_stdin_list-method -->
-
-    
-      <div id="method-i-telnet_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">telnet_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Telnet</p>
-          
-          
-
-          
-          <div class="method-source-code" id="telnet_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 465</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; telnet -s 23 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;telnet&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- telnet_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- telnet_gladius_long-method -->
-
-    
-      <div id="method-i-telnet_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">telnet_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="telnet_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 472</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;cisco&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;cisco&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; telnet -s 23 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;telnet&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- telnet_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- telnet_stdin-method -->
-
-    
-      <div id="method-i-telnet_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">telnet_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="telnet_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 495</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">telnet_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; telnet -s 23 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;telnet&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- telnet_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- telnet_stdin_list-method -->
-
-    
-      <div id="method-i-vmauthd_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vmauthd_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>VMAuthd</p>
-          
-          
-
-          
-          <div class="method-source-code" id="vmauthd_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 543</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -e ns -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@usrs_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vmauthd&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vmauthd_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vmauthd_gladius_long-method -->
-
-    
-      <div id="method-i-vmauthd_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vmauthd_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="vmauthd_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 550</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdin</span>
-  <span class="ruby-identifier">instruct_input_usrs</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_usrs</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;root&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 8 -w 64 -L &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_usrs</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vmauthd&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vmauthd_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vmauthd_stdin-method -->
-
-    
-      <div id="method-i-vmauthd_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vmauthd_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="vmauthd_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 572</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vmauthd_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_usrs_list</span>
-  <span class="ruby-identifier">stdin_usrs</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vmauthd -s 902 |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vmauthd&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vmauthd_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vmauthd_stdin_list-method -->
-
-    
-      <div id="method-i-vnc_gladius_long" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vnc_gladius_long</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>VNC</p>
-
-<pre>`</pre>
-          
-          
-
-          
-          <div class="method-source-code" id="vnc_gladius_long-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 509</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_gladius_long</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)    
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -e ns -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@pwds_long</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vnc_gladius_long-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vnc_gladius_long-method -->
-
-    
-      <div id="method-i-vnc_stdin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vnc_stdin</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="vnc_stdin-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 516</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdin</span>
-  <span class="ruby-identifier">instruct_input_pwds</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;vncpass&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;password&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">a</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@stdin_pwds</span>, <span class="ruby-string">&quot;w&quot;</span>)
-  <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">gets</span>
-    <span class="ruby-identifier">a</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">a</span>.<span class="ruby-identifier">close</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -V -t 4 -w 64 -P &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_pwds</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vnc_stdin-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vnc_stdin-method -->
-
-    
-      <div id="method-i-vnc_stdin_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">vnc_stdin_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-          
-
-          
-          <div class="method-source-code" id="vnc_stdin_list-source">
-            <pre><span class="ruby-comment"># File lib/weapons/hydra.rb, line 531</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">vnc_stdin_list</span>
-  <span class="ruby-identifier">instruct_input_pwds_list</span>
-  <span class="ruby-identifier">stdin_pwds</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -V -t 4 -w 64 -P #{stdin_pwds} -M &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@stdin_hosts</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; vnc -s 5900 &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@port</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">clean_exit</span>(<span class="ruby-string">&quot;vnc&quot;</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- vnc_stdin_list-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- vnc_stdin_list-method -->
 
     
     </section><!-- public-instance-method-details -->

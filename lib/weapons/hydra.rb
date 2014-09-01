@@ -6,30 +6,35 @@ class Hydra < Weapon
     @name = self.class.to_s.downcase
     @path = @name
     @prev_menu = prev_menu
-    @stdin_hosts = Path.get("share_stdin_hosts")
     @title = title
     # Weapon specific
     @init_dir = Dir.pwd
+    @input_type = ""
     @port = ""
-    @run_method = ""
+    @run_type = ""
     @share_output = Path.get("share_output")
     # Weapon specific lists
+
     @stdin_pwds = Path.get("share_stdin_pwds")
-    @stdin_usrs = Path.get("share_stdin_usrs")    
-    @pwds_long = ""
-    @usrs_long = ""
+    @stdin_usrs = Path.get("share_stdin_usrs")
+    
+    @usrs_file = ""
+    @pwds_file = ""
+    @hosts_file = Path.get("share_stdin_hosts")
+    @gladius_usrs_file_long = ""
+    @gladius_pwds_file_long = ""
   end
 
 ###############################################################################
 # Menu methods
 ###############################################################################
   # Get target(s)
-  def get_targets(run_method)
-    @run_method = run_method
+  def get_targets(run_type)
+    @run_type = run_type
     header
 # ttd_1: ask for port
     # Get port
-    #case @run_method
+    #case @run_type
     #when "ftp" then get_port(21)
     #when "http" then get_port(80)
     #when "mysql" then get_port(3306)
@@ -44,25 +49,27 @@ class Hydra < Weapon
     #end
     Dir.chdir(@share_output)
     instruct_input_targets("fqdn", "ip")
-    a = File.open(@stdin_hosts, "w")
+    a = File.open(@hosts_file, "w")
     while line = gets
       a << line
     end
     a.close
-    stdin_hosts = @stdin_hosts
-    line_count = count_lines_file(stdin_hosts)
+    hosts_file = @hosts_file
+    line_count = count_lines_file(hosts_file)
     if line_count == 0
-      get_targets(@run_method)
+      get_targets(@run_type)
     else
       puts "Select your tactic:".light_yellow
     end
-    case @run_method
+    
+    # Pass proper dictionary to get_input_type
+    case @run_type
     when "rexec" then get_input_type("ssh")
     when "rlogin" then get_input_type("ssh")
     when "rsh" then get_input_type("ssh")
     when "vmauthd" then get_input_type("ssh")
     else
-      get_input_type(@run_method)
+      get_input_type(@run_type)
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Hydra", @prev_menu)
@@ -72,510 +79,71 @@ class Hydra < Weapon
   def get_input_type(dictionary)
     case dictionary
     when "vnc" then
-      @pwds_long = Path.get("#{dictionary}_pwds_long")
-      pwds_count = count_lines_file(@pwds_long)
+      @gladius_pwds_file_long = Path.get("#{dictionary}_pwds_long")
+      pwds_count = count_lines_file(@gladius_pwds_file_long)
       puts "1. #{pwds_count} attempts/host = #{pwds_count} passwords"
     else
-      @pwds_long = Path.get("#{dictionary}_pwds_long")
-      @usrs_long = Path.get("#{dictionary}_usrs_long")
-      pwds_count = count_lines_file(@pwds_long) + 2
-      usrs_count = count_lines_file(@usrs_long)
+      @gladius_pwds_file_long = Path.get("#{dictionary}_pwds_long")
+      @gladius_usrs_file_long = Path.get("#{dictionary}_usrs_long")
+      pwds_count = count_lines_file(@gladius_pwds_file_long) + 2
+      usrs_count = count_lines_file(@gladius_usrs_file_long)
       mult_count = usrs_count * pwds_count
       puts "1. #{mult_count} attempts/host = #{usrs_count} users * #{pwds_count} passwords"
     end
     puts "2. Input your own users and passwords"
     puts "3. Input your own user and password files"
-    input_method = gets.to_i
-    case input_method
-    when 1 then send("#{@run_method}_gladius_long")
-    when 2 then send("#{@run_method}_stdin")
-    when 3 then send("#{@run_method}_stdin_list")
+    selection = gets.to_i
+
+    case selection
+    when 1 then
+      @usrs_file = @gladius_usrs_file_long
+      @pwds_file = @gladius_pwds_file_long
+      execute
+    when 2 then
+      instruct_input_usrs(dictionary)
+      @usrs_file = Path.get("share_stdin_usrs")
+      get_input("stdin_to_file", @usrs_file)
+      instruct_input_pwds(dictionary)
+      @pwds_file = Path.get("share_stdin_pwds")
+      get_input("stdin_to_file", @pwds_file)
+      execute
+    when 3 then
+# ttd_1: vnc does not have a user
+      instruct_input_usrs_list
+      @usrs_file = gets.chomp
+      instruct_input_pwds_list
+# ttd_3: Does not check for empty input.
+      @pwds_file = gets.chomp
+      execute
     end
   rescue Interrupt
     GExeption.new.exit_weapon("Hydra", @prev_menu)
   end
 
 ###############################################################################
-# Run methods
+# Execution method
 ###############################################################################
-##################################
-# FTP
-##################################
-# ttd_2: Run methods need significant refactoring.
-  def ftp_gladius_long
+# Execute method
+  def execute
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " ftp |tee " + @out_file
-    run(cmd)
-    clean_exit("ftp")
-  end
-
-  def ftp_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    puts "ftp".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
+    cmd_prefix = "#{@path} -V -w 64 -e ns -t"
+    cmd_suffix = "|tee #{@out_file}"
+    case @run_type
+    when "ftp"      then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} ftp"
+    when "mssql"    then cmd_infix = "4 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} mssql"
+    when "mysql"    then cmd_infix = "4 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} mysql"
+    when "postgres" then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} postgres"
+    when "rexec"    then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rexec -s 512"
+    when "rlogin"   then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rlogin -s 513"
+    when "rsh"      then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} rsh -s 514"
+    when "ssh"      then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} ssh -s 22"
+    when "telnet"   then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} telnet -s 23"
+    when "vmauthd"  then cmd_infix = "8 -L #{@usrs_file} -P #{@pwds_file} -M #{@hosts_file} vmauthd -s 902"
+    when "vnc"      then cmd_infix = "4 -P #{@pwds_file} -M #{@hosts_file} vnc -s 5900"
     end
-    a.close
-    instruct_input_pwds
-    puts "password".yellow
-    puts "abc123".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " ftp |tee " + @out_file
+    cmd = "#{cmd_prefix} #{cmd_infix} #{cmd_suffix}"
     run(cmd)
-    clean_exit("ftp")
-  end
-  
-  def ftp_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-# ttd_3: Does not check for empty input.
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " ftp |tee " + @out_file
-    run(cmd)
-    clean_exit("ftp")
-  end
-
-##################################
-# MSSQL
-##################################
-  def mssql_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " mssql |tee " + @out_file
-    run(cmd)
-    clean_exit("mssql")
-  end
-  
-  def mssql_stdin
-    instruct_input_usrs
-    puts "sa".yellow
-    puts "dbadmin".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "password".yellow
-    puts "temp".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " mssql |tee " + @out_file
-    run(cmd)
-    clean_exit("mssql")
-  end
-  
-  def mssql_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " mssql |tee " + @out_file
-    run(cmd)
-    clean_exit("mssql")
-  end
-
-##################################
-# MySQL
-##################################
-  def mysql_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " mysql |tee " + @out_file
-    run(cmd)
-    clean_exit("mysql")
-  end
-  
-  def mysql_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    puts "mysql".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    puts "mysql".yellow
-    puts "admin".yellow
-    puts "toor".yellow
-    puts "temp".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " mysql |tee " + @out_file
-    run(cmd)
-    clean_exit("mysql")
-  end
-  
-  def mysql_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " mysql |tee " + @out_file
-    run(cmd)
-    clean_exit("mysql")
-  end
-
-##################################
-# PostgreSQL
-##################################
-  def postgresql_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " postgres |tee " + @out_file
-    run(cmd)
-    clean_exit("postgresql")
-  end
-  
-  def postgresql_stdin
-    instruct_input_usrs
-    puts "password".yellow
-    puts "postgres".yellow
-    puts "admin".yellow
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "password".yellow
-    puts "postgres".yellow
-    puts "admin".yellow
-    puts "toor".yellow
-    puts "temp".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " postgres |tee " + @out_file
-    run(cmd)
-    clean_exit("postgresql")
-  end
-  
-  def postgresql_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " postgres |tee " + @out_file
-    run(cmd)
-    clean_exit("postgresql")
-  end
-
-##################################
-# Rexec
-##################################
-  def rexec_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rexec -s 512 |tee " + @out_file
-    run(cmd)
-    clean_exit("rexec")
-  end
-
-  def rexec_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " rexec -s 512 |tee " + @out_file
-    run(cmd)
-    clean_exit("rexec")
-  end
-  
-  def rexec_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " rexec -s 512 |tee " + @out_file
-    run(cmd)
-    clean_exit("rexec")
-  end
-
-##################################
-# Rlogin
-##################################
-  def rlogin_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rlogin -s 513 |tee " + @out_file
-    run(cmd)
-    clean_exit("rlogin")
-  end
-
-  def rlogin_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " rlogin -s 513 |tee " + @out_file
-    run(cmd)
-    clean_exit("rlogin")
-  end
-  
-  def rlogin_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " rlogin -s 513 |tee " + @out_file
-    run(cmd)
-    clean_exit("rlogin")
-  end
-
-##################################
-# RSH
-##################################
-  def rsh_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " rsh -s 514 |tee " + @out_file
-    run(cmd)
-    clean_exit("rsh")
-  end
-
-  def rsh_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " rsh -s 514 |tee " + @out_file
-    run(cmd)
-    clean_exit("rsh")
-  end
-  
-  def rsh_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " rsh -s 514 |tee " + @out_file
-    run(cmd)
-    clean_exit("rsh")
-  end
-
-##################################
-# SSH
-##################################
-  def ssh_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " ssh -s 22 |tee " + @out_file
-    run(cmd)
-    clean_exit("ssh")
-  end
-
-  def ssh_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " ssh -s 22 |tee " + @out_file
-    run(cmd)
-    clean_exit("ssh")
-  end
-  
-  def ssh_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " ssh -s 22 |tee " + @out_file
-    run(cmd)
-    clean_exit("ssh")
-  end
-
-##################################
-# Telnet
-##################################
-  def telnet_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " telnet -s 23 |tee " + @out_file
-    run(cmd)
-    clean_exit("telnet")
-  end
-
-  def telnet_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    puts "cisco".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "cisco".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " telnet -s 23 |tee " + @out_file
-    run(cmd)
-    clean_exit("telnet")
-  end
-  
-  def telnet_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " telnet -s 23 |tee " + @out_file
-    run(cmd)
-    clean_exit("telnet")
-  end
-
-##################################
-# VNC
-##################################`
-  def vnc_gladius_long
-    @out_file = Path.get_out_file_txt(@name)    
-    cmd = @path + " -V -t 4 -w 64 -e ns -P " + @pwds_long + " -M " + @stdin_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
-    run(cmd)
-    clean_exit("vnc")
-  end
-
-  def vnc_stdin
-    instruct_input_pwds
-    puts "vncpass".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -P " + @stdin_pwds + " -M " + @stdin_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
-    run(cmd)
-    clean_exit("vnc")
-  end
-  
-  def vnc_stdin_list
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 4 -w 64 -P #{stdin_pwds} -M " + @stdin_hosts + " vnc -s 5900 " + @port + " |tee " + @out_file
-    run(cmd)
-    clean_exit("vnc")
-  end
-  
-##################################
-# VMAuthd
-##################################
-  def vmauthd_gladius_long
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -e ns -L " + @usrs_long + " -P " + @pwds_long + " -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
-    run(cmd)
-    clean_exit("vmauthd")
-  end
-
-  def vmauthd_stdin
-    instruct_input_usrs
-    puts "root".yellow
-    a = File.open(@stdin_usrs, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    instruct_input_pwds
-    puts "root".yellow
-    puts "password".yellow
-    a = File.open(@stdin_pwds, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L " + @stdin_usrs + " -P " + @stdin_pwds + " -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
-    run(cmd)
-    clean_exit("vmauthd")
-  end
-  
-  def vmauthd_stdin_list
-    instruct_input_usrs_list
-    stdin_usrs = gets.chomp
-    instruct_input_pwds_list
-    stdin_pwds = gets.chomp
-    @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -V -t 8 -w 64 -L #{stdin_usrs} -P #{stdin_pwds} -M " + @stdin_hosts + " vmauthd -s 902 |tee " + @out_file
-    run(cmd)
-    clean_exit("vmauthd")
+    clean_exit(@run_type)
   end
 
 ###############################################################################

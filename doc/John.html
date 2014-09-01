@@ -374,7 +374,7 @@
 
           
           <div class="method-source-code" id="clean_exit-source">
-            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 44</span>
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{count_lines_file(@out_file)} words in the new list.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
@@ -414,7 +414,7 @@
 
           
           <div class="method-source-code" id="execute-source">
-            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 57</span>
+            <pre><span class="ruby-comment"># File lib/weapons/john.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot;_#{run_method}.txt&quot;</span>
   <span class="ruby-identifier">prependix</span> = <span class="ruby-node">&quot;#{@path} -w=#{@share_seed} -rules&quot;</span>
@@ -425,7 +425,7 @@
       <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
       <span class="ruby-identifier">clean_exit</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;l33t&quot;</span> <span class="ruby-keyword">then</span>
-      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules} #{appendix}&quot;</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{prependix}=KoreLogicRulesL33t -config=#{@korelogic_rules}#{appendix}&quot;</span>
       <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
       <span class="ruby-identifier">clean_exit</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;basic_plus_l33t&quot;</span> <span class="ruby-keyword">then</span>
@@ -482,12 +482,13 @@
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span>
-    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;stdin_to_file&quot;</span>, <span class="ruby-string">&quot;words&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
+    <span class="ruby-identifier">instruct_input_words</span>
+    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;stdin_to_file&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
     <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">instruct_input_words_list</span>
     <span class="ruby-comment"># cp to share_seed</span>
-    
-    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;gets_to_var&quot;</span>, <span class="ruby-string">&quot;words_list&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
+    <span class="ruby-identifier">get_input</span>(<span class="ruby-string">&quot;gets_to_var&quot;</span>, <span class="ruby-ivar">@share_seed</span>)
     <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-keyword">else</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Invalid selection.&quot;</span>.<span class="ruby-identifier">red</span>
   <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
