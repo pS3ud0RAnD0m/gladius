@@ -8,21 +8,17 @@ class Hydra < Weapon
     @prev_menu = prev_menu
     @title = title
     # Weapon specific
+    @file = ""
+    @gladius_pwds_file_long = ""
+    @gladius_usrs_file_long = ""
+    @hosts_file = Path.get("share_stdin_hosts")
     @init_dir = Dir.pwd
     @input_type = ""
     @port = ""
+    @pwds_file = ""
     @run_type = ""
     @share_output = Path.get("share_output")
-    # Weapon specific lists
-
-    @stdin_pwds = Path.get("share_stdin_pwds")
-    @stdin_usrs = Path.get("share_stdin_usrs")
-    
     @usrs_file = ""
-    @pwds_file = ""
-    @hosts_file = Path.get("share_stdin_hosts")
-    @gladius_usrs_file_long = ""
-    @gladius_pwds_file_long = ""
   end
 
 ###############################################################################
@@ -49,19 +45,9 @@ class Hydra < Weapon
     #end
     Dir.chdir(@share_output)
     instruct_input_targets("fqdn", "ip")
-    a = File.open(@hosts_file, "w")
-    while line = gets
-      a << line
-    end
-    a.close
-    hosts_file = @hosts_file
-    line_count = count_lines_file(hosts_file)
-    if line_count == 0
-      get_targets(@run_type)
-    else
-      puts "Select your tactic:".light_yellow
-    end
-    
+    get_input("stdin_to_file", @hosts_file)
+    puts "Select your tactic:".light_yellow
+
     # Pass proper dictionary to get_input_type
     case @run_type
     when "rexec" then get_input_type("ssh")
@@ -77,13 +63,11 @@ class Hydra < Weapon
 
   # Get input type
   def get_input_type(dictionary)
-    case dictionary
-    when "vnc" then
-      @gladius_pwds_file_long = Path.get("#{dictionary}_pwds_long")
+    @gladius_pwds_file_long = Path.get("#{dictionary}_pwds_long")
+    if dictionary == "vnc"
       pwds_count = count_lines_file(@gladius_pwds_file_long)
       puts "1. #{pwds_count} attempts/host = #{pwds_count} passwords"
     else
-      @gladius_pwds_file_long = Path.get("#{dictionary}_pwds_long")
       @gladius_usrs_file_long = Path.get("#{dictionary}_usrs_long")
       pwds_count = count_lines_file(@gladius_pwds_file_long) + 2
       usrs_count = count_lines_file(@gladius_usrs_file_long)
@@ -93,27 +77,28 @@ class Hydra < Weapon
     puts "2. Input your own users and passwords"
     puts "3. Input your own user and password files"
     selection = gets.to_i
-
     case selection
     when 1 then
       @usrs_file = @gladius_usrs_file_long
       @pwds_file = @gladius_pwds_file_long
       execute
     when 2 then
-      instruct_input_usrs(dictionary)
-      @usrs_file = Path.get("share_stdin_usrs")
-      get_input("stdin_to_file", @usrs_file)
+      unless dictionary == "vnc"
+        instruct_input_usrs(dictionary)
+        @usrs_file = Path.get("share_stdin_usrs")
+        get_input("stdin_to_file", @usrs_file)
+      end
       instruct_input_pwds(dictionary)
       @pwds_file = Path.get("share_stdin_pwds")
       get_input("stdin_to_file", @pwds_file)
       execute
     when 3 then
-# ttd_1: vnc does not have a user
       instruct_input_usrs_list
-      @usrs_file = gets.chomp
+      get_input_file
+      @usrs_file = @file
       instruct_input_pwds_list
-# ttd_3: Does not check for empty input.
-      @pwds_file = gets.chomp
+      get_input_file
+      @pwds_file = @file
       execute
     end
   rescue Interrupt
@@ -160,11 +145,9 @@ class Hydra < Weapon
         puts "Hydra found the following credentials:".light_yellow
         puts results
       end
-    end
-    if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file
     end
-  exit_weapon
+    exit_weapon
   end
 end  

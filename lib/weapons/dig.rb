@@ -32,6 +32,7 @@ class DiG < Weapon
 # Run methods
 ###############################################################################
   # Identify Domain Controllers, i.e., servers running kerb.
+# ttd_1: Failed logic > looping
   def idcontrollers
     # Get dns server
     dns_server = `nslookup server |grep Server |awk '{print $2}'`.chomp

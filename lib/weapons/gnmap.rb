@@ -66,6 +66,7 @@ class GNmap < Weapon
     case run_method
     when "custom" then custom
       cmd = @cmd
+    when "ping_discovery"         then cmd_infix = "-sn"
     when "script_ftp_anon"        then cmd_infix = "-Pn -sS -p21 --script ftp-anon"
     when "script_http_methods"    then cmd_infix = "-Pn -sS -p80,443 --script http-methods"
     when "script_smtp_open_relay" then cmd_infix = "-Pn -sS -p25,465,587 --script smtp-open-relay"

@@ -15,43 +15,6 @@ class Weapon
     puts "----------------------------------------"
   end
 
-# ttd_3: move this pid method to path.rb and refactor
-  def get_pid_file
-    time = Time.now
-    tmp_pids = Path.get("share_pids")
-    pid_tstamp = "%10.10f" % time.to_f
-    time.strftime(tmp_pids + pid_tstamp + ".pid")
-  end
-
-  def get_tmp_file
-    time = Time.now
-    tmp_file = Path.get("share_tmp")
-    file_tstamp = "%10.10f" % time.to_f
-    time.strftime(tmp_file + file_tstamp + ".tmp")
-  end
-
-  def get_host
-    puts "Input target port number: [localhost:)]".light_yellow
-    @host = gets.chomp
-    if @host.empty?
-      @host = "localhost"
-    end
-  end
-  
-  def get_port(default)
-    puts "Input target port: [#{default}]".light_yellow
-    @port = gets.chomp
-    if @port.empty?
-      @port = default
-    end
-  end
-  
-  def get_hosts_ports
-    while line = gets
-      @hosts_ports << line.chomp
-    end
-  end
-
   # Supply examples for weapon input.
   def instruct_input_targets(*args)
     puts "Input target(s), one per line:".light_yellow
@@ -102,6 +65,9 @@ class Weapon
     when "telnet" then
       puts "password".yellow
       puts "cisco".yellow
+    when "vnc" then
+      puts "vncPassword!".yellow
+      puts "$3cret".yellow
     when "windows" then
       puts "Password!".yellow
       puts "$3cret".yellow
@@ -164,6 +130,29 @@ class Weapon
     puts "/root/Desktop/words.txt".yellow
   end
 
+# ttd_3: move this pid method to path.rb and refactor
+  def get_pid_file
+    time = Time.now
+    tmp_pids = Path.get("share_pids")
+    pid_tstamp = "%10.10f" % time.to_f
+    time.strftime(tmp_pids + pid_tstamp + ".pid")
+  end
+
+  def get_tmp_file
+    time = Time.now
+    tmp_file = Path.get("share_tmp")
+    file_tstamp = "%10.10f" % time.to_f
+    time.strftime(tmp_file + file_tstamp + ".tmp")
+  end
+  
+  def get_port(default)
+    puts "Input target port: [#{default}]".light_yellow
+    @port = gets.chomp
+    if @port.empty?
+      @port = default
+    end
+  end
+  
   # Get input and validate not empty
   def get_input(type, destination)
     case type
@@ -195,8 +184,16 @@ class Weapon
     end
   end
 
+  def get_input_file
+    @file = gets.chomp
+    if @file.empty?
+      no_input
+      get_input_file
+    end
+  end
+
   def no_input
-    puts "No input detected.".red
+    puts "No input detected. Try again.".red
   end
 
   # Get wordlist counts
