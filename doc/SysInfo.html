@@ -1,384 +1,378 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>class SysInfo - RDoc Documentation</title>
+  <title>Class: SysInfo</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
-
-
+</head>
 <body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/helpers/sysinfo_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/helpers/sysinfo.rb">lib/helpers/sysinfo.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+      
+    </div>
 
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="Object.html">Object</a></p>
+        
+      </div>
+      
 
-  
+      
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/helpers/sysinfo.rb
-  </ul>
-</nav>
+      
 
-    
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-check_requirements">#check_requirements</a></li>
+          
+          <li><a href="#method-i-gem_install">#gem_install</a></li>
+          
+          <li><a href="#method-i-get_dns_server">#get_dns_server</a></li>
+          
+          <li><a href="#method-i-get_domain">#get_domain</a></li>
+          
+          <li><a href="#method-i-get_gem">#get_gem</a></li>
+          
+          <li><a href="#method-i-get_gem_list">#get_gem_list</a></li>
+          
+          <li><a href="#method-i-get_ip">#get_ip</a></li>
+          
+          <li><a href="#method-i-get_os">#get_os</a></li>
+          
+          <li><a href="#method-i-get_ruby">#get_ruby</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/iptables.html">iptables</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/korelogic_rules_txt.html">korelogic_rules.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/tftp_file_list_txt.html">tftp_file_list.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="./licenses/COPYING.html">COPYING</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./ApacheUsers.html">ApacheUsers</a></li>
+        
+          <li><a href="./Atftpd.html">Atftpd</a></li>
+        
+          <li><a href="./Cewl.html">Cewl</a></li>
+        
+          <li><a href="./ConfigSnort.html">ConfigSnort</a></li>
+        
+          <li><a href="./CustomDictionary.html">CustomDictionary</a></li>
+        
+          <li><a href="./DNS.html">DNS</a></li>
+        
+          <li><a href="./DNSrecon.html">DNSrecon</a></li>
+        
+          <li><a href="./DiG.html">DiG</a></li>
+        
+          <li><a href="./Dictionary.html">Dictionary</a></li>
+        
+          <li><a href="./DictionaryOnline.html">DictionaryOnline</a></li>
+        
+          <li><a href="./DirStructure.html">DirStructure</a></li>
+        
+          <li><a href="./DiscoverServices.html">DiscoverServices</a></li>
+        
+          <li><a href="./Dsniff.html">Dsniff</a></li>
+        
+          <li><a href="./Enum4linux.html">Enum4linux</a></li>
+        
+          <li><a href="./FTP.html">FTP</a></li>
+        
+          <li><a href="./Fierce.html">Fierce</a></li>
+        
+          <li><a href="./GExeption.html">GExeption</a></li>
+        
+          <li><a href="./GNmap.html">GNmap</a></li>
+        
+          <li><a href="./GatherInfo.html">GatherInfo</a></li>
+        
+          <li><a href="./Gladius.html">Gladius</a></li>
+        
+          <li><a href="./Gpty.html">Gpty</a></li>
+        
+          <li><a href="./HTTP.html">HTTP</a></li>
+        
+          <li><a href="./Home.html">Home</a></li>
+        
+          <li><a href="./Hydra.html">Hydra</a></li>
+        
+          <li><a href="./IPtables.html">IPtables</a></li>
+        
+          <li><a href="./John.html">John</a></li>
+        
+          <li><a href="./KaliSupport.html">KaliSupport</a></li>
+        
+          <li><a href="./MSF.html">MSF</a></li>
+        
+          <li><a href="./Medusa.html">Medusa</a></li>
+        
+          <li><a href="./Menu.html">Menu</a></li>
+        
+          <li><a href="./Ncrack.html">Ncrack</a></li>
+        
+          <li><a href="./NetbiosSMB.html">NetbiosSMB</a></li>
+        
+          <li><a href="./NetworkAttacks.html">NetworkAttacks</a></li>
+        
+          <li><a href="./Nikto.html">Nikto</a></li>
+        
+          <li><a href="./NmapParser.html">NmapParser</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Parse.html">Parse</a></li>
+        
+          <li><a href="./ParseFile.html">ParseFile</a></li>
+        
+          <li><a href="./Path.html">Path</a></li>
+        
+          <li><a href="./SMTP.html">SMTP</a></li>
+        
+          <li><a href="./SNMP.html">SNMP</a></li>
+        
+          <li><a href="./SSLScan.html">SSLScan</a></li>
+        
+          <li><a href="./Session.html">Session</a></li>
+        
+          <li><a href="./SniffSpoof.html">SniffSpoof</a></li>
+        
+          <li><a href="./SnortService.html">SnortService</a></li>
+        
+          <li><a href="./Splash.html">Splash</a></li>
+        
+          <li><a href="./SysInfo.html">SysInfo</a></li>
+        
+          <li><a href="./TFTP.html">TFTP</a></li>
+        
+          <li><a href="./TestSSLServer.html">TestSSLServer</a></li>
+        
+          <li><a href="./VPNAttacks.html">VPNAttacks</a></li>
+        
+          <li><a href="./Weapon.html">Weapon</a></li>
+        
+          <li><a href="./WebAttacks.html">WebAttacks</a></li>
+        
+          <li><a href="./WirelessAttacks.html">WirelessAttacks</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
   </div>
 
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link"><a href="Object.html">Object</a>
-  
-</nav>
+  <div id="documentation">
+    <h1 class="class">SysInfo</h1>
 
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li ><a href="#method-c-new">::new</a>
-    
-    <li ><a href="#method-i-check_requirements">#check_requirements</a>
-    
-    <li ><a href="#method-i-gem_install">#gem_install</a>
-    
-    <li ><a href="#method-i-get_dns_server">#get_dns_server</a>
-    
-    <li ><a href="#method-i-get_domain">#get_domain</a>
-    
-    <li ><a href="#method-i-get_gem">#get_gem</a>
-    
-    <li ><a href="#method-i-get_gem_list">#get_gem_list</a>
-    
-    <li ><a href="#method-i-get_ip">#get_ip</a>
-    
-    <li ><a href="#method-i-get_os">#get_os</a>
-    
-    <li ><a href="#method-i-get_ruby">#get_ruby</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./README_md.html">README</a>
-  
-    <li class="file"><a href="./bin/mysql_sh.html">mysql.sh</a>
-  
-    <li class="file"><a href="./doc/created_rid.html">created.rid</a>
-  
-    <li class="file"><a href="./lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/gladius_conf.html">gladius.conf</a>
-  
-    <li class="file"><a href="./lib/helpers/input/iptables.html">iptables</a>
-  
-    <li class="file"><a href="./lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
-  
-    <li class="file"><a href="./lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
-  
-    <li class="file"><a href="./lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/stdin_hosts_txt.html">stdin_hosts</a>
-  
-    <li class="file"><a href="./lib/helpers/input/stdin_pwds_txt.html">stdin_pwds</a>
-  
-    <li class="file"><a href="./lib/helpers/input/stdin_usrs_txt.html">stdin_usrs</a>
-  
-    <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/tftp_file_list_txt.html">tftp_file_list</a>
-  
-    <li class="file"><a href="./lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
-  
-    <li class="file"><a href="./lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
-  
-    <li class="file"><a href="./licenses/COPYING.html">COPYING</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./ApacheUsers.html">ApacheUsers</a>
-  
-    <li><a href="./Atftpd.html">Atftpd</a>
-  
-    <li><a href="./Cewl.html">Cewl</a>
-  
-    <li><a href="./ConfigSnort.html">ConfigSnort</a>
-  
-    <li><a href="./CustomDictionary.html">CustomDictionary</a>
-  
-    <li><a href="./DNS.html">DNS</a>
-  
-    <li><a href="./DNSrecon.html">DNSrecon</a>
-  
-    <li><a href="./DiG.html">DiG</a>
-  
-    <li><a href="./Dictionary.html">Dictionary</a>
-  
-    <li><a href="./DictionaryOnline.html">DictionaryOnline</a>
-  
-    <li><a href="./DirStructure.html">DirStructure</a>
-  
-    <li><a href="./DiscoverServices.html">DiscoverServices</a>
-  
-    <li><a href="./Dsniff.html">Dsniff</a>
-  
-    <li><a href="./Enum4linux.html">Enum4linux</a>
-  
-    <li><a href="./FTP.html">FTP</a>
-  
-    <li><a href="./Fierce.html">Fierce</a>
-  
-    <li><a href="./GExeption.html">GExeption</a>
-  
-    <li><a href="./GNmap.html">GNmap</a>
-  
-    <li><a href="./GatherInfo.html">GatherInfo</a>
-  
-    <li><a href="./Gladius.html">Gladius</a>
-  
-    <li><a href="./Gpty.html">Gpty</a>
-  
-    <li><a href="./HTTP.html">HTTP</a>
-  
-    <li><a href="./Home.html">Home</a>
-  
-    <li><a href="./Hydra.html">Hydra</a>
-  
-    <li><a href="./IPtables.html">IPtables</a>
-  
-    <li><a href="./John.html">John</a>
-  
-    <li><a href="./KaliSupport.html">KaliSupport</a>
-  
-    <li><a href="./MSF.html">MSF</a>
-  
-    <li><a href="./Medusa.html">Medusa</a>
-  
-    <li><a href="./Menu.html">Menu</a>
-  
-    <li><a href="./Ncrack.html">Ncrack</a>
-  
-    <li><a href="./NetbiosSMB.html">NetbiosSMB</a>
-  
-    <li><a href="./NetworkAttacks.html">NetworkAttacks</a>
-  
-    <li><a href="./Nikto.html">Nikto</a>
-  
-    <li><a href="./NmapParser.html">NmapParser</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Parse.html">Parse</a>
-  
-    <li><a href="./ParseFile.html">ParseFile</a>
-  
-    <li><a href="./Path.html">Path</a>
-  
-    <li><a href="./SMTP.html">SMTP</a>
-  
-    <li><a href="./SNMP.html">SNMP</a>
-  
-    <li><a href="./SSLScan.html">SSLScan</a>
-  
-    <li><a href="./Session.html">Session</a>
-  
-    <li><a href="./SniffSpoof.html">SniffSpoof</a>
-  
-    <li><a href="./SnortService.html">SnortService</a>
-  
-    <li><a href="./Splash.html">Splash</a>
-  
-    <li><a href="./SysInfo.html">SysInfo</a>
-  
-    <li><a href="./TFTP.html">TFTP</a>
-  
-    <li><a href="./TestSSLServer.html">TestSSLServer</a>
-  
-    <li><a href="./VPNAttacks.html">VPNAttacks</a>
-  
-    <li><a href="./Weapon.html">Weapon</a>
-  
-    <li><a href="./WebAttacks.html">WebAttacks</a>
-  
-    <li><a href="./WirelessAttacks.html">WirelessAttacks</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class SysInfo</h1>
-
-  <div id="description" class="description">
-    
+    <div id="description" class="description">
+      
 <p>Author: p$3ud0R@nD0m</p>
 
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
+    </div><!-- description -->
 
     
-
     
-
     
+    <div id="5Buntitled-5D" class="documentation-section">
+      
 
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
+      
 
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
+      
 
-        <div class="method-description">
-          
-          
-          
-          
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
 
           
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 4</span>
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
+            </div><!-- new-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- new-method -->
 
-        
-      </div><!-- new-method -->
-
+      
+      </div><!-- public-class-method-details -->
     
-    </section><!-- public-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
 
-    
-      <div id="method-i-check_requirements" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">check_requirements</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
+      
+        <div id="check_requirements-method" class="method-detail ">
+          <a name="method-i-check_requirements"></a>
 
-        <div class="method-description">
           
-          <p>Check methods</p>
+          <div class="method-heading">
+            <span class="method-name">check_requirements</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Check methods</p>
 
 <p>Check requirements</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="check_requirements-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 50</span>
+            
+            <div class="method-source-code" id="check_requirements-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">check_requirements</span>
   <span class="ruby-keyword">begin</span>
     <span class="ruby-comment">#require 'colorize'</span>
@@ -394,296 +388,299 @@
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- check_requirements-source -->
-          
-        </div>
+            </div><!-- check_requirements-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- check_requirements-method -->
-
-    
-      <div id="method-i-gem_install" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">gem_install</span><span
-            class="method-args">(gem_name)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Install methods</p>
+        </div><!-- check_requirements-method -->
+
+      
+        <div id="gem_install-method" class="method-detail ">
+          <a name="method-i-gem_install"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">gem_install</span><span
+              class="method-args">(gem_name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Install methods</p>
 
 <p>Install a Gem</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="gem_install-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 70</span>
+            
+            <div class="method-source-code" id="gem_install-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">gem_install</span>(<span class="ruby-identifier">gem_name</span>)
   <span class="ruby-identifier">a</span> = <span class="ruby-constant">Gpty</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;gem install #{gem_name}&quot;</span>
   <span class="ruby-identifier">a</span>.<span class="ruby-identifier">shell_basic</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- gem_install-source -->
-          
-        </div>
+            </div><!-- gem_install-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- gem_install-method -->
-
-    
-      <div id="method-i-get_dns_server" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_dns_server</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the system’s currrent <a href="DNS.html">DNS</a> server(s)</p>
-          
           
 
           
-          <div class="method-source-code" id="get_dns_server-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 16</span>
+        </div><!-- gem_install-method -->
+
+      
+        <div id="get_dns_server-method" class="method-detail ">
+          <a name="method-i-get_dns_server"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_dns_server</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the system’s currrent <a href="DNS.html">DNS</a> server(s)</p>
+            
+
+            
+            <div class="method-source-code" id="get_dns_server-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 16</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_dns_server</span>
   <span class="ruby-comment"># Get dns server</span>
-  <span class="ruby-identifier">dns_server</span> = <span class="ruby-value">%xnslookup server |grep Server |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">dns_server</span> = <span class="ruby-value">`nslookup server |grep Server |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-identifier">dns_server</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_dns_server-source -->
-          
-        </div>
+            </div><!-- get_dns_server-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_dns_server-method -->
-
-    
-      <div id="method-i-get_domain" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_domain</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the system’s currrent domain</p>
-          
           
 
           
-          <div class="method-source-code" id="get_domain-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 29</span>
+        </div><!-- get_dns_server-method -->
+
+      
+        <div id="get_domain-method" class="method-detail ">
+          <a name="method-i-get_domain"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_domain</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the system’s currrent domain</p>
+            
+
+            
+            <div class="method-source-code" id="get_domain-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_domain</span>
-  <span class="ruby-identifier">domain</span> = <span class="ruby-value">%xcat /etc/resolv.conf |grep domain |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">domain</span> = <span class="ruby-value">`cat /etc/resolv.conf |grep domain |awk '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-identifier">domain</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_domain-source -->
-          
-        </div>
+            </div><!-- get_domain-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_domain-method -->
-
-    
-      <div id="method-i-get_gem" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_gem</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the Gem version</p>
-          
           
 
           
-          <div class="method-source-code" id="get_gem-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 39</span>
+        </div><!-- get_domain-method -->
+
+      
+        <div id="get_gem-method" class="method-detail ">
+          <a name="method-i-get_gem"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_gem</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the Gem version</p>
+            
+
+            
+            <div class="method-source-code" id="get_gem-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_gem</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_gem-source -->
-          
-        </div>
+            </div><!-- get_gem-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_gem-method -->
-
-    
-      <div id="method-i-get_gem_list" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_gem_list</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the Gem version</p>
-          
           
 
           
-          <div class="method-source-code" id="get_gem_list-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 43</span>
+        </div><!-- get_gem-method -->
+
+      
+        <div id="get_gem_list-method" class="method-detail ">
+          <a name="method-i-get_gem_list"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_gem_list</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the Gem version</p>
+            
+
+            
+            <div class="method-source-code" id="get_gem_list-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_gem_list</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_gem_list-source -->
-          
-        </div>
+            </div><!-- get_gem_list-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_gem_list-method -->
-
-    
-      <div id="method-i-get_ip" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_ip</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the system’s currrent ip address(es)</p>
-          
           
 
           
-          <div class="method-source-code" id="get_ip-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 23</span>
+        </div><!-- get_gem_list-method -->
+
+      
+        <div id="get_ip-method" class="method-detail ">
+          <a name="method-i-get_ip"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_ip</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the system’s currrent ip address(es)</p>
+            
+
+            
+            <div class="method-source-code" id="get_ip-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_ip</span>
-  <span class="ruby-identifier">ip</span> = <span class="ruby-value">%xifconfig |grep Bcast |awk '{print $2}' |awk -F &quot;:&quot; '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">ip</span> = <span class="ruby-value">`ifconfig |grep Bcast |awk '{print $2}' |awk -F &quot;:&quot; '{print $2}'`</span>.<span class="ruby-identifier">chomp</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-identifier">ip</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_ip-source -->
-          
-        </div>
+            </div><!-- get_ip-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_ip-method -->
-
-    
-      <div id="method-i-get_os" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_os</span><span
-            class="method-args">()</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Get methods</p>
+        </div><!-- get_ip-method -->
+
+      
+        <div id="get_os-method" class="method-detail ">
+          <a name="method-i-get_os"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_os</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get methods</p>
 
 <p>ttd_4: Rubify get methods. Get the Operating System</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="get_os-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 12</span>
+            
+            <div class="method-source-code" id="get_os-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_os</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_os-source -->
-          
-        </div>
+            </div><!-- get_os-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- get_os-method -->
-
-    
-      <div id="method-i-get_ruby" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_ruby</span><span
-            class="method-args">()</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Get the Ruby version</p>
-          
           
 
           
-          <div class="method-source-code" id="get_ruby-source">
-            <pre><span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 35</span>
+        </div><!-- get_os-method -->
+
+      
+        <div id="get_ruby-method" class="method-detail ">
+          <a name="method-i-get_ruby"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_ruby</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the Ruby version</p>
+            
+
+            
+            <div class="method-source-code" id="get_ruby-source">
+<pre>
+<span class="ruby-comment"># File lib/helpers/sysinfo.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_ruby</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- get_ruby-source -->
+            </div><!-- get_ruby-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- get_ruby-method -->
 
-        
-      </div><!-- get_ruby-method -->
-
+      
+      </div><!-- public-instance-method-details -->
     
-    </section><!-- public-instance-method-details -->
+    </div><!-- 5Buntitled-5D -->
   
-  </section><!-- 5Buntitled-5D -->
 
-</div><!-- documentation -->
+  </div><!-- documentation -->
 
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 

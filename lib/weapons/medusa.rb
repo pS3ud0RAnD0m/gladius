@@ -74,7 +74,7 @@ class Medusa < Weapon
         puts results
         puts "Eyeballing raw output may yield more useful info, such as \"Anonymous success\".".yellow
       end
-     end
+    end
     if File.exist?(@out_file)
       puts "Raw output can be found here:".yellow
       puts @out_file

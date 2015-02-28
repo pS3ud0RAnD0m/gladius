@@ -1,256 +1,243 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>mssql_usrs_long - RDoc Documentation</title>
+  <title>File: mssql_usrs_long.txt [RDoc Documentation]</title>
 
-<link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet">
+  <link type="text/css" media="screen" href="../../../rdoc.css" rel="stylesheet" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../../../";
-</script>
-
-<script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../../../js/darkfish.js"></script>
-
+  <script src="../../../js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../../../js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
 
 <body class="file">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../../../index.html">Home</a>
-    <a href="../../../table_of_contents.html#classes">Classes</a>
-    <a href="../../../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../../../index.html">Home</a>
+          <a href="../../../index.html#classes">Classes</a>
+          <a href="../../../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../../../lib/helpers/input/apache_users_long_txt.html">apache_users_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/iptables.html">iptables</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/korelogic_rules_txt.html">korelogic_rules.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/tftp_file_list_txt.html">tftp_file_list.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long.txt</a></li>
+        
+          <li class="file"><a href="../../../lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long.txt</a></li>
+        
+          <li class="file"><a href="../../../licenses/COPYING.html">COPYING</a></li>
+        
+        </ul>
+      </div>
+      
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../../../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+        <ul class="link-list">
+        
+          <li><a href="../../../ApacheUsers.html">ApacheUsers</a></li>
+        
+          <li><a href="../../../Atftpd.html">Atftpd</a></li>
+        
+          <li><a href="../../../Cewl.html">Cewl</a></li>
+        
+          <li><a href="../../../ConfigSnort.html">ConfigSnort</a></li>
+        
+          <li><a href="../../../CustomDictionary.html">CustomDictionary</a></li>
+        
+          <li><a href="../../../DNS.html">DNS</a></li>
+        
+          <li><a href="../../../DNSrecon.html">DNSrecon</a></li>
+        
+          <li><a href="../../../DiG.html">DiG</a></li>
+        
+          <li><a href="../../../Dictionary.html">Dictionary</a></li>
+        
+          <li><a href="../../../DictionaryOnline.html">DictionaryOnline</a></li>
+        
+          <li><a href="../../../DirStructure.html">DirStructure</a></li>
+        
+          <li><a href="../../../DiscoverServices.html">DiscoverServices</a></li>
+        
+          <li><a href="../../../Dsniff.html">Dsniff</a></li>
+        
+          <li><a href="../../../Enum4linux.html">Enum4linux</a></li>
+        
+          <li><a href="../../../FTP.html">FTP</a></li>
+        
+          <li><a href="../../../Fierce.html">Fierce</a></li>
+        
+          <li><a href="../../../GExeption.html">GExeption</a></li>
+        
+          <li><a href="../../../GNmap.html">GNmap</a></li>
+        
+          <li><a href="../../../GatherInfo.html">GatherInfo</a></li>
+        
+          <li><a href="../../../Gladius.html">Gladius</a></li>
+        
+          <li><a href="../../../Gpty.html">Gpty</a></li>
+        
+          <li><a href="../../../HTTP.html">HTTP</a></li>
+        
+          <li><a href="../../../Home.html">Home</a></li>
+        
+          <li><a href="../../../Hydra.html">Hydra</a></li>
+        
+          <li><a href="../../../IPtables.html">IPtables</a></li>
+        
+          <li><a href="../../../John.html">John</a></li>
+        
+          <li><a href="../../../KaliSupport.html">KaliSupport</a></li>
+        
+          <li><a href="../../../MSF.html">MSF</a></li>
+        
+          <li><a href="../../../Medusa.html">Medusa</a></li>
+        
+          <li><a href="../../../Menu.html">Menu</a></li>
+        
+          <li><a href="../../../Ncrack.html">Ncrack</a></li>
+        
+          <li><a href="../../../NetbiosSMB.html">NetbiosSMB</a></li>
+        
+          <li><a href="../../../NetworkAttacks.html">NetworkAttacks</a></li>
+        
+          <li><a href="../../../Nikto.html">Nikto</a></li>
+        
+          <li><a href="../../../NmapParser.html">NmapParser</a></li>
+        
+          <li><a href="../../../Object.html">Object</a></li>
+        
+          <li><a href="../../../Parse.html">Parse</a></li>
+        
+          <li><a href="../../../ParseFile.html">ParseFile</a></li>
+        
+          <li><a href="../../../Path.html">Path</a></li>
+        
+          <li><a href="../../../SMTP.html">SMTP</a></li>
+        
+          <li><a href="../../../SNMP.html">SNMP</a></li>
+        
+          <li><a href="../../../SSLScan.html">SSLScan</a></li>
+        
+          <li><a href="../../../Session.html">Session</a></li>
+        
+          <li><a href="../../../SniffSpoof.html">SniffSpoof</a></li>
+        
+          <li><a href="../../../SnortService.html">SnortService</a></li>
+        
+          <li><a href="../../../Splash.html">Splash</a></li>
+        
+          <li><a href="../../../SysInfo.html">SysInfo</a></li>
+        
+          <li><a href="../../../TFTP.html">TFTP</a></li>
+        
+          <li><a href="../../../TestSSLServer.html">TestSSLServer</a></li>
+        
+          <li><a href="../../../VPNAttacks.html">VPNAttacks</a></li>
+        
+          <li><a href="../../../Weapon.html">Weapon</a></li>
+        
+          <li><a href="../../../WebAttacks.html">WebAttacks</a></li>
+        
+          <li><a href="../../../WirelessAttacks.html">WirelessAttacks</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
 
-
-  
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../../../README_md.html">README</a>
-  
-    <li class="file"><a href="../../../bin/mysql_sh.html">mysql.sh</a>
-  
-    <li class="file"><a href="../../../doc/created_rid.html">created.rid</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/apache_users_long_txt.html">apache_users_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/dns_hosts_long_txt.html">dns_hosts_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/ftp_pwds_long_txt.html">ftp_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/ftp_usrs_long_txt.html">ftp_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/gladius_conf.html">gladius.conf</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/iptables.html">iptables</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/iptables_logrotate.html">iptables_logrotate</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/korelogic_rules_txt.html">korelogic_rules</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/mssql_pwds_long_txt.html">mssql_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/mssql_usrs_long_txt.html">mssql_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/mysql_pwds_long_txt.html">mysql_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/mysql_usrs_long_txt.html">mysql_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/oracle_pwds_long_txt.html">oracle_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/oracle_usrs_long_txt.html">oracle_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/postgresql_pwds_long_txt.html">postgresql_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/postgresql_usrs_long_txt.html">postgresql_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/snmp_comm_strings_long_txt.html">snmp_comm_strings_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/ssh_pwds_long_txt.html">ssh_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/stdin_hosts_txt.html">stdin_hosts</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/stdin_pwds_txt.html">stdin_pwds</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/stdin_usrs_txt.html">stdin_usrs</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/tftp_file_list_txt.html">tftp_file_list</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/vnc_usrs_long_txt.html">vnc_usrs_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/vpn_group_id_long_txt.html">vpn_group_id_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/windows_pwds_long_txt.html">windows_pwds_long</a>
-  
-    <li class="file"><a href="../../../lib/helpers/input/windows_usrs_long_txt.html">windows_usrs_long</a>
-  
-    <li class="file"><a href="../../../licenses/COPYING.html">COPYING</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../../../ApacheUsers.html">ApacheUsers</a>
-  
-    <li><a href="../../../Atftpd.html">Atftpd</a>
-  
-    <li><a href="../../../Cewl.html">Cewl</a>
-  
-    <li><a href="../../../ConfigSnort.html">ConfigSnort</a>
-  
-    <li><a href="../../../CustomDictionary.html">CustomDictionary</a>
-  
-    <li><a href="../../../DNS.html">DNS</a>
-  
-    <li><a href="../../../DNSrecon.html">DNSrecon</a>
-  
-    <li><a href="../../../DiG.html">DiG</a>
-  
-    <li><a href="../../../Dictionary.html">Dictionary</a>
-  
-    <li><a href="../../../DictionaryOnline.html">DictionaryOnline</a>
-  
-    <li><a href="../../../DirStructure.html">DirStructure</a>
-  
-    <li><a href="../../../DiscoverServices.html">DiscoverServices</a>
-  
-    <li><a href="../../../Dsniff.html">Dsniff</a>
-  
-    <li><a href="../../../Enum4linux.html">Enum4linux</a>
-  
-    <li><a href="../../../FTP.html">FTP</a>
-  
-    <li><a href="../../../Fierce.html">Fierce</a>
-  
-    <li><a href="../../../GExeption.html">GExeption</a>
-  
-    <li><a href="../../../GNmap.html">GNmap</a>
-  
-    <li><a href="../../../GatherInfo.html">GatherInfo</a>
-  
-    <li><a href="../../../Gladius.html">Gladius</a>
-  
-    <li><a href="../../../Gpty.html">Gpty</a>
-  
-    <li><a href="../../../HTTP.html">HTTP</a>
-  
-    <li><a href="../../../Home.html">Home</a>
-  
-    <li><a href="../../../Hydra.html">Hydra</a>
-  
-    <li><a href="../../../IPtables.html">IPtables</a>
-  
-    <li><a href="../../../John.html">John</a>
-  
-    <li><a href="../../../KaliSupport.html">KaliSupport</a>
-  
-    <li><a href="../../../MSF.html">MSF</a>
-  
-    <li><a href="../../../Medusa.html">Medusa</a>
-  
-    <li><a href="../../../Menu.html">Menu</a>
-  
-    <li><a href="../../../Ncrack.html">Ncrack</a>
-  
-    <li><a href="../../../NetbiosSMB.html">NetbiosSMB</a>
-  
-    <li><a href="../../../NetworkAttacks.html">NetworkAttacks</a>
-  
-    <li><a href="../../../Nikto.html">Nikto</a>
-  
-    <li><a href="../../../NmapParser.html">NmapParser</a>
-  
-    <li><a href="../../../Object.html">Object</a>
-  
-    <li><a href="../../../Parse.html">Parse</a>
-  
-    <li><a href="../../../ParseFile.html">ParseFile</a>
-  
-    <li><a href="../../../Path.html">Path</a>
-  
-    <li><a href="../../../SMTP.html">SMTP</a>
-  
-    <li><a href="../../../SNMP.html">SNMP</a>
-  
-    <li><a href="../../../SSLScan.html">SSLScan</a>
-  
-    <li><a href="../../../Session.html">Session</a>
-  
-    <li><a href="../../../SniffSpoof.html">SniffSpoof</a>
-  
-    <li><a href="../../../SnortService.html">SnortService</a>
-  
-    <li><a href="../../../Splash.html">Splash</a>
-  
-    <li><a href="../../../SysInfo.html">SysInfo</a>
-  
-    <li><a href="../../../TFTP.html">TFTP</a>
-  
-    <li><a href="../../../TestSSLServer.html">TestSSLServer</a>
-  
-    <li><a href="../../../VPNAttacks.html">VPNAttacks</a>
-  
-    <li><a href="../../../Weapon.html">Weapon</a>
-  
-    <li><a href="../../../WebAttacks.html">WebAttacks</a>
-  
-    <li><a href="../../../WirelessAttacks.html">WirelessAttacks</a>
-  
-  </ul>
-</nav>
-
+      
+    </div>
   </div>
-</nav>
 
-<div id="documentation" class="description">
-  
+  <div id="documentation">
+    
 <p>sa mssql administrator admin db dbadmin test temp backup backups support
 vendor audit auditor</p>
 
-</div>
+  </div>
 
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
 
