@@ -32,6 +32,7 @@ module Path
     require "fileutils"
     require "pty"
     require "time"
+    require "socket"
     require @weapons + "weapon"
     Dir[@menus + "*.rb"].each { |a| require a }
     Dir[@weapons + "*.rb"].each { |a| require a }
