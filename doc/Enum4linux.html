@@ -250,6 +250,10 @@
         
           <li><a href="./SnortService.html">SnortService</a></li>
         
+          <li><a href="./SocketFuzz.html">SocketFuzz</a></li>
+        
+          <li><a href="./SocketFuzzer.html">SocketFuzzer</a></li>
+        
           <li><a href="./Splash.html">Splash</a></li>
         
           <li><a href="./SysInfo.html">SysInfo</a></li>
@@ -413,7 +417,7 @@
     <span class="ruby-node">`echo &quot;#{host}&quot; &gt;&gt;#{out_file}`</span>
     <span class="ruby-node">`echo &quot;------------------------------&quot; &gt;&gt;#{out_file}`</span>
     <span class="ruby-keyword">case</span> <span class="ruby-identifier">run_method</span>
-    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;all&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -a #{host} |tee -a #{out_file}&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;all&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; -av #{host} |tee -a #{out_file}&quot;</span>
     <span class="ruby-keyword">end</span>
     <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
   <span class="ruby-keyword">end</span>

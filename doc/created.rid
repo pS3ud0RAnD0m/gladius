@@ -1,10 +1,10 @@
-Sat, 28 Feb 2015 11:23:42 -0500
+Tue, 07 Apr 2015 21:43:33 -0400
 ./spec/gladius_spec.rb	Mon, 09 Feb 2015 02:40:11 -0500
 ./spec/lib/helpers/session_spec.rb	Mon, 09 Feb 2015 02:40:50 -0500
 ./spec/lib/menus/splash_spec.rb	Mon, 09 Feb 2015 02:40:50 -0500
 ./spec/spec_helper.rb	Mon, 09 Feb 2015 02:40:11 -0500
 ./licenses/COPYING	Sat, 28 Feb 2015 11:21:28 -0500
-./gladius.rb	Sat, 28 Feb 2015 11:22:49 -0500
+./gladius.rb	Sat, 28 Feb 2015 11:24:46 -0500
 ./lib/helpers/input/korelogic_rules.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/dns_hosts_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/oracle_usrs_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
@@ -25,7 +25,7 @@ Sat, 28 Feb 2015 11:23:42 -0500
 ./lib/helpers/input/mysql_pwds_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/ssh_pwds_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/ftp_pwds_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
-./lib/helpers/input/vpn_group_id_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
+./lib/helpers/input/vpn_group_id_long.txt	Fri, 03 Apr 2015 01:08:12 -0400
 ./lib/helpers/input/snmp_comm_strings_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/telnet_pwds_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
 ./lib/helpers/input/apache_users_long.txt	Mon, 09 Feb 2015 02:40:50 -0500
@@ -35,23 +35,24 @@ Sat, 28 Feb 2015 11:23:42 -0500
 ./lib/helpers/session.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/helpers/gexeption.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/helpers/nmapparser.rb	Mon, 09 Feb 2015 02:40:13 -0500
-./lib/helpers/path.rb	Mon, 09 Feb 2015 02:40:13 -0500
+./lib/helpers/path.rb	Sat, 28 Feb 2015 11:49:45 -0500
 ./lib/helpers/sysinfo.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/http.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/splash.rb	Mon, 09 Feb 2015 02:40:13 -0500
+./lib/menus/socketfuzz.rb	Sat, 28 Feb 2015 12:08:27 -0500
 ./lib/menus/gatherinfo.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/configsnort.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/kalisupport.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/sniffspoof.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/tftp.rb	Mon, 09 Feb 2015 02:40:13 -0500
-./lib/menus/home.rb	Sat, 28 Feb 2015 11:21:58 -0500
+./lib/menus/home.rb	Fri, 03 Apr 2015 01:13:02 -0400
 ./lib/menus/discoverservices.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/dns.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/dictionaryonline.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/smtp.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/vpnattacks.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/ftp.rb	Mon, 09 Feb 2015 02:40:13 -0500
-./lib/menus/networkattacks.rb	Mon, 09 Feb 2015 02:40:13 -0500
+./lib/menus/networkattacks.rb	Sat, 28 Feb 2015 11:43:39 -0500
 ./lib/menus/dictionary.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/wirelessattacks.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/menus/menu.rb	Mon, 09 Feb 2015 02:40:13 -0500
@@ -73,11 +74,12 @@ Sat, 28 Feb 2015 11:23:42 -0500
 ./lib/weapons/sslscan.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/gladius.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/weapon.rb	Mon, 09 Feb 2015 02:40:13 -0500
-./lib/weapons/enum4linux.rb	Mon, 09 Feb 2015 02:40:13 -0500
+./lib/weapons/socketfuzzer.rb	Sat, 28 Feb 2015 12:07:58 -0500
+./lib/weapons/enum4linux.rb	Tue, 07 Apr 2015 21:43:13 -0400
 ./lib/weapons/parse.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/dnsrecon.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/dsniff.rb	Mon, 09 Feb 2015 02:40:13 -0500
-./lib/weapons/hydra.rb	Mon, 09 Feb 2015 02:40:13 -0500
+./lib/weapons/hydra.rb	Sat, 28 Feb 2015 12:10:26 -0500
 ./lib/weapons/cewl.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/atftpd.rb	Mon, 09 Feb 2015 02:40:13 -0500
 ./lib/weapons/snortservice.rb	Mon, 09 Feb 2015 02:40:13 -0500

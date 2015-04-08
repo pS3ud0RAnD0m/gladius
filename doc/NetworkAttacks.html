@@ -244,6 +244,10 @@
         
           <li><a href="./SnortService.html">SnortService</a></li>
         
+          <li><a href="./SocketFuzz.html">SocketFuzz</a></li>
+        
+          <li><a href="./SocketFuzzer.html">SocketFuzzer</a></li>
+        
           <li><a href="./Splash.html">Splash</a></li>
         
           <li><a href="./SysInfo.html">SysInfo</a></li>
@@ -318,15 +322,17 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
   <span class="ruby-identifier">header</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Select a category:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Sniffing and Spoofing&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  VPN attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;1.  Sniffing and spoofing&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;2.  Socket fuzzing&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;3.  VPN attacks (NI)&quot;</span>.<span class="ruby-identifier">blue</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;88. Back&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;99. Exit Gladius&quot;</span>
   
   <span class="ruby-identifier">selection</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">to_i</span>
   <span class="ruby-keyword">case</span> <span class="ruby-identifier">selection</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SniffSpoof</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sniffing and Spoofing&quot;</span>).<span class="ruby-identifier">menu</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">2</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">SocketFuzz</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Socket Fuzzing&quot;</span>).<span class="ruby-identifier">menu</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-value">3</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">VPNAttacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;VPN Attacks&quot;</span>).<span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">4</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Not implemented yet.&quot;</span>.<span class="ruby-identifier">red</span>
     <span class="ruby-identifier">menu</span>
   <span class="ruby-keyword">when</span> <span class="ruby-value">88</span> <span class="ruby-keyword">then</span> <span class="ruby-constant">Home</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">menu</span>

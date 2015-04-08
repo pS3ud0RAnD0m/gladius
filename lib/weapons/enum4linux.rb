@@ -57,7 +57,7 @@ class Enum4linux < Weapon
       `echo "#{host}" >>#{out_file}`
       `echo "------------------------------" >>#{out_file}`
       case run_method
-      when "all" then cmd = @path + " -a #{host} |tee -a #{out_file}"
+      when "all" then cmd = @path + " -av #{host} |tee -a #{out_file}"
       end
       run(cmd)
     end

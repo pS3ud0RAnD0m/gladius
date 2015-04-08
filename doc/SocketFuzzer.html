@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-  <title>Class: Dsniff</title>
+  <title>Class: SocketFuzzer</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./lib/weapons/dsniff_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/weapons/dsniff.rb">lib/weapons/dsniff.rb</a></li>
+            <li><a href="./lib/weapons/socketfuzzer_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/weapons/socketfuzzer.rb">lib/weapons/socketfuzzer.rb</a></li>
           
           </ul>
         </div>
@@ -67,11 +67,9 @@
           
           <li><a href="#method-c-new">::new</a></li>
           
-          <li><a href="#method-i-all">#all</a></li>
-          
-          <li><a href="#method-i-clean_exit">#clean_exit</a></li>
-          
           <li><a href="#method-i-menu">#menu</a></li>
+          
+          <li><a href="#method-i-pop3">#pop3</a></li>
           
         </ul>
       </div>
@@ -279,7 +277,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">Dsniff</h1>
+    <h1 class="class">SocketFuzzer</h1>
 
     <div id="description" class="description">
       
@@ -324,13 +322,15 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/dsniff.rb, line 4</span>
+<span class="ruby-comment"># File lib/weapons/socketfuzzer.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">prev_menu</span>, <span class="ruby-identifier">title</span>)
   <span class="ruby-comment"># Common</span>
-  <span class="ruby-ivar">@name</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
-  <span class="ruby-ivar">@path</span> = <span class="ruby-ivar">@name</span>
   <span class="ruby-ivar">@prev_menu</span> = <span class="ruby-identifier">prev_menu</span>
   <span class="ruby-ivar">@title</span> = <span class="ruby-identifier">title</span>
+  <span class="ruby-comment"># Weapon specific</span>
+  <span class="ruby-ivar">@target</span> = <span class="ruby-identifier">target</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>
+  <span class="ruby-ivar">@buffer</span> = <span class="ruby-string">&quot;z&quot;</span> * <span class="ruby-value">10</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -348,154 +348,30 @@
         <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="all-method" class="method-detail ">
-          <a name="method-i-all"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">all</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Run methods</p>
-
-<p>Sniff for plaintext creds against all supported protocols</p>
-            
-
-            
-            <div class="method-source-code" id="all-source">
-<pre>
-<span class="ruby-comment"># File lib/weapons/dsniff.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">all</span>
-  <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-ivar">@name</span>)
-  <span class="ruby-identifier">cmd</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; -m -n -i any |tee &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
-  <span class="ruby-identifier">services</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/dsniff.services&quot;</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">services</span>)
-    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span>(<span class="ruby-identifier">services</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">clean_exit</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- all-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- all-method -->
-
-      
-        <div id="clean_exit-method" class="method-detail ">
-          <a name="method-i-clean_exit"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">clean_exit</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Exit</p>
-            
-
-            
-            <div class="method-source-code" id="clean_exit-source">
-<pre>
-<span class="ruby-comment"># File lib/weapons/dsniff.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Raw output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@out_file</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">exit_weapon</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- clean_exit-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- clean_exit-method -->
-
-      
         <div id="menu-method" class="method-detail ">
           <a name="method-i-menu"></a>
 
           
           <div class="method-heading">
             <span class="method-name">menu</span><span
-              class="method-args">(scan_type)</span>
+              class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p>DRY methods</p>
-
-<p>List supported protocols and exit instructions, then pass to relevant sniff
-method</p>
+            
             
 
             
             <div class="method-source-code" id="menu-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/dsniff.rb, line 16</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">scan_type</span>)
-  <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Sniffing for plaintext credentials on the following ports:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;AIM           5190,9898/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Citrix        1494/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;CVS           2401/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;FTP           21/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;HTTP          80,98,3128,8080/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ICQ           4000/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IMAP          143,220/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IRC           6667-9/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;LDAP          389/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;MMXP          417,2417/tcp/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Mountd        100005/rpc&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Napster       4444,5555,6666,7777,8888/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;NNTP          119/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Oracle        1521,1526/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;OSPF          89/ip&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;PCAnywhere    5631,65301/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;POP2          109/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;POP3          110/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;POPpass       106/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Portmap       -111,111/tcp/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;PostGreSQL    5432/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;PPTP          47/ip&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;RIP           520/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Rlogin        512-514/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;SMB           139/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;SMTP          25/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;SMTP          587/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Sniffer       2001/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;SNMP          161/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;SOCKS         1080/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;TDS           1433,2638,7599/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;TDS           1433/udp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Telnet        23,261/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;VRRP          112/ip&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X11           6000-6005/tcp&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;YPPasswd      100009/rpc&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;YPServ        100004/rpc&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Note: This weapon isn't displaying harvested FTP or Telnet credentials until the sniffed connection is terminated.&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;When done sniffing, press Ctrl+C.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-keyword">case</span> <span class="ruby-identifier">scan_type</span>
-  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;all&quot;</span> <span class="ruby-keyword">then</span> <span class="ruby-identifier">all</span>
-  <span class="ruby-keyword">end</span>
+<span class="ruby-comment"># File lib/weapons/socketfuzzer.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>
+  <span class="ruby-ivar">@target</span> = <span class="ruby-string">&quot;192.168.19.140&quot;</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-value">110</span>
+  <span class="ruby-identifier">pop3</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- menu-source -->
             
@@ -505,6 +381,52 @@ method</p>
 
           
         </div><!-- menu-method -->
+
+      
+        <div id="pop3-method" class="method-detail ">
+          <a name="method-i-pop3"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">pop3</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="pop3-source">
+<pre>
+<span class="ruby-comment"># File lib/weapons/socketfuzzer.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pop3</span>
+  <span class="ruby-identifier">s</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@target</span>, <span class="ruby-ivar">@port</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">line</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">gets</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;USER bob&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">readpartial</span>(<span class="ruby-value">1024</span>)
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;PASS #{@buffer}&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">readpartial</span>(<span class="ruby-value">1024</span>)
+      <span class="ruby-identifier">s</span>.<span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;QUIT&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">readpartial</span>(<span class="ruby-value">1024</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">s</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">SystemCallError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- pop3-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- pop3-method -->
 
       
       </div><!-- public-instance-method-details -->

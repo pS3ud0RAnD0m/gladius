@@ -244,6 +244,10 @@
         
           <li><a href="./SnortService.html">SnortService</a></li>
         
+          <li><a href="./SocketFuzz.html">SocketFuzz</a></li>
+        
+          <li><a href="./SocketFuzzer.html">SocketFuzzer</a></li>
+        
           <li><a href="./Splash.html">Splash</a></li>
         
           <li><a href="./SysInfo.html">SysInfo</a></li>
@@ -314,7 +318,7 @@
             
             <div class="method-source-code" id="get-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 42</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">g_alias</span>)
   <span class="ruby-identifier">path</span> =
     {
@@ -407,7 +411,7 @@
             
             <div class="method-source-code" id="get_out_file-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 106</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-ivar">@share_output</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -440,7 +444,7 @@
             
             <div class="method-source-code" id="get_out_file_txt-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 110</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -514,6 +518,7 @@
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;fileutils&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;pty&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;time&quot;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;socket&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-ivar">@weapons</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;weapon&quot;</span>
   <span class="ruby-constant">Dir</span>[<span class="ruby-ivar">@menus</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
   <span class="ruby-constant">Dir</span>[<span class="ruby-ivar">@weapons</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
