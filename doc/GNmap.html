@@ -419,7 +419,7 @@
             
             <div class="method-source-code" id="custom-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/gnmap.rb, line 93</span>
+<span class="ruby-comment"># File lib/weapons/gnmap.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">custom</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input your custom arguments and hit &lt;Enter&gt;:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Note: Gladius will add -v and I/O paths.&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -478,14 +478,17 @@
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_full&quot;</span>               <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sS -T4 --min-hostgroup 128 -p1-65535&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick_scripts&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSV -T4 --script all --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick&quot;</span>              <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sS -T4 --min-hostgroup 128&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_quick_v&quot;</span>            <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSV -T4 --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_full&quot;</span>           <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSU -T4 --min-hostgroup 128 -p1-65535&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick_scripts&quot;</span>  <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSUV -Pn --script=all --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick&quot;</span>          <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSU -T4 --min-hostgroup 128&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_udp_quick_v&quot;</span>        <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sSUV -T4 --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_lan&quot;</span>     <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sS -T5 --top-ports 25 --min-hostgroup 256&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;tcp_very_quick_wan&quot;</span>     <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sS -T4 --top-ports 25 --min-hostgroup 256&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_full&quot;</span>               <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sU -T4 --min-hostgroup 128 -p1-65535&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick_scripts&quot;</span>      <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sUV -T4 --script=all --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick&quot;</span>              <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sU -T4 --min-hostgroup 128&quot;</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;udp_quick_v&quot;</span>            <span class="ruby-keyword">then</span> <span class="ruby-identifier">cmd_infix</span> = <span class="ruby-string">&quot;-Pn -sUV -T4 --min-hostgroup 128&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{cmd_prefix} #{cmd_infix} #{cmd_suffix}&quot;</span>
   <span class="ruby-identifier">run</span>(<span class="ruby-identifier">cmd</span>)
