@@ -75,14 +75,17 @@ class GNmap < Weapon
     when "tcp_full"               then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128 -p1-65535"
     when "tcp_quick_scripts"      then cmd_infix = "-Pn -sSV -T4 --script all --min-hostgroup 128"
     when "tcp_quick"              then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128"
+    when "tcp_quick_v"            then cmd_infix = "-Pn -sSV -T4 --min-hostgroup 128"
     when "tcp_udp_full"           then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128 -p1-65535"
     when "tcp_udp_quick_scripts"  then cmd_infix = "-Pn -sSUV -Pn --script=all --min-hostgroup 128"
     when "tcp_udp_quick"          then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128"
+    when "tcp_udp_quick_v"        then cmd_infix = "-Pn -sSUV -T4 --min-hostgroup 128"
     when "tcp_very_quick_lan"     then cmd_infix = "-Pn -sS -T5 --top-ports 25 --min-hostgroup 256"
     when "tcp_very_quick_wan"     then cmd_infix = "-Pn -sS -T4 --top-ports 25 --min-hostgroup 256"
     when "udp_full"               then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128 -p1-65535"
     when "udp_quick_scripts"      then cmd_infix = "-Pn -sUV -T4 --script=all --min-hostgroup 128"
     when "udp_quick"              then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128"
+    when "udp_quick_v"            then cmd_infix = "-Pn -sUV -T4 --min-hostgroup 128"
     end
     cmd = "#{cmd_prefix} #{cmd_infix} #{cmd_suffix}"
     run(cmd)
