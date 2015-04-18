@@ -365,13 +365,15 @@
 
           <div class="method-description">
             
-            <p>Exit</p>
+            <p>Exit method</p>
+
+<p>Exit</p>
             
 
             
             <div class="method-source-code" id="clean_exit-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/atftpd.rb, line 41</span>
+<span class="ruby-comment"># File lib/weapons/atftpd.rb, line 73</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-identifier">exit_weapon</span>
 <span class="ruby-keyword">end</span></pre>
@@ -398,7 +400,7 @@
 
           <div class="method-description">
             
-            <p>Run methods</p>
+            <p>Execution method</p>
 
 <p>Setup a <a href="TFTP.html">TFTP</a> server</p>
             
@@ -406,7 +408,7 @@
             
             <div class="method-source-code" id="config-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/atftpd.rb, line 49</span>
+<span class="ruby-comment"># File lib/weapons/atftpd.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">config</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">Dir</span>[<span class="ruby-string">&quot;/tmp/tftp&quot;</span>] <span class="ruby-operator">==</span> []
     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-string">&quot;/tmp/tftp&quot;</span>)
@@ -452,7 +454,7 @@
 
           <div class="method-description">
             
-            <p>DRY methods</p>
+            <p><a href="Menu.html">Menu</a> methods</p>
 
 <p>Dry menu</p>
             
@@ -472,10 +474,12 @@
       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">tftp_rule_status</span>
       <span class="ruby-identifier">config</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IPtables' INPUT chain is dropping.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inbound TFTP rule not detected. Please verify your firewall settings.&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;There should be a rule similar to this:&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IPtables' INPUT chain is dropping.&quot;</span>.<span class="ruby-identifier">yellow</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Inbound TFTP rule not detected. Please verify your firewall settings.&quot;</span>.<span class="ruby-identifier">red</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;There should be a rule similar to the following in /etc/init.d/iptables:&quot;</span>.<span class="ruby-identifier">yellow</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;/sbin/iptables -C INPUT -p udp --dport 69 -j ACCEPT&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Continuing TFTP setup ...&quot;</span>
+      <span class="ruby-identifier">config</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;IPtables is not dropping. Consider configuring IPtables soon.&quot;</span>
