@@ -10,7 +10,7 @@ class Atftpd < Weapon
   end
 
 ###############################################################################
-# DRY methods
+# Menu methods
 ###############################################################################
   # Dry menu
   def menu(run_method)
@@ -24,10 +24,12 @@ class Atftpd < Weapon
         puts tftp_rule_status
         config
       else
-        puts "IPtables' INPUT chain is dropping.".light_yellow
-        puts "Inbound TFTP rule not detected. Please verify your firewall settings.".light_yellow
-        puts "There should be a rule similar to this:"
+        puts "IPtables' INPUT chain is dropping.".yellow
+        puts "Inbound TFTP rule not detected. Please verify your firewall settings.".red
+        puts "There should be a rule similar to the following in /etc/init.d/iptables:".yellow
         puts "/sbin/iptables -C INPUT -p udp --dport 69 -j ACCEPT"
+        puts "Continuing TFTP setup ..."
+        config
       end
     else
       puts "IPtables is not dropping. Consider configuring IPtables soon."
@@ -37,13 +39,8 @@ class Atftpd < Weapon
     GExeption.new.exit_weapon("aftpd", @prev_menu)
   end
 
-  # Exit
-  def clean_exit
-    exit_weapon
-  end
-
 ###############################################################################
-# Run methods
+# Execution method
 ###############################################################################
   # Setup a TFTP server
   def config
@@ -67,5 +64,13 @@ class Atftpd < Weapon
       puts "You can shutdown the server with 'killall atftpd'.".yellow
     end
     clean_exit
+  end
+
+###############################################################################
+# Exit method
+###############################################################################
+  # Exit
+  def clean_exit
+    exit_weapon
   end
 end  
