@@ -117,11 +117,15 @@
         
           <li class="file"><a href="./lib/helpers/input/ssh_usrs_long_txt.html">ssh_usrs_long.txt</a></li>
         
+          <li class="file"><a href="./lib/helpers/input/ssh_usrs_short_txt.html">ssh_usrs_short.txt</a></li>
+        
           <li class="file"><a href="./lib/helpers/input/telnet_pwds_long_txt.html">telnet_pwds_long.txt</a></li>
         
           <li class="file"><a href="./lib/helpers/input/telnet_usrs_long_txt.html">telnet_usrs_long.txt</a></li>
         
           <li class="file"><a href="./lib/helpers/input/tftp_file_list_txt.html">tftp_file_list.txt</a></li>
+        
+          <li class="file"><a href="./lib/helpers/input/tmp.html">tmp</a></li>
         
           <li class="file"><a href="./lib/helpers/input/vnc_pwds_long_txt.html">vnc_pwds_long.txt</a></li>
         
@@ -318,7 +322,7 @@
             
             <div class="method-source-code" id="get-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 43</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">g_alias</span>)
   <span class="ruby-identifier">path</span> =
     {
@@ -411,7 +415,7 @@
             
             <div class="method-source-code" id="get_out_file-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 107</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-ivar">@share_output</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">weapon</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_%F_%H-%M-%S&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -444,7 +448,7 @@
             
             <div class="method-source-code" id="get_out_file_txt-source">
 <pre>
-<span class="ruby-comment"># File lib/helpers/path.rb, line 111</span>
+<span class="ruby-comment"># File lib/helpers/path.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_out_file_txt</span>(<span class="ruby-identifier">weapon</span>)
   <span class="ruby-identifier">get_out_file</span>(<span class="ruby-identifier">weapon</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.txt&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -519,6 +523,7 @@
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;pty&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;time&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-string">&quot;socket&quot;</span>
+  <span class="ruby-identifier">require</span> <span class="ruby-ivar">@menus</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;menu&quot;</span>
   <span class="ruby-identifier">require</span> <span class="ruby-ivar">@weapons</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;weapon&quot;</span>
   <span class="ruby-constant">Dir</span>[<span class="ruby-ivar">@menus</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }
   <span class="ruby-constant">Dir</span>[<span class="ruby-ivar">@weapons</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;*.rb&quot;</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span> <span class="ruby-identifier">require</span> <span class="ruby-identifier">a</span> }

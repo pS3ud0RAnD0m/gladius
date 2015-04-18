@@ -33,6 +33,7 @@ module Path
     require "pty"
     require "time"
     require "socket"
+    require @menus + "menu"
     require @weapons + "weapon"
     Dir[@menus + "*.rb"].each { |a| require a }
     Dir[@weapons + "*.rb"].each { |a| require a }
