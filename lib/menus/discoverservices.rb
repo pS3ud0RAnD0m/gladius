@@ -19,9 +19,9 @@ class DiscoverServices < Menu
     puts "8.  UDP top 1000 ports with versioning"
     puts "9.  TCP/UDP top 1000 ports with versioning"
     puts "Detailed:".yellow
-    puts "10.  TCP top 1000 ports with versioning and scripts"
-    puts "11.  UDP top 1000 ports with versioning and scripts"
-    puts "12.  TCP/UDP top 1000 ports with versioning and scripts"
+    puts "10. TCP top 1000 ports with versioning and scripts"
+    puts "11. UDP top 1000 ports with versioning and scripts"
+    puts "12. TCP/UDP top 1000 ports with versioning and scripts"
     puts "Thorough:".yellow
     puts "13. TCP all ports"
     puts "14. UDP all ports"
