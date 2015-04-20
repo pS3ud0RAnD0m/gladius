@@ -4,7 +4,7 @@ class ParseFile < Menu
   
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Nmap XML > CSV spreadsheet (Gladius)"
     #puts "2.  Nmap XML > open ports text file (Gladius)"
     puts "88. Back"

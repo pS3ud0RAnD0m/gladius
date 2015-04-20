@@ -3,7 +3,7 @@
 class SMTP < Menu
   def menu
     header
-    puts "Select an option:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Discover open relays (Nmap)"
     puts "2.  User enum (NI)".blue
     puts "88. Back"

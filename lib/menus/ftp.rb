@@ -3,7 +3,7 @@
 class FTP < Menu
   def menu
     header
-    puts "Select an option:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Discover anonymous FTP read/write logins (Nmap)"
     puts "88. Back"
     puts "99. Exit Gladius"

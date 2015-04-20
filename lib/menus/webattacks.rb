@@ -4,7 +4,7 @@ class WebAttacks < Menu
   
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  ..."
     puts "2.  ..."
     puts "3.  ..."

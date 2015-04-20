@@ -3,7 +3,7 @@
 class HTTP < Menu
   def menu
     header
-    puts "Select an option:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  ID supported SSL/TLS protcols, ciphers, etc. (TestSSLServer)"
     puts "2.  ID supported SSL/TLS protcols and ciphers (SSLScan)"
     puts "3.  ID supported HTTP methods (Nmap)"
