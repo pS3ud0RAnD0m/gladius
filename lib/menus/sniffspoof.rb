@@ -3,7 +3,7 @@
 class SniffSpoof < Menu
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Sniff for plaintext creds (Dsniff)"
     puts "2.  MiTM ARP poisoning (Ettercap) (NI)".blue
     puts "88. Back"

@@ -3,7 +3,7 @@
 class NetbiosSMB < Menu
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Enumerate SMB/Samba information (Enum4linux)"
     puts "88. Back"
     puts "99. Exit Gladius"

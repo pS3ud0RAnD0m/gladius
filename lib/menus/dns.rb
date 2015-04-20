@@ -3,7 +3,7 @@
 class DNS < Menu
   def menu
     header
-    puts "Select an option:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Identify Domain Controllers (DiG)"
     puts "2.  Attempt a zone transfer (DNSrecon)"
     puts "3.  Attempt a zone transfer and enum standard records (DNSrecon)"

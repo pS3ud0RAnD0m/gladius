@@ -3,7 +3,7 @@
 class DiscoverServices < Menu
   def menu
     header
-    puts "Select a scanning option:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "Very Quick:".yellow
     puts "1.  ARP/ICMP/Web only"
     puts "2.  TCP top 25 ports (LAN)"

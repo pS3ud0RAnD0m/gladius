@@ -3,7 +3,7 @@
 class NetworkAttacks < Menu
   def menu
     header
-    puts "Select a category:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Sniffing and spoofing"
     puts "2.  Socket fuzzing"
     puts "3.  VPN attacks (NI)".blue

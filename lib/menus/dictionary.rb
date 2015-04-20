@@ -3,7 +3,7 @@
 class Dictionary < Menu
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Create custom dictionaries"
     puts "2.  Online dictionary attacks"
     puts "3.  Offline dictionary attacks (NI)".blue

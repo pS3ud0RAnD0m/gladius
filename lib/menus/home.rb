@@ -3,13 +3,13 @@
 class Home
   def header_home
     puts "----------------------------------------"
-    puts "Home                           v0.0.2.51"
+    puts "Home                           v0.0.2.52"
     puts "----------------------------------------"
   end
 
   def menu
     header_home
-    puts "Select a tactic:".light_yellow
+    puts "Select a strategy:".light_yellow
     puts "1.  Gather information"
     puts "2.  Network attacks"
     puts "3.  Web attacks (NI)".blue

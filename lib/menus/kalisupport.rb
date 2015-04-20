@@ -3,7 +3,7 @@
 class KaliSupport < Menu
   def menu
     header
-    puts "Select a task:".light_yellow
+    puts "Select a tactic:".light_yellow
     puts "1.  Files - Parse (Gladius)"
     puts "2.  Firewall - List rules (IPtables)"
     puts "3.  Firewall - Configure (IPtables)"
