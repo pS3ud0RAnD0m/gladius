@@ -1,7 +1,5 @@
 # Author: p$3ud0R@nD0m
 
-require_relative 'menu'
-
 class KaliSupport < Menu
   def menu
     header
