@@ -99,7 +99,7 @@ class Ncrack < Weapon
 ##################################
   def rdp_gladius_long
     @out_file = Path.get_out_file_txt(@name)
-    cmd = @path + " -v -p3389 -U " + @stdin_usrs + " -P " + @stdin_pwds + " -iL " + @stdin_hosts + " |tee " + @out_file
+    cmd = @path + " -v -p3389 -U " + @windows_usrs_long + " -P " + @windows_pwds_long + " -iL " + @stdin_hosts + " |tee " + @out_file
     run(cmd)
     clean_exit("rdp")
   end
