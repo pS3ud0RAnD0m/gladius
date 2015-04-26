@@ -72,17 +72,17 @@ class GNmap < Weapon
     when "script_smtp_open_relay" then cmd_infix = "-Pn -sS -p25,465,587 --script smtp-open-relay"
     when "script_snmp_dictionary" then cmd_infix = "-Pn -sU -p161 --script snmp-brute --script-args snmp-brute.communitiesdb=#{@snmp_comm_strings_long}"
     when "script_tftp_files"      then cmd_infix = "-Pn -sU -p69 --script tftp-enum"
-    when "tcp_full"               then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128 -p1-65535"
+    when "tcp_full"               then cmd_infix = "-Pn -sS -p0-65535 -T4 --min-hostgroup 128"
     when "tcp_quick_scripts"      then cmd_infix = "-Pn -sSV -T4 --script all --min-hostgroup 128"
     when "tcp_quick"              then cmd_infix = "-Pn -sS -T4 --min-hostgroup 128"
     when "tcp_quick_v"            then cmd_infix = "-Pn -sSV -T4 --min-hostgroup 128"
-    when "tcp_udp_full"           then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128 -p1-65535"
+    when "tcp_udp_full"           then cmd_infix = "-Pn -sSU -p0-65535 -T4 --min-hostgroup 128"
     when "tcp_udp_quick_scripts"  then cmd_infix = "-Pn -sSUV -Pn --script=all --min-hostgroup 128"
     when "tcp_udp_quick"          then cmd_infix = "-Pn -sSU -T4 --min-hostgroup 128"
     when "tcp_udp_quick_v"        then cmd_infix = "-Pn -sSUV -T4 --min-hostgroup 128"
-    when "tcp_very_quick_lan"     then cmd_infix = "-Pn -sS -T5 --top-ports 25 --min-hostgroup 256"
-    when "tcp_very_quick_wan"     then cmd_infix = "-Pn -sS -T4 --top-ports 25 --min-hostgroup 256"
-    when "udp_full"               then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128 -p1-65535"
+    when "tcp_very_quick_lan"     then cmd_infix = "-Pn -sS --top-ports 25 -T5 --min-hostgroup 256"
+    when "tcp_very_quick_wan"     then cmd_infix = "-Pn -sS --top-ports 25 -T4 --min-hostgroup 256"
+    when "udp_full"               then cmd_infix = "-Pn -sU -p0-65535 -T4 --min-hostgroup 128"
     when "udp_quick_scripts"      then cmd_infix = "-Pn -sUV -T4 --script=all --min-hostgroup 128"
     when "udp_quick"              then cmd_infix = "-Pn -sU -T4 --min-hostgroup 128"
     when "udp_quick_v"            then cmd_infix = "-Pn -sUV -T4 --min-hostgroup 128"
@@ -97,8 +97,8 @@ class GNmap < Weapon
     puts "Input your custom arguments and hit <Enter>:".light_yellow
     puts "Note: Gladius will add -v and I/O paths.".yellow
     puts "Examples:".yellow
-    puts "-sUV -Pn -p21-23,25,80,161".yellow
-    puts "-A -T4 -sSV -Pn -p22,2222".yellow
+    puts "-Pn -sSUV -p21-23,25,80,161".yellow
+    puts "-Pn -sSV -T4 -A -p22,2222".yellow
     puts
     args = gets.chomp
     @cmd = "#{args}"
