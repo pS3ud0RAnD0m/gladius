@@ -17,9 +17,7 @@ class Cewl < Weapon
   # Get target and pass to execute method
   def menu(run_method)
     header
-    puts "Input target site:".light_yellow
-    puts "Example:".yellow
-    puts "www.victima.com".yellow
+    instruct_input_target("ip", "ipp", "fqdn", "fqdnp")
     @site = gets.chomp.downcase
     unless @site.empty?
       execute(run_method)

@@ -42,6 +42,32 @@ class Weapon
     end
   end
 
+  # Supply examples for single target weapon input.
+  def instruct_input_target(*args)
+    puts "Input a single target and press Enter:".light_yellow
+    if args.count == 1
+      puts "Example:".yellow
+    else
+      puts "Examples:".yellow
+    end
+    args.each do |target_type|
+      case target_type
+      when "cidr" then puts "10.0.0.0/24".yellow
+      when "domain" then puts "victima.com".yellow
+      when "fqdn" then puts "www.victima.com".yellow
+      when "fqdnp" then puts "www.victima.com:8443".yellow
+      when "fqdnp_spaced" then puts "www.victima.com 8443".yellow
+      when "ip" then puts "10.0.0.1".yellow
+      when "ipp" then puts "10.0.0.1:8443".yellow
+      when "ipp_spaced" then puts "10.0.0.1 8443".yellow
+      when "ipr" then puts "10.0.0.0-100".yellow
+      when "iprl" then puts "10.0.0.0-10.0.0.100".yellow
+      when "iprf" then puts "10.0.0-2.0-100".yellow
+      when "url" then puts "https://www.victima.com/".yellow
+      end
+    end
+  end
+  
   def instruct_input_pwds(service)
     puts "Input password(s), one per line:".light_yellow
     puts "When done, ensure the last line is blank and press Ctrl+D.".yellow
