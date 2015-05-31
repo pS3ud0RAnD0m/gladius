@@ -371,7 +371,7 @@
             
             <div class="method-source-code" id="clean_exit-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/cewl.rb, line 37</span>
+<span class="ruby-comment"># File lib/weapons/cewl.rb, line 35</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">clean_exit</span>
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-ivar">@out_file</span>)
     <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Output can be found here:&quot;</span>.<span class="ruby-identifier">yellow</span>
@@ -410,7 +410,7 @@
             
             <div class="method-source-code" id="execute-source">
 <pre>
-<span class="ruby-comment"># File lib/weapons/cewl.rb, line 49</span>
+<span class="ruby-comment"># File lib/weapons/cewl.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-ivar">@out_file</span> = <span class="ruby-constant">Path</span>.<span class="ruby-identifier">get_out_file</span>(<span class="ruby-ivar">@name</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;_&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@site</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.txt&quot;</span>
   <span class="ruby-identifier">prependix</span> = <span class="ruby-ivar">@path</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@site</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span>
@@ -456,9 +456,7 @@
 <span class="ruby-comment"># File lib/weapons/cewl.rb, line 18</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">menu</span>(<span class="ruby-identifier">run_method</span>)
   <span class="ruby-identifier">header</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Input target site:&quot;</span>.<span class="ruby-identifier">light_yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Example:&quot;</span>.<span class="ruby-identifier">yellow</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;www.victima.com&quot;</span>.<span class="ruby-identifier">yellow</span>
+  <span class="ruby-identifier">instruct_input_target</span>(<span class="ruby-string">&quot;ip&quot;</span>, <span class="ruby-string">&quot;ipp&quot;</span>, <span class="ruby-string">&quot;fqdn&quot;</span>, <span class="ruby-string">&quot;fqdnp&quot;</span>)
   <span class="ruby-ivar">@site</span> = <span class="ruby-identifier">gets</span>.<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">downcase</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@site</span>.<span class="ruby-identifier">empty?</span>
     <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">run_method</span>)
